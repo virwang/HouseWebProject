@@ -1,7 +1,5 @@
 package tw.house._07_.model;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,31 +25,42 @@ public class HouseBean {
 	private String totalprice;
 	private String unitprice;
 	private String ping;
+	private String city;
+	private String dist;
 	private String address;
 	private String phone;
 	private String apartment;
-	private String mrt;
-	private Date adddate;
 	private Integer accountid;
+	private Integer mrtpk;
+	private Integer room;
+	private Integer hall;
+	private Integer bath;
+	private String lat;
+	private String lon;
 	private MemberBean memberBean;
+	private MrtBean mrtBean;
 	
 	public HouseBean() {
 		
 	}
 
-	public HouseBean(Integer id, String title, String totalprice, String unitprice, String ping, String address, String phone,
-			String apartment, Integer accountid, String mrt, Date adddate) {
+	public HouseBean(Integer id, String title, String totalprice, String unitprice, String ping, String city, String dist, String address, String phone,
+			String apartment, Integer accountid, Integer mrtpk, Integer room, Integer hall, Integer bath, String lat, String lon
+			) {
 		this.id = id;
 		this.title = title;
 		this.totalprice = totalprice;
 		this.unitprice = unitprice;
 		this.ping = ping;
+		this.city = city;
+		this.dist = dist;
 		this.address = address;
 		this.phone = phone;
 		this.apartment = apartment;
 		this.accountid= accountid;
-		this.mrt= mrt;
-		this.adddate= adddate;
+		this.mrtpk = mrtpk;
+		this.lat = lat;
+		this.lon = lon;
 	}
 	@Id @Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,6 +104,23 @@ public class HouseBean {
 	public void setPing(String ping) {
 		this.ping = ping;
 	}
+	@Column(name = "city")
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+	@Column(name = "dist")
+	public String getDist() {
+		return dist;
+	}
+
+	public void setDist(String dist) {
+		this.dist = dist;
+	}
+
 	@Column(name="addr")
 	public String getAddress() {
 		return address;
@@ -127,41 +153,79 @@ public class HouseBean {
 	public void setAccountid(Integer accountid) {
 		this.accountid = accountid;
 	}
+	@Column(name = "mrtpk")
+	public Integer getMrtpk() {
+		return mrtpk;
+	}
+	
+	public void setMrtpk(Integer mrtpk) {
+		this.mrtpk = mrtpk;
+	}
+	@Column(name = "room")
+	public Integer getRoom() {
+		return room;
+	}
+
+	public void setRoom(Integer room) {
+		this.room = room;
+	}
+	@Column(name = "hall")
+	public Integer getHall() {
+		return hall;
+	}
+	
+	public void setHall(Integer hall) {
+		this.hall = hall;
+	}
+	@Column(name = "bath")
+	public Integer getBath() {
+		return bath;
+	}
+
+	public void setBath(Integer bath) {
+		this.bath = bath;
+	}
+	@Column(name = "lat")
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	@Column(name = "lon")
+	public String getLon() {
+		return lon;
+	}
+
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "accountid", insertable=false,updatable=false)
+	@JoinColumn(name = "accountid"
+	, insertable=false,updatable=false)
 	public MemberBean getMemberBean() {
 		return memberBean;
 	}
-	
+
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
 	}
-
-	@Column(name= "mrt")
-	public String getMrt() {
-		return mrt;
-	}
-
-	public void setMrt(String mrt) {
-		this.mrt = mrt;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "mrtpk"
+	, insertable=false,updatable=false)
+	public MrtBean getMrtBean() {
+		return mrtBean;
 	}
 	
-	@Column(name = "adddate")
-	public Date getAdddate() {
-		return adddate;
+	public void setMrtBean(MrtBean mrtBean) {
+		this.mrtBean = mrtBean;
 	}
 
-	public void setAdddate(Date adddate) {
-		this.adddate = adddate;
-	}
+
 	
-	@Transient
-	@Override
-	public String toString() {
-		System.out.println("get station="+mrt);
-		return "HouseBean [id=" + id + ", title=" + title + ", totalprice=" + totalprice + ", unitprice=" + unitprice
-				+ ", ping=" + ping + ", address=" + address + ", phone=" + phone + ", apartment=" + apartment + ", mrt="
-				+ mrt + ", adddate=" + adddate + ", accountid=" + accountid + ", memberBean=" + memberBean + "]";
-	}
+	
+	
+	
 }

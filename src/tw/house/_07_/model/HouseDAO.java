@@ -79,4 +79,15 @@ public class HouseDAO {
 		}
 		return false;
 	}
+	
+	public List<HouseBean> mrthouse(Integer station){
+		String hquery = "from HouseBean where mrtBean.pk = :stcode";
+
+		Query<HouseBean> query = getSession().createQuery(hquery, HouseBean.class);
+		query.setParameter("stcode", station);
+		List<HouseBean> mhlist = new ArrayList<>();
+		mhlist = query.list();
+
+		return mhlist;
+	}
 }

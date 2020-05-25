@@ -3,36 +3,41 @@ package tw.house._05_.model;
 import java.sql.Blob;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import tw.house._08_.register.model.MemberBean;
 
 @Component("favorite")
 @Entity
 @Table(name = "favorite")
 public class FavoriteBean {
 	private Integer hid;
-	@JsonIgnore
 	private Blob coverImg;
-	
 	private String houseimg;
 	private String title;
-	private Float uprice;
-	private Float ping;
+	private Double uprice;
+	private Double ping;
 	private String address;
 	private String MRT;
 	private Float age;
-	private Integer accountid;
-	private Integer houseid;
+	private MemberBean memberBean;
+	private Integer accountId;
 	private Date adddate;
+
 	public void Favorite() {
 
 	}
@@ -40,6 +45,8 @@ public class FavoriteBean {
 	@Id
 	@Column(name = "hid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Transient
+	@JsonIgnore
 	public Integer getHid() {
 		return hid;
 	}
@@ -50,12 +57,12 @@ public class FavoriteBean {
 	}
 
 	@Column(name = "uprice")
-	public Float getUprice() {
+	public Double getUprice() {
 		return uprice;
 	}
 
 	@Column(name = "ping")
-	public Float getPing() {
+	public Double getPing() {
 		return ping;
 	}
 
@@ -74,29 +81,38 @@ public class FavoriteBean {
 		return age;
 	}
 
-	@Column(name = "accountId")
-	public Integer getAccountid() {
-		return accountid;
-	}
-
-	@Column(name = "hosueId")
-	public Integer getHouseid() {
-		return houseid;
-	}
-
-	@Column(name = "houseimg")	
+	@Column(name = "houseimg")
 	public String getHouseimg() {
 		return houseimg;
 	}
-	
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Taipei")
 	@Column(name = "addDate")
 	public Date getAdddate() {
 		return adddate;
 	}
 
-	@Column(name = "coverImg")	
+	@Column(name = "coverImg")
 	public Blob getCoverImg() {
 		return coverImg;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "accountid", insertable = false, updatable = false)
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
 	}
 
 	public void setCoverImg(Blob coverImg) {
@@ -119,11 +135,11 @@ public class FavoriteBean {
 		this.title = title;
 	}
 
-	public void setUprice(Float uprice) {
+	public void setUprice(Double uprice) {
 		this.uprice = uprice;
 	}
 
-	public void setPing(Float ping) {
+	public void setPing(Double ping) {
 		this.ping = ping;
 	}
 
@@ -137,22 +153,6 @@ public class FavoriteBean {
 
 	public void setAge(Float age) {
 		this.age = age;
-	}
-
-	public void setAccountid(Integer accountid) {
-		this.accountid = accountid;
-	}
-
-	public void setHouseid(Integer houseid) {
-		this.houseid = houseid;
-	}
-
-	@Transient
-	@Override
-	public String toString() {
-		return "FavoriteBean [hid=" + hid + ", houseimg=" + houseimg + ", title=" + title + ", uprice=" + uprice
-				+ ", ping=" + ping + ", address=" + address + ", MRT=" + MRT + ", age=" + age + ", accountid="
-				+ accountid + ", houseid=" + houseid + ", adddate=" + adddate + "]";
 	}
 
 }

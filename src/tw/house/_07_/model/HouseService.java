@@ -33,4 +33,8 @@ public class HouseService {
 	public boolean deleteHouse(Integer hid) {
 		return houseDAO.deleteHouse(hid);
 	}
+	
+	public List<HouseBean> mrthouse(Integer station){
+		return houseDAO.mrthouse(station);
+	}
 }

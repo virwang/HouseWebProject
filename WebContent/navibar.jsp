@@ -34,9 +34,16 @@
                     </div>
 
                     <ul class="site-menu js-clone-nav d-none d-lg-block">
-                        <li><a href="<c:url value='houselist'/>">買房</a></li>
+                        <li class="has-children">
+                        	<a>買房</a>
+                        	<ul class="dropdown arrow">
+                        		<li><a href="<c:url value='houselist'/>">房屋列表</a></li>
+                        		<li><a href="<c:url value='searchhousemap'/>">房屋地圖(依捷運分類)</a></li>
+                        	</ul>
+                        </li>
+                        
                         <li><a href="<c:url value='SearchTaipeiAction.do'/>">房屋(台北)</a></li>
-                        <li><a href="<c:url value='mrt.jsp'/>">用捷運找</a></li>
+                        <li><a href="<c:url value='newtaipeipage.do'/>">房屋(新北)</a></li>
                         <!-- <li><a href="rent.html">租房</a></li> -->
                         <li><a href="<c:url value='newsList'/>">地方新聞</a></li>
                         <li><a href="process.jsp">購屋流程</a></li>
@@ -50,7 +57,7 @@
                             	<ul class="dropdown arrow">
                             		<li><a href="<c:url value='showMemberData?ACCT=${LoginOK3}'/>">個人資料</a>
                         			<li><a href="<c:url value='memberhouse'/>">我的物件</a></li>
-                                    <li><a href="<c:url value='favoriteList.jsp'/>">我的最愛</a></li>
+                                    <li><a href="#">我的收藏</a></li>
                             		<li><a href="<c:url value='springlogout.do'/>">會員登出</a></li>
                             	</ul>
                             
