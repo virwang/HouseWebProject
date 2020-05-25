@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import tw.house._07_.model.MrtBean;
 import tw.house._08_.register.model.MemberBean;
 
 @Component("favorite")
@@ -32,7 +33,7 @@ public class FavoriteBean {
 	private Double uprice;
 	private Double ping;
 	private String address;
-	private String MRT;
+	private MrtBean mrt;
 	private Float age;
 	private MemberBean memberBean;
 	private Integer accountId;
@@ -71,10 +72,7 @@ public class FavoriteBean {
 		return address;
 	}
 
-	@Column(name = "MRT")
-	public String getMRT() {
-		return MRT;
-	}
+	
 
 	@Column(name = "age")
 	public Float getAge() {
@@ -101,6 +99,14 @@ public class FavoriteBean {
 	@JoinColumn(name = "accountid", insertable = false, updatable = false)
 	public MemberBean getMemberBean() {
 		return memberBean;
+	}
+
+	public MrtBean getMrt() {
+		return mrt;
+	}
+
+	public void setMrt(MrtBean mrt) {
+		this.mrt = mrt;
 	}
 
 	public Integer getAccountId() {
@@ -147,10 +153,7 @@ public class FavoriteBean {
 		this.address = address;
 	}
 
-	public void setMRT(String mRT) {
-		MRT = mRT;
-	}
-
+	
 	public void setAge(Float age) {
 		this.age = age;
 	}
