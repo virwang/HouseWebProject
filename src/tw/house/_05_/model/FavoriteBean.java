@@ -1,5 +1,6 @@
 package tw.house._05_.model;
 
+import java.sql.Blob;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,11 +13,16 @@ import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Component("favorite")
 @Entity
 @Table(name = "favorite")
 public class FavoriteBean {
 	private Integer hid;
+	@JsonIgnore
+	private Blob coverImg;
+	
 	private String houseimg;
 	private String title;
 	private Float uprice;
@@ -27,7 +33,6 @@ public class FavoriteBean {
 	private Integer accountid;
 	private Integer houseid;
 	private Date adddate;
-
 	public void Favorite() {
 
 	}
@@ -87,6 +92,15 @@ public class FavoriteBean {
 	@Column(name = "addDate")
 	public Date getAdddate() {
 		return adddate;
+	}
+
+	@Column(name = "coverImg")	
+	public Blob getCoverImg() {
+		return coverImg;
+	}
+
+	public void setCoverImg(Blob coverImg) {
+		this.coverImg = coverImg;
 	}
 
 	public void setAdddate(Date adddate) {
