@@ -28,7 +28,7 @@ public class FavoriteController {
 	public String favoriteHouse(Model model, @RequestParam("favorite") Integer houseid) {
 		System.out.println("hosueid"+ houseid);
 		
-		List<FavoriteBean> favlist = ifavorite.getHouseId(houseid);
+		List<FavoriteBean> favlist = ifavorite.getHouseid(houseid);
 		model.addAttribute("favorite", favlist);
 		
 		System.out.println("controller show favorite house table");

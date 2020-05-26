@@ -42,7 +42,7 @@ public class FavoriteListService implements IFavoriteList {
 	
 	@Override
 	public void delete(int fid) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
