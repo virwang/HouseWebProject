@@ -22,18 +22,19 @@ public class FavoriteListService implements IFavoriteList {
 	public void setFDao(FavoriteDao fdao) {
 		this.fdao = fdao;
 	}
-	
 
 	@Override
 	public List<FavoriteBean> getAccountId(Integer accountid) {
-		System.out.println("Favorite Service here get accountid ");
-		return fdao.getAccountId(accountid);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<FavoriteBean> getHouseId(Integer houseid) {
-		System.out.println("Favorite Service here get houseid ");
-		return fdao.getHouseId(houseid);
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+
 
 }
