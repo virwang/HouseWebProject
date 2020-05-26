@@ -1,5 +1,7 @@
 package tw.house._07_.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,6 +37,7 @@ public class HouseBean {
 	private Integer room;
 	private Integer hall;
 	private Integer bath;
+	private Date addDate;
 	private String lat;
 	private String lon;
 	private MemberBean memberBean;
@@ -213,8 +216,7 @@ public class HouseBean {
 		this.memberBean = memberBean;
 	}
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "mrtpk"
-	, insertable=false,updatable=false)
+	@JoinColumn(name = "mrtpk", insertable=false,updatable=false)
 	public MrtBean getMrtBean() {
 		return mrtBean;
 	}
@@ -223,9 +225,24 @@ public class HouseBean {
 		this.mrtBean = mrtBean;
 	}
 
+	@Column(name = "addDate")
+	public Date getAddDate() {
+		return addDate;
+	}
 
-	
-	
+	public void setAddDate(Date addDate) {
+		this.addDate = addDate;
+	}
+
+	@Transient
+	@Override
+	public String toString() {
+		return "HouseBean [id=" + id + ", title=" + title + ", totalprice=" + totalprice + ", unitprice=" + unitprice
+				+ ", ping=" + ping + ", city=" + city + ", dist=" + dist + ", address=" + address + ", phone=" + phone
+				+ ", apartment=" + apartment + ", accountid=" + accountid + ", mrtpk=" + mrtpk + ", room=" + room
+				+ ", hall=" + hall + ", bath=" + bath + ", lat=" + lat + ", lon=" + lon + ", memberBean=" + memberBean
+				+ ", mrtBean=" + mrtBean + ", addDate=" + addDate + "]";
+	}
 	
 	
 }

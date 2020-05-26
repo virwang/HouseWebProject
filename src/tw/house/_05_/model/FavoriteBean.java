@@ -33,11 +33,11 @@ public class FavoriteBean {
 	private Double uprice;
 	private Double ping;
 	private String address;
-	private MrtBean mrt;
-	private Float age;
-	private MemberBean memberBean;
+	private String mrtstation;	
 	private Integer accountId;
 	private Date adddate;
+	private MemberBean memberBean;
+	private MrtBean mrtBean;
 
 	public void Favorite() {
 
@@ -72,12 +72,6 @@ public class FavoriteBean {
 		return address;
 	}
 
-	
-
-	@Column(name = "age")
-	public Float getAge() {
-		return age;
-	}
 
 	@Column(name = "houseimg")
 	public String getHouseimg() {
@@ -100,13 +94,21 @@ public class FavoriteBean {
 	public MemberBean getMemberBean() {
 		return memberBean;
 	}
-
-	public MrtBean getMrt() {
-		return mrt;
+	
+	public String getMrtstation() {
+		return mrtstation;
 	}
 
-	public void setMrt(MrtBean mrt) {
-		this.mrt = mrt;
+	public void setMrtstation(String mrtstation) {
+		this.mrtstation = mrtstation;
+	}
+
+	public MrtBean getMrtBean() {
+		return mrtBean;
+	}
+
+	public void setMrtBean(MrtBean mrtBean) {
+		this.mrtBean = mrtBean;
 	}
 
 	public Integer getAccountId() {
@@ -154,8 +156,5 @@ public class FavoriteBean {
 	}
 
 	
-	public void setAge(Float age) {
-		this.age = age;
-	}
 
 }
