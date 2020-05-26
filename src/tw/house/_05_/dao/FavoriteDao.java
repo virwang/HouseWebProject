@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import tw.house._05_.model.FavoriteBean;
+import tw.house._07_.model.HouseBean;
 
 @Repository
 public class FavoriteDao implements IFravoriteDao {
@@ -45,6 +46,12 @@ public class FavoriteDao implements IFravoriteDao {
 		System.out.println("FavoriteDao size of getHouseid = " + getHouseId.size());
 	
 		return getHouseId;
+	}
+
+	@Override
+	public List<HouseBean> getHouseid(Integer accountid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

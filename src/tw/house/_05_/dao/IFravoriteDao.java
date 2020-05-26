@@ -2,9 +2,11 @@ package tw.house._05_.dao;
 
 import java.util.List;
 
-import tw.house._05_.model.FavoriteBean;
+import tw.house._07_.model.HouseBean;
+
 
 public interface IFravoriteDao {
-	List<FavoriteBean> getAccountId(Integer accountid);
-	List<FavoriteBean> getHouseId(Integer houseid);
+
+	List<HouseBean> getHouseid(Integer accountid);
+//	List<HouseBean> getHouseId(Integer houseid);
 }
