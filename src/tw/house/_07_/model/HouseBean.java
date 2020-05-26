@@ -206,8 +206,7 @@ public class HouseBean {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "accountid"
-	, insertable=false,updatable=false)
+	@JoinColumn(name = "accountid", insertable=false,updatable=false)
 	public MemberBean getMemberBean() {
 		return memberBean;
 	}

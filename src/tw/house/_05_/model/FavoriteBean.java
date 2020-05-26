@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -32,8 +33,11 @@ public class FavoriteBean {
 	private String title;
 	private Double uprice;
 	private Double ping;
+	private String city;
+	private String district;
 	private String address;
-	private String mrtstation;	
+	private Integer room;
+	private String station;
 	private Integer accountId;
 	private Date adddate;
 	private MemberBean memberBean;
@@ -67,17 +71,18 @@ public class FavoriteBean {
 		return ping;
 	}
 
-	@Column(name = "address")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address", insertable = false, updatable = false)
 	public String getAddress() {
 		return address;
 	}
-
 
 	@Column(name = "houseimg")
 	public String getHouseimg() {
 		return houseimg;
 	}
 
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Taipei")
 	@Column(name = "addDate")
 	public Date getAdddate() {
@@ -94,17 +99,62 @@ public class FavoriteBean {
 	public MemberBean getMemberBean() {
 		return memberBean;
 	}
-	
+
+	@Column(name = "stationname")
 	public String getMrtstation() {
-		return mrtstation;
+		return station;
 	}
 
-	public void setMrtstation(String mrtstation) {
-		this.mrtstation = mrtstation;
+
+	@Column(name = "city")
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "room", insertable = false, updatable = false)
+	public Integer getRoom() {
+		return room;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dis", insertable = false, updatable = false)
+	public String getDistrict() {
+		return district;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "station", insertable = false, updatable = false)
+	public String getStation() {
+		return station;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "district", insertable = false, updatable = false)
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "district", insertable = false, updatable = false)
+	public void setRoom(Integer room) {
+		this.room = room;
 	}
 
 	public MrtBean getMrtBean() {
 		return mrtBean;
+	}
+
+	public void setStation(String station) {
+		this.station = station;
+	}
+
+	public void setMrtstation(String mrtstation) {
+		this.station = mrtstation;
 	}
 
 	public void setMrtBean(MrtBean mrtBean) {
@@ -154,7 +204,5 @@ public class FavoriteBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	
 
 }
