@@ -24,17 +24,24 @@ public class FavoriteListService implements IFavoriteList {
 	}
 
 	@Override
-	public List<FavoriteBean> getAccountId(Integer accountid) {
+	public FavoriteBean getid(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<FavoriteBean> getHouseId(Integer houseid) {
+	public List<FavoriteBean> queryMemberid(int accountid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public void delete(int fid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 
 }

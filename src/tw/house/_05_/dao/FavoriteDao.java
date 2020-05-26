@@ -18,10 +18,10 @@ import tw.house._07_.model.MrtBean;
 public class FavoriteDao implements IFravoriteDao {
 	@Autowired
 	@Qualifier("sessionFactory")
-	private SessionFactory sessionFactory;
+	private SessionFactory factory;
 	
 	public Session getSession() {
-		return sessionFactory.getCurrentSession();
+		return factory.getCurrentSession();
 	}
 
 
@@ -31,7 +31,7 @@ public class FavoriteDao implements IFravoriteDao {
 		Query<FavoriteBean>	query = getSession().createQuery(queryAll, FavoriteBean.class);
 		List<FavoriteBean> falist = new ArrayList<>();
 		falist = query.list();
-		System.out.println("FavoriteDao queryAll");
+		System.out.println("FavoriteDao queryAll data");
 		return falist;
 	
 	}
@@ -42,8 +42,18 @@ public class FavoriteDao implements IFravoriteDao {
 		Query<FavoriteBean> queryHouseId = getSession().createQuery(query, FavoriteBean.class);
 		List<FavoriteBean> hidlist = new ArrayList<>();
 		hidlist = queryHouseId.list();
-		System.out.println("FavoriteDao queryHouseid");
+		System.out.println("FavoriteDao query by Houseid");
 		return hidlist;
+	}
+
+
+	@Override
+	public void deleteFavorite(int fid) {
+		Session session = factory.getCurrentSession();
+		FavoriteBean fBean = new FavoriteBean();
+		fBean.setFid(fid);
+		System.out.println("FavoriteDao delete favorite ");
+		session.delete(fBean);
 	}
 
 

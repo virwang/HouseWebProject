@@ -6,9 +6,10 @@ import tw.house._05_.model.FavoriteBean;
 
 public interface IFavoriteList {
 
-	
-	List<FavoriteBean> getAccountId(Integer accountid);
+	FavoriteBean getid(int id);
+	List<FavoriteBean> queryMemberid(int accountid);
+	void delete(int fid);
 
-	List<FavoriteBean> getHouseId(Integer houseid);
+	
 
 }

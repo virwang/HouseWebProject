@@ -42,7 +42,7 @@ public class FavoriteBean {
 		return fid;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "accountid", insertable=false,updatable=false)
 	public MemberBean getMemberBean() {
 		return memberId;
