@@ -27,7 +27,7 @@ public class FavoriteDao implements IFravoriteDao {
 	@Override
 	public Object save(FavoriteBean fBean) {
 		Session session = factory.getCurrentSession();
-		System.out.println("favorite dao save Bean");
+		System.out.println("favorite dao save Bean"+fBean);
 		return session.save(fBean);
 	}
 
