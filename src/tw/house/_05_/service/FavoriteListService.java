@@ -23,25 +23,28 @@ public class FavoriteListService implements IFavoriteList {
 		this.fdao = fdao;
 	}
 
+
 	@Override
-	public FavoriteBean getid(int id) {
+	public FavoriteBean getAllData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
+
 	@Override
-	public List<FavoriteBean> queryMemberid(int accountid) {
+	public List<FavoriteBean> getMemberid(int accountid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
+	
 	@Override
 	public void delete(int fid) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 
 }

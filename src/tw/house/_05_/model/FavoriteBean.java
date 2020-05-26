@@ -42,7 +42,7 @@ public class FavoriteBean {
 		return fid;
 	}
 
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "accountid", insertable=false,updatable=false)
 	public MemberBean getMemberBean() {
 		return memberId;
@@ -53,7 +53,7 @@ public class FavoriteBean {
 		return accountId;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "houseid", insertable=false,updatable=false)
 	public List<HouseBean> gethBean() {
 		return hBean;

@@ -24,6 +24,12 @@ public class FavoriteDao implements IFravoriteDao {
 		return factory.getCurrentSession();
 	}
 
+	@Override
+	public Object save(FavoriteBean fBean) {
+		Session session = factory.getCurrentSession();
+		System.out.println("favorite dao save Bean");
+		return session.save(fBean);
+	}
 
 	@Override
 	public List<FavoriteBean> query() {
@@ -31,7 +37,7 @@ public class FavoriteDao implements IFravoriteDao {
 		Query<FavoriteBean>	query = getSession().createQuery(queryAll, FavoriteBean.class);
 		List<FavoriteBean> falist = new ArrayList<>();
 		falist = query.list();
-		System.out.println("FavoriteDao queryAll data");
+		System.out.println("FavoriteDao queryAll data"+falist.size());
 		return falist;
 	
 	}
@@ -40,10 +46,10 @@ public class FavoriteDao implements IFravoriteDao {
 	public List<FavoriteBean> getHouseid(Integer hosueid) {
 		String query = "from FavoriteBean houseid =: houseid ";
 		Query<FavoriteBean> queryHouseId = getSession().createQuery(query, FavoriteBean.class);
-		List<FavoriteBean> hidlist = new ArrayList<>();
-		hidlist = queryHouseId.list();
-		System.out.println("FavoriteDao query by Houseid");
-		return hidlist;
+		List<FavoriteBean> listhouseid = new ArrayList<>();
+		listhouseid = queryHouseId.list();
+		System.out.println("FavoriteDao query by Houseid"+listhouseid.size());
+		return listhouseid;
 	}
 
 
@@ -52,9 +58,22 @@ public class FavoriteDao implements IFravoriteDao {
 		Session session = factory.getCurrentSession();
 		FavoriteBean fBean = new FavoriteBean();
 		fBean.setFid(fid);
-		System.out.println("FavoriteDao delete favorite ");
+		System.out.println("FavoriteDao delete favorite "+fBean);
 		session.delete(fBean);
 	}
+
+
+	@Override
+	public List<FavoriteBean> getMemberid(int accountid) {
+		String querymemberid = "from FavoriteBean accountid = : accountid";
+		Query<FavoriteBean> queryMemberid = getSession().createQuery(querymemberid, FavoriteBean.class);
+		List<FavoriteBean> listmid = new ArrayList<>();
+		listmid = queryMemberid.list();
+		System.out.println("fdao querymemberid"+listmid.size());
+		return listmid;
+	}
+
+
 
 
 }
