@@ -2,16 +2,14 @@ package tw.house._05_.dao;
 
 import java.util.List;
 
-import tw.house._07_.model.HouseBean;
-import tw.house._07_.model.MrtBean;
+import tw.house._05_.model.FavoriteBean;
+
 
 
 public interface IFravoriteDao {
-
-	List<HouseBean> getHouseid(Integer id);
-//	List<HouseBean> getMrt(String mrt);
-//	List<HouseBean> getCity(String city);
-//	List<MrtBean> getstation(String station);
-//	List<HouseBean> showAll();
+	List<FavoriteBean> query();
+	List<FavoriteBean> getHouseid(Integer hosueid);
+	void deleteFavorite(int fid);
+	
 	
 }

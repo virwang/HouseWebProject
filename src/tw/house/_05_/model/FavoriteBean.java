@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -40,8 +42,8 @@ public class FavoriteBean {
 		return fid;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "accountid", referencedColumnName ="pk")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "accountid", insertable=false,updatable=false)
 	public MemberBean getMemberBean() {
 		return memberId;
 	}
@@ -51,8 +53,8 @@ public class FavoriteBean {
 		return accountId;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "houseid", referencedColumnName = "id")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "houseid", insertable=false,updatable=false)
 	public List<HouseBean> gethBean() {
 		return hBean;
 	}
