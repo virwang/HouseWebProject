@@ -2,47 +2,48 @@ package tw.house._05_.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.house._05_.model.FavoriteBean;
+import tw.house._05_.service.FavoriteListService;
 import tw.house._05_.service.IFavoriteList;
+import tw.house._07_.model.HouseBean;
 import tw.house._07_.model.HouseService;
 import tw.house._07_.model.MrtService;
+import tw.house._08_.register.model.MemberBean;
 
 @Controller
 public class FavoriteController {
-	
+	@Autowired
+	SessionFactory session;
+	@Autowired
+	FavoriteListService fs;
+	@Autowired
+	private HouseService hs;
+	@Autowired
+	private MrtService ms;
 
-	
-	@Autowired
-	IFavoriteList ifavorite;
-	@Autowired
-	private HouseService hService;
-	
-	@Autowired
-	private MrtService mService;
-	
-	
-	@RequestMapping(path="/favorite", method =RequestMethod.GET)
-	public String showfavorite() {
-		System.out.println("favorite controller show page ");
+	@GetMapping(value = "/navibar")
+	public String insertFavorite(Model m, HttpServletRequest res) {
+		HttpSession session = res.getSession();
+		FavoriteBean fb = new FavoriteBean();
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		HouseBean hb = hs.selectedHouse(id);
+
+		fb.sethBean(hb);
+		fb.setMemberBean(mb);
+
+		fs.save(fb);
 		return "favoriteList";
 	}
-	
-	@RequestMapping(path="/favoritelist", method =RequestMethod.POST)
-	public String favoriteHouse(Model model, @RequestParam("favorite") Integer accountid) {
-		System.out.println("hosueid"+ accountid);
-		
-		List<FavoriteBean> favlist = ifavorite.getmid(accountid);
-		model.addAttribute("favorite", favlist);
-		
-		System.out.println("controller show favorite house table");
-		return "favoriteList";
-	}
-
 }

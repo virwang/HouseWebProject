@@ -20,9 +20,9 @@ public class MRTControllerTest {
 	@Autowired
 	SessionFactory session;
 	@Autowired
-	HouseService hs;
-	@Autowired
 	FavoriteListService fs;
+	@Autowired
+	HouseService hs;
 	@Autowired
 	MrtService ms;
 	

@@ -25,8 +25,8 @@ public class NewTaipeiController {
 		return "newtaipei";
 	}
 
-	@PostMapping(value = "/ntpSerach.do")
 //	@RequestMapping(path = "/ntpSearch.do", method = RequestMethod.POST)
+	@PostMapping(value = "/ntpSerach.do")
 	public String showSelect(Model model, @RequestParam("selectcity") String district) {
 //		System.out.println("district of new taipei");
 		

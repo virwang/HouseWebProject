@@ -57,7 +57,7 @@
                             	<ul class="dropdown arrow">
                             		<li><a href="<c:url value='showMemberData?ACCT=${LoginOK3}'/>">個人資料</a>
                         			<li><a href="<c:url value='memberhouse'/>">我的物件</a></li>
-                                    <li><a href="#">我的收藏</a></li>
+                                    <li><a href="favoriteList.jsp">我的收藏</a></li>
                             		<li><a href="<c:url value='springlogout.do'/>">會員登出</a></li>
                             	</ul>
                             

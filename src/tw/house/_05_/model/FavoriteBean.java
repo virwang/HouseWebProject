@@ -40,7 +40,7 @@ public class FavoriteBean {
 		return fid;
 	}
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "accountid", insertable=false,updatable=false)
 	public MemberBean getMemberBean() {
 		return memberId;
