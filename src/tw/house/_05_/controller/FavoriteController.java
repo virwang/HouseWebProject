@@ -11,14 +11,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.house._05_.model.FavoriteBean;
 import tw.house._05_.service.IFavoriteList;
+import tw.house._07_.model.HouseService;
+import tw.house._07_.model.MrtService;
 
 @Controller
 public class FavoriteController {
 	
 	@Autowired
 	IFavoriteList ifavorite;
+	@Autowired
+	private HouseService hService;
 	
-	@RequestMapping(path="/favorite.do", method =RequestMethod.GET)
+	@Autowired
+	private MrtService mService;
+	
+	
+	@RequestMapping(path="/favorite", method =RequestMethod.GET)
 	public String showfavorite() {
 		System.out.println("favorite controller show page ");
 		return "favoriteList";

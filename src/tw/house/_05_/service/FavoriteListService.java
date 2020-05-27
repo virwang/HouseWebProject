@@ -24,27 +24,40 @@ public class FavoriteListService implements IFavoriteList {
 	}
 
 
+
 	@Override
-	public FavoriteBean getAllData() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FavoriteBean> getAllData() {
+		System.out.println("server query all data ="+getAllData().size());
+		return fdao.query();
 	}
-
-
 
 	@Override
 	public List<FavoriteBean> getMemberid(int accountid) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("server query by mid ="+ accountid);
+		return fdao.getMemberid(accountid);
 	}
 
+	@Override
+	public Object save(FavoriteBean fBean) {
+		System.out.println("server save by fid"+fBean.getFid());
+		return fdao.save(fBean);
+	}
 
-	
+	@Override
+	public void update(FavoriteBean fBean) {
+		System.out.println("server update by fid ="+fBean.getFid());
+		fdao.updateFavorite(fBean);;
+		
+	}
+
 	@Override
 	public void delete(int fid) {
-		
+		System.out.println("delete by fid ="+fid);
+		fdao.deleteFavorite(fid);;
 		
 	}
+
+
 
 
 }

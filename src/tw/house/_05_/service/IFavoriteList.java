@@ -5,9 +5,12 @@ import java.util.List;
 import tw.house._05_.model.FavoriteBean;
 
 public interface IFavoriteList {
-	FavoriteBean getAllData();
+//	FavoriteBean getFid(int fid);
+	List<FavoriteBean> getAllData();
 
 	List<FavoriteBean> getMemberid(int accountid);
+	Object save(FavoriteBean fBean);
+	void update(FavoriteBean fBean);
 	void delete(int fid);
 
 	

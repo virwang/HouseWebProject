@@ -1,7 +1,6 @@
 package tw.house._05_.model;
 
 import java.sql.Blob;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -28,8 +26,8 @@ public class FavoriteBean {
 	private Integer fid;
 	private Integer accountId;
 	private Integer houseid;
-	private MemberBean memberId;
-	private List<HouseBean> hBean;
+	private List<MemberBean> memberId;
+	private HouseBean hBean;
 
 	public void Favorite() {
 
@@ -44,7 +42,7 @@ public class FavoriteBean {
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "accountid", insertable=false,updatable=false)
-	public MemberBean getMemberBean() {
+	public List<MemberBean> getMemberBean() {
 		return memberId;
 	}
 
@@ -55,7 +53,7 @@ public class FavoriteBean {
 
 	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "houseid", insertable=false,updatable=false)
-	public List<HouseBean> gethBean() {
+	public HouseBean gethBean() {
 		return hBean;
 	}
 
@@ -65,7 +63,7 @@ public class FavoriteBean {
 	}
 
 	@Column(name = "accountid")
-	public MemberBean getMembeId() {
+	public List<MemberBean> getMembeId() {
 		return memberId;
 	}
 
@@ -73,7 +71,7 @@ public class FavoriteBean {
 		this.accountId = accountId;
 	}
 
-	public void setMemberBean(MemberBean memberBean) {
+	public void setMemberBean(List<MemberBean> memberBean) {
 		this.memberId = memberBean;
 	}
 
@@ -86,11 +84,11 @@ public class FavoriteBean {
 		this.houseid = houseid;
 	}
 
-	public void setMembeId(MemberBean membeId) {
+	public void setMembeId(List<MemberBean> membeId) {
 		this.memberId = membeId;
 	}
 
-	public void sethBean(List<HouseBean> hBean) {
+	public void sethBean(HouseBean hBean) {
 		this.hBean = hBean;
 	}
 	
