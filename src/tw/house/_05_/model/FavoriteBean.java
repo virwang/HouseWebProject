@@ -26,7 +26,7 @@ public class FavoriteBean {
 	private Integer fid;
 	private Integer accountId;
 	private Integer houseid;
-	private List<MemberBean> memberId;
+	private MemberBean memberId;
 	private HouseBean hBean;
 
 	public void Favorite() {
@@ -42,7 +42,7 @@ public class FavoriteBean {
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "accountid", insertable=false,updatable=false)
-	public List<MemberBean> getMemberBean() {
+	public MemberBean getMemberBean() {
 		return memberId;
 	}
 
@@ -63,7 +63,7 @@ public class FavoriteBean {
 	}
 
 	@Column(name = "accountid")
-	public List<MemberBean> getMembeId() {
+	public MemberBean getMembeId() {
 		return memberId;
 	}
 
@@ -71,7 +71,7 @@ public class FavoriteBean {
 		this.accountId = accountId;
 	}
 
-	public void setMemberBean(List<MemberBean> memberBean) {
+	public void setMemberBean(MemberBean memberBean) {
 		this.memberId = memberBean;
 	}
 
@@ -84,7 +84,7 @@ public class FavoriteBean {
 		this.houseid = houseid;
 	}
 
-	public void setMembeId(List<MemberBean> membeId) {
+	public void setMembeId(MemberBean membeId) {
 		this.memberId = membeId;
 	}
 

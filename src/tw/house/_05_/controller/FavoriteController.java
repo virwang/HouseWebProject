@@ -17,6 +17,8 @@ import tw.house._07_.model.MrtService;
 @Controller
 public class FavoriteController {
 	
+
+	
 	@Autowired
 	IFavoriteList ifavorite;
 	@Autowired
@@ -32,11 +34,11 @@ public class FavoriteController {
 		return "favoriteList";
 	}
 	
-	@RequestMapping(path="/favoritelist.do", method =RequestMethod.POST)
-	public String favoriteHouse(Model model, @RequestParam("favorite") Integer houseid) {
-		System.out.println("hosueid"+ houseid);
+	@RequestMapping(path="/favoritelist", method =RequestMethod.POST)
+	public String favoriteHouse(Model model, @RequestParam("favorite") Integer accountid) {
+		System.out.println("hosueid"+ accountid);
 		
-		List<FavoriteBean> favlist = ifavorite.getHouseid(houseid);
+		List<FavoriteBean> favlist = ifavorite.getmid(accountid);
 		model.addAttribute("favorite", favlist);
 		
 		System.out.println("controller show favorite house table");

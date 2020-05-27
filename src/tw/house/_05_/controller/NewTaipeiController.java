@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +25,11 @@ public class NewTaipeiController {
 		return "newtaipei";
 	}
 
-								
-	@RequestMapping(path = "/ntpSearch.do", method = RequestMethod.POST)
+	@PostMapping(value = "/ntpSerach.do")
+//	@RequestMapping(path = "/ntpSearch.do", method = RequestMethod.POST)
 	public String showSelect(Model model, @RequestParam("selectcity") String district) {
 //		System.out.println("district of new taipei");
+		
 		System.out.println("district:"+district);
 		List<NewTaipeiBean> ntplist = NtpService.getDistrict(district);
 		model.addAttribute("ntp", ntplist);

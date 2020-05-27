@@ -5,6 +5,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -97,7 +99,7 @@ public class HouseController {
 		hBean.setAccountid(mBean.getPk());
 		hBean.setMrtpk(Integer.valueOf(mrt));
 //		hBean.setMemberBean(mBean);
-		
+	
 		boolean insert = hService.insertHouse(hBean);
 		System.out.println(insert);
 		if (insert==true) {
