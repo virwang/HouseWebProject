@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.house._05_.model.FavoriteBean;
 import tw.house._05_.service.FavoriteListService;
+import tw.house._05_.service.IFavoriteList;
 import tw.house._07_.model.HouseBean;
 import tw.house._07_.model.HouseService;
 import tw.house._07_.model.MrtService;
@@ -24,7 +25,7 @@ public class FavoriteController {
 	@Autowired
 	SessionFactory session;
 	@Autowired
-	private FavoriteListService fs;
+	private IFavoriteList fs;
 	@Autowired
 	private HouseService hs;
 	@Autowired

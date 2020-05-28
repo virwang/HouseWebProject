@@ -34,13 +34,13 @@ public class FavoriteBean {
 	}
 
 	@Id
-	@Column(name = "hid")
+	@Column(name = "fid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getFid() {
 		return fid;
 	}
 
-//	@OneToOne(cascade = CascadeType.PERSIST)
+//	@OneToMany(cascade = CascadeType.PERSIST)
 //	@JoinColumn(name = "accountid")
 //	public MemberBean getMemberBean() {
 //		return memberId;
@@ -52,7 +52,7 @@ public class FavoriteBean {
 	}
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "id", referencedColumnName = "hid")
+	@JoinColumn(name = "houseid", referencedColumnName = "houseid")
 	public List<HouseBean> gethBean() {
 		return hBean;
 	}

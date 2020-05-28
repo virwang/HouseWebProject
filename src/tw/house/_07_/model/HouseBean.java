@@ -1,5 +1,6 @@
 package tw.house._07_.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -37,7 +38,7 @@ public class HouseBean {
 	private Integer room;
 	private Integer hall;
 	private Integer bath;
-	private Date addDate;
+	private Timestamp addDate;
 	private String lat;
 	private String lon;
 	private MemberBean memberBean;
@@ -226,31 +227,70 @@ public class HouseBean {
 	}
 
 	@Column(name = "addDate")
-	public Date getAddDate() {
+	public Timestamp getAddDate() {
 		return addDate;
 	}
 
-	public void setAddDate(Date addDate) {
+	public void setAddDate(Timestamp addDate) {
 		this.addDate = addDate;
 	}
-	@Transient
-	@Column(name = "hosueid")	
-	public Integer getHouseid() {
-		return houseid;
-	}
+//	@Transient
+//	@Column(name = "hosueid")	
+//	public Integer getHouseid() {
+//		return houseid;
+//	}
 
 	public void setHouseid(Integer houseid) {
 		this.houseid = houseid;
 	}
 
-	@Transient
 	@Override
 	public String toString() {
-		return "HouseBean [id=" + id + ", title=" + title + ", totalprice=" + totalprice + ", unitprice=" + unitprice
-				+ ", ping=" + ping + ", city=" + city + ", dist=" + dist + ", address=" + address + ", phone=" + phone
-				+ ", apartment=" + apartment + ", accountid=" + accountid + ", mrtpk=" + mrtpk + ", room=" + room
-				+ ", hall=" + hall + ", bath=" + bath + ", lat=" + lat + ", lon=" + lon + ", memberBean=" + memberBean
-				+ ", mrtBean=" + mrtBean + ", addDate=" + addDate + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("HouseBean [id=");
+		builder.append(id);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", totalprice=");
+		builder.append(totalprice);
+		builder.append(", unitprice=");
+		builder.append(unitprice);
+		builder.append(", ping=");
+		builder.append(ping);
+		builder.append(", city=");
+		builder.append(city);
+		builder.append(", dist=");
+		builder.append(dist);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", phone=");
+		builder.append(phone);
+		builder.append(", apartment=");
+		builder.append(apartment);
+		builder.append(", accountid=");
+		builder.append(accountid);
+		builder.append(", mrtpk=");
+		builder.append(mrtpk);
+		builder.append(", room=");
+		builder.append(room);
+		builder.append(", hall=");
+		builder.append(hall);
+		builder.append(", bath=");
+		builder.append(bath);
+		builder.append(", addDate=");
+		builder.append(addDate);
+		builder.append(", lat=");
+		builder.append(lat);
+		builder.append(", lon=");
+		builder.append(lon);
+		builder.append(", memberBean=");
+		builder.append(memberBean);
+		builder.append(", mrtBean=");
+		builder.append(mrtBean);
+		builder.append(", houseid=");
+		builder.append(houseid);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	

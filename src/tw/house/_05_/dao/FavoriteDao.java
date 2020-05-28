@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import tw.house._05_.model.FavoriteBean;
 
 @Repository
-public class FavoriteDao implements IFravoriteDao {
+public class FavoriteDao  {
 	@Autowired
 	@Qualifier("sessionFactory")
 	private SessionFactory factory;
@@ -22,14 +22,13 @@ public class FavoriteDao implements IFravoriteDao {
 		return factory.getCurrentSession();
 	}
 
-	@Override
 	public Object save(FavoriteBean fBean) {
 		Session session = factory.getCurrentSession();
 		System.out.println("favorite dao save Bean" + fBean);
 		return session.save(fBean);
 	}
 
-	@Override
+
 	public List<FavoriteBean> query() {
 		String queryAll = "from FavoriteBean";
 		Query<FavoriteBean> query = getSession().createQuery(queryAll, FavoriteBean.class);
@@ -40,7 +39,7 @@ public class FavoriteDao implements IFravoriteDao {
 
 	}
 
-	@Override
+
 	public List<FavoriteBean> getHouseid(int houseid) {
 		String query = "from FavoriteBean  where houseid =: houseid ";
 		Query<FavoriteBean> queryHouseId = getSession().createQuery(query, FavoriteBean.class);
@@ -50,7 +49,7 @@ public class FavoriteDao implements IFravoriteDao {
 		return listhouseid;
 	}
 
-	@Override
+
 	public void deleteFavorite(int fid) {
 		Session session = factory.getCurrentSession();
 		FavoriteBean fBean = new FavoriteBean();
@@ -59,7 +58,7 @@ public class FavoriteDao implements IFravoriteDao {
 		session.delete(fBean);
 	}
 
-	@Override
+	
 	public List<FavoriteBean> getMemberid(int accountid) {
 		String querymemberid = "from FavoriteBean accountid = : accountid";
 		Query<FavoriteBean> queryMemberid = getSession().createQuery(querymemberid, FavoriteBean.class);
@@ -69,7 +68,7 @@ public class FavoriteDao implements IFravoriteDao {
 		return listmid;
 	}
 
-	@Override
+
 	public void updateFavorite(FavoriteBean fBean) {
 		Session session = factory.getCurrentSession();
 		System.out.println("update favorite dao");
