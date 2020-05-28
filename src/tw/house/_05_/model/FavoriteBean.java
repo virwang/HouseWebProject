@@ -52,7 +52,7 @@ public class FavoriteBean {
 	}
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "houseid", referencedColumnName = "hid")
+	@JoinColumn(name = "id", referencedColumnName = "hid")
 	public List<HouseBean> gethBean() {
 		return hBean;
 	}
@@ -70,7 +70,7 @@ public class FavoriteBean {
 	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
 	}
-//
+
 //	public void setMemberBean(MemberBean memberBean) {
 //		this.memberId = memberBean;
 //	}

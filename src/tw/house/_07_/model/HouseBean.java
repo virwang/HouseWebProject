@@ -158,7 +158,7 @@ public class HouseBean {
 		this.accountid = accountid;
 	}
 	@Column(name = "mrtpk")
-	public Integer getMrtpk() {
+	public Integer getMrtpk() {		
 		return mrtpk;
 	}
 	
@@ -233,7 +233,7 @@ public class HouseBean {
 	public void setAddDate(Date addDate) {
 		this.addDate = addDate;
 	}
-
+	@Transient
 	@Column(name = "hosueid")	
 	public Integer getHouseid() {
 		return houseid;
