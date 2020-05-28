@@ -1,5 +1,7 @@
 package tw.house._05_.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -48,13 +50,13 @@ public class MRTControllerTest {
 		
 //		MrtBean mrt = (MrtBean)session.
 		
-		HouseBean houseBean = hs.selectedHouse(houseId);
+		List<HouseBean> houseBean = hs.selectedHouse(houseId);
 //		MrtBean mrtBean = ms.selectedStaion(mrtpk);
 
 		
 		
-		fBean.sethBean(houseBean);
-		fBean.setMemberBean(member);
+//		fBean.sethBean(houseBean);
+//		fBean.setMemberBean(member);
 		
 		fs.save(fBean);
 		

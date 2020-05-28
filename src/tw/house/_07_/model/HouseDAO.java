@@ -44,10 +44,10 @@ public class HouseDAO {
 		return mlist;
 
 	}
-	public HouseBean selectedHouse(Integer hid) {
+	public List<HouseBean> selectedHouse(Integer hid) {
 		Session session = sessionFactory.getCurrentSession();
 //		System.out.println(session.get(HouseBean.class,hid).getMemberBean().getAccount());
-		return session.get(HouseBean.class,hid);
+		return (List<HouseBean>) session.get(HouseBean.class,hid);
 	}
 	
 	public HouseBean updateHouse(HouseBean hBean) {

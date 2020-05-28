@@ -44,7 +44,7 @@ public class HouseController {
 	@RequestMapping(path = "/housedetail",method = RequestMethod.GET)
 	public String showHouseDetail(@RequestParam("HOUSEID") Integer hid, Model m) {
 		
-		HouseBean hBean = hService.selectedHouse(hid);
+		List<HouseBean> hBean = hService.selectedHouse(hid);
 		m.addAttribute("housedt", hBean);
 		
 		return "property-details";

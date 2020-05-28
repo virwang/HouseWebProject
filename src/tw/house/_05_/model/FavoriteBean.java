@@ -26,8 +26,8 @@ public class FavoriteBean {
 	private Integer fid;
 	private Integer accountId;
 	private Integer houseid;
-	private MemberBean memberId;
-	private HouseBean hBean;
+//	private MemberBean memberId;
+	private List<HouseBean> hBean;
 
 	public void Favorite() {
 
@@ -40,11 +40,11 @@ public class FavoriteBean {
 		return fid;
 	}
 
-	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "accountid", insertable=false,updatable=false)
-	public MemberBean getMemberBean() {
-		return memberId;
-	}
+//	@OneToOne(cascade = CascadeType.PERSIST)
+//	@JoinColumn(name = "accountid")
+//	public MemberBean getMemberBean() {
+//		return memberId;
+//	}
 
 	@Column(name = "accountid")
 	public Integer getAccountId() {
@@ -52,8 +52,8 @@ public class FavoriteBean {
 	}
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "houseid", insertable=false,updatable=false)
-	public HouseBean gethBean() {
+	@JoinColumn(name = "houseid", referencedColumnName = "hid")
+	public List<HouseBean> gethBean() {
 		return hBean;
 	}
 
@@ -62,18 +62,18 @@ public class FavoriteBean {
 		return houseid;
 	}
 
-	@Column(name = "accountid")
-	public MemberBean getMembeId() {
-		return memberId;
-	}
+//	@Column(name = "accountid")
+//	public MemberBean getMembeId() {
+//		return memberId;
+//	}
 
 	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
 	}
-
-	public void setMemberBean(MemberBean memberBean) {
-		this.memberId = memberBean;
-	}
+//
+//	public void setMemberBean(MemberBean memberBean) {
+//		this.memberId = memberBean;
+//	}
 
 	public void setFid(Integer fid) {
 		this.fid = fid;
@@ -84,19 +84,19 @@ public class FavoriteBean {
 		this.houseid = houseid;
 	}
 
-	public void setMembeId(MemberBean membeId) {
-		this.memberId = membeId;
-	}
+//	public void setMembeId(MemberBean membeId) {
+//		this.memberId = membeId;
+//	}
 
-	public void sethBean(HouseBean hBean) {
+	public void sethBean(List<HouseBean> hBean) {
 		this.hBean = hBean;
 	}
 	
 	@Transient
 	@Override
 	public String toString() {
-		return "FavoriteBean [fid=" + fid + ", accountId=" + accountId + ", houseid=" + houseid + ", membeId=" + memberId
-				+ ", hBean=" + hBean + "]";
+		return "FavoriteBean [fid=" + fid + ", accountId=" + accountId + ", houseid=" + houseid  
+				+ hBean + "]";
 	}
 	
 	

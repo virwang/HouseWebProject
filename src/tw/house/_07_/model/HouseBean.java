@@ -42,6 +42,7 @@ public class HouseBean {
 	private String lon;
 	private MemberBean memberBean;
 	private MrtBean mrtBean;
+	private Integer houseid;
 	
 	public HouseBean() {
 		
@@ -231,6 +232,15 @@ public class HouseBean {
 
 	public void setAddDate(Date addDate) {
 		this.addDate = addDate;
+	}
+
+	@Column(name = "hosueid")	
+	public Integer getHouseid() {
+		return houseid;
+	}
+
+	public void setHouseid(Integer houseid) {
+		this.houseid = houseid;
 	}
 
 	@Transient
