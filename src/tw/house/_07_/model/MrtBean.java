@@ -38,7 +38,8 @@ public class MrtBean {
 		this.lon = lon;
 	}
 	
-	@Id @Column(name="pk")
+	@Id
+	@Column(name="pk")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getPk() {
 		return pk;

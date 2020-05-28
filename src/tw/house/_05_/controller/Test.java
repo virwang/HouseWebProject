@@ -18,7 +18,7 @@ import tw.house._07_.model.MrtBean;
 import tw.house._07_.model.MrtService;
 import tw.house._08_.register.model.MemberBean;
 
-public class MRTControllerTest {
+public class Test {
 	@Autowired
 	SessionFactory session;
 	@Autowired

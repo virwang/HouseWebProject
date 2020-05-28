@@ -48,7 +48,7 @@ public class HouseBean {
 	public HouseBean() {
 		
 	}
-
+	
 	public HouseBean(Integer id, String title, String totalprice, String unitprice, String ping, String city, String dist, String address, String phone,
 			String apartment, Integer accountid, Integer mrtpk, Integer room, Integer hall, Integer bath, String lat, String lon
 			) {
