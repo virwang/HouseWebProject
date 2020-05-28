@@ -104,12 +104,28 @@ public class MrtBean {
 	public void setLon(String lon) {
 		this.lon = lon;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MrtBean [pk=");
+		builder.append(pk);
+		builder.append(", stationcode=");
+		builder.append(stationcode);
+		builder.append(", stationname=");
+		builder.append(stationname);
+		builder.append(", linecode=");
+		builder.append(linecode);
+		builder.append(", linename=");
+		builder.append(linename);
+		builder.append(", mrtaddr=");
+		builder.append(mrtaddr);
+		builder.append(", lat=");
+		builder.append(lat);
+		builder.append(", lon=");
+		builder.append(lon);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 }

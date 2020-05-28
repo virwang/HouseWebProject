@@ -1,7 +1,7 @@
 package tw.house._07_.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,12 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
+import tw.house._05_.model.FavoriteBean;
 import tw.house._08_.register.model.MemberBean;
 
 @Component("house")
@@ -44,29 +47,13 @@ public class HouseBean {
 	private MemberBean memberBean;
 	private MrtBean mrtBean;
 	private Integer houseid;
+	private List<FavoriteBean> fBeans;
 	
 	public HouseBean() {
 		
 	}
 	
-	public HouseBean(Integer id, String title, String totalprice, String unitprice, String ping, String city, String dist, String address, String phone,
-			String apartment, Integer accountid, Integer mrtpk, Integer room, Integer hall, Integer bath, String lat, String lon
-			) {
-		this.id = id;
-		this.title = title;
-		this.totalprice = totalprice;
-		this.unitprice = unitprice;
-		this.ping = ping;
-		this.city = city;
-		this.dist = dist;
-		this.address = address;
-		this.phone = phone;
-		this.apartment = apartment;
-		this.accountid= accountid;
-		this.mrtpk = mrtpk;
-		this.lat = lat;
-		this.lon = lon;
-	}
+	
 	@Id @Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
@@ -234,15 +221,33 @@ public class HouseBean {
 	public void setAddDate(Timestamp addDate) {
 		this.addDate = addDate;
 	}
-//	@Transient
-//	@Column(name = "hosueid")	
-//	public Integer getHouseid() {
-//		return houseid;
-//	}
+	@Transient
+	@Column(name = "hosueid")	
+	public Integer getHouseid() {
+		return houseid;
+	}
 
 	public void setHouseid(Integer houseid) {
 		this.houseid = houseid;
 	}
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "fhouse",  
+		joinColumns = { 
+			@JoinColumn(name = "id", nullable = false, updatable = false) 
+		}, 
+		inverseJoinColumns = { 
+			@JoinColumn(name = "fid",	nullable = false, updatable = false) 
+		}
+	)
+	public List<FavoriteBean> getfBeans() {
+		return fBeans;
+	}
+
+
+	public void setfBeans(List<FavoriteBean> fBeans) {
+		this.fBeans = fBeans;
+	}
+
 
 	@Override
 	public String toString() {
@@ -289,9 +294,9 @@ public class HouseBean {
 		builder.append(mrtBean);
 		builder.append(", houseid=");
 		builder.append(houseid);
+		builder.append(", fBeans=");
+		builder.append(fBeans);
 		builder.append("]");
 		return builder.toString();
-	}
-	
-	
+	}	
 }

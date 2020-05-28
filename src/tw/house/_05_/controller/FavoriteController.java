@@ -39,13 +39,13 @@ public class FavoriteController {
 		List<HouseBean> hb = hs.selectedHouse(houseId);
 
 		fb.sethBean(hb);
-//		fb.setMemberBean(mb);
+		fb.setMemberBean(mb);
 
 		fs.save(fb);
 		return null;
 	}
 	
-	@PostMapping(value = "/favoriteList")
+	@PostMapping(value = "/favorite")
 	public String showfavorite(Model m) {
 		
 		return null;
