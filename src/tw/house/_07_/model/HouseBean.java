@@ -244,8 +244,7 @@ public class HouseBean {
 	public void setmBeans(List<MemberBean> mBeans) {
 		this.mBeans = mBeans;
 	}
-
-	@Transient
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "fhouse")	
 	public List<FavoriteBean> getfBeans() {
 		return fBeans;
 	}

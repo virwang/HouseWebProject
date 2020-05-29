@@ -25,9 +25,9 @@ import tw.house._08_.register.model.MemberBean;
 @Table(name = "favorite")
 public class FavoriteBean {
 	private Integer fid;
-	private Integer accountId;
 	private Integer houseid;
-	private MemberBean memberId;
+	private Integer accountid;
+	private MemberBean mb;
 	private List<HouseBean> hBean;
 
 	public void Favorite() {
@@ -40,19 +40,18 @@ public class FavoriteBean {
 	public Integer getFid() {
 		return fid;
 	}
-//	@ManyToOne(cascade = CascadeType.PERSIST)
-//	@JoinColumn(name = "accountid")
-	@Transient
-	public MemberBean getMemberBean() {
-		return memberId;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "accountid", insertable=false,updatable=false)
+	public MemberBean getMb() {
+		return mb;
 	}
 
-	@Column(name = "accountid")
-	public Integer getAccountId() {
-		return accountId;
+	public void setMb(MemberBean mb) {
+		this.mb = mb;
 	}
 	
-//	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "fhouse")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "fhouse")
 	@Transient
 	public List<HouseBean> gethBean() {
 		return hBean;
@@ -62,53 +61,47 @@ public class FavoriteBean {
 	public Integer getHouseid() {
 		return houseid;
 	}
-
-	@Transient
-	public MemberBean getMembeId() {
-		return memberId;
-	}
-
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
-	}
-
-	public void setMemberBean(MemberBean memberBean) {
-		this.memberId = memberBean;
+	
+	@Column(name = "accountid")
+	public Integer getAccountid() {
+		return accountid;
 	}
 
 	public void setFid(Integer fid) {
 		this.fid = fid;
 	}
 
-
 	public void setHouseid(Integer houseid) {
 		this.houseid = houseid;
-	}
-
-	public void setMembeId(MemberBean membeId) {
-		this.memberId = membeId;
 	}
 
 	public void sethBean(List<HouseBean> hBean) {
 		this.hBean = hBean;
 	}
-	
+
+	public void setAccountid(Integer accountid) {
+		this.accountid = accountid;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("FavoriteBean [fid=");
 		builder.append(fid);
-		builder.append(", accountId=");
-		builder.append(accountId);
 		builder.append(", houseid=");
 		builder.append(houseid);
-		builder.append(", memberId=");
-		builder.append(memberId);
+		builder.append(", accountid=");
+		builder.append(accountid);
+		builder.append(", mb=");
+		builder.append(mb);
 		builder.append(", hBean=");
 		builder.append(hBean);
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	
+
 
 	
 }

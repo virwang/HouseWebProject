@@ -77,9 +77,9 @@
 												<tr>
 												<td class="pt-3-half">${favorite}</td>
 <%-- 													<td class="pt-3-half">${favorite.img}</td> --%>
-													<td class="pt-3-half">${favorite.fid}</td>
-													<td class="pt-3-half">${favorite.housedt.address}</td>
-													<td class="pt-3-half">${favorite.MRT}</td>
+													<td class="pt-3-half">${favorite.HouseBean.title}</td>
+													<td class="pt-3-half">${favorite.hb.address}</td>
+													<td class="pt-3-half">${favorite.MrtBean.station}</td>
 													<td class="pt-3-half">${favorite.totalprice}</td>
 													<td class="pt-3-half">${favorite.addDate}</td>
 													<td><span class="table-remove">
