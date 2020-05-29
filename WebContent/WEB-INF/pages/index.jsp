@@ -39,7 +39,7 @@
      <jsp:include page="/navibar.jsp" />
   </div>
 
-  <div class="slide-one-item home-slider owl-carousel">
+  <div class="slide-one-item home-slider owl-carousel" style="font-family:DFKai-sb;">
 
     <div class="site-blocks-cover overlay" style="background-image: url(images/house1.jpg);" data-aos="fade"
       data-stellar-background-ratio="0.5">
