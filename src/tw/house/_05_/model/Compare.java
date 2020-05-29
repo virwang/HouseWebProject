@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component(value = "compare")
 @Entity
-@Table(name = "compare")
+@Table(name = "housecompare")
 public class Compare {
 	
 	Integer hiberid;
