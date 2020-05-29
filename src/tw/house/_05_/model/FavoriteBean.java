@@ -51,8 +51,7 @@ public class FavoriteBean {
 		return accountId;
 	}
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "houseid")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "fhouse")
 	public List<HouseBean> gethBean() {
 		return hBean;
 	}
