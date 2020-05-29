@@ -20,9 +20,9 @@ import org.springframework.stereotype.Component;
 
 import tw.house._05_.model.FavoriteBean;
 
-@Entity
-@Table(name = "Member")
-@Component
+//@Entity
+//@Table(name = "Member")
+//@Component
 public class FavoriteMemberTest {
 	private Integer pk;
 	private String account;

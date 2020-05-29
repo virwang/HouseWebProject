@@ -31,11 +31,11 @@ public class FavoriteListService implements IFavoriteList {
 		return fdao.query();
 	}
 
-//	@Override
-//	public List<FavoriteBean> getMemberid(int accountid) {
-//		System.out.println("server query by mid ="+ accountid);
-//		return fdao.getMemberid(accountid);
-//	}
+	@Override
+	public List<FavoriteBean> getMemberid(Integer accountid) {
+		System.out.println("server query by mid ="+ accountid);
+		return fdao.getMemberid(accountid);
+	}
 //
 //	@Override
 //	public Object save(FavoriteBean fBean) {

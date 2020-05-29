@@ -8,7 +8,7 @@ public interface IFavoriteList {
 //	FavoriteBean getFid(int fid);
 	List<FavoriteBean> getAllData();
 
-//	List<FavoriteBean> getMemberid(int accountid);
+	List<FavoriteBean> getMemberid(Integer accountid);
 //	Object save(FavoriteBean fBean);
 //	void update(FavoriteBean fBean);
 //	void delete(int fid);

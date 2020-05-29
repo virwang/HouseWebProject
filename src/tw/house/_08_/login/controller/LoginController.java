@@ -18,7 +18,7 @@ import tw.house._08_.register.model.MemberBean;
 
 
 @Controller
-@SessionAttributes(names = {"memberBean","LoginOK","LoginOK2","LoginOK3"})
+@SessionAttributes(names = { "memberBean", "LoginOK","LoginOK2","LoginOK3"})
 public class LoginController {
 	@Autowired
 	private MemberLoginService loginService;

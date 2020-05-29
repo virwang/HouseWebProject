@@ -234,7 +234,8 @@ public class HouseBean {
 		this.houseid = houseid;
 	}
 	
-	@JoinColumn(name = "id")
+//	@JoinColumn(name = "id")
+	@Transient
 	public List<MemberBean> getmBeans() {
 		return mBeans;
 	}
@@ -244,7 +245,7 @@ public class HouseBean {
 		this.mBeans = mBeans;
 	}
 
-
+	@Transient
 	public List<FavoriteBean> getfBeans() {
 		return fBeans;
 	}

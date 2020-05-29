@@ -59,13 +59,17 @@ public class FavoriteController {
 		return "navibar";
 	}
 	@PostMapping("/favorite")
-	public String showFavorite(Model m, @RequestParam("selectcity") String district) {
+	public String showFavorite(Model m,HttpServletRequest res, @RequestParam("selectcity") String district) {
 		System.out.println("show favorite list");
-		
-		List<FavoriteBean> list = fs.getAllData();
+		HttpSession session2 = res.getSession();
+		MemberBean mem=  (MemberBean) session2.getAttribute("LoginOk");	
+		List<FavoriteBean> list = fs.getMemberid(mem.getPk());
+		//以下測試
+		List<FavoriteBean> list2 = fs.getMemberid(6);
+		m.addAttribute("favorite2",list2);
 		m.addAttribute("favorite",list);
 		
-		System.out.println("favoritelist"+list.size());
+		System.out.println("get favoritelist"+list.size());
 		return "favorite";
 	}
 }

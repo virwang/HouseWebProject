@@ -59,14 +59,16 @@ public class FavoriteDao  {
 //	}
 
 	
-//	public List<FavoriteBean> getMemberid(int accountid) {
-//		String querymemberid = "from FavoriteBean accountid = : accountid";
-//		Query<FavoriteBean> queryMemberid = getSession().createQuery(querymemberid, FavoriteBean.class);
-//		List<FavoriteBean> listmid = new ArrayList<>();
-//		listmid = queryMemberid.list();
-//		System.out.println("fdao querymemberid" + listmid.size());
-//		return listmid;
-//	}
+	public List<FavoriteBean> getMemberid(Integer accountid) {
+		String newId = String.valueOf(accountid);
+		String querymemberid = "from FavoriteBean accountid = :accountid";
+		Query<FavoriteBean> queryMemberid = getSession().createQuery(querymemberid, FavoriteBean.class);
+		queryMemberid.setParameter("accountid", newId);
+		List<FavoriteBean> listmid = new ArrayList<>();
+		listmid = queryMemberid.list();
+		System.out.println("fdao querymemberid" + listmid.size());
+		return listmid;
+	}
 //
 //
 //	public void updateFavorite(FavoriteBean fBean) {

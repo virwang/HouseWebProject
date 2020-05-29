@@ -15,6 +15,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -120,12 +121,12 @@ public class MemberBean {
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
-
+	@Column(name = "tel")
 	public String getTel() {
 		return tel;
 	}
 
-	@Column(name = "tel")
+	
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
@@ -138,7 +139,7 @@ public class MemberBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	@Transient
 	public Timestamp getRegisterDate() {
 		return registerDate;
 	}

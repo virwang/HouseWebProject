@@ -10,9 +10,9 @@ import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
-@Component(value = "showFavorite")
+@Component(value = "compare")
 @Entity
-@Table(name = "ShowFavorite")
+@Table(name = "compare")
 public class Compare {
 	
 	Integer hiberid;

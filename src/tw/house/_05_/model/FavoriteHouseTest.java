@@ -23,9 +23,9 @@ import tw.house._05_.model.FavoriteBean;
 import tw.house._07_.model.MrtBean;
 import tw.house._08_.register.model.MemberBean;
 
-@Component("house")
-@Entity
-@Table(name = "Houselist")
+//@Component("house")
+//@Entity
+//@Table(name = "Houselist")
 public class FavoriteHouseTest {
 	private Integer id;
 	private String title;

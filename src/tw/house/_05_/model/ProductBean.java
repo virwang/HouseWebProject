@@ -23,9 +23,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 //@XmlRootElement(name="Product")
 //@XmlAccessorType(XmlAccessType.FIELD)
 
-@Entity
-@Component
-@Table(name = "Product")
+//@Entity
+//@Component
+//@Table(name = "Product")
 
 public class ProductBean {
 

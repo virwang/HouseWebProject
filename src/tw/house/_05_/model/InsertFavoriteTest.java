@@ -7,9 +7,9 @@ import org.hibernate.Transaction;
 public class InsertFavoriteTest {
 
 	public static void main(String[] args) {
-		Session session = null;
-		SessionFactory factory = null;
-		Transaction tx = null;
+//		Session session = null;
+//		SessionFactory factory = null;
+//		Transaction tx = null;
 		
 		
 

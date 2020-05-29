@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 import tw.house._07_.model.HouseBean;
@@ -39,9 +40,9 @@ public class FavoriteBean {
 	public Integer getFid() {
 		return fid;
 	}
-
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "accountid")
+//	@ManyToOne(cascade = CascadeType.PERSIST)
+//	@JoinColumn(name = "accountid")
+	@Transient
 	public MemberBean getMemberBean() {
 		return memberId;
 	}
@@ -51,7 +52,8 @@ public class FavoriteBean {
 		return accountId;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "fhouse")
+//	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "fhouse")
+	@Transient
 	public List<HouseBean> gethBean() {
 		return hBean;
 	}
@@ -61,7 +63,7 @@ public class FavoriteBean {
 		return houseid;
 	}
 
-	@Column(name = "accountid")
+	@Transient
 	public MemberBean getMembeId() {
 		return memberId;
 	}
