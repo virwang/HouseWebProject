@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.house._05_.model.FavoriteBean;
@@ -53,13 +55,13 @@ public class FavoriteController {
 //		
 //		return null;
 //	}
-	@GetMapping("/navibar")
+	@RequestMapping(path = "/favorite", method = RequestMethod.GET)
 	public String selectFavorite() {
 		System.out.println("controller select Favorite");
-		return "navibar";
+		return "favorite";
 	}
 	@PostMapping("/favorite")
-	public String showFavorite(Model m,HttpServletRequest res, @RequestParam("selectcity") String district) {
+	public String showFavorite(Model m,HttpServletRequest res, @RequestParam("favorite") String district) {
 		System.out.println("show favorite list");
 		HttpSession session2 = res.getSession();
 		MemberBean mem=  (MemberBean) session2.getAttribute("LoginOk");	

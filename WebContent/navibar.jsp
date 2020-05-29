@@ -17,7 +17,7 @@
             <div class="col-8 col-md-8 col-lg-4">
                 <h1 class="mb-0">
                     <a href="index.jsp" class="text-white h2 mb-0">
-                        <strong>好家在-想住哪就住哪
+                        <strong style="font-family:DFKai-sb;">好家在-想住哪就住哪
                             <span class="text-danger">.</span>
                         </strong>
                     </a>
@@ -33,8 +33,8 @@
                         </a>
                     </div>
 
-                    <ul class="site-menu js-clone-nav d-none d-lg-block">
-                        <li class="has-children">
+                    <ul class="site-menu js-clone-nav d-none d-lg-block" style="font-family:DFKai-sb;">
+                        <li class="has-children" >
                         	<a>買房</a>
                         	<ul class="dropdown arrow">
                         		<li><a href="<c:url value='houselist'/>">房屋列表</a></li>
