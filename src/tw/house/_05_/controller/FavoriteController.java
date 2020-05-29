@@ -19,6 +19,7 @@ import tw.house._07_.model.HouseBean;
 import tw.house._07_.model.HouseService;
 import tw.house._07_.model.MrtService;
 import tw.house._08_.register.model.MemberBean;
+import tw.house._08_.register.model.MemberService;
 
 @Controller
 public class FavoriteController {
@@ -29,25 +30,42 @@ public class FavoriteController {
 	@Autowired
 	private HouseService hs;
 	@Autowired
-	private MrtService ms;
+	private MrtService mrts;
+	@Autowired
+	private MemberService mbs;
 
-	@GetMapping(value = "/navibar")
-	public String insertFavorite(Model m, HttpServletRequest res, @RequestParam("houseId") Integer houseId) {
-		HttpSession session = res.getSession();
-		FavoriteBean fb = new FavoriteBean();
-		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		List<HouseBean> hb = hs.selectedHouse(houseId);
-
-		fb.sethBean(hb);
-		fb.setMemberBean(mb);
-
-		fs.save(fb);
-		return null;
+//	@GetMapping(value = "/navibar")
+//	public String insertFavorite(Model m, HttpServletRequest res, @RequestParam("houseId") Integer houseId) {
+//		HttpSession session = res.getSession();
+//		FavoriteBean fb = new FavoriteBean();
+//		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+//		List<HouseBean> hb = hs.selectedHouse(houseId);
+//
+//		fb.sethBean(hb);
+//		fb.setMemberBean(mb);
+//
+////		fs.save(fb);
+//		return null;
+//	}
+//	
+//	@PostMapping(value = "/favorite")
+//	public String showfavorite(Model m) {
+//		
+//		return null;
+//	}
+	@GetMapping("/navibar")
+	public String selectFavorite() {
+		System.out.println("controller select Favorite");
+		return "navibar";
 	}
-	
-	@PostMapping(value = "/favorite")
-	public String showfavorite(Model m) {
+	@PostMapping("/favorite")
+	public String showFavorite(Model m, @RequestParam("selectcity") String district) {
+		System.out.println("show favorite list");
 		
-		return null;
+		List<FavoriteBean> list = fs.getAllData();
+		m.addAttribute("favorite",list);
+		
+		System.out.println("favoritelist"+list.size());
+		return "favorite";
 	}
 }

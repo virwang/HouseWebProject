@@ -31,31 +31,31 @@ public class FavoriteListService implements IFavoriteList {
 		return fdao.query();
 	}
 
-	@Override
-	public List<FavoriteBean> getMemberid(int accountid) {
-		System.out.println("server query by mid ="+ accountid);
-		return fdao.getMemberid(accountid);
-	}
-
-	@Override
-	public Object save(FavoriteBean fBean) {
-		System.out.println("server save by fid"+fBean.getFid());
-		return fdao.save(fBean);
-	}
-
-	@Override
-	public void update(FavoriteBean fBean) {
-		System.out.println("server update by fid ="+fBean.getFid());
-		fdao.updateFavorite(fBean);;
-		
-	}
-
-	@Override
-	public void delete(int fid) {
-		System.out.println("delete by fid ="+fid);
-		fdao.deleteFavorite(fid);;
-		
-	}
+//	@Override
+//	public List<FavoriteBean> getMemberid(int accountid) {
+//		System.out.println("server query by mid ="+ accountid);
+//		return fdao.getMemberid(accountid);
+//	}
+//
+//	@Override
+//	public Object save(FavoriteBean fBean) {
+//		System.out.println("server save by fid"+fBean.getFid());
+//		return fdao.save(fBean);
+//	}
+//
+//	@Override
+//	public void update(FavoriteBean fBean) {
+//		System.out.println("server update by fid ="+fBean.getFid());
+//		fdao.updateFavorite(fBean);;
+//		
+//	}
+//
+//	@Override
+//	public void delete(int fid) {
+//		System.out.println("delete by fid ="+fid);
+//		fdao.deleteFavorite(fid);;
+//		
+//	}
 
 
 

@@ -40,41 +40,41 @@ public class FavoriteDao  {
 	}
 
 
-	public List<FavoriteBean> getHouseid(int houseid) {
-		String query = "from FavoriteBean  where houseid =: houseid ";
-		Query<FavoriteBean> queryHouseId = getSession().createQuery(query, FavoriteBean.class);
-		List<FavoriteBean> listhouseid = new ArrayList<>();
-		listhouseid = queryHouseId.list();
-		System.out.println("FavoriteDao query by Houseid" + listhouseid.size());
-		return listhouseid;
-	}
+//	public List<FavoriteBean> getHouseid(int houseid) {
+//		String query = "from FavoriteBean  where houseid =: houseid ";
+//		Query<FavoriteBean> queryHouseId = getSession().createQuery(query, FavoriteBean.class);
+//		List<FavoriteBean> listhouseid = new ArrayList<>();
+//		listhouseid = queryHouseId.list();
+//		System.out.println("FavoriteDao query by Houseid" + listhouseid.size());
+//		return listhouseid;
+//	}
 
 
-	public void deleteFavorite(int fid) {
-		Session session = factory.getCurrentSession();
-		FavoriteBean fBean = new FavoriteBean();
-		fBean.setFid(fid);
-		System.out.println("FavoriteDao delete favorite " + fBean);
-		session.delete(fBean);
-	}
+//	public void deleteFavorite(int fid) {
+//		Session session = factory.getCurrentSession();
+//		FavoriteBean fBean = new FavoriteBean();
+//		fBean.setFid(fid);
+//		System.out.println("FavoriteDao delete favorite " + fBean);
+//		session.delete(fBean);
+//	}
 
 	
-	public List<FavoriteBean> getMemberid(int accountid) {
-		String querymemberid = "from FavoriteBean accountid = : accountid";
-		Query<FavoriteBean> queryMemberid = getSession().createQuery(querymemberid, FavoriteBean.class);
-		List<FavoriteBean> listmid = new ArrayList<>();
-		listmid = queryMemberid.list();
-		System.out.println("fdao querymemberid" + listmid.size());
-		return listmid;
-	}
-
-
-	public void updateFavorite(FavoriteBean fBean) {
-		Session session = factory.getCurrentSession();
-		System.out.println("update favorite dao");
-		session.update(fBean);
-		
-	}
+//	public List<FavoriteBean> getMemberid(int accountid) {
+//		String querymemberid = "from FavoriteBean accountid = : accountid";
+//		Query<FavoriteBean> queryMemberid = getSession().createQuery(querymemberid, FavoriteBean.class);
+//		List<FavoriteBean> listmid = new ArrayList<>();
+//		listmid = queryMemberid.list();
+//		System.out.println("fdao querymemberid" + listmid.size());
+//		return listmid;
+//	}
+//
+//
+//	public void updateFavorite(FavoriteBean fBean) {
+//		Session session = factory.getCurrentSession();
+//		System.out.println("update favorite dao");
+//		session.update(fBean);
+//		
+//	}
 
 
 

@@ -58,7 +58,7 @@ public class Test {
 //		fBean.sethBean(houseBean);
 //		fBean.setMemberBean(member);
 		
-		fs.save(fBean);
+//		fs.save(fBean);
 		
 //		session.setAttribute("favorite", fBean);
 //		fb.setMrtBean(station);

@@ -8,10 +8,10 @@ public interface IFavoriteList {
 //	FavoriteBean getFid(int fid);
 	List<FavoriteBean> getAllData();
 
-	List<FavoriteBean> getMemberid(int accountid);
-	Object save(FavoriteBean fBean);
-	void update(FavoriteBean fBean);
-	void delete(int fid);
+//	List<FavoriteBean> getMemberid(int accountid);
+//	Object save(FavoriteBean fBean);
+//	void update(FavoriteBean fBean);
+//	void delete(int fid);
 
 	
 

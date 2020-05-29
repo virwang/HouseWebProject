@@ -50,8 +50,9 @@ public class FavoriteBean {
 	public Integer getAccountId() {
 		return accountId;
 	}
-
 	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "houseid")
 	public List<HouseBean> gethBean() {
 		return hBean;
 	}

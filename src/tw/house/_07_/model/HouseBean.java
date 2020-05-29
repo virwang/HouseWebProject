@@ -47,7 +47,10 @@ public class HouseBean {
 	private MemberBean memberBean;
 	private MrtBean mrtBean;
 	private Integer houseid;
+	private Integer mid;
+	private Integer fid;
 	private List<MemberBean> mBeans;
+	private List<FavoriteBean> fBeans;
 	
 	public HouseBean() {
 		
@@ -230,6 +233,27 @@ public class HouseBean {
 	public void setHouseid(Integer houseid) {
 		this.houseid = houseid;
 	}
+	
+	@JoinColumn(name = "id")
+	public List<MemberBean> getmBeans() {
+		return mBeans;
+	}
+
+
+	public void setmBeans(List<MemberBean> mBeans) {
+		this.mBeans = mBeans;
+	}
+
+
+	public List<FavoriteBean> getfBeans() {
+		return fBeans;
+	}
+
+
+	public void setfBeans(List<FavoriteBean> fBeans) {
+		this.fBeans = fBeans;
+	}
+
 
 	@Override
 	public String toString() {

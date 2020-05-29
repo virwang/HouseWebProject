@@ -37,7 +37,7 @@
 			<div id="favorite" class="row">
 				<form class="form-search col-md-12"
 					style="background-color: transparent" name="myForm"
-					action="<c:url value="favoritelist.do" />"></form>
+					action="<c:url value="favorite" />"></form>
 			</div>
 			<div class="container" style="background-color: white;">
 				<div class="tab-content" id="nav-tabContent">
@@ -47,9 +47,10 @@
 							<h3
 								class="card-header text-center font-weight-bold text-uppercase py-4">我的最愛</h3>
 							<div class="card-body">
-								<button type="button" class="btn btn-primary btn-lg float-right">新增收藏</button>
+								<a class="button" href="css/05_css/addFavoriteButton">加入我的最愛</a>
 								<div id="table" class="table-editable">
-									<span class="table-add float-right mb-3 mr-2"> <a
+									<span class="table-add float-right mb-3 mr-2">
+									 <a
 										href="#!" class="text-success"> <i
 											class="fas fa-plus fa-2x" aria-hidden="true"></i>
 									</a>
@@ -75,8 +76,8 @@
 													<td class="pt-3-half">${favorite.title}</td>
 													<td class="pt-3-half">${favorite.address}</td>
 													<td class="pt-3-half">${favorite.MRT}</td>
-													<td class="pt-3-half">${favorite.uprice}</td>
-													<td class="pt-3-half">${favorite.adddate}</td>
+													<td class="pt-3-half">${favorite.totalprice}</td>
+													<td class="pt-3-half">${favorite.addDate}</td>
 													<td><span class="table-remove">
 															<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">刪除</button>
 													</span></td>
