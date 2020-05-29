@@ -51,7 +51,7 @@ public class FavoriteBean {
 		return accountId;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "fhouse")
+	
 	public List<HouseBean> gethBean() {
 		return hBean;
 	}

@@ -47,7 +47,7 @@ public class HouseBean {
 	private MemberBean memberBean;
 	private MrtBean mrtBean;
 	private Integer houseid;
-	private List<FavoriteBean> fBeans;
+	private List<MemberBean> mBeans;
 	
 	public HouseBean() {
 		
@@ -230,24 +230,6 @@ public class HouseBean {
 	public void setHouseid(Integer houseid) {
 		this.houseid = houseid;
 	}
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "fhouse",  
-		joinColumns = { 
-			@JoinColumn(name = "id", nullable = false, updatable = false) 
-		}, 
-		inverseJoinColumns = { 
-			@JoinColumn(name = "fid",	nullable = false, updatable = false) 
-		}
-	)
-	public List<FavoriteBean> getfBeans() {
-		return fBeans;
-	}
-
-
-	public void setfBeans(List<FavoriteBean> fBeans) {
-		this.fBeans = fBeans;
-	}
-
 
 	@Override
 	public String toString() {
@@ -294,9 +276,11 @@ public class HouseBean {
 		builder.append(mrtBean);
 		builder.append(", houseid=");
 		builder.append(houseid);
-		builder.append(", fBeans=");
-		builder.append(fBeans);
+		builder.append(", mBeans=");
+		builder.append(mBeans);
 		builder.append("]");
 		return builder.toString();
-	}	
+	}
+
+
 }

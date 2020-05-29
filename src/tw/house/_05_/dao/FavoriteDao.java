@@ -22,11 +22,11 @@ public class FavoriteDao  {
 		return factory.getCurrentSession();
 	}
 
-	public Object save(FavoriteBean fBean) {
-		Session session = factory.getCurrentSession();
-		System.out.println("favorite dao save Bean" + fBean);
-		return session.save(fBean);
-	}
+//	public Object save(FavoriteBean fBean) {
+//		Session session = factory.getCurrentSession();
+//		System.out.println("favorite dao save Bean" + fBean);
+//		return session.save(fBean);
+//	}
 
 
 	public List<FavoriteBean> query() {
