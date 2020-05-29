@@ -31,8 +31,8 @@ public class FavoriteController {
 	private IFavoriteList fs;
 	@Autowired
 	private HouseService hs;
-	@Autowired
-	private MrtService mrts;
+//	@Autowired
+//	private MrtService mrts;
 	@Autowired
 	private MemberService mbs;
 

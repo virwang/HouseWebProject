@@ -39,7 +39,6 @@ public class FavoriteDao  {
 
 	}
 
-
 //	public List<FavoriteBean> getHouseid(int houseid) {
 //		String query = "from FavoriteBean  where houseid =: houseid ";
 //		Query<FavoriteBean> queryHouseId = getSession().createQuery(query, FavoriteBean.class);

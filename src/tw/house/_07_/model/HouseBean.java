@@ -235,16 +235,24 @@ public class HouseBean {
 	}
 	
 //	@JoinColumn(name = "id")
-	@Transient
+//	@Transient
 	public List<MemberBean> getmBeans() {
 		return mBeans;
 	}
 
-
 	public void setmBeans(List<MemberBean> mBeans) {
 		this.mBeans = mBeans;
 	}
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "fhouse")	
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)	
+	@JoinTable(name = "fhouse",  
+	joinColumns = { 
+		@JoinColumn(name = "id", nullable = false, updatable = false) 
+	}, 
+	inverseJoinColumns = { 
+		@JoinColumn(name = "fid",nullable = false, updatable = false) 
+	}
+)
 	public List<FavoriteBean> getfBeans() {
 		return fBeans;
 	}
