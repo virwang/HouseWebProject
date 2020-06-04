@@ -55,7 +55,7 @@
           
             
           
-            <form action="<c:url value='inserthouse' />" method="POST" class="p-5 bg-white border">
+            <form action="<c:url value='inserthouse' />" method="POST" class="p-5 bg-white border" enctype="multipart/form-data">
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
@@ -82,23 +82,12 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="addr">地址:</label>
-                  <select name="city" class="form-control">
+                  <select id="city" name="city" class="form-control" OnChange="clickcity(this)">
 　					<option value="台北市">台北市</option>
 　					<option value="新北市">新北市</option>
 				  </select>
-				  <select name="dist" class="form-control">
-					<option value="北投區">北投區</option>
-					<option value="士林區">士林區</option>
-					<option value="中山區">中山區</option>
-					<option value="內湖區">內湖區</option>
-					<option value="大同區">大同區</option>
-					<option value="松山區">松山區</option> 
-					<option value="萬華區">萬華區</option>
-					<option value="中正區">中正區</option>
-					<option value="大安區">大安區</option>
-					<option value="信義區">信義區</option>
-					<option value="南港區">南港區</option>
-					<option value="文山區">文山區</option>
+				  <select id="dist" name="dist" class="form-control">
+				
 				  </select>
                   <input type="text" id="addr" name="addr" class="form-control">
                 </div>
@@ -110,13 +99,99 @@
                   <input type="text" id="apart" name="apart" class="form-control">
                 </div>
               </div>
-				
+              
               <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="font-weight-bold" for="detail">詳細資料</label> 
-                  <textarea name="message" id="detail" name="detail" cols="30" rows="5" class="form-control"></textarea>
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="room">房:</label>
+                  <select name="room" class="form-control">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option> 
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+				  </select>
                 </div>
               </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="hall">廳:</label>
+                  <select name="hall" class="form-control">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option> 
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+				  </select>
+                </div>
+              </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="bath">衛:</label>
+                  <select name="bath" class="form-control">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option> 
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+				  </select>
+                </div>
+              </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="mrt">鄰近捷運站:</label>
+                  <select name="mrt" class="form-control">
+                  	<c:forEach var="mrtst" items="${mrtlist}">
+						<option value="${mrtst.pk}">${mrtst.linename}-${mrtst.stationname}</option>
+                  	</c:forEach>
+				  </select>
+                </div>
+              </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="picture1">上傳圖片1:</label>
+                  <input type="file" id="picture1" name="picture1" accept=".jpg" class="form-control">
+                </div>
+              </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="picture2">上傳圖片2:</label>
+                  <input type="file" id="picture2" name="picture2" accept=".jpg" class="form-control">
+                </div>
+              </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="picture3">上傳圖片3:</label>
+                  <input type="file" id="picture3" name="picture3" accept=".jpg" class="form-control">
+                </div>
+              </div>
+				
+<!--               <div class="row form-group"> -->
+<!--                 <div class="col-md-12"> -->
+<!--                   <label class="font-weight-bold" for="detail">詳細資料</label>  -->
+<!--                   <textarea name="message" id="detail" name="detail" cols="30" rows="5" maxlength="200" class="form-control"></textarea> -->
+<!--                 </div> -->
+<!--               </div> -->
               
               <div class="row form-group">
                 <div class="col-md-12">
@@ -141,6 +216,46 @@
     <jsp:include page="/footer.jsp" />
 
   </div>
+  
+  <script>
+	 let dctl = document.getElementById("city");
+	 let dctv = dctl.value;
+	 console.log(dctv);
+	 let ddt = ["北投區", "士林區", "內湖區", "中山區", "松山區", "大同區", "萬華區", "中正區", "大安區",
+			"信義區", "南港區", "文山區"];
+	 let ddist = document.getElementById("dist");
+	 if(dctv=="台北市"){
+		 ddist.options.length=0;
+			for(let k=0;k<ddt.length;k++){
+				ddist.add(new Option(ddt[k],ddt[k]));
+	  		}
+	 }
+	 
+	 
+  
+  	function clickcity(clicked){
+  		let ctvl = clicked.value;
+  		let dist = document.getElementById("dist");
+  		let tpdt = ["北投區", "士林區", "內湖區", "中山區", "松山區", "大同區", "萬華區", "中正區", "大安區",
+  			"信義區", "南港區", "文山區"];
+		let ntpdt = [ "板橋區", "中和區", "新莊區", "土城區", "汐止區", "鶯歌區", "淡水區", "五股區", "林口區",
+			"深坑區", "坪林區", "石門區", "萬里區", "雙溪區", "烏來區", "三重區", "永和區", "新店區", "蘆洲區",
+			"樹林區", "三峽區", "瑞芳區", "泰山區", "八里區", "石碇區", "三芝區", "金山區", "平溪區", "貢寮區"  ];
+  		if(ctvl=="台北市"){
+  	  		dist.options.length=0;
+  			for(let x=0;x<tpdt.length;x++){
+				dist.add(new Option(tpdt[x],tpdt[x]));
+  	  		}
+  		}
+  		if(ctvl=="新北市"){
+  	  		dist.options.length=0;
+	  		for(let y=0;y<ntpdt.length;y++){
+				dist.add(new Option(ntpdt[y],ntpdt[y]));
+  			}
+  	  	}
+  	}
+	
+  </script>
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>

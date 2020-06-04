@@ -1,7 +1,8 @@
 package tw.house._07_.model;
 
+import java.sql.Blob;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Arrays;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,15 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
-import tw.house._05_.model.FavoriteBean;
 import tw.house._08_.register.model.MemberBean;
 
 @Component("house")
@@ -46,17 +44,86 @@ public class HouseBean {
 	private String lon;
 	private MemberBean memberBean;
 	private MrtBean mrtBean;
-	private Integer houseid;
-	private Integer mid;
-	private Integer fid;
-	private List<MemberBean> mBeans;
-	private List<FavoriteBean> fBeans;
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("HouseBean [id=");
+		builder.append(id);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", totalprice=");
+		builder.append(totalprice);
+		builder.append(", unitprice=");
+		builder.append(unitprice);
+		builder.append(", ping=");
+		builder.append(ping);
+		builder.append(", city=");
+		builder.append(city);
+		builder.append(", dist=");
+		builder.append(dist);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", phone=");
+		builder.append(phone);
+		builder.append(", apartment=");
+		builder.append(apartment);
+		builder.append(", accountid=");
+		builder.append(accountid);
+		builder.append(", mrtpk=");
+		builder.append(mrtpk);
+		builder.append(", room=");
+		builder.append(room);
+		builder.append(", hall=");
+		builder.append(hall);
+		builder.append(", bath=");
+		builder.append(bath);
+		builder.append(", addDate=");
+		builder.append(addDate);
+		builder.append(", lat=");
+		builder.append(lat);
+		builder.append(", lon=");
+		builder.append(lon);
+		builder.append(", memberBean=");
+		builder.append(memberBean);
+		builder.append(", mrtBean=");
+		builder.append(mrtBean);
+		builder.append(", image1=");
+		builder.append(Arrays.toString(image1));
+		builder.append("]");
+		return builder.toString();
+	}
+
+	private byte[] image1;
+
 	
 	public HouseBean() {
 		
 	}
-	
-	
+
+	public HouseBean(Integer id, String title, String totalprice, String unitprice, String ping, String city, String dist, String address, String phone,
+			String apartment, Integer accountid, Integer mrtpk, Integer room, Integer hall, Integer bath, Timestamp addDate, String lat, String lon
+			) {
+		this.id = id;
+		this.title = title;
+		this.totalprice = totalprice;
+		this.unitprice = unitprice;
+		this.ping = ping;
+		this.city = city;
+		this.dist = dist;
+		this.address = address;
+		this.phone = phone;
+		this.apartment = apartment;
+		this.accountid= accountid;
+		this.mrtpk = mrtpk;
+		this.room = room;
+		this.hall = hall;
+		this.bath = bath;
+		this.addDate = addDate;
+		this.lat = lat;
+		this.lon = lon;
+
+	}
 	@Id @Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
@@ -149,7 +216,7 @@ public class HouseBean {
 		this.accountid = accountid;
 	}
 	@Column(name = "mrtpk")
-	public Integer getMrtpk() {		
+	public Integer getMrtpk() {
 		return mrtpk;
 	}
 	
@@ -176,6 +243,14 @@ public class HouseBean {
 	public Integer getBath() {
 		return bath;
 	}
+	@Column(name = "addDate")
+	public Timestamp getAddDate() {
+		return addDate;
+	}
+
+	public void setAddDate(Timestamp addDate) {
+		this.addDate = addDate;
+	}
 
 	public void setBath(Integer bath) {
 		this.bath = bath;
@@ -196,9 +271,12 @@ public class HouseBean {
 	public void setLon(String lon) {
 		this.lon = lon;
 	}
+	
+
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "accountid", insertable=false,updatable=false)
+	@JoinColumn(name = "accountid"
+	, insertable=false,updatable=false)
 	public MemberBean getMemberBean() {
 		return memberBean;
 	}
@@ -207,7 +285,8 @@ public class HouseBean {
 		this.memberBean = memberBean;
 	}
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "mrtpk", insertable=false,updatable=false)
+	@JoinColumn(name = "mrtpk"
+	, insertable=false,updatable=false)
 	public MrtBean getMrtBean() {
 		return mrtBean;
 	}
@@ -216,103 +295,9 @@ public class HouseBean {
 		this.mrtBean = mrtBean;
 	}
 
-	@Column(name = "addDate")
-	public Timestamp getAddDate() {
-		return addDate;
-	}
 
-	public void setAddDate(Timestamp addDate) {
-		this.addDate = addDate;
-	}
-	@Transient
-	@Column(name = "hosueid")	
-	public Integer getHouseid() {
-		return houseid;
-	}
-
-	public void setHouseid(Integer houseid) {
-		this.houseid = houseid;
-	}
 	
-//	@JoinColumn(name = "id")
-//	@Transient
-	public List<MemberBean> getmBeans() {
-		return mBeans;
-	}
-
-	public void setmBeans(List<MemberBean> mBeans) {
-		this.mBeans = mBeans;
-	}
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)	
-	@JoinTable(name = "fhouse",  
-	joinColumns = { 
-		@JoinColumn(name = "id", nullable = false, updatable = false) 
-	}, 
-	inverseJoinColumns = { 
-		@JoinColumn(name = "fid",nullable = false, updatable = false) 
-	}
-)
-	public List<FavoriteBean> getfBeans() {
-		return fBeans;
-	}
-
-
-	public void setfBeans(List<FavoriteBean> fBeans) {
-		this.fBeans = fBeans;
-	}
-
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("HouseBean [id=");
-		builder.append(id);
-		builder.append(", title=");
-		builder.append(title);
-		builder.append(", totalprice=");
-		builder.append(totalprice);
-		builder.append(", unitprice=");
-		builder.append(unitprice);
-		builder.append(", ping=");
-		builder.append(ping);
-		builder.append(", city=");
-		builder.append(city);
-		builder.append(", dist=");
-		builder.append(dist);
-		builder.append(", address=");
-		builder.append(address);
-		builder.append(", phone=");
-		builder.append(phone);
-		builder.append(", apartment=");
-		builder.append(apartment);
-		builder.append(", accountid=");
-		builder.append(accountid);
-		builder.append(", mrtpk=");
-		builder.append(mrtpk);
-		builder.append(", room=");
-		builder.append(room);
-		builder.append(", hall=");
-		builder.append(hall);
-		builder.append(", bath=");
-		builder.append(bath);
-		builder.append(", addDate=");
-		builder.append(addDate);
-		builder.append(", lat=");
-		builder.append(lat);
-		builder.append(", lon=");
-		builder.append(lon);
-		builder.append(", memberBean=");
-		builder.append(memberBean);
-		builder.append(", mrtBean=");
-		builder.append(mrtBean);
-		builder.append(", houseid=");
-		builder.append(houseid);
-		builder.append(", mBeans=");
-		builder.append(mBeans);
-		builder.append("]");
-		return builder.toString();
-	}
-
-
+	
+	
 }

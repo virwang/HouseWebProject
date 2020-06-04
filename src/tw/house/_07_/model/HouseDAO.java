@@ -35,19 +35,18 @@ public class HouseDAO {
 
 	public List<HouseBean> memberHouseList(String macct) {
 		String hquery = "from HouseBean where memberBean.account = :acct";
-
 		Query<HouseBean> query = getSession().createQuery(hquery, HouseBean.class);
 		query.setParameter("acct", macct);
 		List<HouseBean> mlist = new ArrayList<>();
 		mlist = query.list();
-
 		return mlist;
 
 	}
-	public List<HouseBean> selectedHouse(Integer hid) {
+	public HouseBean selectedHouse(Integer hid) {
 		Session session = sessionFactory.getCurrentSession();
 //		System.out.println(session.get(HouseBean.class,hid).getMemberBean().getAccount());
-		return (List<HouseBean>) session.get(HouseBean.class,hid);
+		System.out.println(hid+"hdao selected house");
+		return session.get(HouseBean.class,hid);
 	}
 	
 	public HouseBean updateHouse(HouseBean hBean) {

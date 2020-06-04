@@ -16,8 +16,10 @@ import javax.servlet.http.HttpSession;
 
 import tw.house._08_.register.model.MemberBean;
 
-@WebFilter(urlPatterns = { "/process.jsp", "/memberhouse", "/newhouse", "/showMemberData"}, 
-		   initParams = @WebInitParam(value = "/_08_login.jsp", name = "loginPage"))
+@WebFilter(urlPatterns = { "/lend", "/memberhouse", "/newhouse", "/showMemberData",
+							"/newapplication","/reservation","/applicanttable","/recipienttable",
+							"/favorite", "/buy","/houselist.do"}, 
+		   initParams = @WebInitParam(value = "/login", name = "loginPage"))
 public class LoginCheckFilter implements Filter {
 	private FilterConfig fConfig;
 	private String loginPage;
@@ -27,7 +29,7 @@ public class LoginCheckFilter implements Filter {
 		this.fConfig = fConfig;
 		loginPage = fConfig.getInitParameter("loginPage");
 		if (loginPage == null) {
-			throw new ServletException("登入畫面參數不存在");
+			throw new ServletException("登陸畫面參數不存在");
 		}
 	}
 

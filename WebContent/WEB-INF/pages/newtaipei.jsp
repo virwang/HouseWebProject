@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -52,9 +51,10 @@
 							<div class="select-wrap">
 								<span class="icon icon-arrow_drop_down"></span> <select
 									name="select_city" id="select-city"
-									onChange="update(this.selectedIndex);"
+									onChange="renew(this.selectedIndex);"
 									class="form-control d-block rounded-0">
 									<option value="">請選擇</option>
+									<option value="台北市">台北市</option>
 									<option value="新北市">新北市</option>
 								</select>
 							</div>
@@ -95,8 +95,8 @@
 										<tr>
 											<th>行政區</th>
 											<th>位置</th>
-											<th>總價(萬元)</th>
-											<th>每坪價格(萬元)</th>
+											<th>總價（元）</th>
+											<th>每坪價格</th>
 											<th>用途</th>
 											<th>坪數</th>
 											<th>車位</th>
@@ -109,9 +109,9 @@
 											<td>${house.district}</td>
 											<td>${house.location}</td>
 											<td>${house.tprice}</td>
-											<td><fmt:formatNumber type= "number" value="${house.uprice*0.3025}" maxFractionDigits="4"/></td>
+											<td>${house.uprice*0.3025}</td>
 											<td>${house.using}</td>
-											<td><fmt:formatNumber type= "number" value="${house.square*0.3025}" maxFractionDigits="2"/></td>
+											<td>${house.square*0.3025}</td>
 											<td>${house.parking}</td>
 											<td>${house.constructor}</td>
 											<td>${house.fdate}</td>
@@ -141,7 +141,7 @@
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/circleaudioplayer.js"></script>
-	<script src="js/selection2.js"></script>
+	<script src="js/selection.js"></script>
 	<script src="js/main.js"></script>
 
 </body>

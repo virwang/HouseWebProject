@@ -16,7 +16,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/backup"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
                                 
         
         

@@ -7,41 +7,49 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import tw.house._05_.dao.FavoriteDao;
+import tw.house._05_.dao.IFavoritedao;
 import tw.house._05_.model.FavoriteBean;
+import tw.house._07_.model.HouseBean;
+import tw.house._08_.register.model.MemberBean;
 
-@Transactional
+//@Transactional
 @Service
 @EnableTransactionManagement
-public class FavoriteListService implements IFavoriteList {
-	
-	FavoriteDao fdao;
-	
+public class FavoriteListService implements IFavoriteService {
+
 	@Autowired
-	public void setFDao(FavoriteDao fdao) {
-		this.fdao = fdao;
-	}
-
-
+	private IFavoritedao favoriteDao;
 
 	@Override
-	public List<FavoriteBean> getAllData() {
-		System.out.println("server query all data ="+getAllData().size());
-		return fdao.query();
+	public List<FavoriteBean> memberFavorite() {
+		System.out.println("service list all favorite");
+		return favoriteDao.favoriteList();
 	}
 
 	@Override
-	public List<FavoriteBean> getMemberid(Integer accountid) {
-		System.out.println("server query by mid ="+ accountid);
-		return fdao.getMemberid(accountid);
+	public List<FavoriteBean> mfhosue(Integer mid) {
+		System.out.println("favorite service by mid, where mid =" + mid);
+		return favoriteDao.mfhouse(mid);
 	}
-//
-//	@Override
-//	public Object save(FavoriteBean fBean) {
-//		System.out.println("server save by fid"+fBean.getFid());
-//		return fdao.save(fBean);
+
+	@Override
+	public int saveFavorite(HouseBean houseBean, MemberBean memberBean) {
+		int n = favoriteDao.saveFavorite(houseBean, memberBean);
+		return n;
+	}
+
+	@Override
+	public void deleteFavoriteById(Integer fid) {
+		System.out.println("delete favorite, id = "+ fid);
+		favoriteDao.deleteFavoriteById(fid);
+	}
+
+//	public boolean insertHouse(FavoriteBean fBean) {
+//		return fdao.insertFavorite(fBean);
 //	}
+//
+
+
 //
 //	@Override
 //	public void update(FavoriteBean fBean) {
@@ -49,15 +57,5 @@ public class FavoriteListService implements IFavoriteList {
 //		fdao.updateFavorite(fBean);;
 //		
 //	}
-//
-//	@Override
-//	public void delete(int fid) {
-//		System.out.println("delete by fid ="+fid);
-//		fdao.deleteFavorite(fid);;
-//		
-//	}
-
-
-
 
 }

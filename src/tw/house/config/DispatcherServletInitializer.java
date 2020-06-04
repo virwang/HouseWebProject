@@ -56,8 +56,11 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 		filterRegistration.addMappingForUrlPatterns(null, false, "/*");
 //		filterRegistration = servletContext.addFilter("OpenSessionViewFilter", OpenSessionViewFilter.class);
 //		filterRegistration.setInitParameter("sessionFactoryBeanName", "sessionFactory");
+//		filterRegistration.addMappingForUrlPatterns(null, true, "/*");
+		filterRegistration = servletContext.addFilter("hiddenHttpMethodFilter",new HiddenHttpMethodFilter());
 		filterRegistration.addMappingForUrlPatterns(null, true, "/*");
 		filterRegistration.addMappingForServletNames(null, true, "mvc");
+		
 
 		servletContext.addListener(new ContextLoaderListener(rootContext));
 	}

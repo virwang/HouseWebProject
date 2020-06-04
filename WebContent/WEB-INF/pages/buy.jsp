@@ -23,10 +23,7 @@
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
-
-
 <link rel="stylesheet" href="css/aos.css">
-
 <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -88,8 +85,8 @@
 									name="offer-types" id="offer-types"
 									class="form-control d-block rounded-0">
 									<option value="">For Sale</option>
-									<option value="">For Rent</option>
-									<option value="">For Lease</option>
+									<!-- 									<option value="">For Rent</option> -->
+									<!-- 									<option value="">For Lease</option> -->
 								</select>
 							</div>
 						</div>
@@ -125,15 +122,15 @@
 							<!-- <a href="view-list.html" class="icon-view view-list"><span class="icon-view_list"></span></a> -->
 
 						</div>
-<!-- 						<div class="ml-auto d-flex align-items-center"> -->
-<!-- 							<div> -->
-<%--  								<a href="<c:url value='newhouse'/>" class="view-list px-3 border-right">新增物件</a> --%>
-<!-- 								<a href="buy.jsp" class="view-list px-3 border-right active">All</a> -->
-<!--                  			<a href="#" class="view-list px-3">Sale</a> -->
-<!-- 							</div> -->
+						<!-- 						<div class="ml-auto d-flex align-items-center"> -->
+						<!-- 							<div> -->
+						<%--  								<a href="<c:url value='newhouse'/>" class="view-list px-3 border-right">新增物件</a> --%>
+						<!-- 								<a href="buy.jsp" class="view-list px-3 border-right active">All</a> -->
+						<!--                  			<a href="#" class="view-list px-3">Sale</a> -->
+						<!-- 							</div> -->
 
 
-							<!-- <div class="select-wrap">
+						<!-- <div class="select-wrap">
                   <span class="icon icon-arrow_drop_down"></span>
                   <select class="form-control form-control-sm d-block rounded-0">
                     <option value="">Sort by</option>
@@ -142,7 +139,7 @@
                   </select>
                 </div> -->
 
-<!-- 						</div> -->
+						<!-- 						</div> -->
 					</div>
 				</div>
 			</div>
@@ -151,66 +148,60 @@
 	</div>
 
 	<div class="site-section site-section-sm bg-light">
-      <div class="container">
-      
-      
-      <c:forEach var="hlist" items="${houselist}">
-      
-        <div class="row mb-5">
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="property-entry h-100">
-              <a href="housedetail?HOUSEID=${hlist.id}" class="property-thumbnail">
-                <div class="offer-type-wrap">
-                  <span class="offer-type bg-danger">Sale</span>
-                </div>
-                <img src="images/img_1.jpg" alt="Image" class="img-fluid">
-              </a>
-              <div class="p-4 property-body">
-                <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                	<a href="housedetail?HOUSEID=${hlist.id}">
-                	<h2 class="property-title">${hlist.title}</h2>
-                	</a>
-                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>${hlist.address}</span>
-                <strong class="property-price text-primary mb-3 d-block text-success">${hlist.totalprice}萬</strong>
-                <ul class="property-specs-wrap mb-3 mb-lg-0">
-                  <li>
-                    <span class="property-specs">坪數</span>
-                    <span class="property-specs-number">${hlist.ping}</span>
-                    
-                  </li>
-                  <li>
-                    <span class="property-specs">每坪(萬)</span>
-                    <span class="property-specs-number">${hlist.unitprice}</span>
-                    
-                  </li>
-
-                </ul>
-
-              </div>
-            </div>
-          </div>
-          
-        </div>
-       </c:forEach>
+		<div class="container">
 
 
+			<c:forEach var="hlist" items="${houselist}">
 
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <div class="site-pagination">
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <span>...</span>
-              <a href="#">10</a>
-            </div>
-          </div>  
-        </div>
-        
-      </div>
-    </div>
+				<div class="row mb-5">
+					<div class="col-md-6 col-lg-4 mb-4">
+						<div class="property-entry h-100">
+							<a href="housedetail?HOUSEID=${hlist.id}"
+								class="property-thumbnail">
+								<div class="offer-type-wrap">
+									<span class="offer-type bg-danger">Sale</span>
+								</div> <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+							</a>
+							<div class="p-4 property-body">
+							<c:if test="${!empty memberBean}">
+								<button type="button" class="property-favorite fah"
+									id="${hlist.id}">
+									<span class="icon-heart-o"></span>
+								</button>
+							</c:if>
+								<a href="housedetail?HOUSEID=${hlist.id}">
+									<h2 class="property-title">${hlist.title}</h2>
+								</a> <span class="property-location d-block mb-3"><span
+									class="property-icon icon-room"></span>${hlist.address}</span> <strong
+									class="property-price text-primary mb-3 d-block text-success">${hlist.totalprice}萬</strong>
+								<ul class="property-specs-wrap mb-3 mb-lg-0">
+									<li><span class="property-specs">坪數</span> <span
+										class="property-specs-number">${hlist.ping}</span></li>
+									<li><span class="property-specs">每坪(萬)</span> <span
+										class="property-specs-number">${hlist.unitprice}</span></li>
+
+								</ul>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</c:forEach>
+
+
+
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="site-pagination">
+						<a href="#" class="active">1</a> <a href="#">2</a> <a href="#">3</a>
+						<a href="#">4</a> <a href="#">5</a> <span>...</span> <a href="#">10</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 
 	<jsp:include page="/footer.jsp" />
@@ -233,6 +224,38 @@
 	<script src="js/aos.js"></script>
 
 	<script src="js/main.js"></script>
+
+	<script>
+		$(".fah").click(function(){
+		var hid = this.id;
+		
+
+		$.ajax({
+			method : "Get",
+			dataType : "json",
+			url : "<c:url value='/houselist.do' />",
+			data : {
+				"houseId":hid
+				},
+			success : function(res){
+				if(res.success!=null){
+					
+					alert("新增成功");			
+				}else if(res.error!=null){
+					cancel(hid);
+					alert("已收藏，取消收藏");
+					}
+				},
+			error : function(ex){
+				alert("錯誤")
+				}
+			})
+			
+
+			})			
+	</script>
+
+
 
 </body>
 </html>

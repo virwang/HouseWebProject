@@ -1,4 +1,19 @@
 /* Base */
+#totalbought{
+	font-size:24px;
+	padding-left:20px;
+	color:white;
+	display:flex;
+	margin-bottom:10px
+}
+#select_year{
+	width:10%;
+	border-re
+}
+#select_years{
+	
+}
+
 .housecolumntable {
 	border: 1px solid gray;
 	width: 80%;
@@ -20,13 +35,10 @@ body {
 	color: rgba(0, 0, 0, 0.6);
 	font-weight: 400;
 	font-size: 1rem;
-	font-family: "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas,
-		"Liberation Mono", "Courier New", monospace;
-	font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont,
-		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-		"Noto Color Emoji";
+	font-family: 微軟正黑體;
+	font-family: 微軟正黑體;
 }
+
 
 ::-moz-selection {
 	background: #000;
@@ -476,14 +488,13 @@ a:hover {
 
 .site-navbar .site-navigation .site-menu .has-children>a:before {
 	position: absolute;
-	content: "\e313";
 	font-size: 16px;
 	top: 50%;
 	right: 0;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-	font-family: 'icomoon';
+	font-family: 微軟正黑體;
 }
 
 .site-navbar .site-navigation .site-menu .has-children .dropdown {
@@ -736,7 +747,7 @@ a:hover {
 .site-mobile-menu .site-nav-wrap .arrow-collapse:before {
 	font-size: 12px;
 	z-index: 20;
-	font-family: "icomoon";
+	font-family: 微軟正黑體;
 	content: "\f078";
 	position: absolute;
 	top: 50%;
@@ -1384,7 +1395,7 @@ a:hover {
 }
 
 .unit-8 .accordion-item .heading>a[aria-expanded="true"]:before {
-	font-family: 'icomoon';
+	font-family: 微軟正黑體;
 	position: absolute;
 	content: "\e316";
 	-webkit-transition: .3s all ease;
@@ -1398,7 +1409,7 @@ a:hover {
 .unit-8 .accordion-item .heading>a[aria-expanded="false"]:before {
 	content: "\e313";
 	color: #ccc;
-	font-family: 'icomoon';
+	font-family: 微軟正黑體;
 	position: absolute;
 	-webkit-transition: .3s all ease;
 	-o-transition: .3s all ease;

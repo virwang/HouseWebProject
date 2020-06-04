@@ -18,7 +18,7 @@ public class HouseService {
 	public List<HouseBean> memberHouseList(String macct) {
 		return houseDAO.memberHouseList(macct);
 	}
-	public List<HouseBean> selectedHouse(Integer hid) {
+	public HouseBean selectedHouse(Integer hid) {
 		return houseDAO.selectedHouse(hid);
 	}
 	

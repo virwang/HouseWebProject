@@ -10,7 +10,7 @@ import javax.servlet.RequestDispatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +25,13 @@ public class RegisterController {
 	@Autowired
 	private MemberService mService;
 	
-	public RegisterController(MemberService mService) {
-		this.mService=mService;
+	
+	@GetMapping(path = "/register")
+	public String turntoregist() {
+		return "_08_registerMember";
 	}
+	
+	
 	@RequestMapping(path = {"springRegisterMember.do"},method = RequestMethod.POST)
 	public String registercheckAction(@RequestParam("account")String account,
 			@RequestParam("psw")String psw,@RequestParam("name")String name,
@@ -118,7 +122,6 @@ public class RegisterController {
 		
 		boolean accountExist = mService.AccountExist(account);
 		
-		mService.insertMember(mb);
 		if(accountExist) {
 			errorMsg.put("account", "帳號已存在請重新輸入");
 			return "_08_registerMember";

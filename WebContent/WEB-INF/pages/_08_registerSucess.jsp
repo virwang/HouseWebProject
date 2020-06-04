@@ -61,56 +61,7 @@
   <div class="site-loader"></div>
 
   <div class="site-wrap">
-
-    <<div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div> <!-- .site-mobile-menu -->
-
-    <div class="site-navbar mt-4">
-      <div class="container py-1">
-        <div class="row align-items-center">
-          <div class="col-8 col-md-8 col-lg-4">
-            <h1 class="mb-0"><a href="index.jsp" class="text-white h2 mb-0"><strong>隨心居-想住哪就住哪<span
-                    class="text-danger">.</span></strong></a></h1>
-          </div>
-          <div class="col-4 col-md-4 col-lg-8">
-            <nav class="site-navigation text-right text-md-right" role="navigation">
-
-              <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#"
-                  class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-
-              <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <!-- <li class="active">
-                    <a href="index.html">首頁</a>
-                  </li> -->
-                <li><a href="view-list-search.jsp">房屋(台北)</a></li>
-                <li><a href="NewTaipeiSV">房屋(新北)</a></li>
-                <!-- <li><a href="rent.html">租房</a></li> -->
-                <li><a href="news.do">地方新聞</a></li>                      
-                <li><a href="process.jsp">購屋流程</a></li>                
-<!--                 <li><a href="mylove.html">我的收藏</a></li> -->
-                <c:if test="${empty LoginOK}">
-                <li><a href="_08_registerMember.jsp">會員註冊</a></li> 
-                <li><a href="_08_login.jsp">會員登入</a></li> 
-                </c:if>
-                <c:if test="${!empty LoginOK}">
-                <li><a href="springlogout.do" >會員登出</a></li> 
-                <li><a href="memberData.do?ACCT=${LoginOK3}">你好，${LoginOK2}</a></li>
-                </c:if>
-                <!-- <li><a href="contact.html">聯絡我們</a></li> -->
-              </ul>
-            </nav>
-          </div>
-
-
-        </div>
-      </div>
-    </div>
+	<jsp:include page="/navibar.jsp" />
   </div>
 
   <div class="slide-one-item home-slider owl-carousel">
@@ -143,66 +94,7 @@
       <a href="index.jsp">返回首頁</a>
   </div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="mb-5">
-            <h3 class="footer-heading mb-4">關於隨心居</h3>
-            <p></p>
-          </div>
-
-
-
-        </div>
-        <div class="col-lg-4 mb-5 mb-lg-0">
-          <div class="row mb-5">
-            <div class="col-md-12">
-              <h3 class="footer-heading mb-4">Navigations</h3>
-            </div>         
-            <div class="col-md-6 col-lg-6">
-              <ul class="list-unstyled">
-                <li><a href="#">關於我們</a></li>
-                <li><a href="#">隱私條款</a></li>
-                <li><a href="#">聯絡我們</a></li>
-              </ul>
-            </div>
-          </div>
-
-
-        </div>
-
-        <div class="col-lg-4 mb-5 mb-lg-0">
-          <h3 class="footer-heading mb-4">關注我們</h3>
-
-          <div>
-            <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-          </div>
-
-
-
-        </div>
-
-      </div>
-      <div class="row pt-5 mt-5 text-center">
-        <div class="col-md-12">
-          <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;
-            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
-            <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
-              target="_blank">好家在</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </footer>
+  <jsp:include page="/footer.jsp" />
 
   </div>
 

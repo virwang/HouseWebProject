@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <title>好家在 &mdash; 想住哪就住哪</title>
+  <title>Homeland &mdash; Colorlib Website Template</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -39,7 +39,7 @@
      <jsp:include page="/navibar.jsp" />
   </div>
 
-  <div class="slide-one-item home-slider owl-carousel">
+  <div class="slide-one-item home-slider owl-carousel" style="font-family:DFKai-sb;">
 
     <div class="site-blocks-cover overlay" style="background-image: url(images/house1.jpg);" data-aos="fade"
       data-stellar-background-ratio="0.5">
@@ -550,13 +550,12 @@
       <div class="row justify-content-center" data-aos="fade" data-aos-delay="100">
         <div class="col-md-8">
           <div class="accordion unit-8" id="accordion">
-          
             <div class="accordion-item">
               <h3 class="mb-0 heading">
-                <a class="btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false"
+                <a class="btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true"
                   aria-controls="collapseOne">我們的團隊名稱:<span class="icon"></span></a>
               </h3>
-              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="body-text">
                   <p>我們的團隊名稱是:好家在。起源於五個在資策會上課的同伴。</p>
                 </div>

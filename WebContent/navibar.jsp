@@ -17,7 +17,7 @@
             <div class="col-8 col-md-8 col-lg-4">
                 <h1 class="mb-0">
                     <a href="index.jsp" class="text-white h2 mb-0">
-                        <strong style="font-family:DFKai-sb;">好家在-想住哪就住哪
+                        <strong>好家在-想住哪就住哪
                             <span class="text-danger">.</span>
                         </strong>
                     </a>
@@ -33,8 +33,8 @@
                         </a>
                     </div>
 
-                    <ul class="site-menu js-clone-nav d-none d-lg-block" style="font-family:DFKai-sb;">
-                        <li class="has-children" >
+                    <ul class="site-menu js-clone-nav d-none d-lg-block">
+                        <li class="has-children">
                         	<a>買房</a>
                         	<ul class="dropdown arrow">
                         		<li><a href="<c:url value='houselist'/>">房屋列表</a></li>
@@ -42,23 +42,29 @@
                         	</ul>
                         </li>
                         
-                        <li><a href="<c:url value='SearchTaipeiAction.do'/>">房屋(台北)</a></li>
-                        <li><a href="<c:url value='newtaipeipage.do'/>">房屋(新北)</a></li>
+                        <li><a href="<c:url value='SearchTaipeiAction.do'/>">實價登錄</a></li>
                         <!-- <li><a href="rent.html">租房</a></li> -->
+                        <li><a href="<c:url value='lend'/>">房貸評測</a></li>
                         <li><a href="<c:url value='newsList'/>">地方新聞</a></li>
-                        <li><a href="process.jsp">購屋流程</a></li>
-                        <c:if test="${empty LoginOK}">
-                            <li><a href="_08_registerMember.jsp">會員註冊</a></li>
-                            <li><a href="_08_login.jsp">會員登入</a></li>
+                        <c:if test="${empty memberBean}">
+                            <li><a href="<c:url value='register'/>">會員註冊</a></li>
+                            <li><a href="<c:url value='login'/>">會員登入</a></li>
                         </c:if>
-                        <c:if test="${!empty LoginOK}">
+                        <c:if test="${!empty memberBean}">
                             <li class="has-children">
-                            	<a>${LoginOK2}</a>
+                            	<a>${memberBean.name}</a>
                             	<ul class="dropdown arrow">
-                            		<li><a href="<c:url value='showMemberData?ACCT=${LoginOK3}'/>">個人資料</a>
-                        			<li><a href="<c:url value='memberhouse'/>">我的物件</a></li>
-                                    <li><a href="favorite">我的收藏</a></li>
+                            		<li><a href="<c:url value='showMemberData'/>">個人資料</a>
+                        			<c:if test="${memberBean.usertype=='Senior' || memberBean.usertype=='admin'}">
+                        				<li><a href="<c:url value='memberhouse'/>">我的物件</a></li>
+                        			</c:if>
+                        			<li><a href="<c:url value='reservation'/>">預約狀況</a></li>
+                                    <li><a href="<c:url value='favorite'/>">我的收藏</a></li>
                             		<li><a href="<c:url value='springlogout.do'/>">會員登出</a></li>
+                            		<c:if test="${memberBean.usertype=='admin'}">
+                            			<li><a href="<c:url value='#'/>">後台管理</a></li>
+                            		</c:if>
+                            	
                             	</ul>
                             
                             </li>

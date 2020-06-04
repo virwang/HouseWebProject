@@ -191,7 +191,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+              <button href="housedetail?HOUSEID=${hlist.id}" class="property-favorite"><span class="icon-heart-o"></span></button>
               <h2 class="property-title"><a href="#"> 231　新北市　新店區</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>  231　新北市　新店區　北新路一段　79號</span>
               <strong class="property-price text-primary mb-3 d-block text-success">$65.2萬/坪</strong>
@@ -232,7 +232,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite active"><span class="icon-heart-o"></span></a>
+              <button href="housedetail?HOUSEID=${hlist.id}" class="property-favorite"><span class="icon-heart-o"></span></button>
               <h2 class="property-title"><a href="#">116 台北市 文山區</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 116 台北市 文山區 木柵路 三段 85巷</span>
               <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
@@ -273,7 +273,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+              <button href="#" class="property-favorite"><span class="icon-heart-o"></span></button>
               <h2 class="property-title"><a href="#">231 新北市 新店區</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne
                 新店路263號-3 六樓 6號</span>
@@ -315,7 +315,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+              <button href="housedetail?HOUSEID=${hlist.id}" class="property-favorite"><span class="icon-heart-o"></span></button>
               <h2 class="property-title"><a href="#">231 新北市 新店區</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 
               231 新北市 新店區 央北二路</span>
@@ -357,7 +357,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+              <button href="housedetail?HOUSEID=${hlist.id}" class="property-favorite"><span class="icon-heart-o"></span></button>
               <h2 class="property-title"><a href="#">853 S Lucerne Blvd</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne
                 Blvd Unit 101 Los Angeles, CA 90005</span>
@@ -413,117 +413,18 @@
             <h2>我們的服務:</h2>
           </div>
           <p>
-            <ul>
-              <li>
-                <strong>
-                購屋流程說明: 為首次買房的您提供詳盡的說明   
-              </strong>
-              </li>
-              <li>
-                看屋行程規劃: 省去您一個個輸入地址的麻煩
-              </li>
-            </ul>
+	            <ul>
+	              <li>
+	                <strong>
+	                	購屋流程說明: 為首次買房的您提供詳盡的說明   
+	              </strong>
+	              </li>
+	              <li>       	 看屋行程規劃: 省去您一個個輸入地址的麻煩
+	              </li>
+	            </ul>
           </p>
         </div>
       </div>
-<!-- 
-      <div class="row">
-        <div class="col-md-6 col-lg-4">
-          <a href="#" class="service text-center">
-            <span class="icon flaticon-house"></span>
-            <h2 class="service-heading">Research Subburbs</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex odio
-              molestia.</p>
-            <p><span class="read-more">Read More</span></p>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <a href="#" class="service text-center">
-            <span class="icon flaticon-sold"></span>
-            <h2 class="service-heading">Sold Houses</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex odio
-              molestia.</p>
-            <p><span class="read-more">Read More</span></p>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <a href="#" class="service text-center">
-            <span class="icon flaticon-camera"></span>
-            <h2 class="service-heading">Security Priority</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex odio
-              molestia.</p>
-            <p><span class="read-more">Read More</span></p>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div class="site-section bg-light">
-    <div class="container">
-      <div class="row justify-content-center mb-5">
-        <div class="col-md-7 text-center">
-          <div class="site-section-title">
-            <h2>Recent Blog</h2>
-          </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis maiores quisquam saepe architecto error
-            corporis aliquam. Cum ipsam a consectetur aut sunt sint animi, pariatur corporis, eaque, deleniti cupiditate
-            officia.</p>
-        </div>
-      </div> -->
-      <!-- <div class="row">
-        <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="100">
-          <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
-          <div class="p-4 bg-white">
-            <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-            <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae
-              sunt.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="200">
-          <a href="#"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
-          <div class="p-4 bg-white">
-            <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-            <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae
-              sunt.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="300">
-          <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-          <div class="p-4 bg-white">
-            <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-            <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae
-              sunt.</p>
-          </div>
-        </div> -->
-
-        <!-- <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="100">
-            <a href="#"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
-            <div class="p-4 bg-white">
-              <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-              <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt, voluptatum reprehenderit deserunt illum rem.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="200">
-            <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-            <div class="p-4 bg-white">
-              <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-              <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt, voluptatum reprehenderit deserunt illum rem.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="300">
-            <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
-            <div class="p-4 bg-white">
-              <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-              <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt, voluptatum reprehenderit deserunt illum rem.</p>
-            </div>
-          </div> -->
 
       </div>
 

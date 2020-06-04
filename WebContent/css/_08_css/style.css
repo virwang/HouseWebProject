@@ -476,7 +476,7 @@ h6,
   opacity: 0;
 }
 
-.burger.active:before,
+.burger.active:before
 .burger.active:after {
   top: 40%;
 }

@@ -108,7 +108,7 @@
          </TR>
             
         <TR>
-            <TD colspan="2" align="center">      <input type="submit" value="提交"> </TD>
+            <TD colspan="2" align="center"> <input type="submit" value="提交"> </TD>
             </TR>
          </Table>
  </Form>

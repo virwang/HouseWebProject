@@ -14,8 +14,8 @@ public class MemberDao {
 	@Autowired @Qualifier("sessionFactory")
 	private SessionFactory sessionFactory;
 	
-	public MemberDao(SessionFactory sessionFactory) {
-		this.sessionFactory=sessionFactory;
+	public MemberDao() {
+
 	}	
 //	private Session session;
 //	
@@ -33,12 +33,12 @@ public class MemberDao {
 		{	
 			Session session = sessionFactory.getCurrentSession();
 			Query<MemberBean> query = session.createQuery("from MemberBean where account=:acc",MemberBean.class);
-			List<MemberBean> list = query.setParameter("acc",account).list();
-			Iterator<MemberBean> it = list.iterator();
-			while (it.hasNext()) {
-					MemberBean mybean = it.next();
+			MemberBean mb = query.setParameter("acc",account).uniqueResult();
+			if (mb!=null) {
+					MemberBean mybean = mb;
 					System.out.println(mybean.getAccount());	
 					exist=true;
+					return exist;
 			}
 			
 		} catch (Exception e) {	

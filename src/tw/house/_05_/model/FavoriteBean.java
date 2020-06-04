@@ -1,8 +1,6 @@
 package tw.house._05_.model;
 
 import java.sql.Blob;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,17 +16,17 @@ import org.springframework.stereotype.Component;
 import tw.house._07_.model.HouseBean;
 import tw.house._08_.register.model.MemberBean;
 
-@Component("favorite")
+@Component("Favorite")
 @Entity
 @Table(name = "favorite")
 public class FavoriteBean {
 	private Integer fid;
-	private Integer houseid;
-	private Integer accountid;
-	private MemberBean mb;
-	private List<HouseBean> hBean;
+	private Integer accountId;
+	private Integer houseId;
+	private MemberBean memberBean;
+	private HouseBean houseBean;
 
-	public void Favorite() {
+	public FavoriteBean() {
 
 	}
 
@@ -39,64 +37,64 @@ public class FavoriteBean {
 		return fid;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "accountid", insertable=false,updatable=false)
-	public MemberBean getMb() {
-		return mb;
-	}
-
-	public void setMb(MemberBean mb) {
-		this.mb = mb;
-	}
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", insertable = false, updatable = false)
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "houseid")
 //	@Transient
-	public List<HouseBean> gethBean() {
-		return hBean;
+	public HouseBean getHouseBean() {
+		return houseBean;
 	}
 
-	@Column(name = "houseid")
-	public Integer getHouseid() {
-		return houseid;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "accountid")
+	public MemberBean getMemberBean() {
+		return memberBean;
 	}
-	
-	@Column(name = "accountid")
-	public Integer getAccountid() {
-		return accountid;
+	@Transient
+//	@Column(name = "accountid")
+	public Integer getAccountId() {
+		return accountId;
+	}
+	@Transient
+//	@Column(name = "houseid")
+	public Integer getHouseId() {
+		return houseId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
+
+	public void setHouseId(Integer houseId) {
+		this.houseId = houseId;
 	}
 
 	public void setFid(Integer fid) {
 		this.fid = fid;
 	}
 
-	public void setHouseid(Integer houseid) {
-		this.houseid = houseid;
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
 	}
 
-	public void sethBean(List<HouseBean> hBean) {
-		this.hBean = hBean;
+	public void setMembeId(MemberBean memberBean) {
+		this.memberBean = memberBean;
 	}
 
-	public void setAccountid(Integer accountid) {
-		this.accountid = accountid;
+	public void setHouseBean(HouseBean houseBean) {
+		this.houseBean = houseBean;
 	}
-
+	
+	@Transient
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("FavoriteBean [fid=");
 		builder.append(fid);
-		builder.append(", houseid=");
-		builder.append(houseid);
-		builder.append(", accountid=");
-		builder.append(accountid);
-		builder.append(", mb=");
-		builder.append(mb);
-		builder.append(", hBean=");
-		builder.append(hBean);
+		builder.append(", meberBean=");
+		builder.append(memberBean);
+		builder.append(", houseBean=");
+		builder.append(houseBean);
 		builder.append("]");
 		return builder.toString();
 	}
-		
 }

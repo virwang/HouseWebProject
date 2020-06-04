@@ -141,11 +141,8 @@ fieldset {
 			<div class="st1">
 				<label class="Id">身分別：</label>
 				 <select name="usertype"value="${param.usertype}">
-					<option value="landlord">房東</option>
-					<option value="tenant">租客</option>
-					<option value="agent">房仲</option>
-					<option value="buyer">買房人</option>
-					<option value="commissioner">專業人士</option>
+					<option value="General">一般會員</option>
+					<option value="Senior">高級會員</option>
 				</select>
 			</div>
 			<div class="st1">
