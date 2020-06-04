@@ -161,8 +161,11 @@
                 <img src="data:image/jpeg;base64,${hlist.base64image1}" alt="Image" class="img-fluid">
               </a>
               <div class="p-4 property-body">
-                <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                	<a href="housedetail?HOUSEID=${hlist.id}">
+              <c:if test="${!empty memberBean}">
+				<button type="button" class="property-favorite fah" id="${hlist.id}">
+					<span class="icon-heart-o"></span>
+				</button>
+			 </c:if>
                 	<h2 class="property-title">${hlist.title}</h2>
                 	</a>
                 <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>${hlist.city}${hlist.dist}${hlist.address}</span>
@@ -282,6 +285,34 @@
 	<script src="js/aos.js"></script>
 
 	<script src="js/main.js"></script>
+		<script>
+		$(".fah").click(function(){
+		var hid = this.id;		
+
+		$.ajax({
+			method : "Get",
+			dataType : "json",
+			url : "<c:url value='/houselist.do' />",
+			data : {
+				"houseId":hid
+				},
+			success : function(res){
+				if(res.success!=null){
+					
+					alert("新增成功");			
+				}else if(res.error!=null){
+					alert("已收藏，取消收藏");
+					cancel(hid);
+					}
+				},
+			error : function(ex){
+				alert("錯誤")
+				}
+			})
+			
+
+			})			
+	</script>
 
 </body>
 </html>
