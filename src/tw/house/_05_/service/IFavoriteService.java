@@ -2,7 +2,6 @@ package tw.house._05_.service;
 
 import java.util.List;
 
-import jnr.ffi.Struct.int16_t;
 import tw.house._05_.model.FavoriteBean;
 import tw.house._07_.model.HouseBean;
 import tw.house._08_.register.model.MemberBean;

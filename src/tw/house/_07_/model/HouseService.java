@@ -22,7 +22,7 @@ public class HouseService {
 		return houseDAO.selectedHouse(hid);
 	}
 	
-	public HouseBean updateHouse(HouseBean hBean) {
+	public boolean updateHouse(HouseBean hBean) {
 		return houseDAO.updateHouse(hBean);
 	}
 
@@ -36,5 +36,8 @@ public class HouseService {
 	
 	public List<HouseBean> mrthouse(Integer station){
 		return houseDAO.mrthouse(station);
+	}
+	public List<HouseBean> searchHouse(String city,String dist,String addr){
+		return houseDAO.searchHouse(city, dist, addr);
 	}
 }

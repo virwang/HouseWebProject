@@ -2,7 +2,6 @@ package tw.house._07_.model;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
-import java.util.Arrays;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tw.house._08_.register.model.MemberBean;
 
@@ -44,57 +45,18 @@ public class HouseBean {
 	private String lon;
 	private MemberBean memberBean;
 	private MrtBean mrtBean;
-	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("HouseBean [id=");
-		builder.append(id);
-		builder.append(", title=");
-		builder.append(title);
-		builder.append(", totalprice=");
-		builder.append(totalprice);
-		builder.append(", unitprice=");
-		builder.append(unitprice);
-		builder.append(", ping=");
-		builder.append(ping);
-		builder.append(", city=");
-		builder.append(city);
-		builder.append(", dist=");
-		builder.append(dist);
-		builder.append(", address=");
-		builder.append(address);
-		builder.append(", phone=");
-		builder.append(phone);
-		builder.append(", apartment=");
-		builder.append(apartment);
-		builder.append(", accountid=");
-		builder.append(accountid);
-		builder.append(", mrtpk=");
-		builder.append(mrtpk);
-		builder.append(", room=");
-		builder.append(room);
-		builder.append(", hall=");
-		builder.append(hall);
-		builder.append(", bath=");
-		builder.append(bath);
-		builder.append(", addDate=");
-		builder.append(addDate);
-		builder.append(", lat=");
-		builder.append(lat);
-		builder.append(", lon=");
-		builder.append(lon);
-		builder.append(", memberBean=");
-		builder.append(memberBean);
-		builder.append(", mrtBean=");
-		builder.append(mrtBean);
-		builder.append(", image1=");
-		builder.append(Arrays.toString(image1));
-		builder.append("]");
-		return builder.toString();
-	}
-
+	@JsonIgnore
 	private byte[] image1;
+	@JsonIgnore
+	private byte[] image2;
+	@JsonIgnore
+	private byte[] image3;
+	@Transient
+	private String base64image1;
+	@Transient
+	private String base64image2;
+	@Transient
+	private String base64image3;
 
 	
 	public HouseBean() {
@@ -272,9 +234,34 @@ public class HouseBean {
 		this.lon = lon;
 	}
 	
+	@Column(name = "image1")
+	public byte[] getImage1() {
+		return image1;
+	}
 
+	public void setImage1(byte[] image1) {
+		this.image1 = image1;
+	}
+	
+	@Column(name = "image2")
+	public byte[] getImage2() {
+		return image2;
+	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	public void setImage2(byte[] image2) {
+		this.image2 = image2;
+	}
+	
+	@Column(name = "image3")
+	public byte[] getImage3() {
+		return image3;
+	}
+
+	public void setImage3(byte[] image3) {
+		this.image3 = image3;
+	}
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "accountid"
 	, insertable=false,updatable=false)
 	public MemberBean getMemberBean() {
@@ -284,7 +271,7 @@ public class HouseBean {
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
 	}
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "mrtpk"
 	, insertable=false,updatable=false)
 	public MrtBean getMrtBean() {
@@ -295,6 +282,31 @@ public class HouseBean {
 		this.mrtBean = mrtBean;
 	}
 
+	public String getBase64image1() {
+		return base64image1;
+	}
+
+	public void setBase64image1(String base64image1) {
+		this.base64image1 = base64image1;
+	}
+
+	public String getBase64image2() {
+		return base64image2;
+	}
+
+	public void setBase64image2(String base64image2) {
+		this.base64image2 = base64image2;
+	}
+
+	public String getBase64image3() {
+		return base64image3;
+	}
+
+	public void setBase64image3(String base64image3) {
+		this.base64image3 = base64image3;
+	}
+	
+	
 
 	
 	

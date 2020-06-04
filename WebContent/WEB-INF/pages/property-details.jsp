@@ -74,16 +74,19 @@
 					<div>
 						<div class="slide-one-item home-slider owl-carousel">
 							<div>
-								<a href="images/hero_bg_1.jpg" class="image-popup gal-item">
-								<img src="images/hero_bg_1.jpg" alt="Image" class="img-fluid"></a>
+<!-- 								<a href="images/hero_bg_1.jpg" class="image-popup gal-item"> -->
+									<img src="data:image/jpeg;base64,${housedt.base64image1}" alt="Image1" class="img-fluid">
+<!-- 								</a> -->
 							</div>
 							<div>
-								<a href="images/hero_bg_2.jpg" class="image-popup gal-item">
-								<img src="images/hero_bg_2.jpg" alt="Image" class="img-fluid"></a>
+<!-- 								<a href="images/hero_bg_2.jpg" class="image-popup gal-item"> -->
+									<img src="data:image/jpeg;base64,${housedt.base64image2}" alt="Image1" class="img-fluid">
+<!-- 								</a> -->
 							</div>
 							<div>
-								<a href="images/hero_bg_3.jpg" class="image-popup gal-item">
-								<img src="images/hero_bg_3.jpg" alt="Image" class="img-fluid"></a>
+<!-- 								<a href="images/hero_bg_3.jpg" class="image-popup gal-item"> -->
+									<img src="data:image/jpeg;base64,${housedt.base64image3}" alt="Image3" class="img-fluid">
+<!-- 								</a> -->
 							</div>
 						</div>
 					</div>
@@ -326,7 +329,6 @@
 	xhr.open("GET","<c:url value='searchmapjson'/>",true);
 	xhr.send();
 	xhr.onreadystatechange=function(){
-		console.log(xhr.readyState);
 		if(xhr.readyState==4&&xhr.status==200){
 			let mrtlist =JSON.parse(xhr.responseText);
 			for(let i=0;i<mrtlist.length;i++){

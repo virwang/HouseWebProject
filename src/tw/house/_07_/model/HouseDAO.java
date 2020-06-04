@@ -28,39 +28,63 @@ public class HouseDAO {
 		List<HouseBean> list = new ArrayList<>();
 		list = query.list();
 
-
 		return list;
 
+	}
+	public List<HouseBean> searchHouse(String city,String dist,String addr){
+		String hquery1 = "from HouseBean where city=:city and dist=:dist";
+		String hquery2 = "from HouseBean where city=:city and dist=:dist and addr like :addr";
+		Query<HouseBean> query = null;
+		System.out.println(addr);
+		if(addr==null) {
+			query = getSession().createQuery(hquery1,HouseBean.class);
+			query.setParameter("city", city);
+			query.setParameter("dist", dist);
+			
+		}else {
+			query = getSession().createQuery(hquery2,HouseBean.class);
+			query.setParameter("city", city);
+			query.setParameter("dist", dist);
+			query.setParameter("addr", "%"+addr+"%");
+			
+		}
+		List<HouseBean> list = new ArrayList<>();
+		list = query.list();
+		return list;
+		
 	}
 
 	public List<HouseBean> memberHouseList(String macct) {
 		String hquery = "from HouseBean where memberBean.account = :acct";
+
 		Query<HouseBean> query = getSession().createQuery(hquery, HouseBean.class);
 		query.setParameter("acct", macct);
 		List<HouseBean> mlist = new ArrayList<>();
 		mlist = query.list();
+
 		return mlist;
 
 	}
 	public HouseBean selectedHouse(Integer hid) {
-		Session session = sessionFactory.getCurrentSession();
 //		System.out.println(session.get(HouseBean.class,hid).getMemberBean().getAccount());
-		System.out.println(hid+"hdao selected house");
-		return session.get(HouseBean.class,hid);
+		return getSession().get(HouseBean.class,hid);
 	}
 	
-	public HouseBean updateHouse(HouseBean hBean) {
-		HouseBean houseBean = getSession().get(HouseBean.class, hBean.getId());
-		if(houseBean!=null) {
-			houseBean=hBean;
+	public boolean updateHouse(HouseBean hBean) {
+		try{
+			getSession().update(hBean);
+			System.out.println("success update house");
+			return true;
+		}catch (Exception e) {
+			System.out.println("falied to update house");
 		}
-		return houseBean;
+		return false;
 	}
 
 	public boolean insertHouse(HouseBean hBean) {
 		
 		try{
-			getSession().save(hBean);
+			getSession().persist(hBean);
 			System.out.println("success insert house");
 			return true;
 		}catch (Exception e) {
@@ -71,6 +95,7 @@ public class HouseDAO {
 	}
 
 	public boolean deleteHouse(Integer hid) {
+		System.out.println("hid="+hid);
 		HouseBean houseBean = getSession().get(HouseBean.class, hid);
 		if(houseBean!=null) {
 			getSession().delete(houseBean);

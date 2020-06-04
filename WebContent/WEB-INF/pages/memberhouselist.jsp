@@ -107,23 +107,23 @@
       <div class="container">
       
       
+      <div class="row mb-5">
       <c:forEach var="hlist" items="${houselist}">
       
-        <div class="row mb-5">
           <div class="col-md-6 col-lg-4 mb-4">
             <div class="property-entry h-100">
-<%--               <a href="housedetail?HOUSEID=${hlist.id}" class="property-thumbnail"> --%>
+              <a class="property-thumbnail">
                 <div class="offer-type-wrap">
                   <span class="offer-type bg-danger">Sale</span>
                 </div>
-                <img src="images/img_1.jpg" alt="Image" class="img-fluid">
-<!--               </a> -->
+                <img src="data:image/jpeg;base64,${hlist.base64image1}" alt="Image" class="img-fluid">
+              </a>
               <div class="p-4 property-body">
                 <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
                 	<a href="housedetail?HOUSEID=${hlist.id}">
                 	<h2 class="property-title">${hlist.title}</h2>
                 	</a>
-                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>${hlist.address}</span>
+                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>${hlist.city}${hlist.dist}${hlist.address}</span>
                 <strong class="property-price text-primary mb-3 d-block text-success">${hlist.totalprice}萬</strong>
                 <ul class="property-specs-wrap mb-3 mb-lg-0">
                   <li>
@@ -140,22 +140,24 @@
                 </ul>
 
               </div>
+              
               <div>
-              	<form>
-              		<button onclick="update_house()" name="updateh" value="${hlist.id}">修改</button>
-              	</form>
-              	<form>
-              		<input type="hidden" name="_method" value="DELETE">
-              		<button onclick="delete_house()" name="deleteh" value="${hlist.id}">刪除</button>
-              	</form>
+              		<button onclick="update_house(this)" value="${hlist.id}">修改</button>
+              		<button onclick="delete_house(this)" value="${hlist.id}">刪除</button>
               </div>
               
             
             </div>
           </div>
           
-        </div>
        </c:forEach>
+       </div>
+       			
+       			<form id="hupdate" action="<c:url value='modhouse'/>" method="POST">
+              	</form>
+              	<form id="hdelete" action="<c:url value='deletehouse'/>" method="POST">
+              		<input type="hidden" name="_method" value="DELETE">
+              	</form>
 
 
 
@@ -185,15 +187,31 @@
 	
 	
 	<script>
-		function delete_house(){
+		function delete_house(clicked){
 			if (confirm("確定要刪除嗎?")){
-				return true;
+				let vl = clicked.value;
+				let ip = document.createElement("input");
+				ip.setAttribute("type", "hidden");
+				ip.setAttribute("name", "deleteh");
+				ip.setAttribute("value", vl);
+				
+				let fd = document.getElementById("hdelete");
+				fd.appendChild(ip);
+				fd.submit();
 			}else{
 				return false;
 			}
 		}
 		function update_house(clicked){
+			let vl = clicked.value;
+			let ip = document.createElement("input");
+			ip.setAttribute("type", "hidden");
+			ip.setAttribute("name", "updateh");
+			ip.setAttribute("value", vl);
 			
+			let fd = document.getElementById("hupdate");
+			fd.appendChild(ip);
+			fd.submit();
 		}
 	</script>
 	
