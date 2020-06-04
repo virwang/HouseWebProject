@@ -92,7 +92,7 @@
 												<c:forEach var='favorite' items='${fh}' varStatus='vs'>
 													<tr>
 														<td class="pt-3-half"><a
-															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>"> <img src="data:image/jpeg;base64,${hlist.base64image1}" alt="Image" class="img-fluid"></a></td>
+															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>"> <img src="data:image/jpeg;base64,${favorite.houseBean.base64image1}" alt="Image" class="img-fluid"></a></td>
 														<c:set var="string1" value="${favorite.houseBean.title}" />
 														<c:set var="string2" value="${fn:substring(string1,0,3)}" />
 														<td class="pt-3-half"><a
