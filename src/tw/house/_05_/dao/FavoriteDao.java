@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 import tw.house._05_.model.FavoriteBean;
 import tw.house._07_.model.HouseBean;
@@ -111,11 +112,18 @@ public class FavoriteDao implements IFavoritedao {
 	}
 
 	@Override
-	public void deleteFavoriteById(Integer fid) {
-		Session session = factory.getCurrentSession();
-		FavoriteBean favoriteBean = new FavoriteBean();
-		favoriteBean.setFid(fid);
-		session.delete(favoriteBean);
+	public boolean deleteFavorite(Integer fid) {
+		System.out.println("delete favorite dao fid ="+fid);
+		FavoriteBean favoriteBean= getSession().get(FavoriteBean.class, fid);
+		if (favoriteBean !=null) {
+			System.out.println("check if fBean != null, fid = ?"+fid);
+			 getSession().delete(favoriteBean);
+			 return true;
+		}else {
+			System.out.println("if favoriteBean = null, fid = ?"+fid);
+			return false;
+		}
+				
 	}
 
 }

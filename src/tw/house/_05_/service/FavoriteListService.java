@@ -15,10 +15,11 @@ import tw.house._08_.register.model.MemberBean;
 //@Transactional
 @Service
 @EnableTransactionManagement
-public class FavoriteListService implements IFavoriteService {
+public class FavoriteListService implements IFavorite  {
 
 	@Autowired
 	private IFavoritedao favoriteDao;
+
 
 	@Override
 	public List<FavoriteBean> memberFavorite() {
@@ -26,11 +27,13 @@ public class FavoriteListService implements IFavoriteService {
 		return favoriteDao.favoriteList();
 	}
 
+
 	@Override
 	public List<FavoriteBean> mfhosue(Integer mid) {
 		System.out.println("favorite service by mid, where mid =" + mid);
 		return favoriteDao.mfhouse(mid);
 	}
+
 
 	@Override
 	public int saveFavorite(HouseBean houseBean, MemberBean memberBean) {
@@ -38,17 +41,13 @@ public class FavoriteListService implements IFavoriteService {
 		return n;
 	}
 
+
 	@Override
-	public void deleteFavoriteById(Integer fid) {
-		System.out.println("delete favorite, id = "+ fid);
-		favoriteDao.deleteFavoriteById(fid);
+	public boolean deleteFavorite(Integer fid) {
+		System.out.println("delete favorite service, id = "+ fid);
+		favoriteDao.deleteFavorite(fid); 
+		return favoriteDao.deleteFavorite(fid);
 	}
-
-//	public boolean insertHouse(FavoriteBean fBean) {
-//		return fdao.insertFavorite(fBean);
-//	}
-//
-
 
 //
 //	@Override

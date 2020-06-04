@@ -20,6 +20,6 @@ public interface IFavoritedao {
 
 	int saveFavorite(HouseBean houseBean, MemberBean memberBean);
 
-	void deleteFavoriteById(Integer fid);
+	boolean deleteFavorite(Integer fid);
 
 }

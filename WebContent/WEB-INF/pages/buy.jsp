@@ -167,7 +167,7 @@
 				</button>
 			 </c:if>
                 	<h2 class="property-title">${hlist.title}</h2>
-                	</a>
+                
                 <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>${hlist.city}${hlist.dist}${hlist.address}</span>
                 <strong class="property-price text-primary mb-3 d-block text-success">${hlist.totalprice}萬</strong>
                 <ul class="property-specs-wrap mb-3 mb-lg-0">

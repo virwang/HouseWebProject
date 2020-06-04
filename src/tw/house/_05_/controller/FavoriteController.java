@@ -1,6 +1,5 @@
 package tw.house._05_.controller;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-
 import tw.house._05_.model.FavoriteBean;
-import tw.house._05_.service.IFavoriteService;
+import tw.house._05_.service.IFavorite;
 import tw.house._07_.model.HouseBean;
 import tw.house._07_.model.HouseService;
 import tw.house._07_.model.MrtService;
@@ -35,7 +34,7 @@ public class FavoriteController {
 	@Autowired
 	SessionFactory session;
 	@Autowired
-	private IFavoriteService favoriteService;
+	private IFavorite ifs;
 	@Autowired
 	private HouseService houseSerice;
 	@Autowired
@@ -45,7 +44,7 @@ public class FavoriteController {
 	public String selectFavorite(@SessionAttribute("memberBean") MemberBean memberBean, Model model) {
 		System.out.println("controller select Favorite by member id =" + memberBean.getName());
 		Integer memberfavorite = memberBean.getPk();
-		List<FavoriteBean> fBeans = favoriteService.mfhosue(memberfavorite);
+		List<FavoriteBean> fBeans = ifs.mfhosue(memberfavorite);
 		model.addAttribute("fh", fBeans);
 		System.out.println("controller memberfavorite =" + memberfavorite + "fBeans toString = " + fBeans.toString());
 		if (fBeans.size() == 0) {
@@ -68,7 +67,7 @@ public class FavoriteController {
 		System.out.println("houseBean 抓取成功"+houseBean.getId());
 		System.out.println("memberBean "+memberBean.getAccount());		
 //			System.out.println("before="+n);
-			n = favoriteService.saveFavorite(houseBean, memberBean);
+			n = ifs.saveFavorite(houseBean, memberBean);
 			System.out.println("after="+n);
 			if (n == 1) {
 				map.put("success", "成功");
@@ -81,10 +80,17 @@ public class FavoriteController {
 	}
 
 	// 刪除單筆我的最愛資料
-	@RequestMapping(value = "/favorite/{fid}", method = RequestMethod.DELETE)
-	public String deleteMembers(@PathVariable Integer fid, Model model, HttpServletRequest req) {
-		favoriteService.deleteFavoriteById(fid);
-		return "redirect:" + req.getContextPath() + "/favorite";
+	@DeleteMapping(path = "/deletefavorite")
+	public String deleteFavorite(@RequestParam("deletefid") Integer fid) {
+		boolean delete = ifs.deleteFavorite(fid);
+		if (delete == true) {
+			System.out.println("delete success fid ="+fid);
+			return "redirect:/favorite";
+		}else{
+			System.out.println("delete error fid ="+fid);
+		}
+		System.out.println("delete favorite");
+		return "redirect:/favorite";
 	}
 
 //	@PostMapping("/favorite")

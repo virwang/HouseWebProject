@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,10 +60,11 @@
 								<a class="button" onclick="javascript:location.href='houselist'"
 									style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
 								<button class="btn"
-									style="font-family: Microsoft JhengHei; color: #FFFAF0; float: right;">
-									<i class="fa fa-trash"></i> 刪除
+									style="font-family: Microsoft JhengHei; color: #FFFAF0; float: right;"
+									id="delete">
+									<i class="fa fa-trash"></i> 刪除丟進垃圾桶
 								</button>
-								<div  id="fhouse">
+								<div id="fhouse">
 									<div id="table">
 										<span class="table-add float-right mb-3 mr-2"> <a
 											href="#!" class="text-success"> </a>
@@ -74,37 +75,42 @@
 												<tr>
 													<th class="text-center">照片</th>
 													<th class="text-center">房屋</th>
-													<th class="text-center">縣市區</th>
+													<th class="text-center">市/區</th>
 													<th class="text-center">詳細位置</th>
 													<th class="text-center">總價</th>
 													<th class="text-center">單價</th>
 													<th class="text-center">坪數</th>
 													<th class="text-center">捷運站</th>
 													<th class="text-center">上架日期</th>
-													<th class="text-center">
-													<input type="checkbox" name="CheckAll" value="checked" id="CheckAll" style="width:30px; height: 30px;"/>全選</th>
+													<th class="text-center"><input type="checkbox"
+														name="CheckAll" value="checked" id="CheckAll"
+														style="width: 30px; height: 30px;" />全選</th>
 												</tr>
 
 											</thead>
 											<tbody>
 												<c:forEach var='favorite' items='${fh}' varStatus='vs'>
 													<tr>
-														<td class="pt-3-half"><a href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${favorite.fid}</a></td>
-														<c:set var="string1" value="${favorite.houseBean.title}"/>
-														<c:set var="string2" value="${fn:substring(string1,0,3)}"/>
-														<td class="pt-3-half"><a href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
-														<td class="pt-3-half">${favorite.houseBean.city}<br>${favorite.houseBean.dist}</td>
+														<td class="pt-3-half"><a
+															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>"> <img src="data:image/jpeg;base64,${hlist.base64image1}" alt="Image" class="img-fluid"></a></td>
+														<c:set var="string1" value="${favorite.houseBean.title}" />
+														<c:set var="string2" value="${fn:substring(string1,0,3)}" />
+														<td class="pt-3-half"><a
+															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
+														<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
 														<td class="pt-3-half">${favorite.houseBean.address}</td>
 														<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
 														<td class="pt-3-half">${favorite.houseBean.unitprice}</td>
 														<td class="pt-3-half">${favorite.houseBean.ping}</td>
 														<td class="pt-3-half">${favorite.houseBean.mrtBean.stationname}</td>
-														<c:set var="adddate1" value="${favorite.houseBean.addDate}"/>
-														<c:set var="adddate2" value="${fn:substring(adddate1,0,11)}"/>				
+														<c:set var="adddate1"
+															value="${favorite.houseBean.addDate}" />
+														<c:set var="adddate2"
+															value="${fn:substring(adddate1,0,11)}" />
 														<td class="pt-3-half">${adddate2}</td>
 														<td class="pt-3-half"><input type="checkbox"
-															name="Checkbox[]" value="checked" id="CheckboxGroup1_0"
-															style="width:30px; height: 30px;"></td>
+															name="ck" value="checked" id="CheckboxGroup1_0"
+															style="width: 30px; height: 30px;"></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -136,18 +142,48 @@
 	<script src="js/main.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
 	<script>
+	//全選及全部取消
 		$(document).ready(function() {
 			$("#CheckAll").click(function() {
 				if ($("#CheckAll").prop("checked")) {//如果全選按鈕有被選擇的話（被選擇是true）
-					$("input[name='Checkbox[]']").prop("checked", true);//把所有的核取方框的property都變成勾選
+					$("input[name='ck']").prop("checked", true);//把所有的核取方框的property都變成勾選
 
 				} else {
-					$("input[name='Checkbox[]']").prop("checked", false);//把所有的核取方框的property都取消勾選
+					$("input[name='ck']").prop("checked", false);//把所有的核取方框的property都取消勾選
 
 				}
 			})
 		})
+	</script>
+	<script>
+	//刪除選取資料
+	 $(function () {
+         $('#delete').click(function () {
+             var c = $('tbody input:checked');
+
+             for (var i = 0; i < c.length; i++) {
+                 var d = c[i].value;
+                 console.log(d);
+             }
+             $.ajax({
+                 url: 'delete.txt',
+                 type: 'post',
+                 data: c,
+                 dataType: 'json',
+                 success: function (data) {
+                     $(":checked").not('#CheckAll').parents('tr').remove();
+                     console.log('删除成功');
+                     alter("刪除成功");
+                 },
+                 error: function (data) {
+                     console.log(data.msg);
+                     alter(date.msg);
+                 }
+             })
+         })
+     })
 	</script>
 
 </body>

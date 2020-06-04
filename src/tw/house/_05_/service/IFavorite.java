@@ -6,15 +6,14 @@ import tw.house._05_.model.FavoriteBean;
 import tw.house._07_.model.HouseBean;
 import tw.house._08_.register.model.MemberBean;
 
-public interface IFavoriteService {
+public interface IFavorite {
+
 	List<FavoriteBean> memberFavorite();
+
 	List<FavoriteBean> mfhosue(Integer mid);
-	public int saveFavorite(HouseBean houseBean,MemberBean memberBean);
-	void deleteFavoriteById(Integer fid);
 
-//	void update(FavoriteBean fBean);
+	int saveFavorite(HouseBean houseBean, MemberBean memberBean);
 
-
-	
+	boolean deleteFavorite(Integer fid);
 
 }
