@@ -20,6 +20,8 @@ import tw.house._08_.register.model.MemberBean;
 public class FavoriteDao implements IFavoritedao {
 	@Autowired
 	private SessionFactory factory;
+	@Autowired
+	private FavoriteBean favoriteBean;
 
 	@Override
 	public Session getSession() {
@@ -27,24 +29,24 @@ public class FavoriteDao implements IFavoritedao {
 		return factory.getCurrentSession();
 	}
 
-	@Override
-	public List<FavoriteBean> favoriteList() {
-		String queryAll = "from FavoriteBean";
-		Query<FavoriteBean> query = getSession().createQuery(queryAll, FavoriteBean.class);
-		List<FavoriteBean> falist = new ArrayList<>();
-		falist = query.list();
-		for (FavoriteBean fb : falist) {
-			System.out.println(fb.toString());
-			System.out.println(fb.getHouseBean().getId());
-			System.out.println(fb.getMemberBean().getPk());
-		}
-		return falist;
-
-	}
+//	@Override
+//	public List<FavoriteBean> favoriteList() {
+//		String queryAll = "from FavoriteBean";
+//		Query<FavoriteBean> query = getSession().createQuery(queryAll, FavoriteBean.class);
+//		List<FavoriteBean> falist = new ArrayList<>();
+//		falist = query.list();
+//		for (FavoriteBean fb : falist) {
+//			System.out.println(fb.toString());
+//			System.out.println(fb.getHouseBean().getId());
+//			System.out.println(fb.getMemberBean().getPk());
+//		}
+//		return falist;
+//
+//	}
 
 	@Override
 	public List<FavoriteBean> mfhouse(Integer mid) {
-		String queryByMid = "from FavoriteBean where memberBean.pk = :pk";
+		String queryByMid = "from FavoriteBean where memberBean.pk =:pk";
 		Query<FavoriteBean> mfhouselist = getSession().createQuery(queryByMid, FavoriteBean.class);
 		mfhouselist.setParameter("pk", mid);
 		List<FavoriteBean> mfhList = new ArrayList<FavoriteBean>();
@@ -112,12 +114,22 @@ public class FavoriteDao implements IFavoritedao {
 	}
 
 	@Override
-	public boolean deleteFavorite(Integer fid) {
-		String defavorite = "DELETE FROM FavoriteBean where fid =: fid";
-		Query<FavoriteBean> query = getSession().createQuery(defavorite);
-		query.setParameter("fid", fid);
-		query.executeUpdate();
+	public boolean delete(Integer fid) {
+		try {
+			getSession().delete(favoriteBean);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("no favorite");
+			return false;
+		}
+		System.out.println("delete correct");
 		return true;
+	}
+//		String defavorite = "DELETE FROM FavoriteBean where fid =:fid";
+//		Query<FavoriteBean> query = getSession().createQuery(defavorite);
+//		query.setParameter("fid", fid);
+//		query.executeUpdate();
+//		return true;
 //		System.out.println("delete favorite dao fid ="+fid);
 //		System.out.println("fid="+fid);
 //		FavoriteBean favoriteBean= getSession().get(FavoriteBean.class, fid);
