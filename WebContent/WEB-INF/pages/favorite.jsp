@@ -77,8 +77,7 @@
 													<th class="text-center">房屋</th>
 													<th class="text-center">市/區</th>
 													<th class="text-center">詳細位置</th>
-													<th class="text-center">總價</th>
-													<th class="text-center">單價</th>
+													<th class="text-center">總價(萬元)</th>
 													<th class="text-center">坪數</th>
 													<th class="text-center">捷運站</th>
 													<th class="text-center">上架日期</th>
@@ -100,7 +99,6 @@
 														<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
 														<td class="pt-3-half">${favorite.houseBean.address}</td>
 														<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
-														<td class="pt-3-half">${favorite.houseBean.unitprice}</td>
 														<td class="pt-3-half">${favorite.houseBean.ping}</td>
 														<td class="pt-3-half">${favorite.houseBean.mrtBean.stationname}</td>
 														<c:set var="adddate1"
