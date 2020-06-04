@@ -37,14 +37,14 @@ public class FavoriteBean {
 		return fid;
 	}
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "houseid")
 //	@Transient
 	public HouseBean getHouseBean() {
 		return houseBean;
 	}
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "accountid")
 	public MemberBean getMemberBean() {
 		return memberBean;
@@ -90,7 +90,7 @@ public class FavoriteBean {
 		StringBuilder builder = new StringBuilder();
 		builder.append("FavoriteBean [fid=");
 		builder.append(fid);
-		builder.append(", meberBean=");
+		builder.append(", memberBean=");
 		builder.append(memberBean);
 		builder.append(", houseBean=");
 		builder.append(houseBean);

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -9,12 +8,9 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/05_css/style.css">
 <link rel="stylesheet" href="css/05_css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="fonts/icomoon/style.css">
 <link rel="stylesheet" href="css/05_css/magnific-popup.css">
 <link rel="stylesheet" href="css/05_css/jquery-ui.css">
@@ -59,11 +55,11 @@
 							<div class="card-body">
 								<a class="button" onclick="javascript:location.href='houselist'"
 									style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
-								<button class="btn"
-									style="font-family: Microsoft JhengHei; color: #FFFAF0; float: right;"
-									id="delete">
-									<i class="fa fa-trash"></i> 刪除丟進垃圾桶
-								</button>
+<!-- 								<button class="btn" -->
+<!-- 									style="font-family: Microsoft JhengHei; color: #FFFAF0; float: right;" -->
+<!-- 									id="delete"> -->
+<!-- 									<i class="fa fa-trash"></i> 刪除收藏 -->
+<!-- 								</button> -->
 								<div id="fhouse">
 									<div id="table">
 										<span class="table-add float-right mb-3 mr-2"> <a
@@ -81,17 +77,17 @@
 													<th class="text-center">坪數</th>
 													<th class="text-center">捷運站</th>
 													<th class="text-center">上架日期</th>
-													<th class="text-center"><input type="checkbox"
-														name="CheckAll" value="checked" id="CheckAll"
-														style="width: 30px; height: 30px;" />全選</th>
+													<th class="text-center">刪除</th>
 												</tr>
 
 											</thead>
-											<tbody>
+											<tbody id="tr1">
 												<c:forEach var='favorite' items='${fh}' varStatus='vs'>
 													<tr>
-														<td class="pt-3-half"><a
-															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>"> <img src="data:image/jpeg;base64,${favorite.houseBean.base64image1}" alt="Image" class="img-fluid"></a></td>
+														<td class="pt-3-half">
+														<a href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>"> 
+															<img src="data:image/jpeg;base64,${favorite.houseBean.base64image1}" alt="Image" class="img-fluid"></a>
+														</td>
 														<c:set var="string1" value="${favorite.houseBean.title}" />
 														<c:set var="string2" value="${fn:substring(string1,0,3)}" />
 														<td class="pt-3-half"><a
@@ -106,9 +102,9 @@
 														<c:set var="adddate2"
 															value="${fn:substring(adddate1,0,11)}" />
 														<td class="pt-3-half">${adddate2}</td>
-														<td class="pt-3-half"><input type="checkbox"
-															name="ck" value="checked" id="CheckboxGroup1_0"
-															style="width: 30px; height: 30px;"></td>
+														<td class="pt-3-half"><button class="btn de"
+									style="font-family: Microsoft JhengHei; color: #FFFAF0; float: right;"
+									id="fv${favorite.fid}" value="${favorite.fid}"><i class="fa fa-trash"></i></button></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -138,50 +134,35 @@
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/jquery-3.4.1.js"></script>
+<!-- 	<script src="js/jquery.min.js"></script> -->
 	<script>
-	//全選及全部取消
-		$(document).ready(function() {
-			$("#CheckAll").click(function() {
-				if ($("#CheckAll").prop("checked")) {//如果全選按鈕有被選擇的話（被選擇是true）
-					$("input[name='ck']").prop("checked", true);//把所有的核取方框的property都變成勾選
 
-				} else {
-					$("input[name='ck']").prop("checked", false);//把所有的核取方框的property都取消勾選
+$(".de").click(function(){
+	var id = this.value;
+	alert(id);
+$.ajax({
+	method:"Post",
+	url: "<c:url value='/deletefavorite.do' /> ",  
+    data: {
+        "deletefid":id
+        },
+    dataType: 'json',
+    success:function(){
+        $('#tr1').remove
+		console.log("Y");
+        },
+    error:function(){
+	alert("失敗")
+        }
+})
 
-				}
-			})
-		})
-	</script>
-	<script>
-	//刪除選取資料
-	 $(function () {
-         $('#delete').click(function () {
-             var c = $('tbody input:checked');
+	
+})
 
-             for (var i = 0; i < c.length; i++) {
-                 var d = c[i].value;
-                 console.log(d);
-             }
-             $.ajax({
-                 url: 'delete.txt',
-                 type: 'post',
-                 data: c,
-                 dataType: 'json',
-                 success: function (data) {
-                     $(":checked").not('#CheckAll').parents('tr').remove();
-                     console.log('删除成功');
-                     alter("刪除成功");
-                 },
-                 error: function (data) {
-                     console.log(data.msg);
-                     alter(date.msg);
-                 }
-             })
-         })
-     })
+
+
+	
 	</script>
 
 </body>

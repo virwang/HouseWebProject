@@ -98,6 +98,7 @@ public class HouseDAO {
 		System.out.println("hid="+hid);
 		HouseBean houseBean = getSession().get(HouseBean.class, hid);
 		if(houseBean!=null) {
+			System.out.println("dao delete favorite "+houseBean);
 			getSession().delete(houseBean);
 			return true;
 		}

@@ -12,28 +12,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
-import tw.house._05_.model.FavoriteBean;
+
+import tw.house._05_.model.FavoriteBean2;
 import tw.house._07_.model.HouseBean;
 import tw.house._08_.register.model.MemberBean;
 
 @Repository
-public class FavoriteDao implements IFavoritedao {
+public class FavoriteDao2 {
 	@Autowired
 	private SessionFactory factory;
 
-	@Override
 	public Session getSession() {
-		System.out.println("--------------session begin in dao --------------------------");
+		System.out.println("-----------session begin in dao---------");
 		return factory.getCurrentSession();
 	}
 
-	@Override
-	public List<FavoriteBean> favoriteList() {
+	public List<FavoriteBean2> favoriteList() {
 		String queryAll = "from FavoriteBean";
-		Query<FavoriteBean> query = getSession().createQuery(queryAll, FavoriteBean.class);
-		List<FavoriteBean> falist = new ArrayList<>();
+		Query<FavoriteBean2> query = getSession().createQuery(queryAll, FavoriteBean2.class);
+		List<FavoriteBean2> falist = new ArrayList<>();
 		falist = query.list();
-		for (FavoriteBean fb : falist) {
+		for (FavoriteBean2 fb : falist) {
 			System.out.println(fb.toString());
 			System.out.println(fb.getHouseBean().getId());
 			System.out.println(fb.getMemberBean().getPk());
@@ -42,38 +41,36 @@ public class FavoriteDao implements IFavoritedao {
 
 	}
 
-	@Override
-	public List<FavoriteBean> mfhouse(Integer mid) {
-		String queryByMid = "from FavoriteBean where memberBean.pk = :pk";
-		Query<FavoriteBean> mfhouselist = getSession().createQuery(queryByMid, FavoriteBean.class);
+	public List<FavoriteBean2> mfhouse(Integer mid) {
+		String queryByMid = "from FavoriteBean2 where memberBean.pk = :pk";
+		Query<FavoriteBean2> mfhouselist = getSession().createQuery(queryByMid, FavoriteBean2.class);
 		mfhouselist.setParameter("pk", mid);
-		List<FavoriteBean> mfhList = new ArrayList<FavoriteBean>();
+		List<FavoriteBean2> mfhList = new ArrayList<FavoriteBean2>();
 		mfhList = mfhouselist.list();
 //		System.out.println("fdao by mid, mid= " + mid);
 		return mfhList;
 	}
 
-	@Override
-	public List<FavoriteBean> favoriteHouse(String title, String totalprice) {
+	
+	public List<FavoriteBean2> favoriteHouse(String title, String totalprice) {
 
-		Query<FavoriteBean> query = getSession().createQuery(
-				"from FavoriteBean where houseBean.gettitle = :title and gettotalprice = :totalprice",
-				FavoriteBean.class);
+		Query<FavoriteBean2> query = getSession().createQuery(
+				"from FavoriteBean2 where houseBean.gettitle = :title and gettotalprice = :totalprice",
+				FavoriteBean2.class);
 		query.setParameter("title", title).setParameter("totalprice", totalprice);
-		List<FavoriteBean> fList = new ArrayList<>();
+		List<FavoriteBean2> fList = new ArrayList<>();
 		fList = query.getResultList();
-		for (FavoriteBean fBean : fList) {
+		for (FavoriteBean2 fBean : fList) {
 			System.out.println(fBean.toString());
 		}
 //		System.out.println("fdao getHouseBean data" + fList.size());
 		return fList;
 	}
 
-	@Override
 	public int saveFavorite(HouseBean houseBean, MemberBean memberBean) {
 		int n = 0;
 		System.out.println("intodao");
-		FavoriteBean exist = favoriteExist(houseBean, memberBean);
+		FavoriteBean2 exist = favoriteExist(houseBean, memberBean);
 		System.out.println(exist);
 		if (exist != null) {
 			System.out.println("favorite hosue already exit");
@@ -81,7 +78,7 @@ public class FavoriteDao implements IFavoritedao {
 		}
 		try {
 			System.out.println("favorite house exit");
-			FavoriteBean fBean = new FavoriteBean();
+			FavoriteBean2 fBean = new FavoriteBean2();
 			fBean.setHouseBean(houseBean);
 			fBean.setMemberBean(memberBean);
 			getSession().save(fBean);
@@ -94,15 +91,15 @@ public class FavoriteDao implements IFavoritedao {
 		return n;
 	}
 
-	private FavoriteBean favoriteExist(HouseBean houseBean, MemberBean memberBean) {
+	private FavoriteBean2 favoriteExist(HouseBean houseBean, MemberBean memberBean) {
 		System.out.println("intofavexit");
 
-		String hql = "FROM FavoriteBean WHERE memberBean.pk =:pk and houseBean.id =:id";
+		String hql = "FROM FavoriteBean2 WHERE memberBean.pk =:pk and houseBean.id =:id";
 		
-			Query<FavoriteBean> query = getSession().createQuery(hql,FavoriteBean.class);
+			Query<FavoriteBean2> query = getSession().createQuery(hql,FavoriteBean2.class);
 			query.setParameter("id", houseBean.getId());
 			query.setParameter("pk", memberBean.getPk());
-			FavoriteBean fb = new FavoriteBean();
+			FavoriteBean2 fb = new FavoriteBean2();
 			fb = query.uniqueResult();
 			return fb;
 			
@@ -111,10 +108,10 @@ public class FavoriteDao implements IFavoritedao {
 
 	}
 
-	@Override
+
 	public boolean deleteFavorite(Integer fid) {
-		String defavorite = "DELETE FROM FavoriteBean where fid =: fid";
-		Query<FavoriteBean> query = getSession().createQuery(defavorite);
+		String defavorite = "DELETE FROM Favorite where fid =: fid";
+		Query<FavoriteBean2> query = getSession().createQuery(defavorite,FavoriteBean2.class);
 		query.setParameter("fid", fid);
 		query.executeUpdate();
 		return true;

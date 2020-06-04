@@ -204,7 +204,7 @@ public class HouseController {
 		if (insert==true) {
 			List<HouseBean> list = hService.memberHouseList(mBean.getAccount());
 			m.addAttribute("houselist", list);
-			
+			System.out.println("insert house 123455");
 			return "redirect:/memberhouse";
 		}
 		return "redirect:/memberhouse";
@@ -326,11 +326,12 @@ public class HouseController {
 	public String deleteHouse(@RequestParam("deleteh") Integer houseid) {
 		boolean delete = hService.deleteHouse(houseid);
 		if (delete==true) {
-			System.out.println("DELETE success");
+			System.out.println("HOUSE DELETE success ---");
 			return "redirect:/memberhouse";
 		} else {
-			System.out.println("DELETE failed");
+			System.out.println("house DELETE failed ------");
 		}
+		System.out.println("house delete ========");
 		return "redirect:/memberhouse";
 	}
 	
