@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>If you click on the "Hide" button, I will disappear.</p>
+	<h1>If you click on the "show" button, I will disappear2.</h1>
+
+	<button id="hide">Hide h1</button>
+	<button id="show">Show p</button>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+	if($('#hide').clidk(funcrion(){
+	$(("p").hide().$("h1").show(); 
+	}
+  	$("#show").click(function(){
+    $("p").show().$("h1").hide();  
+  	});
+		});
+</script>
+</body>
+</html>

@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,8 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 
+import tw.house._05_.model.FavoriteBean;
+import tw.house._05_.service.IFavorite;
 import tw.house._07_.model.HouseBean;
 import tw.house._07_.model.HouseService;
 import tw.house._07_.model.MrtBean;
@@ -42,9 +45,10 @@ import tw.house._08_.register.model.MemberBean;
 @Controller
 public class HouseController {
 	
-	@Autowired
+	@Autowired	
 	private HouseService hService;
-	
+	@Autowired
+	private IFavorite ifs;
 	@Autowired
 	private MrtService mService;
 	
@@ -52,10 +56,20 @@ public class HouseController {
 	ServletContext context;
 	
 	@RequestMapping(path = "/houselist",method = RequestMethod.GET)
-	public String showHouseListTurn(Model m) {
+	public String showHouseListTurn(Model m,HttpSession hsession) {
 		
 		List<HouseBean> list = hService.houseList();
+		MemberBean mb= (MemberBean)hsession.getAttribute("memberBean");
+		if (mb!=null) {
+			Integer pk = mb.getPk();
+			List<FavoriteBean> list2 = ifs.mfhosue(pk);
+			for (FavoriteBean favoriteBean : list2) {
+				System.out.println("favorite hosue "+favoriteBean);
+			}
+			m.addAttribute("fh", list2);
+		}
 		m.addAttribute("houselist", list);
+		
 		
 		return "buy";
 	}

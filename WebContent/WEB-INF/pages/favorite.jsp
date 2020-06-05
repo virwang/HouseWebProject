@@ -18,14 +18,13 @@
 <link rel="stylesheet" href="css/05_css/owl.theme.default.min.css">
 <link rel="stylesheet" href="css/05_css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="css/05_css/mediaelementplayer.css">
-<link rel="stylesheet" href="css/05_css/animate.css">
 <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="css/05_css/fl-bigmug-line.css">
-<link rel="stylesheet" href="css/05_css/aos.css">
+<!-- <link rel="stylesheet" href="css/05_css/aos.css"> -->
 <link rel="stylesheet" href="css/05_css/style.css">
 <link rel="stylesheet" href="css/05_css/button.css">
 <link rel="stylesheet" href="css/05_css/addFavoriteButton.css">
-<link rel="stylesheet" href="css/05_css/checkbox.css">
+<link rel="stylesheet" href="css/05_css/table.css">
 
 
 <title>Show Favorite</title>
@@ -43,7 +42,7 @@
 					style="background-color: transparent" name="myForm"
 					action="<c:url value="favorite" />"></form>
 			</div>
-			<div class="container" style="background-color: white;">
+			<div class="container" style="background-color: white;width:100%">
 				<div class="tab-content" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-home"
 						role="tabpanel" aria-labelledby="nav-home-tab">
@@ -52,7 +51,7 @@
 								class="card-header text-center font-weight-bold text-uppercase py-4">
 								<a style="color: #A52A2A;">${memberBean.name}</a>的收藏
 							</h3>
-							<div class="card-body">
+							<div class="card-body" >
 								<a class="button" onclick="javascript:location.href='houselist'"
 									style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
 <!-- 								<button class="btn" -->
@@ -66,7 +65,7 @@
 											href="#!" class="text-success"> </a>
 										</span>
 										<table style="text-align: center"
-											class="table table-striped table-bordered">
+											class="table table-striped table-bordered ">
 											<thead>
 												<tr>
 													<th class="text-center">照片</th>
@@ -77,7 +76,7 @@
 													<th class="text-center">坪數</th>
 													<th class="text-center">捷運站</th>
 													<th class="text-center">上架日期</th>
-													<th class="text-center">刪除行</th>
+													<th class="text-center">刪除</th>
 												</tr>
 
 											</thead>
@@ -102,9 +101,11 @@
 														<c:set var="adddate2"
 															value="${fn:substring(adddate1,0,11)}" />
 														<td class="pt-3-half">${adddate2}</td>
-														<td class="pt-3-half"><button class="btn de"
-									style="font-family: Microsoft JhengHei; color: #FFFAF0; float: right;"
-									id="fv${favorite.fid}" value="${favorite.fid}"><i class="fa fa-trash"></i></button></td>
+														<td class="pt-3-half">
+														<button class="btn de"
+									style="font-family: Microsoft JhengHei; float: right;"
+									id="fv${favorite.fid}" value="${favorite.fid}"><i class="fa fa-trash" style="color:#DC143C; border:solid 1px black; padding:10px; margin:10px "></i></button></td>
+								
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -121,20 +122,26 @@
 	</div>
 
 	<jsp:include page="/footer.jsp" />
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
 	<script src="js/popper.min.js"></script>
+	<script>
+	$(document).ready(function() {
+	    $('#table').DataTable();
+	} );
+	</script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<!-- 	<script src="js/jquery-ui.js"></script> -->
+
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/mediaelement-and-player.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/jquery.countdown.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<!-- 	<script src="js/jquery.stellar.min.js"></script> -->
+<!-- 	<script src="js/jquery.countdown.min.js"></script> -->
+<!-- 	<script src="js/jquery.magnific-popup.min.js"></script> -->
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/jquery-3.4.1.js"></script>
+<!-- 	<script src="js/jquery-3.4.1.js"></script> -->
 	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- 	<script src="js/jquery.min.js"></script> -->
 	<script>
@@ -156,7 +163,7 @@ $.ajax({
 //         console.log('a3'+res[0]);
 //         console.log('a4'+res[0].val());
 //     	alert('ajax back '+res);
-        if(res=='deOK') {
+        if(res=='deOK' ) {
 //         	$('#tr1').empty();
 		console.log(this);
 		console.log('ftr'+id);
@@ -182,6 +189,7 @@ $.ajax({
 })
 	
 	</script>
+
 
 </body>
 </html>
