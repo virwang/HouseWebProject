@@ -23,7 +23,7 @@ public class AdminMemberDao {
 	}
 	
 	public List<MemberBean> getMembers() {
-		String hql  = "FROM MemberBean";
+		String hql  = "from MemberBean";
 		List<MemberBean> list = new ArrayList<>();
 		try{
 			Query<MemberBean> query = getSession().createQuery(hql, MemberBean.class);			
@@ -34,7 +34,7 @@ public class AdminMemberDao {
 			return list;
 	}
 	public MemberBean getById(Integer id) {
-		String hql  = "FROM MemberBean WHERE pk = :id";
+		String hql  = "from MemberBean where pk = :id";
 		MemberBean bean = null;
 		try {
 			bean = (MemberBean)getSession().createQuery(hql)
@@ -58,8 +58,7 @@ public class AdminMemberDao {
 		return false;
 	
 }
-	public boolean delete(Integer pk) {
-		MemberBean memberBean = getSession().get(MemberBean.class,pk);
+	public boolean delete(MemberBean memberBean) {
 		if(memberBean !=null) {
 			getSession().delete(memberBean);
 			return true;

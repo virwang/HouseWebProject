@@ -23,8 +23,8 @@ public class AdminHouseService {
 	public boolean update(HouseBean bean) {
 		return AHDao.update(bean);
 }
-	public boolean deleteHouse(Integer id) {
-		 return AHDao.deleteHouse(id);
+	public boolean deleteHouse(HouseBean bean) {
+		 return AHDao.deleteHouse(bean);
 }
 	
 }

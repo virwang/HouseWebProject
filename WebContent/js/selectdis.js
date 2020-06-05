@@ -4,6 +4,11 @@
 $('#selecteddis').val();
 document.getElementById("districtavg").innerHTML = $('#selecteddis').text();
 
+var rowCount = $('#table1 tr').length-1;
+console.log("rowCount="+rowCount);
+$('#tblength1').html("交易"+rowCount+"件");
+
+
 //$(function() {
 	// 抓字的function
 	$('#select_city').click(function() {
@@ -13,5 +18,7 @@ document.getElementById("districtavg").innerHTML = $('#selecteddis').text();
 
 	})
 
+	
+	
 //})
 

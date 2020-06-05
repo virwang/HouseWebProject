@@ -18,7 +18,7 @@ import tw.house._08_.register.model.MemberBean;
 
 @WebFilter(urlPatterns = { "/lend", "/memberhouse", "/newhouse", "/showMemberData",
 							"/newapplication","/reservation","/applicanttable","/recipienttable",
-							"/favorite", "/buy","/houselist.do","/favorite2"}, 
+							"/favorite","/modhouse"}, 
 		   initParams = @WebInitParam(value = "/login", name = "loginPage"))
 public class LoginCheckFilter implements Filter {
 	private FilterConfig fConfig;

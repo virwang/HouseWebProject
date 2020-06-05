@@ -12,7 +12,7 @@ public interface IFavoritedao {
 
 	Session getSession();
 
-//	List<FavoriteBean> favoriteList();
+	List<FavoriteBean> favoriteList();
 
 	List<FavoriteBean> mfhouse(Integer mid);
 
@@ -20,6 +20,6 @@ public interface IFavoritedao {
 
 	int saveFavorite(HouseBean houseBean, MemberBean memberBean);
 
-	boolean delete(Integer fid);
+	boolean deleteFavorite(Integer fid);
 
 }

@@ -35,7 +35,7 @@
 	<div class="site-loader"></div>
 
 	<div class="site-wrap">
-		<jsp:include page="/navibar.jsp" />
+    	<jsp:include page="/navibar.jsp" />
 	</div>
 
 

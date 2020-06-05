@@ -41,7 +41,7 @@ public class ReservationDAO {
 	
 	public boolean insertapplication(ReservationBean rBean) {
 		try{
-			getSession().save(rBean);
+			getSession().persist(rBean);
 			System.out.println("success new reservation");
 			return true;
 		}catch (Exception e) {

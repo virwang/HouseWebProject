@@ -26,8 +26,6 @@
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
 <link rel="stylesheet" href="css/aos.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="leaflet/leaflet.css" />
-<script src="leaflet/leaflet.js"></script>
 <style>
 body {
 	background: #f5f6fb;
@@ -258,18 +256,20 @@ body {
 				</section>
 
 				<section class="result-box">
-					<p>您當前的房屋貸款</p>
+					<h1>您房地貸款簡評</h1>
+					
 					<div class="result-1">
 						<img src="" id="result-img">
 						<div class="result-txt">
 							<div id="result-type"></div>
 							<div class="result-money">
-								<!-- <p>建議最大投資金額：<span id="max-money"></span></p>
-                    <p>您當前已投資金額：<span id="invest-money"></span></p> -->
+								<h4><span id="max-money"></span></h4>
+<!--                     <p>您當前已投資金額：<span id="invest-money"></span></p>  -->
 							</div>
 							<div class="container">
 								<div class="py-2">
-									<P>為您推薦房地業務專員</P>
+									
+									<h4>為您推薦房地業務專員</h4>
 									<span>請選擇地區</span>
 									<select class="form-control" name="city" id="city">
 										<option value="台北市" selected>台北市</option>
@@ -326,7 +326,7 @@ body {
 											<option value="貢寮區">貢寮區</option>
 										</select>
 									</div>
-									<button id="cityBtn" onClick="lenderShow()">確定</button>
+									<button  style="margin: center" class="ok-btn"id="cityBtn" onClick="lenderShow()">確定</button>
 								</div>
 
 								<%-- 					<form action="<c:url value='lendercity'/>" method="POST"> --%>
@@ -345,7 +345,7 @@ body {
 
 						</div>
 					</div>
-			<div class="ok-btn">確定</div>
+<!-- 			<div class="ok-btn">確定</div> -->
 			<div id="reset">重新測評</div>
 			</section>
 			</div>
@@ -371,6 +371,7 @@ body {
 				$('.selectDist1').css("display", "none")
 			}
 		})
+		var lendShow = document.getElementById('lenderShow');
 
 		function lenderShow() {
 			console.log('click')
@@ -385,7 +386,6 @@ body {
 			//全地區
 			console.log('city:' + city)
 			console.log('dist:' + dist)
-			var lenderShow = document.getElementById('lenderShow');
 			var content = "";
 			if (dist == '全地區') {
 				var xhr = new XMLHttpRequest();
@@ -419,7 +419,7 @@ body {
 						}
 						content += '</table>';
 					}
-					lenderShow.innerHTML = content;
+					lendShow.innerHTML = content;
 				}
 			}
 			//行政區
@@ -462,7 +462,7 @@ body {
 						content += '</table>';
 					}
 				}
-				lenderShow.innerHTML = content;
+				lendShow.innerHTML = content;
 			}
 		}
 
@@ -695,19 +695,19 @@ body {
 					if (result >= 0 && result <= 7) {
 						imgSrc.attr("src",
 								"css/_08_css/images/icon_house_bad1.png");
-						resultType.html("評測結果：保守")
+// 						resultType.html("評測結果：保守")
 						starLevel = "1";
 						console.log("starLevel:level" + starLevel);
-						// 						maxMoney.html("10萬元");
+												maxMoney.html("評測結果：保守");
 						// 						investMoney.html("30,000.12元")
 
 					} else {
 						imgSrc.attr("src",
 								"css/_08_css/images/icon_house_good2.png");
-						resultType.html("評測結果：良好")
+// 						resultType.html("評測結果：良好")
 						starLevel = "2";
 						console.log("starLevel:level" + starLevel);
-						// 						maxMoney.html("50萬元");
+												maxMoney.html("評測結果：良好");	
 						// 						investMoney.html("30,000.12元")
 					}
 					$(".risk").fadeOut();
@@ -733,6 +733,7 @@ body {
 			 */
 			function resetTest() {
 				currentSubjectIndex = 1;
+				lendShow.innerHTML = "";
 				$(".risk").fadeIn();
 				$(".result-box").fadeOut();
 				$preBtn.removeClass("blue");

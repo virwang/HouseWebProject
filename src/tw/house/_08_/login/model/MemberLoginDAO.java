@@ -14,25 +14,31 @@ import tw.house._08_.register.model.MemberBean;
 
 @Repository
 public class MemberLoginDAO {
-	@Autowired @Qualifier("sessionFactory")
-	private SessionFactory sessionFactory;
-	public MemberLoginDAO(SessionFactory sessionFactory) {
-		this.sessionFactory=sessionFactory;
+	@Autowired
+	SessionFactory factory;
+	public Session getSession() {
+		return factory.getCurrentSession();
 	}
 
-	public  MemberBean checkAccPwd(String account, String psw) {
-		MemberBean mb = null;
-		try {
-			Session session = sessionFactory.getCurrentSession();
-			Query<MemberBean> query = session.createQuery("from MemberBean where account=:acc and psw=:psw",
+	public  MemberBean checkAccPwd(String account, String psw) {		
+			Query<MemberBean> query = getSession().createQuery("from MemberBean where account=:acc and psw=:psw",
 					MemberBean.class);
-			mb = query.setParameter("acc", account).setParameter("psw", psw).uniqueResult();
-
-		
-		} catch (Exception e) {
-			e.printStackTrace();
+			MemberBean mb = query.setParameter("acc", account).setParameter("psw", psw).uniqueResult();
+		if(mb!=null) {
+			return mb;					
 		}
-		return mb;		
+		return mb;
 	}
-
+	public  MemberBean checkAccEmail(String account, String email) {		
+		Query<MemberBean> query = getSession().createQuery("from MemberBean where account=:acc and email=:email",
+				MemberBean.class);
+		MemberBean mb = query.setParameter("acc", account).setParameter("email", email).uniqueResult();
+	if(mb!=null) {
+		return mb;					
+	}
+	return mb;
+}
+//	public MemberBean updatePsw(String psw) {
+//		
+//	}
 }

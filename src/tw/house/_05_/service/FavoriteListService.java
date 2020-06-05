@@ -41,20 +41,10 @@ public class FavoriteListService implements IFavorite  {
 		return n;
 	}
 
-
 	@Override
 	public boolean deleteFavorite(Integer fid) {
 		System.out.println("delete favorite service, id = "+ fid);
-		favoriteDao.deleteFavorite(fid); 
+		
 		return favoriteDao.deleteFavorite(fid);
 	}
-
-//
-//	@Override
-//	public void update(FavoriteBean fBean) {
-//		System.out.println("server update by fid ="+fBean.getFid());
-//		fdao.updateFavorite(fBean);;
-//		
-//	}
-
 }

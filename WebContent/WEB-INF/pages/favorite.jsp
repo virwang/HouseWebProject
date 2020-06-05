@@ -77,13 +77,13 @@
 													<th class="text-center">坪數</th>
 													<th class="text-center">捷運站</th>
 													<th class="text-center">上架日期</th>
-													<th class="text-center">刪除</th>
+													<th class="text-center">刪除行</th>
 												</tr>
 
 											</thead>
 											<tbody id="tr1">
 												<c:forEach var='favorite' items='${fh}' varStatus='vs'>
-													<tr>
+													<tr id="ftr${favorite.fid}">
 														<td class="pt-3-half">
 														<a href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>"> 
 															<img src="data:image/jpeg;base64,${favorite.houseBean.base64image1}" alt="Image" class="img-fluid"></a>
@@ -135,35 +135,54 @@
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/jquery-3.4.1.js"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- 	<script src="js/jquery.min.js"></script> -->
 	<script>
-
 $(".de").click(function(){
 	var id = this.value;
-	alert(id);
+	var test = this;
+	console.log(test);
+// 	alert(id);
 $.ajax({
 	method:"Post",
 	url: "<c:url value='/deletefavorite.do' /> ",  
     data: {
         "deletefid":id
         },
-    dataType: 'json',
-    success:function(){
-        $('#tr1').remove
-		console.log("Y");
-        },
+    dataType: 'text',
+    success:function(res){
+//         console.log('a1'+res);
+//         console.log('a2'+res.val());
+//         console.log('a3'+res[0]);
+//         console.log('a4'+res[0].val());
+//     	alert('ajax back '+res);
+        if(res=='deOK') {
+//         	$('#tr1').empty();
+		console.log(this);
+		console.log('ftr'+id);
+		console.log($('#ftr'+id));
+// 		console.log('abc'+$(this).id);
+// 		console.log('abc'+$(this).parent('tr'));
+		
+		$('#ftr'+id).remove();
+        	alert("刪除資料");
+        } 
+        if(res=='deNO') {
+//         	$('#tr1').remove;
+        	alert("NO");
+        } 
+//         $('#tr1').remove
+// 		console.log("Y");
+//         }
+},
     error:function(){
 	alert("失敗")
         }
+})	
 })
-
-	
-})
-
-
-
 	
 	</script>
 
 </body>
 </html>
+

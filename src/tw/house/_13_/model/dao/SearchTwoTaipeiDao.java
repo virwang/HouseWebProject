@@ -26,7 +26,7 @@ public class SearchTwoTaipeiDao implements ISearchTwoTaipei {
 	@Override
 	public List<TwoTaipei> selectTaipeiDistrict(String district) {
 		Session session = factory.getCurrentSession();
-		Query<TwoTaipei> query = session.createQuery("from TwoTaipei where district=:selectcity", TwoTaipei.class);
+		Query<TwoTaipei> query = session.createQuery("from TwoTaipei where district= :selectcity", TwoTaipei.class);
 		List<TwoTaipei> tlist = query.setParameter("selectcity", district).list();
 		return tlist;
 	}

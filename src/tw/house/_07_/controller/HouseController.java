@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,7 +71,7 @@ public class HouseController {
 	
 	@RequestMapping(path = "/memberhouse",method = RequestMethod.GET)
 	public String memberHouseList(@SessionAttribute("memberBean") MemberBean mBean, Model m) {
-		String macct = mBean.getAccount();
+		Integer macct = mBean.getPk();
 		List<HouseBean> list = hService.memberHouseList(macct);
 		m.addAttribute("houselist", list);
 		
@@ -94,7 +95,7 @@ public class HouseController {
 		return "updateHouse";
 	}
 	
-	@GetMapping(path = "/searchhouse")
+	@GetMapping(path = "/searchhouseajax")
 	public ResponseEntity <List<HouseBean>> searchHouseBar(@RequestParam("city") String city,@RequestParam("dist") String dist,@RequestParam(value = "addr",required = false) String daddr){
 		
 		List<HouseBean> list = new ArrayList<>();
@@ -102,6 +103,17 @@ public class HouseController {
 		
 		ResponseEntity<List<HouseBean>> re = new ResponseEntity<>(list,HttpStatus.OK);
 		return re;
+		
+	}
+	@PostMapping(path = "/searchhouse")
+	public String searchHouseBar(@RequestParam("city") String city,@RequestParam("dist") String dist,@RequestParam(value = "addr",required = false) String daddr,Model m){
+		
+		List<HouseBean> list = new ArrayList<>();
+		list = hService.searchHouse(city, dist, daddr);
+		
+		m.addAttribute("houselist", list);
+		
+		return "buy";
 		
 	} 
 	
@@ -202,9 +214,9 @@ public class HouseController {
 		boolean insert = hService.insertHouse(hBean);
 		System.out.println(insert);
 		if (insert==true) {
-			List<HouseBean> list = hService.memberHouseList(mBean.getAccount());
+			List<HouseBean> list = hService.memberHouseList(mBean.getPk());
 			m.addAttribute("houselist", list);
-			System.out.println("insert house 123455");
+			
 			return "redirect:/memberhouse";
 		}
 		return "redirect:/memberhouse";
@@ -310,7 +322,7 @@ public class HouseController {
 		boolean update = hService.updateHouse(hBean);
 		System.out.println(update);
 		if (update==true) {
-			List<HouseBean> list = hService.memberHouseList(mBean.getAccount());
+			List<HouseBean> list = hService.memberHouseList(mBean.getPk());
 			m.addAttribute("houselist", list);
 			
 			return "redirect:/memberhouse";
@@ -326,12 +338,11 @@ public class HouseController {
 	public String deleteHouse(@RequestParam("deleteh") Integer houseid) {
 		boolean delete = hService.deleteHouse(houseid);
 		if (delete==true) {
-			System.out.println("HOUSE DELETE success ---");
+			System.out.println("DELETE success");
 			return "redirect:/memberhouse";
 		} else {
-			System.out.println("house DELETE failed ------");
+			System.out.println("DELETE failed");
 		}
-		System.out.println("house delete ========");
 		return "redirect:/memberhouse";
 	}
 	

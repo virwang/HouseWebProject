@@ -35,7 +35,7 @@
 
                     <ul class="site-menu js-clone-nav d-none d-lg-block">
                         <li class="has-children">
-                        	<a>買房</a>
+                        	<a>看房</a>
                         	<ul class="dropdown arrow">
                         		<li><a href="<c:url value='houselist'/>">房屋列表</a></li>
                         		<li><a href="<c:url value='searchhousemap'/>">房屋地圖(依捷運分類)</a></li>
@@ -44,7 +44,12 @@
                         
                         <li><a href="<c:url value='SearchTaipeiAction.do'/>">實價登錄</a></li>
                         <!-- <li><a href="rent.html">租房</a></li> -->
-                        <li><a href="<c:url value='lend'/>">房貸評測</a></li>
+                        <li class="has-children">
+                        	<a href="<c:url value='allLender'/>">房貸專員</a>
+                        	<ul class="dropdown arrow">
+                        		<li><a href="<c:url value='lend'/>">房貸評測</a></li>
+                        	</ul>
+                        </li>
                         <li><a href="<c:url value='newsList'/>">地方新聞</a></li>
                         <c:if test="${empty memberBean}">
                             <li><a href="<c:url value='register'/>">會員註冊</a></li>
@@ -57,12 +62,13 @@
                             		<li><a href="<c:url value='showMemberData'/>">個人資料</a>
                         			<c:if test="${memberBean.usertype=='Senior' || memberBean.usertype=='admin'}">
                         				<li><a href="<c:url value='memberhouse'/>">我的物件</a></li>
+                        				<li><a href="<c:url value='showbank'/>">新增專員</a></li>
                         			</c:if>
                         			<li><a href="<c:url value='reservation'/>">預約狀況</a></li>
                                     <li><a href="<c:url value='favorite'/>">我的收藏</a></li>
                             		<li><a href="<c:url value='springlogout.do'/>">會員登出</a></li>
                             		<c:if test="${memberBean.usertype=='admin'}">
-                            			<li><a href="<c:url value='#'/>">後台管理</a></li>
+                            			<li><a href="<c:url value='admin_index'/>">後台管理</a></li>
                             		</c:if>
                             	
                             	</ul>

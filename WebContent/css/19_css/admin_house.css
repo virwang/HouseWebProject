@@ -1,0 +1,34 @@
+ @charset "UTF-8";
+a:link{color:blue;text-decoration:none;}
+a:visited {color:blue;text-decoration:none;}
+a:hover{color:red;}
+body{background-color: #FFF8D7}
+form{display: inline;}
+h1{margin-top:10vh;}
+.t1{
+	height:400px;
+	width:50%;
+	margin-top:5vh;
+	}
+.td1{
+	text-align: center;
+	}
+.ip1{
+	width: 80%;
+	}
+.submit{
+	padding:10px;
+	font-size: 10mm;
+	margin-top:10px;
+	background-color: #FFF8D7;
+	border:none;
+	color:blue;
+		}
+.submit:hover{color:red;}
+.delete{
+	margin-left:25vw;
+		}
+.index{
+	font-size:10mm;
+	margin-left:13vw;
+		}

@@ -81,20 +81,23 @@
   <jsp:include page="/footer.jsp" />
 
   <script>
+
+  
 	window.onload = function(){
 
 		
-		
+		//申請
 		let xhr = new XMLHttpRequest();
 		xhr.open("GET","<c:url value='applicanttable'/>",true);
 		xhr.send();
 		xhr.onreadystatechange = function(){
+
 			if(xhr.readyState ==4 && xhr.status==200){
 				let fragment1 = document.createDocumentFragment();
 				let applicantlist = JSON.parse(xhr.responseText);
 
 				let at = document.getElementById("applicanttable");
-				let tbth = ["#", "房屋物件", "屋主", "申請狀態", "預約日期", "預約時段"];
+				let tbth = ["#", "房屋物件", "屋主", "申請狀態", "預約日期", "預約時段","更改","取消"];
 				let aptable = document.createElement("table");
 				aptable.setAttribute("class","table table-striped");
 				let apthead = document.createElement("thead");
@@ -151,12 +154,38 @@
 					let t5 = document.createTextNode(applicantlist[i].reservatetime);
 					aptd5.appendChild(t5);
 					aptr1.appendChild(aptd5);
+
+					let aptd6 = document.createElement("td");
+					let bt1 = document.createElement("button");
+					bt1.setAttribute("id","updaterv");
+					bt1.setAttribute("class","btn btn-info");
+					bt1.setAttribute("name","updaterv");
+					bt1.setAttribute("value",applicantlist[i].no);
+					let btt1 = document.createTextNode("更改");
+					bt1.appendChild(btt1);
+					aptd6.appendChild(bt1);
+					aptr1.appendChild(aptd6);
+
+					let aptd7 = document.createElement("td");
+					let bt2 = document.createElement("button");
+					bt2.setAttribute("id","cancelrv");
+					bt2.setAttribute("class","btn btn-info");
+					bt2.setAttribute("name","cancelrv");
+					bt2.setAttribute("value",applicantlist[i].no);
+					let btt2 = document.createTextNode("取消");
+					bt2.appendChild(btt2);
+					aptd7.appendChild(bt2);
+					aptr1.appendChild(aptd7);
+
+					
 					aptbody.appendChild(aptr1);
+
+					
 
 				}
 					aptable.appendChild(aptbody);
-					fragment.appendChild(aptable);
-					at.appendChild(fragment);
+					fragment1.appendChild(aptable);
+					at.appendChild(fragment1);
 			}
 		}
 		
@@ -173,7 +202,7 @@
 					let fragment2 = document.createDocumentFragment();
 
 					let rt = document.getElementById("recipienttable");
-					let rtbth = ["#", "房屋物件", "申請人", "申請狀態", "預約日期", "預約時段"];
+					let rtbth = ["#", "房屋物件", "申請人", "申請狀態", "預約日期", "預約時段","確認","否決"];
 					
 					let rptable = document.createElement("table");
 					rptable.setAttribute("class","table table-striped");
@@ -230,13 +259,37 @@
 						let t5 = document.createTextNode(recipientlist[i].reservatetime);
 						rptd5.appendChild(t5);
 						rptr1.appendChild(rptd5);
+
+						let rptd6 = document.createElement("td");
+						let bt1 = document.createElement("button");
+						bt1.setAttribute("id","confirmrv");
+						bt1.setAttribute("class","btn btn-info");
+						bt1.setAttribute("name","confirmrv");
+						bt1.setAttribute("value",recipientlist[i].no);
+						let btt1 = document.createTextNode("確認");
+						bt1.appendChild(btt1);
+						rptd6.appendChild(bt1);
+						rptr1.appendChild(rptd6);
+
+						let rptd7 = document.createElement("td");
+						let bt2 = document.createElement("button");
+						bt2.setAttribute("id","declinerv");
+						bt2.setAttribute("class","btn btn-info");
+						bt2.setAttribute("name","declinerv");
+						bt2.setAttribute("value",recipientlist[i].no);
+						let btt2 = document.createTextNode("否決");
+						bt2.appendChild(btt2);
+						rptd7.appendChild(bt2);
+						rptr1.appendChild(rptd7);
+
+
+						
 						rptbody.appendChild(rptr1);
 
 					}
 						rptable.appendChild(rptbody);
 						fragment2.appendChild(rptable);
 						rt.appendChild(rptable);
-						console.log(rt);
 				}
 			}
 

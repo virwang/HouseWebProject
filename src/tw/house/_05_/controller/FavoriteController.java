@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import tw.house._05_.model.FavoriteBean;
 import tw.house._05_.service.IFavorite;
@@ -37,8 +35,7 @@ public class FavoriteController {
 	private IFavorite ifs;
 	@Autowired
 	private HouseService houseSerice;
-	@Autowired
-	private MemberService memberService;
+	
 
 	@GetMapping(path = "/favorite")
 	public String selectFavorite(@SessionAttribute("memberBean") MemberBean memberBean, Model model) {
@@ -73,29 +70,41 @@ public class FavoriteController {
 				map.put("success", "成功");
 				re = new ResponseEntity<>(map, HttpStatus.OK);
 			} else if (n == -1) {
+				map.put("error", "已收藏");
 				re = new ResponseEntity<>(map, HttpStatus.OK);
 			}		
 		return re;
 	}
 
-//	// 刪除單筆我的最愛資料
-	@PostMapping(path = "/deletefavorite.do",produces = {"application/json"})
-	public ResponseEntity<String> deleteFavorite(@RequestParam("deletefid") Integer fid) {
-		System.out.println("進入con");
+	// 刪除單筆我的最愛資料
+	@ResponseBody
+	@PostMapping(path = "/deletefavorite",produces = "application/json")
+	public String deleteFavorite(@RequestParam("deletefid") Integer fid) {
 		boolean delete = ifs.deleteFavorite(fid);
-		ResponseEntity<String> re =null;
-		if (delete == true) {
-			System.out.println("成功刪除");
-			String status = "Y";
-			return re=new ResponseEntity<String>(status,HttpStatus.OK);
-		}
+		System.out.println(delete+"dao before delete fid = "+fid);	
+		if (delete) {
+			System.out.println("delete success fid ="+fid);
+			return "deOK";
+		}else{
 			System.out.println("delete error fid ="+fid);
-		
-//		System.out.println("delete favorite");
-		String status = "N";	
-		return re=new ResponseEntity<String>(status,HttpStatus.OK);
+			return "deNO";
+		}
 	}
 
-	
+//	@PostMapping("/favorite")
+//	public String showFavorite(Model model,HttpServletRequest res, @RequestParam("favorite")Integer mid,String title) {
+//		System.out.println("show favorite list");
+//		HttpSession session2 = res.getSession();
+//		MemberBean mBean=  (MemberBean) session2.getAttribute("memberBean");	
+////		List<FavoriteBean> list = fs.getfHouseByMemberid(mem.getPk());
+//		List<FavoriteBean> fblist = fs.fHouseByMemberid(mid, title);
+//		//以下測試
+////		List<FavoriteBean> list2 = fs.fHouseByMemberid(mid, title);
+////		m.addAttribute("favorite2",list2);
+//		model.addAttribute("favoraite",fblist);
+//		
+//		System.out.println("get favoritelist"+fblist.size());
+//		return "favorite";
+//	}	
 
 }

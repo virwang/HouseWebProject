@@ -54,9 +54,9 @@ public class HouseDAO {
 		
 	}
 
-	public List<HouseBean> memberHouseList(String macct) {
-		String hquery = "from HouseBean where memberBean.account = :acct";
-
+	public List<HouseBean> memberHouseList(Integer macct) {
+		String hquery = "from HouseBean where accountid = :acct";
+		System.out.println("member="+macct);
 		Query<HouseBean> query = getSession().createQuery(hquery, HouseBean.class);
 		query.setParameter("acct", macct);
 		List<HouseBean> mlist = new ArrayList<>();
@@ -98,7 +98,6 @@ public class HouseDAO {
 		System.out.println("hid="+hid);
 		HouseBean houseBean = getSession().get(HouseBean.class, hid);
 		if(houseBean!=null) {
-			System.out.println("dao delete favorite "+houseBean);
 			getSession().delete(houseBean);
 			return true;
 		}
@@ -106,7 +105,7 @@ public class HouseDAO {
 	}
 	
 	public List<HouseBean> mrthouse(Integer station){
-		String hquery = "from HouseBean where mrtBean.pk = :stcode";
+		String hquery = "from HouseBean where mrtpk = :stcode";
 
 		Query<HouseBean> query = getSession().createQuery(hquery, HouseBean.class);
 		query.setParameter("stcode", station);

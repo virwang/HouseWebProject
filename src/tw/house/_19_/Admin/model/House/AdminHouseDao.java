@@ -2,16 +2,13 @@ package tw.house._19_.Admin.model.House;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.NoResultException;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-
 import tw.house._07_.model.HouseBean;
 
 @Repository
@@ -26,7 +23,7 @@ public class AdminHouseDao {
 	}
 	
 	public List<HouseBean> getHouses() {
-		String hql  = "FROM HouseBean";
+		String hql  = "from HouseBean";
 		List<HouseBean> list = new ArrayList<>();
 		try{
 			Query<HouseBean> query = getSession().createQuery(hql, HouseBean.class);			
@@ -37,7 +34,7 @@ public class AdminHouseDao {
 			return list;
 	}
 	public HouseBean getById(Integer id) {
-		String hql  = "FROM HouseBean WHERE id = :id";
+		String hql  = "from HouseBean where id = :id";
 		HouseBean bean = null;
 		try {
 			bean = (HouseBean)getSession().createQuery(hql)
@@ -60,10 +57,9 @@ public class AdminHouseDao {
 		return false;
 	
 }
-	public boolean deleteHouse(Integer id) {
-		HouseBean houseBean = getSession().get(HouseBean.class, id);
-		if(houseBean!=null) {
-			getSession().delete(houseBean);
+	public boolean deleteHouse(HouseBean bean) {
+		if(bean!=null) {
+			getSession().delete(bean);
 			return true;
 		}
 		return false;

@@ -48,10 +48,12 @@ public class FavoriteBean {
 		return memberBean;
 	}
 	@Transient
+//	@Column(name = "accountid")
 	public Integer getAccountId() {
 		return accountId;
 	}
 	@Transient
+//	@Column(name = "houseid")
 	public Integer getHouseId() {
 		return houseId;
 	}
@@ -86,7 +88,7 @@ public class FavoriteBean {
 		StringBuilder builder = new StringBuilder();
 		builder.append("FavoriteBean [fid=");
 		builder.append(fid);
-		builder.append(", memberBean=");
+		builder.append(", meberBean=");
 		builder.append(memberBean);
 		builder.append(", houseBean=");
 		builder.append(houseBean);

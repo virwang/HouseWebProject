@@ -70,47 +70,19 @@ fieldset {
 <body>
 
 	<div class="site-loader"></div>
-
 	<div class="site-wrap">
 		<jsp:include page="/navibar.jsp" />
 	</div>
-
-	<div class="slide-one-item home-slider owl-carousel">
-
-
-
-<!-- 		<div class="site-blocks-cover overlay" -->
-<!-- 			style="background-image: url(images/house3.jpg);" data-aos="fade" -->
-<!-- 			data-stellar-background-ratio="0.5"> -->
-<!-- 			<div class="container"> -->
-<!-- 				<div -->
-<!-- 					class="row align-items-center justify-content-center text-center"> -->
-<!-- 					<div class="col-md-10"> -->
-<!-- 						<span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">出租</span> -->
-<!-- 						<span -->
-<!-- 							class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">賣房</span> -->
-<!-- 						<h1 class="mb-2">渡假村</h1> -->
-<!-- 						<p class="mb-5"> -->
-<!-- 							<strong class="h2 text-success font-weight-bold">$2,250,500</strong> -->
-<!-- 						</p> -->
-<!-- 						<p> -->
-<!-- 							<a href="#" -->
-<!-- 								class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">詳細資訊</a> -->
-<!-- 						</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-
-	</div>
+	<div class="slide-one-item home-slider owl-carousel"></div>
 	<h1 class="mem">加入會員</h1>
 	<font size='-1' color='red'>&nbsp;${errorMsg.DBError}</font>
 	<fieldset>
 		<form action="springRegisterMember.do" method="POST"
 			enctype="application/x-www-form-urlencoded">
+<!-- 			enctype="multipart/form-data" -->
 			<div class="st1">
 				<label class="account">帳號：</label> 
-				<input type="text" id="account"name="account" value="${param.account}" onblur="checkAccount();" onclick="hide()"maxlength="16"> 
+				<input type="text" id="account"name="account"  onblur="checkAccount();" onclick="hide()"maxlength="16"> 
 				<img id="img1" src="">
 				<span id="sp3"></span>
 				<font id="fonterror1" color='red'size="-1">${errorMsg.account}</font>
@@ -180,9 +152,61 @@ fieldset {
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/circleaudioplayer.js"></script>
-
 	<script src="js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+		crossorigin="anonymous"></script>
 	<script>
+	   function checkAccount() {
+		   let acct=$("#account").prop("value");
+		   var content="";
+// 		   var span=$("#sp3");
+	       var span = document.querySelector("#sp3")
+		   console.log("account:"+acct);
+		   var xhr=new XMLHttpRequest();
+		   xhr.open("POST","<c:url value='accountCheck'/>",true);
+		   xhr.setRequestHeader("Content-type",
+			"application/x-www-form-urlencoded");
+		   xhr.send("account="+acct);
+		   xhr.onreadystatechange=function(){				
+				if(xhr.readyState==4&&xhr.status==200){
+					let exist=JSON.parse(xhr.responseText);
+					console.log(exist)
+					
+					if(exist.ok=="帳號可以使用"){
+					let msg=exist.ok
+					console.log("msg:"+msg);
+					content=msg;
+				    span.innerHTML=content;
+						}else{
+					let msg=exist.error
+					console.log("msg:"+msg);	
+					content=msg;
+				    span.innerHTML=content;
+				    document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
+							}
+					}
+			   }
+		   
+	        let act = document.querySelector("#account").value
+	        let actLen = act.length
+	        let regx=/^(?=.*[a-zA-Z])(?=.*\d).{6,16}$/;
+	        if (act == "") {
+	            span.innerHTML = "帳號不可空白";
+	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
+	        } else if (actLen < 6) {
+	            span.innerHTML="至少6個字"
+	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
+	        }else if(!regx.test(act)){
+	            span.innerHTML="格式錯誤必須是英文加數字組合"
+	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
+	        }else{
+	            span.innerHTML="正確"
+	            document.querySelector("#img1").src="css/_08_css/images/img1.jpg"
+	        }        
+	    }
+
+	
 		function hide(){
 			let f1 =document.getElementById("fonterror1");
 			f1.style.display="none";
@@ -238,25 +262,7 @@ fieldset {
         }
          
     }	
-    function checkAccount() {
-        let pwd = document.querySelector("#account").value
-        let pwdLen = pwd.length
-        let span = document.querySelector("#sp3")
-        let regx=/^(?=.*[a-zA-Z])(?=.*\d).{6,16}$/;
-        if (pwd == "") {
-            span.innerHTML = "帳號不可空白";
-            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
-        } else if (pwdLen < 6) {
-            span.innerHTML="至少6個字"
-            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
-        }else if(!regx.test(pwd)){
-            span.innerHTML="格式錯誤必須是英文加數字組合"
-            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
-        }else{
-            span.innerHTML="正確"
-            document.querySelector("#img1").src="css/_08_css/images/img1.jpg"
-        }        
-    }	
+ 	
     function checkIdNumber(){
     	let idN=document.querySelector("#idCard").value;
     	let idNLen=idN.length;

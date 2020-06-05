@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tw.house._07_.model.NewsBean;
 
-@Service
+@Service("adminNewService")
 @Transactional
 public class AdminNewService {
 
@@ -26,7 +26,7 @@ public class AdminNewService {
 	public boolean delete(NewsBean bean) {
 		return ANDao.delete(bean);
 }
-	public Object save(NewsBean bean) {
+	public boolean save(NewsBean bean) {
 		return ANDao.save(bean);
 	}
 }

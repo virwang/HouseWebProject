@@ -23,8 +23,8 @@ public class AdminMemberService {
 	public boolean update(MemberBean memberBean) {
 		return AMDao.update(memberBean);
 }
-	public boolean delete(Integer pk) {
-		return AMDao.delete(pk);
+	public boolean delete(MemberBean memberBean) {
+		return AMDao.delete(memberBean);
 }
 	
 }

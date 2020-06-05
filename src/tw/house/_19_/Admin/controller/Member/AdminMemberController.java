@@ -4,53 +4,57 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
-
 import tw.house._08_.register.model.MemberBean;
 import tw.house._19_.Admin.model.Member.AdminMemberService;
 
 
-//@Controller
-//@SessionAttributes({"memberBean"})
+@Controller
 public class AdminMemberController {
 
 	@Autowired
 	private AdminMemberService service;
 
-//	@RequestMapping(path = "/#", method = RequestMethod.GET)
+	@RequestMapping(path = "/getmemberlist", method = RequestMethod.GET)
 	public String memberList(Model model) {
 		List<MemberBean> list = service.getMembers();
 		model.addAttribute("memberList", list);
-		return "#";
+		return "admin_memberList";
 	}
-		
-
-	
-//	@GetMapping("#")
-	public String getMember(Model model,@SessionAttribute("memberBean") MemberBean mb) {
-		MemberBean bean = service.getById(mb.getPk());
-		model.addAttribute("members", bean);
-		return "#";
+	@RequestMapping(path = "/ajaxgetmemberlist", method = RequestMethod.GET,produces = {"application/json"} )
+	public ResponseEntity<List<MemberBean>> ajaxMemberList(){
+		List<MemberBean> list = service.getMembers();
+		ResponseEntity<List<MemberBean>> re= new ResponseEntity<>(list,HttpStatus.OK);
+		return re;
+		}
+			
+	@GetMapping("/showmember")
+	public String getMember(Model model,@RequestParam("id") Integer id) {
+		MemberBean bean = service.getById(id);
+		model.addAttribute("member", bean);
+		System.out.println("show");
+		return "admin_memberU&D";
 	}
 	
-//	@PostMapping("/#")
+	@PostMapping("/updateMember")
 	public String updateMember(@RequestParam("id")Integer id,
 			@RequestParam("name")String name,
 			@RequestParam("psw")String psw,
 			@RequestParam("tel")String tel,
+			@RequestParam("usertype")String usertype,
 			@RequestParam("email")String email,
-			@SessionAttribute("memberBean") MemberBean memberBean,Model model) {	
-			
+			Model model) {	
+			System.out.println(id);
 			MemberBean bean = service.getById(id);
 			
 			HashMap<String, String> errorMsg = new HashMap<>();
@@ -107,31 +111,33 @@ public class AdminMemberController {
 			}
 			
 			if(!errorMsg.isEmpty()) {
-				return "#";
+				return "redirect:/showmember";
 				
 			}
 		boolean update = service.update(bean);
+		System.out.println(update);
 		if(update) {
 			bean.setName(name);
 			bean.setPsw(psw);
 			bean.setTel(tel);
 			bean.setEmail(email);
-			model.addAttribute("memberBean", service.getById(id));
-			return "#";
+			bean.setUsertype(usertype);
+			return "redirect:/admin_index";
 		}else {
-			return "#";
+			return "redirect:/showmember";
 		}
 	}
-//	@RequestMapping(path = "/deletemember",method = RequestMethod.POST)
-		public String deleteMember(MemberBean memberBean) {
-			Integer id = Integer.valueOf(memberBean.getPk());
-			boolean delete = service.delete(id);
+		@DeleteMapping("/deleteMember")
+		public String delete(@RequestParam("mid") Integer id) {
+			System.out.println("mid="+id);
+			MemberBean bean = service.getById(id);
+			boolean delete = service.delete(bean);
 			if(delete==true) {
-				System.out.println("Success");
-				return "#";
+				System.out.println("delete Success");
+				return "redirect:/admin_index";
 			}else {
-				System.out.println("failed");
-				return "#";
+				System.out.println("delete failed");
+				return "redirect:/showmember";
 			}
 		}
 }

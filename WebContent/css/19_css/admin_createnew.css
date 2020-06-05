@@ -1,0 +1,22 @@
+ @charset "UTF-8";
+a:link{color:blue;text-decoration:none;}
+a:visited {color:blue;text-decoration:none;}
+a:hover{color:red;}
+body{background-color: #FFF8D7}
+form{display: inline;}
+.create{
+	margin-left:25vw;
+		}
+.index{
+	font-size:10mm;
+	margin-left:13vw;
+		}
+.submit{
+	padding:10px;
+	font-size: 10mm;
+	margin-top:10px;
+	background-color: #FFF8D7;
+	border:none;
+	color:blue;
+		}
+.s1{font-size: 6mm;}

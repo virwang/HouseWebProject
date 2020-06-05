@@ -1,0 +1,42 @@
+.black_overlay {
+	display: none;
+	margin: alto;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	background-attachment: local;
+	-webkit-background-size: cover;
+	z-index: 1001;
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity = 80);
+	z-index: 1001;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+
+#light1 {
+	float: right;
+}
+
+#light2 {
+	float: left;
+	width: 60%
+}
+
+.white_content {
+	display: none;
+	position: fixed;
+	top: 30%;
+	left: 30%;
+	width: 40%;
+	height: 50%;
+	padding: 16px;
+	border: 10px solid gray;
+	background-color: white;
+	z-index: 1002;
+	overflow: auto;
+}

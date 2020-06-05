@@ -22,5 +22,8 @@ public class MemberLoginService {
 				return memberBean;
 		
 	}
+	public  MemberBean checkAccEmail(String account, String email) {
+		return mLDao.checkAccEmail(account, email);
+	}
 
 }

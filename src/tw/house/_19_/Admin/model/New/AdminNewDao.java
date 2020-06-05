@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import tw.house._07_.model.NewsBean;
 
-@Repository
+@Repository("adminNewDao")
 public class AdminNewDao {
 
 	@Autowired
@@ -23,7 +23,7 @@ public class AdminNewDao {
 	}
 	
 	public List<NewsBean> getNews() {
-		String hql  = "FROM NewsBean";
+		String hql  = "from NewsBean";
 		List<NewsBean> list = new ArrayList<>();
 		try{
 			Query<NewsBean> query = getSession().createQuery(hql, NewsBean.class);		
@@ -34,7 +34,7 @@ public class AdminNewDao {
 			return list;
 	}
 	public NewsBean getById(Integer id) {
-		String hql  = "FROM NewsBean WHERE newsnum = :id";
+		String hql  = "from NewsBean where newsnum =:id";
 		NewsBean bean = null;
 		try {
 			bean = (NewsBean)getSession().createQuery(hql)
@@ -66,13 +66,14 @@ public class AdminNewDao {
 		}
 		return false;
 	}
-	public Object save(NewsBean bean) {
+	public boolean save(NewsBean bean) {
 		try {
 			getSession().save(bean);
+			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return getSession().save(bean);
+		return false;
 }
 	
 }

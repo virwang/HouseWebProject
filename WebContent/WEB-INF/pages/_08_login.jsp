@@ -106,9 +106,10 @@
              <TD align="CENTER" colspan='3'><Font color='red' size="-1">${ErrorMsgKey.LoginError}&nbsp;</Font></TD>
              
          </TR>
+         <tr><td><a href="<c:url value='mail'/>">忘記密碼</a></td></tr>
             
         <TR>
-            <TD colspan="2" align="center"> <input type="submit" value="提交"> </TD>
+            <TD colspan="2" align="center">      <input type="submit" value="提交"> </TD>
             </TR>
          </Table>
  </Form>
@@ -119,7 +120,6 @@
   <jsp:include page="/footer.jsp" />
 
   </div>
-
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>

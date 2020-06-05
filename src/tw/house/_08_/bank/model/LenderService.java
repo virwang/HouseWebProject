@@ -20,4 +20,14 @@ public class LenderService {
 	public List<Lender> lenderCityDist(String city,String dist,String starLevel){
 		return lenderDao.lenderCityDist(city,dist,starLevel);
 	}
+	public boolean insertLender(Lender bean) {
+		return lenderDao.insertLender(bean);
+	}
+	public Lender selectLender(Integer pkNo) {
+		 return lenderDao.selectLender(pkNo);
+	}
+	public boolean checkLender(Integer pkNo) {
+		return lenderDao.checkLender(pkNo);
+	}
+	
 }

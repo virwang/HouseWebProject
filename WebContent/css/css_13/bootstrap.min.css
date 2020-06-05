@@ -229,7 +229,7 @@ button:focus {
 
 button, input, optgroup, select, textarea {
 	margin: 0;
-	font-family: inherit;
+	font-family: 微軟正黑體;
 	font-size: inherit;
 	line-height: inherit
 }
@@ -580,7 +580,7 @@ pre code {
 
 @media ( min-width :1200px) {
 	.container, .container-lg, .container-md, .container-sm, .container-xl {
-		max-width: 1400px
+		max-width: 1200px
 	}
 }
 
@@ -1168,8 +1168,9 @@ pre code {
 	}
 	.col-md-12 {
 		-ms-flex: 0 0 100%;
-		flex: 0 0 100%;
-		max-width: 100%
+		flex: alto;
+		max-width: 80%;
+		margin: auto;
 	}
 	.order-md-first {
 		-ms-flex-order: -1;
@@ -8373,7 +8374,7 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .pl-3, .px-3 {
-	padding-left: 1rem !important
+	padding: 2rem !important
 }
 
 .p-4 {
@@ -8533,7 +8534,7 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .ml-auto, .mx-auto {
-	margin-left: auto !important
+	margin: auto !important
 }
 
 @media ( min-width :576px) {

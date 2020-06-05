@@ -67,7 +67,7 @@
 		<div class="container">
 			<div class="row">
 					<div class="form-search col-md-12" style="margin-top: -100px;">
-<!-- 				<form class="form-search col-md-12" style="margin-top: -100px;"> -->
+				<form class="form-search col-md-12" style="margin-top: -100px;" method="post" action="<c:url value='searchhouse'/>">
 					<div class="row  align-items-end">
 						<div class="col-md-3">
 							<label for="city">市</label>
@@ -97,17 +97,17 @@
 						<div class="col-md-3">
 							<label for="select-city">地址</label>
 							<div class="select-wrap">
-									<input type="text" name="addr" id="addr" class="form-control d-block rounded-0" placeholder="請輸入詳細地址">
+									<input type="text" class="form-control d-block rounded-0" placeholder="請輸入詳細地址">
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="select-wrap">
-								<button class="btn btn-success text-white btn-block rounded-0"
-								onclick="search()">搜尋</button>
+								<input type="submit" class="btn btn-success text-white btn-block rounded-0"
+								>
 							</div>
 						</div>
 					</div>
-<!-- 				</form> -->
+				</form>
 					</div>
 			</div>
 
@@ -149,10 +149,10 @@
       <div class="container">
       
       
-      <div class="row mb-5" id="test">
+      <div class="row mb-5">
       <c:forEach var="hlist" items="${houselist}">
       
-          <div class="col-md-6 col-lg-4 mb-4" id="searchhlist">
+          <div class="col-md-6 col-lg-4 mb-4">
             <div class="property-entry h-100">
               <a href="housedetail?HOUSEID=${hlist.id}" class="property-thumbnail">
                 <div class="offer-type-wrap">
@@ -161,13 +161,13 @@
                 <img src="data:image/jpeg;base64,${hlist.base64image1}" alt="Image" class="img-fluid">
               </a>
               <div class="p-4 property-body">
-              <c:if test="${!empty memberBean}">
-				<button type="button" class="property-favorite fah" id="${hlist.id}">
-					<span class="icon-heart-o"></span>
-				</button>
-			 </c:if>
+              	<c:if test="${!empty memberBean}">
+               	 	<button type="button" class="property-favorite fah" id="${hlist.id}">
+					<span class="icon-heart-o"></span></button>
+              	</c:if>
+                	<a href="housedetail?HOUSEID=${hlist.id}">
                 	<h2 class="property-title">${hlist.title}</h2>
-                
+                	</a>
                 <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>${hlist.city}${hlist.dist}${hlist.address}</span>
                 <strong class="property-price text-primary mb-3 d-block text-success">${hlist.totalprice}萬</strong>
                 <ul class="property-specs-wrap mb-3 mb-lg-0">
@@ -244,11 +244,9 @@
 	
   </script>
   <script>
-
 	function search(){
 		let city = document.getElementById("city").value;
 		let dist = document.getElementById("dist").value;
-		let addr = document.getElementById("addr").value;
 		console.log(city);
 		console.log(dist);
 
@@ -256,20 +254,15 @@
 		xhr.open("GET","<c:url value='searchhouse'/>"+"?city="+city+"&dist="+dist,true);
 		xhr.send();
 		xhr.onreadystatechange = function(){
+
 			if(xhr.readyState ==4 && xhr.status==200){
-				let searchlist = JSON.parse(xhr.responseText);
+				
 			}
-			
 		}
-		
 	}
-		new Vue({
-			el: '#test',
-			data:{
-				text:'測試文字'
-				}
-		})
   </script>
+  
+  
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -285,8 +278,10 @@
 	<script src="js/aos.js"></script>
 
 	<script src="js/main.js"></script>
-		<script>
+	
+	<script>
 		$(".fah").click(function(){
+			console.log(this.id);
 		var hid = this.id;		
 
 		$.ajax({

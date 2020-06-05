@@ -2,12 +2,15 @@ package tw.house._08_.register.controller;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +32,25 @@ public class RegisterController {
 	@GetMapping(path = "/register")
 	public String turntoregist() {
 		return "_08_registerMember";
+	}
+	@RequestMapping(path = "/accountCheck",method = RequestMethod.POST,produces = {"application/json"})
+	public ResponseEntity<Map<String, String>> accountCheck(@RequestParam("account")String account) {
+		String msg="";
+		boolean accountExist = mService.AccountExist(account);
+		System.out.println(accountExist);
+		Map<String, String> map=new HashMap<String, String>();
+		if(accountExist) {
+			msg="帳號重複已被使用";
+			map.put("error",msg);
+			System.out.println("123"+msg);
+			ResponseEntity<Map<String, String>> re = new ResponseEntity<>(map, HttpStatus.OK);
+			return re;
+		}
+		msg="帳號可以使用";
+		System.out.println("456"+msg);
+		map.put("ok",msg);
+		ResponseEntity<Map<String, String>> re = new ResponseEntity<>(map, HttpStatus.OK);
+		return re;
 	}
 	
 	
@@ -132,4 +154,6 @@ public class RegisterController {
 		}
 		
 	}
+	
+	
 }

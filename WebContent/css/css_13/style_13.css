@@ -1,16 +1,33 @@
 /* Base */
-#totalbought{
-	font-size:24px;
-	padding-left:20px;
-	color:white;
-	display:flex;
-	margin-bottom:10px
+#linebot {
+	left: 1400px;
+	position: fixed;
+	top: 580px;
+	text-align: center;
 }
-#select_year{
-	width:10%;
+
+#linebot span {
+	color: gray;
+}
+
+#linebot img {
+	width: 100px
+}
+
+#totalbought {
+	font-size: 24px;
+	padding-left: 20px;
+	color: white;
+	display: flex;
+	margin-bottom: 10px
+}
+
+#select_year {
+	width: 12%;
 	border-re
 }
-#select_years{
+
+#select_years {
 	
 }
 
@@ -18,27 +35,25 @@
 	border: 1px solid gray;
 	width: 80%;
 	position: relative;
-	margin:auto;
-	margin-top:10px;
+	margin: auto;
+	margin-top: 10px;
 	font-weight: 200;
 	line-height: 1.7;
 }
 
-thead{
-	text-align:center;
+thead {
+	text-align: center;
 }
-
 
 body {
 	line-height: 1.7;
-	background-color:gray;
+	background-color: gray;
 	color: rgba(0, 0, 0, 0.6);
 	font-weight: 400;
 	font-size: 1rem;
 	font-family: 微軟正黑體;
 	font-family: 微軟正黑體;
 }
-
 
 ::-moz-selection {
 	background: #000;
@@ -486,16 +501,6 @@ a:hover {
 	padding-right: 20px;
 }
 
-.site-navbar .site-navigation .site-menu .has-children>a:before {
-	position: absolute;
-	font-size: 16px;
-	top: 50%;
-	right: 0;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	font-family: 微軟正黑體;
-}
 
 .site-navbar .site-navigation .site-menu .has-children .dropdown {
 	visibility: hidden;

@@ -96,7 +96,7 @@ public class ReservationBean {
 		this.reservatedate = reservatedate;
 	}
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "houseid"
 	, insertable=false,updatable=false)
 	public HouseBean getHouseBean() {
@@ -106,7 +106,7 @@ public class ReservationBean {
 		this.houseBean = houseBean;
 	}
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "applicant"
 	, insertable=false,updatable=false)
 	public MemberBean getMemberBean() {

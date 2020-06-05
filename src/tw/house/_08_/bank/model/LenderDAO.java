@@ -53,9 +53,33 @@ public class LenderDAO {
 		}	
 		return list;
 	}
-	public Object save(Lender bean) {
-		Session session = factory.getCurrentSession();
-		return session.save(bean);
+	public boolean insertLender(Lender bean) {
+		try{
+			getSession().save(bean);
+			System.out.println("success insert Lender");
+			return true;
+		}catch (Exception e) {
+			System.out.println("falied to insert Lender");
+		}
+		return false;
 	}
+	public Lender selectLender(Integer pkNo) {
+		Query<Lender> query=getSession().createQuery("from Lender where pkNo=:pkno",Lender.class);
+		query.setParameter("pkno", pkNo);
+		Lender lbean=query.uniqueResult();
+		return lbean;
+	}
+	public boolean checkLender(Integer pkNo) {
+		Query<Lender> query=getSession().createQuery("from Lender where pkNo=:pkno",Lender.class);
+		query.setParameter("pkno", pkNo);
+		
+		Lender lbean=query.uniqueResult();
+		if(lbean!=null) {
+			return false;
+		}
+		return true;
+	}
+	
+	
 
 }

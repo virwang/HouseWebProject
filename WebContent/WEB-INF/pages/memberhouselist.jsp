@@ -119,7 +119,6 @@
                 <img src="data:image/jpeg;base64,${hlist.base64image1}" alt="Image" class="img-fluid">
               </a>
               <div class="p-4 property-body">
-                <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
                 	<a href="housedetail?HOUSEID=${hlist.id}">
                 	<h2 class="property-title">${hlist.title}</h2>
                 	</a>

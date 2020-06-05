@@ -1,0 +1,25 @@
+ @charset "UTF-8";
+ body{background-color: #FFF8D7}
+ th{border: 1px solid;}
+ td{border: 1px solid;}
+.t1{width:100%;
+	border:1px solid black;
+	margin-top:5vh;}
+.t2{
+	border: 1px solid;
+	}
+.h1{border:1px solid black;}
+.h2{border:1px solid black;
+	font-size: 8mm;}
+
+.d1{background-color: #FFFFFF
+	}
+.bt1{font-size: 8mm;
+	color:blue;
+	border:none;
+	background-color: #FFF8D7;
+	}
+.bt1:hover{color:red;}
+.a1:link{color:blue;text-decoration:none;}
+.a1:visited {color:blue;text-decoration:none;}
+.a1:hover{color:red;}
