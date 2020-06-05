@@ -103,8 +103,9 @@
 														<td class="pt-3-half">${adddate2}</td>
 														<td class="pt-3-half">
 														<button class="btn de"
-									style="font-family: Microsoft JhengHei; float: right;"
-									id="fv${favorite.fid}" value="${favorite.fid}"><i class="fa fa-trash" style="color:#DC143C; border:solid 1px black; padding:10px; margin:10px "></i></button></td>
+									style="font-family: Microsoft JhengHei; float: right; padding:5px"
+									id="fv${favorite.fid}" value="${favorite.fid}">
+									<i class="fa fa-trash" style="color:#DC143C; border:solid 10px ; padding:10px; margin:10px solid pink;  "></i></button></td>
 								
 													</tr>
 												</c:forEach>
