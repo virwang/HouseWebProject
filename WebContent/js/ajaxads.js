@@ -4,11 +4,18 @@ $(function() {
 	$("#searchword").on('DOMSubtreeModified', function() {
 		year();
 	});
+	
+	// 選年的function
+	$('#select_year').change(function() {
+		let select_year = $(this).val();
+		console.log("value2=" + select_year);
+		showyear(select_year);
+	})
 
 	showdetail()
 
 	close()
-
+	
 });
 
 function showdetail() {
@@ -40,3 +47,4 @@ function close() {
 		}
 	});
 }
+

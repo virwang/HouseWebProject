@@ -31,14 +31,4 @@ public class SearchTwoTaipeiDao implements ISearchTwoTaipei {
 		return tlist;
 	}
 
-//	@Override
-//	public List<NewTaipei> selectNewTaipeiDistrict(String district) {
-//		Session session = factory.getCurrentSession();
-//		Query<NewTaipei> query = session.createQuery("from NewTaipei where district=:selectcity", NewTaipei.class);
-//		List<NewTaipei> ntlist = query.setParameter("selectcity", district).list();
-//		return ntlist;
-//	}
-	
-	
-
 }

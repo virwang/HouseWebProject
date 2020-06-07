@@ -1,0 +1,2 @@
+LINE API頁面：https://manager.line.biz/account/@246lyhbv/setting/messaging-api
+ngrok：ngrok http 12345

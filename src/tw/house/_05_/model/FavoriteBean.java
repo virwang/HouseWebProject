@@ -13,6 +13,7 @@ import javax.persistence.Transient;
 import org.springframework.stereotype.Component;
 import tw.house._07_.model.HouseBean;
 import tw.house._08_.register.model.MemberBean;
+import tw.house._13_.model.bean.TwoTaipei;
 
 @Component("Favorite")
 @Entity
@@ -23,6 +24,7 @@ public class FavoriteBean {
 	private Integer houseId;
 	private MemberBean memberBean;
 	private HouseBean houseBean;
+	private TwoTaipei taipei;
 
 	public FavoriteBean() {
 
@@ -56,6 +58,16 @@ public class FavoriteBean {
 //	@Column(name = "houseid")
 	public Integer getHouseId() {
 		return houseId;
+	}
+
+	@OneToOne
+	@JoinColumn(name = "tid")
+	public TwoTaipei getTaipei() {
+		return taipei;
+	}
+
+	public void setTaipei(TwoTaipei taipei) {
+		this.taipei = taipei;
 	}
 
 	public void setAccountId(Integer accountId) {

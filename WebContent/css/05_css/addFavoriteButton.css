@@ -49,10 +49,10 @@
   background-color:＃B22222; /* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */
-  padding: 18px 50px; /* Some padding */
-  font-size: 18px; /* Set a font size */
+  padding: 3px 3px; /* Some padding */
+  font-size: 25px; /* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
-  text-shadow: #7d1823 px 1px 0px;
+  /*text-shadow: #7d1823 px 1px 0px;*/
 }
 
 /* Darker background on mouse-over */

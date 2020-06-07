@@ -23,11 +23,9 @@
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
-
-
 <link rel="stylesheet" href="css/aos.css">
-
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/05_css/compare.css">
 
 </head>
 
@@ -48,9 +46,6 @@
 			data-stellar-background-ratio="0.5">
 			<div class="container"></div>
 		</div>
-
-
-
 	</div>
 
 
@@ -92,12 +87,12 @@
 							<div class="col-md-3">
 								<div class="select-wrap">
 									<input type="submit"
-										class="btn btn-success text-white btn-block rounded-0">
-								</div>
+										class="btn btn-success text-white btn-block rounded-0">								</div>
 							</div>
 						</div>
 					</form>
 				</div>
+				
 			</div>
 
 			<div class="row">
@@ -118,11 +113,8 @@
 
 	<div class="site-section site-section-sm bg-light">
 		<div class="container">
-
-
 			<div class="row mb-5">
 				<c:forEach var="hlist" items="${houselist}" >
-
 					<div class="col-md-6 col-lg-4 mb-4">
 						<div class="property-entry h-100">
 							<a href="housedetail?HOUSEID=${hlist.id}"
@@ -166,8 +158,13 @@
 
 				</c:forEach>
 			</div>
+				<div id="compare">
+		<span id="titile">比較</span>
+		<a target ="_blank" href="favorite"></a>
+	</div>
 		</div>
 	</div>
+
 	<jsp:include page="/footer.jsp" />
 	<script>
 		function clickcity(clicked) {

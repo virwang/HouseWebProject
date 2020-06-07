@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import tw.house._05_.model.FavoriteBean;
 import tw.house._07_.model.HouseBean;
 import tw.house._08_.register.model.MemberBean;
+import tw.house._13_.model.bean.TwoTaipei;
 
 @Repository
 public class FavoriteDao implements IFavoritedao {
@@ -49,7 +50,6 @@ public class FavoriteDao implements IFavoritedao {
 		mfhouselist.setParameter("pk", mid);
 		List<FavoriteBean> mfhList = new ArrayList<FavoriteBean>();
 		mfhList = mfhouselist.list();
-//		System.out.println("fdao by mid, mid= " + mid);
 		return mfhList;
 	}
 
@@ -98,34 +98,47 @@ public class FavoriteDao implements IFavoritedao {
 		System.out.println("intofavexit");
 
 		String hql = "FROM FavoriteBean WHERE memberBean.pk =:pk and houseBean.id =:id";
-		
-			Query<FavoriteBean> query = getSession().createQuery(hql,FavoriteBean.class);
-			query.setParameter("id", houseBean.getId());
-			query.setParameter("pk", memberBean.getPk());
-			FavoriteBean fb = new FavoriteBean();
-			fb = query.uniqueResult();
-			return fb;
-			
-		
+
+		Query<FavoriteBean> query = getSession().createQuery(hql, FavoriteBean.class);
+		query.setParameter("id", houseBean.getId());
+		query.setParameter("pk", memberBean.getPk());
+		FavoriteBean fb = new FavoriteBean();
+		fb = query.uniqueResult();
+		return fb;
+
 //		System.out.println("favorite not exit");
 
 	}
 
 	@Override
 	public boolean deleteFavorite(Integer fid) {
-		System.out.println("delete favorite dao fid ="+fid);
-		FavoriteBean favoriteBean= getSession().get(FavoriteBean.class, fid);
-		FavoriteBean favoriteBean2=favoriteBean;
-		if (favoriteBean !=null) {
-			 System.out.println("check if fBean != null, dao fid = ?"+fid);
-			 getSession().evict(favoriteBean);
-			 getSession().delete(favoriteBean2);
-			 return true;
-		}else {
-			System.out.println("if favoriteBean = null, fid = ?"+fid);
+		System.out.println("delete favorite dao fid =" + fid);
+		FavoriteBean favoriteBean = getSession().get(FavoriteBean.class, fid);
+		FavoriteBean favoriteBean2 = favoriteBean;
+		if (favoriteBean != null) {
+			System.out.println("check if fBean != null, dao fid = ?" + fid);
+			getSession().evict(favoriteBean);
+			getSession().delete(favoriteBean2);
+			return true;
+		} else {
+			System.out.println("if favoriteBean = null, fid = ?" + fid);
 			return false;
 		}
-				
+
+	}
+
+	// compare house with two taipei tpirce，by district using like
+	public List<FavoriteBean> compare(TwoTaipei taiepi, HouseBean houseBean, MemberBean memberBean) {
+		System.out.println("into compare twotaipei");
+		Query<FavoriteBean> list = getSession().createQuery("from houseBean where id=:id, and taipei.id =:id ");
+		list.setParameter("id", taiepi.getId());
+		list.setParameter("id", houseBean.getId());
+		list.setParameter("pk", memberBean.getPk());
+		List<FavoriteBean> fBean = new ArrayList<>();
+		fBean = list.getResultList();
+		System.out.println("compare"+fBean);
+		return fBean;
+
 	}
 
 }

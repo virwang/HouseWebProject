@@ -50,8 +50,8 @@
 		<div id="fade" class="black_overlay"></div>
 	</div>
 	<div class="site-wrap">
-    	<jsp:include page="/navibar.jsp" />
-  	</div>
+		<jsp:include page="/navibar.jsp" />
+	</div>
 
 
 
@@ -60,8 +60,8 @@
 		<div class="container">
 
 			<div id="linebot">
-				<span>加入LINE</span>
-				<img src=<c:url value='css/css_13/pics_13_/line-meBW.png' />>
+				<span>加入LINE</span> <img
+					src=<c:url value='css/css_13/pics_13_/line-meBW.png' />>
 			</div>
 
 			<div class="tab-content" id="nav-tabContent">
@@ -154,8 +154,8 @@
 											<th>單價（萬）</th>
 											<th>建坪</th>
 											<th>地坪</th>
-											<!--<th>交易日</th>
-											<th>移轉層次</th>
+											<th style="display: none">交易日</th>
+											<!--<th>移轉層次</th>
 											<th>總樓層數</th> -->
 											<!--<th>型態</th>
 											<!--<th>建築完成日期</th>
@@ -174,8 +174,8 @@
 														value="${tp.uprice_p}" pattern="###,###.#" /></td>
 												<td>${tp.farea_p}</td>
 												<td>${tp.landa_p}</td>
-												<%--<td>${tp.sdate}</td>
-												<td>${tp.sbuild}</td>
+												<td style="display: none">${tp.sdate}</td>
+												<%--<td>${tp.sbuild}</td>
 												<td>${tp.tbuild}</td>--%>
 												<%--<td>${tp.buildtype}</td>--%>
 												<%--<td>${tp.fdate}</td>
@@ -227,6 +227,37 @@
 	</script>
 
 	<script>
+		function showyear(select_year) {
+			var districtavg = $("#districtavg").text();
+			console.log("GET select_year=" + select_year)
+			$.ajax({
+				url : "<c:url value='/ShowYear.do'/>",
+				type : "GET",
+				data : {
+					select_year : select_year,
+					districtavg : districtavg,
+				},
+				dataType : "json",
+				success : 
+					function(data) {
+					$("#table1 tbody").empty();
+					for (n = 0; n < data.length; n++) {
+						var details = "<tr role='row'><td style='display: none'>"+data[n].id+"</td><td id='selecteddis'>"+data[n].district+"</td><td>"+data[n].location+"</td><td>"+data[n].tprice_s+"</td><td>"+data[n].uprice_p+"</td><td>"+data[n].farea_p+"</td><td>"+data[n].landa_p+"</td><td style='display: none'>"+data[n].sdate+"</td></tr>"
+						$("#table1 tbody").append(
+								details
+						);
+					}
+					$('#table1').DataTable();
+				},
+				
+				error : function() {
+					console.log("呼叫失敗！！");
+				}
+			})
+		}
+	</script>
+
+	<script>
 		function showhousedetail(id) {
 			$.ajax({
 				url : "<c:url value='/HouseDetail.do'/>",
@@ -237,31 +268,32 @@
 				dataType : "json",
 				success : function(data) {
 					$.each(data, function(index, element) {
-						$("#light2").empty().append($('<p>', {
-							text : "區域：" + element.district
-						}), $('<p>', {
-							text : "位置：" + element.location
-						}), $('<p>', {
-							text : "地坪：" + element.landa_p
-						}), $('<p>', {
-							text : "交易日期：" + element.sdate
-						}), $('<p>', {
-							text : "移轉樓層：" + element.sbuild
-						}), $('<p>', {
-							text : "總樓層：" + element.tbuild
-						}), $('<p>', {
-							text : "建築型態：" + element.buildtype
-						}), $('<p>', {
-							text : "建築完成日期：" + element.fdate
-						}), $('<p>', {
-							text : "建坪：" + element.farea_p
-						}), $('<p>', {
-							text : "總價（萬）：" + element.tprice_s
-						}), $('<p>', {
-							text : "單價（萬）：" + element.uprice_p
-						}), $('<p>', {
-							text : "備註：" + element.rmnote
-						}));
+						$("#light2").empty().append(
+								$('<p id="321">')
+										.html("區域：" + element.district),
+								$('<p>', {
+									text : "位置：" + element.location
+								}), $('<p>', {
+									text : "地坪：" + element.landa_p
+								}), $('<p>', {
+									text : "交易日期：" + element.sdate
+								}), $('<p>', {
+									text : "移轉樓層：" + element.sbuild
+								}), $('<p>', {
+									text : "總樓層：" + element.tbuild
+								}), $('<p>', {
+									text : "建築型態：" + element.buildtype
+								}), $('<p>', {
+									text : "建築完成日期：" + element.fdate
+								}), $('<p>', {
+									text : "建坪：" + element.farea_p
+								}), $('<p>', {
+									text : "總價（萬）：" + element.tprice_s
+								}), $('<p>', {
+									text : "單價（萬）：" + element.uprice_p
+								}), $('<p>', {
+									text : "備註：" + element.rmnote
+								}));
 						var loc = element.location;
 						map(loc);
 					});
@@ -272,6 +304,7 @@
 			})
 		}
 	</script>
+
 
 	<script src="<c:url value='/js/aos.js' />"></script>
 	<script src="<c:url value='/js/circleaudioplayer.js' />"></script>

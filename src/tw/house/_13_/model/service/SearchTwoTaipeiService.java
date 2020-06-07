@@ -22,12 +22,6 @@ public class SearchTwoTaipeiService implements ISearchTwoTaipeiService {
 	public List<TwoTaipei> selectTaipeiDistrict(String district) {
 		return sTTDao.selectTaipeiDistrict(district);
 	}
-//
-//	@Override
-//	public List<NewTaipei> selectNewTaipeiDistrict(String district) {
-//		return sTTDao.selectNewTaipeiDistrict(district);
-//	}
-
 
 }
 

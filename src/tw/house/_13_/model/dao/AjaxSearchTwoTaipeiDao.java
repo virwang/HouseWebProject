@@ -34,7 +34,6 @@ public class AjaxSearchTwoTaipeiDao implements AjaxISearchTwoTaipei {
 		String sql ="select * from TwoTaipei where sdate like :select_year and district= :districtavg and location like :searchword ";
 		tlen= (List<TwoTaipei>) session.createNativeQuery(sql).addEntity(TwoTaipei.class).setParameter("select_year",sdate+"%").setParameter("districtavg",district)
 				.setParameter("searchword","%"+location+"%").list();
-		System.out.println("DAOtlen="+tlen);
 		return tlen;
 	}
 
@@ -43,6 +42,14 @@ public class AjaxSearchTwoTaipeiDao implements AjaxISearchTwoTaipei {
 		Session session = factory.getCurrentSession();
 		Query<TwoTaipei> query = session.createQuery("from TwoTaipei where id= :id", TwoTaipei.class);
 		List<TwoTaipei> tlist = query.setParameter("id", id).list();
+		return tlist;
+	}
+
+	@Override
+	public List<TwoTaipei> ShowSearchTwoTaipeiPageYear(String district, String sdate) {
+		Session session = factory.getCurrentSession();
+		Query<TwoTaipei> query = session.createQuery("from TwoTaipei where sdate like :select_year and district= :districtavg", TwoTaipei.class);
+		List<TwoTaipei> tlist = query.setParameter("select_year", sdate+"%").setParameter("districtavg",district).list();
 		return tlist;
 	}
 	

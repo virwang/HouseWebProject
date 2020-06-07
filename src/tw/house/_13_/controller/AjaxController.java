@@ -3,10 +3,13 @@ package tw.house._13_.controller;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,31 +34,26 @@ public class AjaxController {
 	public @ResponseBody String TotalBought(Model m, @RequestParam("districtavg") String district,
 			@RequestParam(value = "select_year", required = false) String sdate,
 			@RequestParam(value = "searchword", required = false) String location) {
-		System.out.println("抓到了：" + district + "／" + sdate + "／" + location);
 
 		Map<String, String> result = new HashMap<>();
 		List<TwoTaipei> tlist = asttservice.SearchTwoTaipeiYear(district, sdate, location);
 		int listSize = tlist.size();
-		System.out.println("listSize=" + listSize);
 
 		float uPrice = 0;
 		for (int i = 0; i < tlist.size(); i++) {
 			uPrice += tlist.get(i).getUprice_p();
 		}
 		String strListSize = String.valueOf(listSize);
-		System.out.println("strListSize=" + strListSize);
 
 		float xx = uPrice / listSize;
 		DecimalFormat df = new DecimalFormat("##.00");
 		xx = Float.parseFloat(df.format(xx));
 		String avgUprice = String.valueOf(xx);
-		System.out.println("avgUprice=" + avgUprice);
 
 		result.put("TwoTaipeiListSize", strListSize);
 		result.put("TwoTaipeiListAvgUprice", avgUprice);
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(result);
-		System.out.println("json=" + json);
 
 		return json;
 	}
@@ -64,19 +62,37 @@ public class AjaxController {
 	public @ResponseBody String HouseDetail(Model m, @RequestParam("id") Integer id) {
 
 		List<TwoTaipei> tlist = asttservice.selectTwoTaipeiID(id);
-//		System.out.println("tlist=" + tlist);
-//		tlist = new ArrayList<TwoTaipei>();
 		Iterator<TwoTaipei> iterator = tlist.iterator();
 		while (iterator.hasNext()) {
-			System.out.println("iterator.next()="+iterator.next());
+			System.out.println("iterator.next()=" + iterator.next());
 		}
-					
+
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(tlist);
-		System.out.println("json=" + json);
-				
-		
+
 		return json;
+	}
+
+	@RequestMapping(path = "/ShowYear.do", method = RequestMethod.GET,produces = {"application/json"})
+	public ResponseEntity<List<TwoTaipei>> ShowSearchTwoTaipeiPageYear(Model m,@RequestParam("districtavg") String district, @RequestParam("select_year") String sdate) {
+
+		System.out.println("get data=" + sdate);
+
+		List<TwoTaipei> tlist = asttservice.ShowSearchTwoTaipeiPageYear(sdate,district);
+//		Iterator<TwoTaipei> iterator = tlist.iterator();
+//
+//		while (iterator.hasNext()) {
+//			System.out.println("iterator.next()=" + iterator.next());
+//		}
+//
+//		Gson gson = new GsonBuilder().create();
+//		String json = gson.toJson(tlist);
+//		Map<String, Object> map = new LinkedHashMap<>();
+//		map.put("data",tlist);
+		ResponseEntity<List<TwoTaipei>> re = new ResponseEntity<>(tlist,HttpStatus.OK);
+		
+		
+		return re;
 	}
 
 }

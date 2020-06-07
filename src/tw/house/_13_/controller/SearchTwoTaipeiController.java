@@ -37,13 +37,4 @@ public class SearchTwoTaipeiController {
 		return"view-list-searchTwoTaipeiTest";
 	}
 	
-//	@RequestMapping(path = "/ShowSearchTaipeiPage.do", method = RequestMethod.POST)
-//	public String ShowSearchTwoTaipeiPage(Model m, @RequestParam("selectcity") String district) {
-//		List<Taipei> tlist = sttservice.selectTaipeiDistrict(district);
-//		m.addAttribute("TwoTaipeiList", tlist);
-//		return "view-list-searchTaipei";
-//	}
-	
-
-
 }

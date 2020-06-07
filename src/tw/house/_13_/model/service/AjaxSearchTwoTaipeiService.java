@@ -30,11 +30,10 @@ public class AjaxSearchTwoTaipeiService implements AjaxISearchTwoTaipeiService {
 		return aSTTDao.selectTwoTaipeiID(id);
 	}
 
-//	@Override
-//	public Float selectTwoTaipeiDistrict(String district, String sdate, String location) {
-//		return aSTTDao.selectTwoTaipeiDistrict(district,sdate,location);
-//	}
-
+	@Override
+	public List<TwoTaipei> ShowSearchTwoTaipeiPageYear(String district, String sdate) {
+		return aSTTDao.ShowSearchTwoTaipeiPageYear(sdate,district);
+	}
 
 }
 
