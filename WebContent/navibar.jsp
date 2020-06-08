@@ -45,7 +45,7 @@
                         <li><a href="<c:url value='SearchTaipeiAction.do'/>">實價登錄</a></li>
                         <li><a href="<c:url value='comapre'/>">比價</a></li>
                         <li class="has-children">
-                        	<a href="<c:url value='allLender'/>">房貸專員</a>s
+                        	<a href="<c:url value='allLender'/>">房貸專員</a>
                         	<ul class="dropdown arrow">
                         		<li><a href="<c:url value='lend'/>">房貸評測</a></li>
                         	</ul>

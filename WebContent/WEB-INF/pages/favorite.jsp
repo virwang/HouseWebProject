@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,7 +134,7 @@
 														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">上架日期<i
 														class='fas fa-arrows-alt-v' id="compare"></i></th>
 													<th class="text-center"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">刪除</th>
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"></th>
 												</tr>
 											</thead>
 											<tbody id="tr1">
@@ -147,7 +147,7 @@
 																alt="Image" class="img-fluid">
 														</a></td>
 														<c:set var="string1" value="${favorite.houseBean.title}" />
-														<c:set var="string2" value="${fn:substring(string1,0,3)}" />
+														<c:set var="string2" value="${fn:substring(string1,0,8)}" />
 														<td class="pt-3-half"><a
 															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
 														<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
@@ -155,7 +155,9 @@
 														<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
 														<td class="pt-3-half">${favorite.houseBean.ping}</td>
 														<td class="pt-3-half">${favorite.houseBean.mrtBean.stationname}</td>
-														<td class="pt-3-half"><fmt:formatDate value="${favorite.houseBean.addDate}" pattern="yyyy/MM/dd"/></td>
+														<td class="pt-3-half"><fmt:formatDate
+																value="${favorite.houseBean.addDate}"
+																pattern="yyyy/MM/dd" /></td>
 														<td class="pt-3-half">
 															<button class="btn de"
 																style="font-family: Microsoft JhengHei; padding: 2px 2px white; background-color: transparent;"
@@ -169,7 +171,16 @@
 												</c:forEach>
 											</tbody>
 										</table>
-										<p id="count" style="text-align: left;"></p>
+										<div class="col-md-12 text-center" style="text-align: right;">
+											<div class="row mt-5">
+												<p id="count" style="text-align: right;"></p>
+												<div class="site-pagination" id="paginate">
+
+													<a href="#" class="active">1</a> <a href="#">2</a> <span>...</span>
+													<a href="#">5</a>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -181,77 +192,16 @@
 	</div>
 
 	<jsp:include page="/footer.jsp" />
-	<!-- 	<script src="js/popper.min.js"></script> -->
-	<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script> -->
 
-	<!-- <!-- 	<script> -->
-
-	<!-- // 		; -->
-	<!-- // 		(function() { -->
-	<!-- // 			var tbody = document.querySelector('#ctable').tBodies[0]; -->
-	<!-- // 			var th = document.querySelector('#ctable').tHead.rows[0].cells; -->
-	<!-- // 			var td = tbody.rows; -->
-	<!-- // 			for (var i = 0; i < th.length; i) { -->
-	<!-- // 				th[i].flag = 1; -->
-	<!-- // 				document.getElementById("compare").onclick = function() { -->
-	<!-- // 					sort(this.getAttribute('data-type'), this.flag, -->
-	<!-- // 							this.cellIndex); -->
-	<!-- // 					this.flag = -this.flag; -->
-	<!-- // 				}; -->
-	<!-- // 			} -->
-	<!-- // 			; -->
-	<!-- // 			//save in DOM -->
-	<!-- // 			function sort(string, flag, n) { -->
-	<!-- // 				var arr = []; -->
-	<!-- // 				for (var i = 0; i < td.length; i++) { -->
-	<!-- // 					arr.push(td[i]); -->
-	<!-- // 				} -->
-	<!-- // 				; -->
-	<!-- // 				//排序 -->
-	<!-- // 				arr.sort(function(a, b) { -->
-	<!-- // 					return method(string, a.cells[n].innerHTML, -->
-	<!-- // 							b.cells[n].innerHTML) -->
-	<!-- // 							* flag; -->
-
-	<!-- // 				}); -->
-	<!-- // 				//新增 -->
-	<!-- // 				for (var i = 0; i < arr.length; i++) { -->
-	<!-- // 					tbody.appendChild(arr[i]); -->
-	<!-- // 				} -->
-	<!-- // 				; -->
-	<!-- // 				// 			tbody.appendChild(arr[i]); -->
-	<!-- // 			} -->
-	<!-- // 			; -->
-	<!-- // 			//排序方法 -->
-	<!-- // 			function method(str, a, b) { -->
-	<!-- // 				switch (str) { -->
-	<!-- // 				//數字排序 -->
-	<!-- // 				case 'num': -->
-	<!-- // 					return a - b; -->
-	<!-- // 					break; -->
-	<!-- // 				//字串排序 -->
-	<!-- // 				case 'string': -->
-	<!-- // 					return a.localeCompare(b); -->
-	<!-- // 					break; -->
-	<!-- // 				default: //日期排序，IE8下'2012-12-12'這種格式無法設定時間，替換成'/' -->
-	<!-- // 					return new Date(a.split('-').join('/')) -->
-	<!-- // 							- new Date(b.split('-').join('/')); -->
-	<!-- // 				} -->
-	<!-- // 				; -->
-	<!-- // 			} -->
-	<!-- // 			; -->
-	<!-- 		})(); -->
-	<!-- 	</script> -->
-	
 	<script src="js/mediaelement-and-player.min.js"></script>
 	<script src="js/jquery-3.4.1.js"></script>
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
-	<!-- 	<script src="js/tablesort.js"></script> -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
-	<!-- 	<script src="https://raw.githubusercontent.com/ascii-soup/Tablesorter-Static-Row-Plugin/master/jquery.tablesorter.staticrow.js"></script> -->
+	<script src="favoritepage.js"></script>
+	
 	<script>
 		$(".de").click(function() {
 			var id = this.value;
@@ -266,15 +216,10 @@
 				},
 				dataType : 'text',
 				success : function(res) {
-					//         console.log('a1'+res);
-					//         console.log('a2'+res.val());
-					//         console.log('a3'+res[0]);
-					//         console.log('a4'+res[0].val());
-					//     	alert('ajax back '+res);
 					if (res == 'deOK') {
 						//         	$('#tr1').empty();
 						console.log(this);
-						// 						console.log('ftr' + id);
+
 						console.log($('#ftr' + id));
 						$('#ftr' + id).remove();
 						alert("刪除資料");
@@ -300,35 +245,30 @@
 		console.log(rows - 1);
 		document.getElementById("count").innerHTML = str;
 	</script>
-	<script>	
-	$("#ctable").tablesorter({
-// 		console.log("hi, here")
-		theme: 'blue',
-		widgets: ['zebra', 'staticRow']
-  	
-	})
-	ts.addParser({
- 		id:"onmktdate",
- 		is: function(s) {
- 			return/d{1,4}-d{1,2}-d{1,2} d{1,2}:d{1,2}:d{1,2}.d+/.test(s);
- 		 },
- 		format: function(s) {
- 		 s = s.replace(/-/g,"");
-//  		 s = s.replace(/:/g,"");
-//  		 s = s.replace(/./g,"");
- 		 	s = s.split("");
- 		 return $.tablesorter.formatFloat(new Date(s[0], s[1]-1, s[2], s[3], s[4], s[5]).getTime()+parseInt(s[6]));
- 		 },
- 		 type:"numeric"
- 		});
-// 	$(function() {
-// 		 $("#ctable").tablesorter({
-// 		 headers: {
-// 		 7: { sorter:'onmktdate' }
-// 		 }
-// 		 });
- 	</script>
+	<script>
+		$("#ctable").tablesorter({
+			// 		console.log("hi, here")
+			theme : 'blue',
+			widgets : [ 'zebra', 'staticRow' ]
 
+		})
+	</script>
+	<script>
+		new myPagination({
+			id : 'paginate',
+			curPage : 1, //初始页码
+			pageTotal : 50, //总页数
+			pageAmount : 10, //每页多少条
+			dataTotal : 10, //总共多少条数据
+			pageSize : 5, //可选,分页个数
+			showPageTotalFlag : true, //是否显示数据统计
+			showSkipInputFlag : true, //是否支持跳转
+			getPage : function(page) {
+				// 点击分页按钮请求数据
+				getData(page);
+			}
+		})
+	</script>
 
 </body>
 </html>
