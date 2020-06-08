@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="css/05_css/table.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.5/css/theme.blue.min.css" />
-
+<link rel="stylesheet" href="css/05_css/pagestyle.css">
 <style>
 #ctable {
 	moz-user-select: -moz-none;
@@ -173,12 +173,8 @@
 										</table>
 										<div class="col-md-12 text-center" style="text-align: right;">
 											<div class="row mt-5">
-												<p id="count" style="text-align: right;"></p>
-												<div class="site-pagination" id="paginate">
-
-													<a href="#" class="active">1</a> <a href="#">2</a> <span>...</span>
-													<a href="#">5</a>
-												</div>
+												<p id="count" style="text-align: left;"></p>
+												<div id="pagelist" class="data-container"></div>
 											</div>
 										</div>
 									</div>
@@ -192,7 +188,6 @@
 	</div>
 
 	<jsp:include page="/footer.jsp" />
-
 	<script src="js/mediaelement-and-player.min.js"></script>
 	<script src="js/jquery-3.4.1.js"></script>
 	<script src="js/bootstrap-datepicker.min.js"></script>
@@ -200,8 +195,10 @@
 	<script src="js/main.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
-	<script src="favoritepage.js"></script>
-	
+	<script src="../../css/05_css/js/pagination.js"></script>
+	<script src="../../css/05_css/js/pagination.min.js"></script>
+	<script src="../../css/05_css/js/page.js"></script>
+
 	<script>
 		$(".de").click(function() {
 			var id = this.value;
@@ -254,20 +251,69 @@
 		})
 	</script>
 	<script>
-		new myPagination({
-			id : 'paginate',
-			curPage : 1, //初始页码
-			pageTotal : 50, //总页数
-			pageAmount : 10, //每页多少条
-			dataTotal : 10, //总共多少条数据
-			pageSize : 5, //可选,分页个数
-			showPageTotalFlag : true, //是否显示数据统计
-			showSkipInputFlag : true, //是否支持跳转
-			getPage : function(page) {
-				// 点击分页按钮请求数据
-				getData(page);
-			}
-		})
+	var pageSize =10;
+    GetData(1);
+    function GetData(index) {
+        var hid_p_i = $("#hid_y").val();
+        if (parseInt(hid_p_i) > 0) {
+            if (parseInt(hid_p_i) == 1) {
+                pageSize =20;
+            }
+            else if (parseInt(hid_p_i) == 2) {
+                pageSize =30;
+            }
+        }
+        else {
+            pageSize = 10;
+        }
+        var str_ky_time = "pageCount.currentPage="+index+"&pageCount.showCount="+pageSize+"";
+            ajax_post("", str_ky_time, "get", "text",function get_data(data) {
+            var obj_d = eval("(" + data + ")");
+ 
+ 
+        var total_num = obj_list.totalResult;//总个数
+ 
+            if (obj_d.success) {
+                if (obj_list.rows.length > 0) {
+                    var obj_rows = obj_list.rows;
+                    var html = "";
+ 
+                    $.each(obj_rows, function (i) {
+                        var createTime_str = obj_rows[i].createTime;
+                        var inputNum_str = obj_rows[i].enterNum;
+                        var potentialNum_str = obj_rows[i].potentialNum;
+                        var totalNum_str = obj_rows[i].totalNum;
+                        var proportion_str = obj_rows[i].proportion;
+                        
+                        html += "<li>";
+                        html += "<span class='date'>" + createTime_str + "</span>";
+                        html += "<span class='total'>" + totalNum_str + "</span>";
+                        html += "<span class='qk_num'>" + potentialNum_str + "</span>";
+                        html += "<span class='rz_num'>" + inputNum_str + "</span>";
+                        html += "<span class='bl'>" + proportion_str + "%</span>";
+                        html += "</li>";
+                       
+                    });
+ 
+                    $(".js_klqs #kl_list").html(html);//此处不用append的原因是点击下一页会出现闪现的效果
+ 
+                    if (index == 1) {
+                        initPagination(total_num, pageSize); //分页-只初始化一次  
+                    }
+                }
+            }
+            SetHeight();
+        });
+    }
+    function initPagination(count, pagesize) {
+        $('.js_klqs .pagelist').pagination({
+            totalData: count,
+            showData: pagesize,
+            callback: function (api) {
+                GetData(api.getCurrent());
+            }
+        });
+    }
 	</script>
 
 </body>
