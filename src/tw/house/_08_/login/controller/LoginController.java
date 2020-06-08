@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.house._08_.login.model.MemberLoginService;
-import tw.house._08_.mail.model.MailService;
+//import tw.house._08_.mail.model.MailService;
 import tw.house._08_.register.model.MemberBean;
 
 
@@ -26,8 +26,8 @@ import tw.house._08_.register.model.MemberBean;
 public class LoginController {
 	@Autowired
 	private MemberLoginService loginService;
-	@Autowired
-	private MailService mailService;
+//	@Autowired
+//	private MailService mailService;
 	@GetMapping(path = "/login")
 	public String turntologin() {
 		return "_08_login";
@@ -83,7 +83,7 @@ public class LoginController {
 		Map<String, String>map=new LinkedHashMap<String, String>();
 		MemberBean check=loginService.checkAccEmail(account, email);		
 		if(check!=null) {
-			mailService.sendSimpleMessage(email, "重設密碼","你以為會給你改密碼嗎");
+//			mailService.sendSimpleMessage(email, "重設密碼","你以為會給你改密碼嗎");
 			map.put("status", "已寄出驗證信");
 			ResponseEntity<Map<String, String>> re=new ResponseEntity<Map<String,String>>(map,HttpStatus.OK);
 			return re;

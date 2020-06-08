@@ -96,12 +96,12 @@ public class FavoriteDao implements IFavoritedao {
 
 	private FavoriteBean favoriteExist(HouseBean houseBean, MemberBean memberBean) {
 		System.out.println("intofavexit");
-
+ 
 		String hql = "FROM FavoriteBean WHERE memberBean.pk =:pk and houseBean.id =:id";
-
 		Query<FavoriteBean> query = getSession().createQuery(hql, FavoriteBean.class);
 		query.setParameter("id", houseBean.getId());
 		query.setParameter("pk", memberBean.getPk());
+	
 		FavoriteBean fb = new FavoriteBean();
 		fb = query.uniqueResult();
 		return fb;
@@ -130,7 +130,7 @@ public class FavoriteDao implements IFavoritedao {
 	// compare house with two taipei tpirce，by district using like
 	public List<FavoriteBean> compare(TwoTaipei taiepi, HouseBean houseBean, MemberBean memberBean) {
 		System.out.println("into compare twotaipei");
-		Query<FavoriteBean> list = getSession().createQuery("from houseBean where id=:id, and taipei.id =:id ");
+		Query<FavoriteBean> list = getSession().createQuery("from houseBean where id=:id, and taipei.id =:id");
 		list.setParameter("id", taiepi.getId());
 		list.setParameter("id", houseBean.getId());
 		list.setParameter("pk", memberBean.getPk());

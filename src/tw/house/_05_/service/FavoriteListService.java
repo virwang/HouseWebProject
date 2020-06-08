@@ -11,6 +11,7 @@ import tw.house._05_.dao.IFavoritedao;
 import tw.house._05_.model.FavoriteBean;
 import tw.house._07_.model.HouseBean;
 import tw.house._08_.register.model.MemberBean;
+import tw.house._13_.model.bean.TwoTaipei;
 
 //@Transactional
 @Service

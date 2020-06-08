@@ -25,7 +25,7 @@ public class Lender {
 	private String easing;
 	private String star;
 	private MemberBean memberBean;
-	private BankBean bankTest;
+	private BankTest bankTest;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="pkNo")
 	public MemberBean getMemberBean() {
@@ -34,10 +34,10 @@ public class Lender {
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "bankId")
-	public BankBean getBankTest() {
+	public BankTest getBankTest() {
 		return bankTest;
 	}
-	public void setBankTest(BankBean bankTest) {
+	public void setBankTest(BankTest bankTest) {
 		this.bankTest = bankTest;
 	}
 
@@ -58,7 +58,7 @@ public class Lender {
 	public Lender() {
 	}	
 	public Lender(Integer pkId, String moneyType, String easing, String star, MemberBean memberBean,
-			BankBean bankTest) {
+			BankTest bankTest) {
 		super();
 		this.pkId = pkId;
 		this.moneyType = moneyType;

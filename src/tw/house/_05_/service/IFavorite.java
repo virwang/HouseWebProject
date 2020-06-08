@@ -5,6 +5,7 @@ import java.util.List;
 import tw.house._05_.model.FavoriteBean;
 import tw.house._07_.model.HouseBean;
 import tw.house._08_.register.model.MemberBean;
+import tw.house._13_.model.bean.TwoTaipei;
 
 public interface IFavorite {
 

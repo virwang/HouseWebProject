@@ -25,6 +25,8 @@ import tw.house._07_.model.HouseService;
 import tw.house._07_.model.MrtService;
 import tw.house._08_.register.model.MemberBean;
 import tw.house._08_.register.model.MemberService;
+import tw.house._13_.model.bean.TwoTaipei;
+import tw.house._13_.model.dao.ISearchTwoTaipei;
 
 @Controller
 public class FavoriteController {

@@ -2,6 +2,7 @@ package tw.house._07_.model;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -210,8 +211,8 @@ public class HouseBean {
 		return addDate;
 	}
 
-	public void setAddDate(Timestamp addDate) {
-		this.addDate = addDate;
+	public void setAddDate(Timestamp adddate) {
+		this.addDate = adddate;
 	}
 
 	public void setBath(Integer bath) {

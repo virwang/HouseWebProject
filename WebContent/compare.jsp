@@ -55,7 +55,7 @@
 						role="tabpanel" aria-labelledby="nav-home-tab">
 						<div class="card">
 							<h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-								房屋售價與實價登錄比較
+								房屋比較
 							</h3>
 							<div class="card-body" >								
 								<button id="compare" style="float:right;top:50%;font-size:24px; font-family: Microsoft JhengHei;border-radius:10px; background-color:#956FB3;color:white;width:20px 10px;"onclick="javascript:location.href='houselist'">比較<i class="material-icons"></i></button>

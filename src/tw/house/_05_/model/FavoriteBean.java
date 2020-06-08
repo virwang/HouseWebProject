@@ -24,7 +24,7 @@ public class FavoriteBean {
 	private Integer houseId;
 	private MemberBean memberBean;
 	private HouseBean houseBean;
-	private TwoTaipei taipei;
+
 
 	public FavoriteBean() {
 
@@ -58,16 +58,6 @@ public class FavoriteBean {
 //	@Column(name = "houseid")
 	public Integer getHouseId() {
 		return houseId;
-	}
-
-	@OneToOne
-	@JoinColumn(name = "tid")
-	public TwoTaipei getTaipei() {
-		return taipei;
-	}
-
-	public void setTaipei(TwoTaipei taipei) {
-		this.taipei = taipei;
 	}
 
 	public void setAccountId(Integer accountId) {
