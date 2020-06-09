@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import jnr.ffi.Struct.int16_t;
 import tw.house._05_.dao.CompareDao;
 import tw.house._07_.model.HouseBean;
 
@@ -13,8 +14,10 @@ import tw.house._07_.model.HouseBean;
 @EnableTransactionManagement
 public class SCompare  {
 
+	
 	@Autowired
 	private CompareDao cDao;
+	public Object saveCompare;
 
 	public List<HouseBean> compareList
 	(HouseBean houseBean) {			
@@ -28,4 +31,9 @@ public class SCompare  {
 		return cDao.deleteCompare(cpk);
 	}
 
+	public int saveCompare(HouseBean houseBean) {
+		
+		System.out.println("save compare house by integer id"+houseBean.getTitle());
+		return cDao.saveCompare(houseBean);
+	} 
 }

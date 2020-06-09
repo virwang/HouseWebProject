@@ -43,17 +43,18 @@ public class Comparecontroller {
 	}
 	//儲存比價物件
 	@GetMapping(value = "/houselist.ac" ,produces = "application/json")
-	public ResponseEntity <List<HouseBean>> save(@RequestParam("houseId") HouseBean houseBean
+	public ResponseEntity <List<HouseBean>> save(@RequestParam("houseId") Integer id
 			) {
 		System.out.println("進入con");
-		System.out.println("houseId="+houseBean.getCity());
-		Map<String, String> map = new HashMap<>();
-		ResponseEntity<Map<String, String>> re = null;
-		int n = 0;
-		HouseBean houseBean = houseService.selectedHouse(houseBean);
-		System.out.println("houseBean 抓取成功"+houseBean.getId());
+		System.out.println("houseId="+id);
+		List<HouseBean> hlistBeans = new List<HouseBean>() {
+		};
 	
-			n = houseService.saveCompare(compareHouse(houseBean,getClass()));
+		ResponseEntity<List<HouseBean>> re = null;
+		int n = 0;
+		HouseBean houseBean = houseService.selectedHouse(id);
+		System.out.println("houseBean 抓取成功"+houseBean.getId());	
+			n = scompare.saveCompare(houseBean);
 			System.out.println("after="+n);
 			if (n == 1) {
 				map.put("success", "成功");
@@ -69,7 +70,7 @@ public class Comparecontroller {
 	@ResponseBody
 	@PostMapping(path = "/deletecompare",produces = "application/json")
 	public String deleteCompare(@RequestParam("deletecpk") Integer cpk) {
-		boolean delete = scompare.deleteComapre(cpk);
+		boolean delete = scompare.deleteCompare(cpk);
 		System.out.println(delete+"dao before delete cpk = "+cpk);	
 		if (delete) {
 			System.out.println("delete success cpk ="+cpk);
