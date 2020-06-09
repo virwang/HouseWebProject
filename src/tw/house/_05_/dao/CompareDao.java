@@ -18,9 +18,11 @@ public class CompareDao {
 		return factory.getCurrentSession();
 	}
 	
-	public List<HouseBean> houseBean = new ArrayList<HouseBean>() {
+	public List<HouseBean> Compare( String title, String city, String totalprice, String unitprice, String ping, String dist, String address, String phone,
+			String apartment, Integer accountid, Integer mrtpk, Integer room, Integer hall, Integer bath) {
 		
 		String listHouse = "from*Housebean";
+		return null;
 	
 	};
 	

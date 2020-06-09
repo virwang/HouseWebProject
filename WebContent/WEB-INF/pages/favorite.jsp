@@ -32,7 +32,11 @@
 <link rel="stylesheet" href="css/05_css/table.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.5/css/theme.blue.min.css" />
-<link rel="stylesheet" href="css/05_css/pagestyle.css">
+<link rel="stylesheet" href="../../css/05_css/jquery.dataTables.min.css">
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/05_css/style05.css"></link>
+
 <style>
 #ctable {
 	moz-user-select: -moz-none;
@@ -87,97 +91,118 @@
 						<div class="card">
 							<h3
 								class="card-header text-center font-weight-bold text-uppercase py-4">
-								<a style="color: #A52A2A;">${memberBean.name}</a>的收藏
+								<a style="color: #A52A2A;"
+									href="<c:url value='showMemberData?=${favorite.memberBean.pk}'/>">${memberBean.name}</a>的收藏
 							</h3>
 							<div class="card-body">
-								<a type="button" class="button"
-									onclick="javascript:location.href='houselist'"
-									style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
-								<form class="example" style="float: right;">
-									<input type="text" id="input" placeholder="Search.."
-										name="search">
-									<button type="submit">
-										<i class="fa fa-search"></i>
-									</button>
-								</form>
-								<div id="fhouse">
-									<div id="table">
-										<span class="table-add float-right mb-3 mr-2"> <a
-											href="#!" class="text-success"> </a>
-										</span>
-										<table style="text-align: center"
-											class="table table-striped table-bordered" id="ctable">
-											<thead id="fth">
-												<tr>
-													<th
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">照片</th>
-													<th class="text-center"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">標題<i
-														class='fas fa-arrows-alt-v' id="compare"></i></th>
-													<th class="text-center"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">市/區<i
-														class='fas fa-arrows-alt-v' id="compare"></i></th>
-													<th class="text-center"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">位置<i
-														class='fas fa-arrows-alt-v' id="compare"></i></th>
-													<th class="text-center"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"
-														data-type="num">總價<i class='fas fa-arrows-alt-v'
-														id="compare"></i></th>
-													<th class="text-center"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">坪數<i
-														class='fas fa-arrows-alt-v' id="compare"></i></th>
-													<th class="text-center"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">捷運<i
-														class='fas fa-arrows-alt-v' id="compare"></i></th>
-													<th class="text-center" id="onmktdate"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">上架日期<i
-														class='fas fa-arrows-alt-v' id="compare"></i></th>
-													<th class="text-center"
-														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"></th>
-												</tr>
-											</thead>
-											<tbody id="tr1">
-												<c:forEach var='favorite' items='${fh}' varStatus='vs'>
-													<tr id="ftr${favorite.fid}">
-														<td class="pt-3-half"><a
-															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">
-																<img
-																src="data:image/jpeg;base64,${favorite.houseBean.base64image1}"
-																alt="Image" class="img-fluid">
-														</a></td>
-														<c:set var="string1" value="${favorite.houseBean.title}" />
-														<c:set var="string2" value="${fn:substring(string1,0,8)}" />
-														<td class="pt-3-half"><a
-															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
-														<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
-														<td class="pt-3-half">${favorite.houseBean.address}</td>
-														<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
-														<td class="pt-3-half">${favorite.houseBean.ping}</td>
-														<td class="pt-3-half">${favorite.houseBean.mrtBean.stationname}</td>
-														<td class="pt-3-half"><fmt:formatDate
-																value="${favorite.houseBean.addDate}"
-																pattern="yyyy/MM/dd" /></td>
-														<td class="pt-3-half">
-															<button class="btn de"
-																style="font-family: Microsoft JhengHei; padding: 2px 2px white; background-color: transparent;"
-																id="fv${favorite.fid}" value="${favorite.fid}">
-																<i class="fa fa-trash"
-																	style="color: #DC143C; border: 5px color:white; padding: 10px color:white; margin: 10px 10px color:white; background-color: white"></i>
-															</button>
-														</td>
+								<div class="form-group">
+									<a type="button" class="button"
+										onclick="javascript:location.href='houselist'"
+										style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
+									<!--		Show Numbers Of Rows 		-->
+									<select class="form-control" name="state" id="maxRows"
+										style="width: 25%; float: right; margin-top: 2px;">
+										<option value="100">顯示全部</option>
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15">15</option>
+									</select>
+								</div>
+							</div>
 
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<div class="col-md-12 text-center" style="text-align: right;">
-											<div class="row mt-5">
+
+							<div id="fhouse">
+								<div id="table">
+									<span class="table-add float-right mb-3 mr-2"> <a
+										href="#!" class="text-success"> </a>
+									</span>
+
+									<table style="text-align: center"
+										class="table table-striped table-bordered" id="ctable">
+										<thead id="fth">
+											<tr>
+												<th
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">照片</th>
+												<th class="text-center"
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">標題<i
+													class='fas fa-arrows-alt-v' id="compare"></i></th>
+												<th class="text-center"
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">市/區<i
+													class='fas fa-arrows-alt-v' id="compare"></i></th>
+												<th class="text-center"
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">位置<i
+													class='fas fa-arrows-alt-v' id="compare"></i></th>
+												<th class="text-center"
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"
+													data-type="num">總價<i class='fas fa-arrows-alt-v'
+													id="compare"></i></th>
+												<th class="text-center"
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">坪數<i
+													class='fas fa-arrows-alt-v' id="compare"></i></th>
+												<th class="text-center"
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">捷運<i
+													class='fas fa-arrows-alt-v' id="compare"></i></th>
+												<th class="text-center" id="onmktdate"
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">上架日期<i
+													class='fas fa-arrows-alt-v' id="compare"></i></th>
+												<th class="text-center"
+													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"></th>
+											</tr>
+										</thead>
+										<tbody id="tr1">
+											<c:forEach var='favorite' items='${fh}' varStatus='vs'>
+												<tr id="ftr${favorite.fid}">
+													<td class="pt-3-half"><a
+														href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">
+															<img
+															src="data:image/jpeg;base64,${favorite.houseBean.base64image1}"
+															alt="Image" class="img-fluid">
+													</a></td>
+													<c:set var="string1" value="${favorite.houseBean.title}" />
+													<c:set var="string2" value="${fn:substring(string1,0,9)}" />
+													<td class="pt-3-half"><a
+														href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
+													<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
+													<td class="pt-3-half">${favorite.houseBean.address}</td>
+													<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
+													<td class="pt-3-half">${favorite.houseBean.ping}</td>
+													<td class="pt-3-half">${favorite.houseBean.mrtBean.stationname}</td>
+													<td class="pt-3-half"><fmt:formatDate
+															value="${favorite.houseBean.addDate}"
+															pattern="yyyy/MM/dd" /></td>
+													<td class="pt-3-half">
+														<button class="btn de"
+															style="font-family: Microsoft JhengHei; padding: 10px 10px white; background-color: transparent;"
+															id="fv${favorite.fid}" value="${favorite.fid}">
+															<i class="fa fa-trash"
+																style="color: #DC143C; border: 20px color:white; padding: 20px color:white; margin: 20px 20px color:white; background-color: transparent;"></i>
+														</button>
+													</td>
+
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<div class="col-md-12 text-center" style="text-align: right;">
+										<div class="row mt-5">
+											<div class="col-md-12 text-center">
 												<p id="count" style="text-align: left;"></p>
-												<div id="pagelist" class="data-container"></div>
+												<div class='pagination-container'>
+													<nav>
+														<ul class="pagination">
+															<li data-page="prev"><span> < <span
+																	class="sr-only">(current)</span></span></li>
+
+															<li data-page="next" id="prev"><span> > <span
+																	class="sr-only">(current)</span></span></li>
+														</ul>
+													</nav>
+												</div>
+
 											</div>
 										</div>
 									</div>
+
 								</div>
 							</div>
 						</div>
@@ -187,6 +212,8 @@
 		</div>
 	</div>
 
+
+
 	<jsp:include page="/footer.jsp" />
 	<script src="js/mediaelement-and-player.min.js"></script>
 	<script src="js/jquery-3.4.1.js"></script>
@@ -195,10 +222,10 @@
 	<script src="js/main.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
-	<script src="../../css/05_css/js/pagination.js"></script>
-	<script src="../../css/05_css/js/pagination.min.js"></script>
-	<script src="../../css/05_css/js/page.js"></script>
+	<!-- 	<script src="../../css/05_css/js/jquery.dataTables.min.js"></script> -->
 
+	<script src="js/pagination.js"></script>
+	<script src="js/pagination.min.js"></script>
 	<script>
 		$(".de").click(function() {
 			var id = this.value;
@@ -251,71 +278,179 @@
 		})
 	</script>
 	<script>
-	var pageSize =10;
-    GetData(1);
-    function GetData(index) {
-        var hid_p_i = $("#hid_y").val();
-        if (parseInt(hid_p_i) > 0) {
-            if (parseInt(hid_p_i) == 1) {
-                pageSize =20;
-            }
-            else if (parseInt(hid_p_i) == 2) {
-                pageSize =30;
-            }
-        }
-        else {
-            pageSize = 10;
-        }
-        var str_ky_time = "pageCount.currentPage="+index+"&pageCount.showCount="+pageSize+"";
-            ajax_post("", str_ky_time, "get", "text",function get_data(data) {
-            var obj_d = eval("(" + data + ")");
- 
- 
-        var total_num = obj_list.totalResult;//总个数
- 
-            if (obj_d.success) {
-                if (obj_list.rows.length > 0) {
-                    var obj_rows = obj_list.rows;
-                    var html = "";
- 
-                    $.each(obj_rows, function (i) {
-                        var createTime_str = obj_rows[i].createTime;
-                        var inputNum_str = obj_rows[i].enterNum;
-                        var potentialNum_str = obj_rows[i].potentialNum;
-                        var totalNum_str = obj_rows[i].totalNum;
-                        var proportion_str = obj_rows[i].proportion;
-                        
-                        html += "<li>";
-                        html += "<span class='date'>" + createTime_str + "</span>";
-                        html += "<span class='total'>" + totalNum_str + "</span>";
-                        html += "<span class='qk_num'>" + potentialNum_str + "</span>";
-                        html += "<span class='rz_num'>" + inputNum_str + "</span>";
-                        html += "<span class='bl'>" + proportion_str + "%</span>";
-                        html += "</li>";
-                       
-                    });
- 
-                    $(".js_klqs #kl_list").html(html);//此处不用append的原因是点击下一页会出现闪现的效果
- 
-                    if (index == 1) {
-                        initPagination(total_num, pageSize); //分页-只初始化一次  
-                    }
-                }
-            }
-            SetHeight();
-        });
-    }
-    function initPagination(count, pagesize) {
-        $('.js_klqs .pagelist').pagination({
-            totalData: count,
-            showData: pagesize,
-            callback: function (api) {
-                GetData(api.getCurrent());
-            }
-        });
-    }
+		//分頁
+		$(document).ready(function() {
+			$('#pagination').DataTable({
+				"pagingType" : "full_numbers"
+			});
+		});
 	</script>
+	<script type="text/javascript">
+					getPagination('#table-id');
+					//getPagination('.table-class');
+					//getPagination('table');
 
+
+
+				</script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push([ '_setAccount', 'UA-36251023-1' ]);
+		_gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
+		_gaq.push([ '_trackPageview' ]);
+
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+					: 'http://www')
+					+ '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	<script>
+	function getPagination(table) {
+  var lastPage = 1;
+
+  $('#maxRows')
+    .on('change', function(evt) {
+      //$('.paginationprev').html('');// reset pagination
+
+      lastPage = 1;
+      $('.pagination')
+        .find('li')
+        .slice(1, -1)
+        .remove();
+      var trnum = 0; // reset tr counter
+      var maxRows = parseInt($(this).val()); // get Max Rows from select option
+
+      if (maxRows == 100) {
+        $('.pagination').hide();
+      } else {
+        $('.pagination').show();
+      }
+
+      var totalRows = $(table + ' tbody tr').length; // numbers of rows
+      $(table + ' tr:gt(0)').each(function() {
+        // each TR in  table and not the header
+        trnum++; // Start Counter
+        if (trnum > maxRows) {
+          // if tr number gt maxRows
+
+          $(this).hide(); // fade it out
+        }
+        if (trnum <= maxRows) {
+          $(this).show();
+        } // else fade in Important in case if it ..
+      }); //  was fade out to fade it in
+      if (totalRows > maxRows) {
+        // if tr total rows gt max rows option
+        var pagenum = Math.ceil(totalRows / maxRows);( // ceil total(rows/maxrows) to get ..
+        //	numbers of pages
+        for (var i = 1; i <= pagenum; ) {
+          // for each page append pagination li
+          $('.pagination #prev')
+            .before(
+              '<li data-page="' +
+                i +
+                '">\
+								  <span>' +
+                i++ +
+                '<span class="sr-only">(current)</span></span>\
+								</li>'
+            )
+            .show();
+        } // end for i
+      } // end if row count > max rows
+      $('.pagination [data-page="1"]').addClass('active'); // add active class to the first li
+      $('.pagination li').on('click', function(evt) {
+        // on click each page
+        evt.stopImmediatePropagation();
+        evt.preventDefault();
+        var pageNum = $(this).attr('data-page'); // get it's number
+
+        var maxRows = parseInt($('#maxRows').val()); // get Max Rows from select option
+
+        if (pageNum == 'prev') {
+          if (lastPage == 1) {
+            return;
+          }
+          pageNum = --lastPage;
+        }
+        if (pageNum == 'next') {
+          if (lastPage == $('.pagination li').length - 2) {
+            return;
+          }
+          pageNum = ++lastPage;
+        }
+
+        lastPage = pageNum;
+        var trIndex = 0; // reset tr counter
+        $('.pagination li').removeClass('active'); // remove active class from all li
+        $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
+        // $(this).addClass('active');					// add active class to the clicked
+        limitPagging();
+        $(table + ' tr:gt(0)').each(function() {
+          // each tr in table not the header
+          trIndex++; // tr index counter
+          // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+          if (
+            trIndex > maxRows * pageNum ||
+            trIndex <= maxRows * pageNum - maxRows
+          ) {
+            $(this).hide();
+          } else {
+            $(this).show();
+          } //else fade in
+        }); // end of for each tr in table
+      }); // end of on click pagination list
+      limitPagging();
+    })
+    .val(5)
+    .change();
+
+  // end of on select change
+
+  // END OF PAGINATION
+}
+
+// function limitPagging() {
+//   // alert($('.pagination li').length)
+
+//   if ($('.pagination li').length > 7) {
+//     if ($('.pagination li.active').attr('data-page') <= 3) {
+//       $('.pagination li:gt(5)').hide();
+//       $('.pagination li:lt(5)').show();
+//       $('.pagination [data-page="next"]').show();
+//     }
+//     if ($('.pagination li.active').attr('data-page') > 3) {
+//       $('.pagination li:gt(0)').hide();
+//       $('.pagination [data-page="next"]').show();
+//       for (
+//         let i = parseInt($('.pagination li.active').attr('data-page')) - 2;
+//         i <= parseInt($('.pagination li.active').attr('data-page')) + 2;
+//         i++
+//       ) {
+//         $('.pagination [data-page="' + i + '"]').show();
+//       }
+//     }
+//   }
+// }
+
+// $(function() {
+//   // Just to append id number for each row
+//   $('table tr:eq(0)').prepend('<th> ID </th>');
+
+//   var id = 0;
+
+//   $('table tr:gt(0)').each(function() {
+//     id++;
+//     $(this).prepend('<td>' + id + '</td>');
+//   });
+// });
+</script>
 </body>
 </html>
 
