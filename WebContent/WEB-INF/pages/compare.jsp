@@ -59,12 +59,12 @@
 						<div class="card">
 							<h3
 								class="card-header text-center font-weight-bold text-uppercase py-4">
-								房屋比價</h3>
+								房屋比較</h3>
 							<div class="card-body">
 								<button id="compare"
 									style="float: right; top: 50%; font-size: 24px; font-family: Microsoft JhengHei; border-radius: 10px; background-color: #F5DEB3; color: 00008B; width: 20px 10px;"
 									onclick="javascript:location.href='houselist'">
-									<i class="material-icons"></i> 新增比價
+									<i class="material-icons"></i> 新增比較
 								</button>
 
 								<table style="text-align: center"

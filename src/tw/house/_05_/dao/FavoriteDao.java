@@ -30,7 +30,7 @@ public class FavoriteDao implements IFavoritedao {
 
 	@Override
 	public List<FavoriteBean> favoriteList() {
-		String queryAll = "from FavoriteBean";
+		String queryAll = "select * from FavoriteBean";
 		Query<FavoriteBean> query = getSession().createQuery(queryAll, FavoriteBean.class);
 		List<FavoriteBean> falist = new ArrayList<>();
 		falist = query.list();

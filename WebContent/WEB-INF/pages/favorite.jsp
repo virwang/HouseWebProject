@@ -95,19 +95,19 @@
 									href="<c:url value='showMemberData?=${favorite.memberBean.pk}'/>">${memberBean.name}</a>的收藏
 							</h3>
 							<div class="card-body">
-								<div class="form-group">
+<!-- 								<div class="form-group"> -->
 									<a type="button" class="button"
 										onclick="javascript:location.href='houselist'"
 										style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
 									<!--		Show Numbers Of Rows 		-->
-									<select class="form-control" name="state" id="maxRows"
-										style="width: 25%; float: right; margin-top: 2px;">
-										<option value="100">顯示全部</option>
-										<option value="5">5</option>
-										<option value="10">10</option>
-										<option value="15">15</option>
-									</select>
-								</div>
+<!-- 									<select class="form-control" name="state" id="maxRows" -->
+<!-- 										style="width: 25%; float: right; margin-top: 2px;"> -->
+<!-- 										<option value="100">顯示全部</option> -->
+<!-- 										<option value="5">5</option> -->
+<!-- 										<option value="10">10</option> -->
+<!-- 										<option value="15">15</option> -->
+<!-- 									</select> -->
+<!-- 								</div> -->
 							</div>
 
 
@@ -166,7 +166,8 @@
 													<td class="pt-3-half">${favorite.houseBean.address}</td>
 													<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
 													<td class="pt-3-half">${favorite.houseBean.ping}</td>
-													<td class="pt-3-half">${favorite.houseBean.mrtBean.stationname}</td>
+													<td class="pt-3-half"><a
+														href="<c:url value='searchhousemap?mrtpk=${favorite.houseBean.mrtBean.pk}'/>">${favorite.houseBean.mrtBean.stationname}</a></td>
 													<td class="pt-3-half"><fmt:formatDate
 															value="${favorite.houseBean.addDate}"
 															pattern="yyyy/MM/dd" /></td>
@@ -175,7 +176,7 @@
 															style="font-family: Microsoft JhengHei; padding: 10px 10px white; background-color: transparent;"
 															id="fv${favorite.fid}" value="${favorite.fid}">
 															<i class="fa fa-trash"
-																style="color: #DC143C; border: 20px color:white; padding: 20px color:white; margin: 20px 20px color:white; background-color: transparent;"></i>
+																style="color: #DC143C; border: 20px color:white; padding: 20px color:white; margin: 20px 20px color:white; background-color: transparent;font-size:35px"></i>
 														</button>
 													</td>
 
@@ -187,17 +188,17 @@
 										<div class="row mt-5">
 											<div class="col-md-12 text-center">
 												<p id="count" style="text-align: left;"></p>
-												<div class='pagination-container'>
-													<nav>
-														<ul class="pagination">
-															<li data-page="prev"><span> < <span
-																	class="sr-only">(current)</span></span></li>
+<!-- 												<div class='pagination-container' id="table-id"> -->
+<!-- 													<nav> -->
+<!-- 														<ul class="pagination"> -->
+<!-- 															<li data-page="prev"><span> < <span -->
+<!-- 																	class="sr-only">(current)</span></span></li> -->
 
-															<li data-page="next" id="prev"><span> > <span
-																	class="sr-only">(current)</span></span></li>
-														</ul>
-													</nav>
-												</div>
+<!-- 															<li data-page="next" id="prev"><span> > <span -->
+<!-- 																	class="sr-only">(current)</span></span></li> -->
+<!-- 														</ul> -->
+<!-- 													</nav> -->
+<!-- 												</div> -->
 
 											</div>
 										</div>
@@ -220,10 +221,8 @@
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
-	<script
+	<script 
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
-	<!-- 	<script src="../../css/05_css/js/jquery.dataTables.min.js"></script> -->
-
 	<script src="js/pagination.js"></script>
 	<script src="js/pagination.min.js"></script>
 	<script>

@@ -87,12 +87,13 @@
 							<div class="col-md-3">
 								<div class="select-wrap">
 									<input type="submit"
-										class="btn btn-success text-white btn-block rounded-0">								</div>
+										class="btn btn-success text-white btn-block rounded-0">
+								</div>
 							</div>
 						</div>
 					</form>
 				</div>
-				
+
 			</div>
 
 			<div class="row">
@@ -114,7 +115,7 @@
 	<div class="site-section site-section-sm bg-light">
 		<div class="container">
 			<div class="row mb-5">
-				<c:forEach var="hlist" items="${houselist}" >
+				<c:forEach var="hlist" items="${houselist}">
 					<div class="col-md-6 col-lg-4 mb-4">
 						<div class="property-entry h-100">
 							<a href="housedetail?HOUSEID=${hlist.id}"
@@ -124,19 +125,23 @@
 								</div> <img src="data:image/jpeg;base64,${hlist.base64image1}"
 								alt="Image" class="img-fluid">
 							</a>
+							<div style="text-align: center; font-family: Microsoft JhengHei;">
+								<button style='font-size: 24px; float: middle;'>
+									加入比價 <i class='fas fa-search-plus'></i>
+								</button>
+							</div>
 							<div class="p-4 property-body">
 								<c:if test="${!empty memberBean}">
 									<c:set var="activeStatus" value="" />
-										<c:forEach var="f" items="${fh}" >
-											<c:if test="${hlist.id == f.houseBean.id}">
-												<c:set var="activeStatus" value="active" />
-											</c:if>
-										</c:forEach>
+									<c:forEach var="f" items="${fh}">
+										<c:if test="${hlist.id == f.houseBean.id}">
+											<c:set var="activeStatus" value="active" />
+										</c:if>
+									</c:forEach>
 									<a type="button" class="property-favorite fah ${activeStatus}"
-										id="${hlist.id}">
-										<span class="icon-heart-o"></span>
+										id="${hlist.id}"> <span class="icon-heart-o"></span>
 									</a>
-									
+
 								</c:if>
 								<a href="housedetail?HOUSEID=${hlist.id}">
 									<h2 class="property-title">${hlist.title}</h2>
@@ -158,10 +163,9 @@
 
 				</c:forEach>
 			</div>
-				<div id="compare">
-		<span id="titile">比較</span>
-		<a target ="_blank" href="favorite"></a>
-	</div>
+			<div id="compare">
+				<span id="titile">比較</span> <a target="_blank" href="favorite"></a>
+			</div>
 		</div>
 	</div>
 
@@ -241,10 +245,10 @@
 				},
 				success : function(res) {
 					if (res.success != null) {
-						$('#'+hid).addClass("active");
+						$('#' + hid).addClass("active");
 						alert("新增成功");
 					} else if (res.error != null) {
-						alert("已收藏不可重複");	
+						alert("已收藏不可重複");
 					}
 				},
 				error : function(ex) {
@@ -254,6 +258,6 @@
 
 		})
 	</script>
-
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </body>
 </html>
