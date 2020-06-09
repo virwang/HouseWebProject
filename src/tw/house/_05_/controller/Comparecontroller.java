@@ -47,7 +47,8 @@ public class Comparecontroller {
 			) {
 		System.out.println("進入con");
 		System.out.println("houseId="+id);
-		List<HouseBean> hlistBeans = new List<HouseBean>() {
+		List<HouseBean> hlist = new List<>() {
+			
 		};
 	
 		ResponseEntity<List<HouseBean>> re = null;

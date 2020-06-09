@@ -184,10 +184,10 @@
 											</c:forEach>
 										</tbody>
 									</table>
+												<p id="count" style="text-align:center;font-size:30px;"></p>
 									<div class="col-md-12 text-center" style="text-align: right;">
 										<div class="row mt-5">
 											<div class="col-md-12 text-center">
-												<p id="count" style="text-align: left;"></p>
 <!-- 												<div class='pagination-container' id="table-id"> -->
 <!-- 													<nav> -->
 <!-- 														<ul class="pagination"> -->
@@ -216,8 +216,8 @@
 
 
 	<jsp:include page="/footer.jsp" />
-	<script src="js/mediaelement-and-player.min.js"></script>
 	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/mediaelement-and-player.min.js"></script>
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
