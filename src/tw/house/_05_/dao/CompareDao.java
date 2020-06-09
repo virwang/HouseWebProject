@@ -23,13 +23,13 @@ public class CompareDao {
 		System.out.println("--- session begin in comparedao ---");
 		return factory.getCurrentSession();
 	}
-
+	//列出資料
 	public List<HouseBean> comparelist(HouseBean houseBean) {
 		String queryAll = "select * from HouseBean";
 		Query<HouseBean> query = getSession().createQuery(queryAll, HouseBean.class);
 		List<HouseBean> hBeanlist = new ArrayList<HouseBean>();
 		hBeanlist = query.list();
-		for (HouseBean hosueBean : hBeanlist) {
+		for (HouseBean hBean : hBeanlist) {
 			System.out.println(hBeanlist.toString());
 		}
 		return hBeanlist;
@@ -39,7 +39,7 @@ public class CompareDao {
 	public int saveCompare(HouseBean houseBean) {
 		int n = 0;
 		System.out.println("into dao");
-		CompareBean exist = saveCompare(houseBean);
+		CompareBean exist = (CompareBean) comparelist(houseBean);
 		System.out.println(exist);
 		if (exist != null) {
 			System.out.println("house already compare");
@@ -61,17 +61,17 @@ public class CompareDao {
 	}
 
 	//delete compare
-	public boolean deleteFavorite(Integer fid) {
-		System.out.println("delete favorite dao fid =" + fid);
-		FavoriteBean favoriteBean = getSession().get(FavoriteBean.class, fid);
-		FavoriteBean favoriteBean2 = favoriteBean;
-		if (favoriteBean != null) {
-			System.out.println("check if fBean != null, dao fid = ?" + fid);
-			getSession().evict(favoriteBean);
-			getSession().delete(favoriteBean2);
+	public boolean deleteCompare(Integer cpk) {
+		System.out.println("delete comparedao fid =" + cpk);
+		CompareBean compareBean = getSession().get(CompareBean.class, cpk);
+		CompareBean cBean = compareBean;
+		if (compareBean != null) {
+			System.out.println("check if compareBean != null, dao cpk = ?" + cpk);
+			getSession().evict(compareBean);
+			getSession().delete(cBean);
 			return true;
 		} else {
-			System.out.println("if favoriteBean = null, fid = ?" + fid);
+			System.out.println("if compareBean = null, cpk = ?" + cpk);
 			return false;
 		}
 

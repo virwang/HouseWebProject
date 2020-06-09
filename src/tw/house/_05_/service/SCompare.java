@@ -22,4 +22,10 @@ public class SCompare  {
 		return cDao.comparelist(houseBean);
 	}
 
+	
+	public boolean deleteCompare(Integer cpk) {
+		System.out.println("delete compare by integer cpk"+cpk);
+		return cDao.deleteCompare(cpk);
+	}
+
 }

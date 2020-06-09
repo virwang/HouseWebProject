@@ -127,18 +127,4 @@ public class FavoriteDao implements IFavoritedao {
 
 	}
 
-	// compare house with two taipei tpirce，by district using like
-	public List<FavoriteBean> compare(TwoTaipei taiepi, HouseBean houseBean, MemberBean memberBean) {
-		System.out.println("into compare twotaipei");
-		Query<FavoriteBean> list = getSession().createQuery("from houseBean where id=:id, and taipei.id =:id");
-		list.setParameter("id", taiepi.getId());
-		list.setParameter("id", houseBean.getId());
-		list.setParameter("pk", memberBean.getPk());
-		List<FavoriteBean> fBean = new ArrayList<>();
-		fBean = list.getResultList();
-		System.out.println("compare"+fBean);
-		return fBean;
-
-	}
-
 }

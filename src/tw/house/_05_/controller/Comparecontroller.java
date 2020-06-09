@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import tw.house._05_.model.CompareBean;
-import tw.house._05_.service.ISCompare;
 import tw.house._05_.service.SCompare;
 import tw.house._07_.model.HouseBean;
 import tw.house._07_.model.HouseService;
@@ -42,18 +41,19 @@ public class Comparecontroller {
 		return "compare";
 
 	}
-	
-	@GetMapping(value = "/houselist.do" ,produces = "application/json")
-	public ResponseEntity<Map<String, String>> save(@RequestParam("houseId") Integer houseId) {
+	//儲存比價物件
+	@GetMapping(value = "/houselist.ac" ,produces = "application/json")
+	public ResponseEntity <List<HouseBean>> save(@RequestParam("houseId") HouseBean houseBean
+			) {
 		System.out.println("進入con");
-		System.out.println("houseId="+houseId);
+		System.out.println("houseId="+houseBean.getCity());
 		Map<String, String> map = new HashMap<>();
 		ResponseEntity<Map<String, String>> re = null;
 		int n = 0;
-		HouseBean houseBean = houseService.selectedHouse(houseId);
+		HouseBean houseBean = houseService.selectedHouse(houseBean);
 		System.out.println("houseBean 抓取成功"+houseBean.getId());
 	
-			n = houseService.saveCompare(CompareBean);
+			n = houseService.saveCompare(compareHouse(houseBean,getClass()));
 			System.out.println("after="+n);
 			if (n == 1) {
 				map.put("success", "成功");
@@ -65,17 +65,17 @@ public class Comparecontroller {
 		return re;
 	}
 
-	// 刪除單筆我的最愛資料
+	// 刪除單筆比價資料
 	@ResponseBody
-	@PostMapping(path = "/deletefavorite",produces = "application/json")
-	public String deleteFavorite(@RequestParam("deletefid") Integer id) {
-		boolean delete = ifs.deleteFavorite(id);
-		System.out.println(delete+"dao before delete fid = "+id);	
+	@PostMapping(path = "/deletecompare",produces = "application/json")
+	public String deleteCompare(@RequestParam("deletecpk") Integer cpk) {
+		boolean delete = scompare.deleteComapre(cpk);
+		System.out.println(delete+"dao before delete cpk = "+cpk);	
 		if (delete) {
-			System.out.println("delete success fid ="+id);
+			System.out.println("delete success cpk ="+cpk);
 			return "deOK";
 		}else{
-			System.out.println("delete error fid ="+id);
+			System.out.println("delete error cpk ="+cpk);
 			return "deNO";
 		}
 	}
