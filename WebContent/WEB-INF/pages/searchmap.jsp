@@ -32,10 +32,86 @@
   <script src="leaflet/leaflet.js"></script>
   
   <style>
+  		body{
+  			font-family: 微軟正黑體;
+  		}
+   		#content{
+    		float:left;   
+ 			margin-left:150px;
+ 			margin-right:100px;
+ 			margin-bottom:100px;
+   		} 
         #mapid{
+        	 float: left;
              height:500px;
-             width: 1200px; 
+             width: 1000px;
+
         }
+       
+        .sidest{
+
+
+        }
+/*         #content{ */
+/*         	margin:0 auto; */
+/*         } */
+        #footer{
+        	 clear:both;
+        }
+/*         #lb{ */
+/*         	height:50px; */
+/* /*          margin:auto; */ 
+/*         } */
+        #lb ul{
+        	height:50px;
+        	overflow: hidden;
+        	list-style: none;
+        	padding: 0;
+  			margin: 0;
+        	
+        }
+        #lb li{
+        	float: left;
+        	height:50px;
+        	width:199px;
+        	margin-right: 1px;
+        	padding-bottom: 1px;
+        	background-color: #333;
+        	color: #FFF;
+        	text-align:center;
+        	font-size: 25px;
+        	font-weight:bold;
+        	line-height:50px;
+        }
+         #sb{
+          	 float:left;
+         	 width:200px;
+         	 height:500px;
+        	 padding-bottom: 50px;
+			 background-color: #555;
+         	 overflow:scroll;
+         	 overflow-x: auto;
+        	
+        }
+        #sb ul{
+        	list-style: none;
+        	padding: 0;
+  			margin: 0;
+  			
+        }
+        #sb li{
+        	 padding: 20px;
+    		 color: #ccc;
+    		 margin-top: 1px;
+    		 margin-bottom: 1px;
+    		 border: 10px solid transparent;
+    		 background-color: #333;
+    		 color: #FFF;
+   		 	 font-size: 25px;
+   		 	 font-weight:bold;
+   		 	 text-align:center;
+        }
+        
     </style>
 
 </head>
@@ -46,7 +122,6 @@
 
 
   <div class="site-wrap">
-
     <jsp:include page="/navibar.jsp" />
   </div>
 
@@ -60,45 +135,57 @@
     </div>
   </div>
 
-  <div class="site-section">
-    <div class="container">
-      <div class="row">
+  <div class="site-section" >
+  
+    <div id="content">
+    
+      <div id="lb">
+      	<ul>
+      		<li id='line1' onClick="line_click(this)" value="BR">文湖線</li>
+      		<li id='line2' onClick="line_click(this)" value="R">淡水信義線</li>
+      		<li id='line3' onClick="line_click(this)" value="G">松山新店線</li>
+      		<li id='line4' onClick="line_click(this)" value="O">中和新蘆線</li>
+      		<li id='line5' onClick="line_click(this)" value="BL">板南線</li>
+      		<li id='line6' onClick="line_click(this)" value="Y">環狀線</li>
+      	</ul>
+      </div>
+    
+      <div>
       
-        <div><button id='line1' onClick="line_click(this)" value="BR">文湖線</button></div>
-        <div><button id='line2' onClick="line_click(this)" value="R">淡水信義線</button></div>
-        <div><button id='line3' onClick="line_click(this)" value="G">松山新店線</button></div>
-        <div><button id='line4' onClick="line_click(this)" value="O">中和新蘆線</button></div>
-        <div><button id='line5' onClick="line_click(this)" value="BL">板南線</button></div>
-        <div><button id='line6' onClick="line_click(this)" value="Y">環狀線</button></div>
-
-        <div id="mapid"></div>
-
+        <div id="mapid">
         
+        </div>
+      
+      </div>	
+        <div id="sb">
+	  	    <ul id="mrtst">
+	  	  	
+	  	    </ul>
 
-
-
-
-      </div>
+        </div>
 	  
-	  <div class="row">
-          <span id="mrtst"></span>
-      </div>
-
+	  
 
     </div>
+    
+    
   </div>
 
 
   <jsp:include page="/footer.jsp" />
 
 
-
   <script>
     //按下路線按紐
     function line_click(clicked) {
-      var linecode = clicked.value;
+      var linecode = clicked.getAttribute("value");
       var stations = document.getElementById("mrtst");
-
+      var lineb = document.getElementById("lb").getElementsByTagName("li");
+      for(let q=0;q<lineb.length;q++){
+    	  lineb[q].style.backgroundColor='#333';
+      }
+	  clicked.style.backgroundColor='#AE57A4';
+	  
       var content = "";
       stations.innerHTML = content;
       console.log("linecode:" + linecode);
@@ -110,8 +197,8 @@
         if (xhr2.readyState == 4 && xhr2.status == 200) {
           let linestation = JSON.parse(xhr2.responseText);
           for (let j = 0; j < linestation.length; j++) {
-            console.log(linestation[j].stationname);
-            var stbtn = document.createElement("BUTTON");
+//             console.log(linestation[j].stationname);
+            var stbtn = document.createElement("li");
             stbtn.setAttribute("id", "station" + j);
             stbtn.setAttribute("value", linestation[j].pk);
             stbtn.setAttribute("onClick", "station_click(this)");
@@ -125,6 +212,11 @@
 
     //按下站點按紐
     function station_click(clicked) {
+      var stateb = document.getElementById("sb").getElementsByTagName("li");
+      for(let q=0;q<stateb.length;q++){
+    	  stateb[q].style.backgroundColor='#333';
+      }
+  	  clicked.style.backgroundColor='#AE57A4';
       //清空所有layergroup中的物件
       layergroup.clearLayers();
       let stationpk = clicked.value;

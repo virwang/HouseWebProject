@@ -79,7 +79,10 @@ public class LenderDAO {
 		}
 		return true;
 	}
-	
+	public void delete(Lender lender) {
+		getSession().delete(lender);
+		
+	}
 	
 
 }

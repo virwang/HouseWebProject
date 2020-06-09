@@ -1169,7 +1169,7 @@ pre code {
 	.col-md-12 {
 		-ms-flex: 0 0 100%;
 		flex: alto;
-		max-width: 80%;
+		max-width: 90%;
 		margin: auto;
 	}
 	.order-md-first {

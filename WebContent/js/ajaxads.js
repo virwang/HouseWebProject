@@ -1,25 +1,30 @@
 console.log("come out！");
 
 $(function() {
+
+	showhouseloanlist();
+
 	$("#searchword").on('DOMSubtreeModified', function() {
 		year();
 	});
-	
+
 	// 選年的function
 	$('#select_year').change(function() {
 		let select_year = $(this).val();
 		console.log("value2=" + select_year);
 		showyear(select_year);
-	})
+	});
 
-	showdetail()
+	showdetail();
 
-	close()
-	
+	close();
+
+	$("#houseloanlist").smartmarquee();
+
 });
 
 function showdetail() {
-	$("#table1 tbody tr").click(function() {
+	$("#table1").on('click', 'tbody tr', function() {
 		var str1 = $(this)
 		var id = $(":first-child", str1).text();
 		console.log("id=" + id);
@@ -47,4 +52,3 @@ function close() {
 		}
 	});
 }
-

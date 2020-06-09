@@ -56,11 +56,13 @@
 								<a style="color: #A52A2A;">${memberBean.name}</a>的收藏
 							</h3>
 							<div class="card-body" style="text-align: center">
-								<button class="button"
-									style='font-family: Microsoft JhengHei; color: #FFFAF0; font-size: 24px'
-									onclick="javascript:location.href='houselist'">新增我的最愛</button>
-								<br> <p>${memberBean.name}點選按鈕新增收藏</p>
-									
+							<p style="color: #A52A2A;font-family: Microsoft JhengHei;font-size:40px">${memberBean.name}你還沒有收藏<i class='fas fa-heart-broken' style="font-size:48px;color:red;" >
+									</i><br>
+<%-- 									<img src="${pageContext.request.contextPath}/images/test.jpg" alt="imges"/> --%>
+<!-- 								<a class="button" onclick="javascript:location.href='houselist'" -->
+<!-- 									style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增我的最愛</a> -->
+									<button class="button" style='font-family: Microsoft JhengHei; color: #FFFAF0;font-size:24px' onclick="javascript:location.href='houselist'">
+									 新增我的最愛</button>
 							</div>
 						</div>
 					</div>
@@ -84,8 +86,7 @@
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </body>
 </html>

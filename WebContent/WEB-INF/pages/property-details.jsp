@@ -37,6 +37,9 @@
 	#mapid{
 		height:250px;
 	}
+	body{
+  		font-family: 微軟正黑體;
+  	}
 </style>
 
 </head>
@@ -96,14 +99,16 @@
 							<div class="col-md-6">
 								<strong class="text-success h1 mb-3">${housedt.totalprice}萬</strong>
 							</div>
-							<div class="col-md-6">
-								<ul class="property-specs-wrap mb-3 mb-lg-0  float-lg-right">
+							<div class="col-md-6" style="font-size:30px;">
+								<ul class="property-specs-wrap mb-3 mb-lg-0  float-lg-right"  style="text-align:right;">
 <!-- 									<li><span class="property-specs">Beds</span> -->
 <!-- 									<span class="property-specs-number">2 <sup>+</sup></span></li> -->
-									<li><span class="property-specs">每坪(萬)</span>
+									<li><span class="property-specs" style="font-size:18px;">每坪(萬)</span>
 									<span class="property-specs-number">${housedt.unitprice}</span></li>
-									<li><span class="property-specs">坪數</span>
+									<li><span class="property-specs" style="font-size:18px;">坪數</span>
 									<span class="property-specs-number">${housedt.ping}</span></li>
+									<li><span class="property-specs" style="font-size:18px;">觀看次數</span>
+									<span class="property-specs-number" id="hcount">${hcount}</span></li>
 
 								</ul>
 							</div>
@@ -175,7 +180,7 @@
 						<form method="POST" action='<c:url value="newapplication"/>' class="form-contact-agent">
 							<div class="form-group">
 								<label for="datepicker">日期</label>
-								<input type="text" name="date" id="datepicker" class="form-control" data-date-format="yyyy-mm-dd">
+								<input type="text" name="date" id="datepicker" class="form-control" autocomplete="off" data-date-format="yyyy-mm-dd">
 							</div>
 							
 							<div class="form-group">
@@ -309,12 +314,42 @@
 		<jsp:include page="/footer.jsp" />
 
 	</div>
-	<script>
+	
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/mediaelement-and-player.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/bootstrap-datepicker.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/circleaudioplayer.js"></script>
+<!-- 	<script src="js/map-detail.js"></script> -->
+	<script src="js/calender.js"></script>
 
+	<script src="js/main.js"></script>
+	
+	<script>
+	$(document).ready(function(){
+		let count = ${hcount};
+		$.ajax({
+		    url: "<c:url value='/counthit'/>",
+		    type: 'POST',
+		    data: {
+		    	"htid" : ${housedt.id},
+		    	"count" : count
+		    } })
+	})
 
 	
 	//讀取捷運站點
 	window.onload= function(){
+
+		
 	var mrtData = [];
 	let map = L.map('mapid',{
 	    center:[${housedt.lat}, ${housedt.lon}],
@@ -587,23 +622,6 @@
 	};
 
     </script>
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/mediaelement-and-player.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/jquery.countdown.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/bootstrap-datepicker.min.js"></script>
-	<script src="js/aos.js"></script>
-	<script src="js/circleaudioplayer.js"></script>
-<!-- 	<script src="js/map-detail.js"></script> -->
-	<script src="js/calender.js"></script>
-
-	<script src="js/main.js"></script>
 
 </body>
 </html>

@@ -12,7 +12,6 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,31 +36,41 @@ import com.google.maps.model.GeocodingResult;
 import tw.house._05_.model.FavoriteBean;
 import tw.house._05_.service.IFavorite;
 import tw.house._07_.model.HouseBean;
+import tw.house._07_.model.HouseHitBean;
+import tw.house._07_.model.HouseHitService;
 import tw.house._07_.model.HouseService;
 import tw.house._07_.model.MrtBean;
 import tw.house._07_.model.MrtService;
+import tw.house._07_.model.ReservationService;
 import tw.house._08_.register.model.MemberBean;
 
 @Controller
 public class HouseController {
 	
-	@Autowired	
-	private HouseService hService;
 	@Autowired
-	private IFavorite ifs;
+	private HouseService hService;
+	
 	@Autowired
 	private MrtService mService;
+	
+	@Autowired
+	private ReservationService rService;
+	
+	@Autowired
+	private HouseHitService hitService;
+	
+	@Autowired
+	private IFavorite ifs;
 	
 	@Autowired
 	ServletContext context;
 	
 	@RequestMapping(path = "/houselist",method = RequestMethod.GET)
-	public String showHouseListTurn(Model m,HttpSession hsession) {
+	public String showHouseListTurn(Model m,@SessionAttribute(value = "memberBean",required = false)MemberBean mBean) {
 		
 		List<HouseBean> list = hService.houseList();
-		MemberBean mb= (MemberBean)hsession.getAttribute("memberBean");
-		if (mb!=null) {
-			Integer pk = mb.getPk();
+		if(mBean!=null) {
+			Integer pk = mBean.getPk();
 			List<FavoriteBean> list2 = ifs.mfhosue(pk);
 			for (FavoriteBean favoriteBean : list2) {
 				System.out.println("favorite hosue "+favoriteBean);
@@ -70,16 +79,20 @@ public class HouseController {
 		}
 		m.addAttribute("houselist", list);
 		
-		
 		return "buy";
 	}
 	
 	@RequestMapping(path = "/housedetail",method = RequestMethod.GET)
 	public String showHouseDetail(@RequestParam("HOUSEID") Integer hid, Model m) {
-		
+		Integer hcount = 0;
 		HouseBean hBean = hService.selectedHouse(hid);
 		m.addAttribute("housedt", hBean);
+		HouseHitBean hhBean = hitService.getHtBean(hid);
+		if(hhBean!=null) {
+			hcount = hhBean.getHit();
+		}
 		
+		m.addAttribute("hcount", hcount);
 		return "property-details";
 	}
 	
@@ -121,7 +134,7 @@ public class HouseController {
 	}
 	@PostMapping(path = "/searchhouse")
 	public String searchHouseBar(@RequestParam("city") String city,@RequestParam("dist") String dist,@RequestParam(value = "addr",required = false) String daddr,Model m){
-		
+		System.out.println("controlleraddr="+daddr);
 		List<HouseBean> list = new ArrayList<>();
 		list = hService.searchHouse(city, dist, daddr);
 		
@@ -350,8 +363,21 @@ public class HouseController {
 	
 	@DeleteMapping(path = "/deletehouse")
 	public String deleteHouse(@RequestParam("deleteh") Integer houseid) {
+		boolean dltresv = rService.deleteReservationByHouseId(houseid);
+		if (dltresv) {
+			System.out.println("DELETE reservation");
+		}
+		boolean dlfh = ifs.deleteFavoriteByHid(houseid);
+		if (dlfh) {
+			System.out.println("DELETE favorite");
+		}
+		boolean dlhit = hitService.deleteHit(houseid);
+		if (dlhit) {
+			System.out.println("DELETE Hit");
+		}
+		
 		boolean delete = hService.deleteHouse(houseid);
-		if (delete==true) {
+		if (delete) {
 			System.out.println("DELETE success");
 			return "redirect:/memberhouse";
 		} else {

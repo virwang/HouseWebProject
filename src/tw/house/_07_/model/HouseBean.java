@@ -2,7 +2,7 @@ package tw.house._07_.model;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.Arrays;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -46,6 +47,7 @@ public class HouseBean {
 	private String lon;
 	private MemberBean memberBean;
 	private MrtBean mrtBean;
+
 	@JsonIgnore
 	private byte[] image1;
 	@JsonIgnore
@@ -65,8 +67,7 @@ public class HouseBean {
 	}
 
 	public HouseBean(Integer id, String title, String totalprice, String unitprice, String ping, String city, String dist, String address, String phone,
-			String apartment, Integer accountid, Integer mrtpk, Integer room, Integer hall, Integer bath)
-			 {
+			String apartment, Integer accountid, Integer mrtpk, Integer room, Integer hall, Integer bath, Timestamp addDate, String lat, String lon) {
 		this.id = id;
 		this.title = title;
 		this.totalprice = totalprice;
@@ -86,6 +87,14 @@ public class HouseBean {
 		this.lat = lat;
 		this.lon = lon;
 
+
+	}
+	
+	public HouseBean(Integer id, String title,String city, String dist) {
+		this.id = id;
+		this.title = title;
+		this.city = city;
+		this.dist = dist;
 	}
 	@Id @Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -211,8 +220,8 @@ public class HouseBean {
 		return addDate;
 	}
 
-	public void setAddDate(Timestamp adddate) {
-		this.addDate = adddate;
+	public void setAddDate(Timestamp addDate) {
+		this.addDate = addDate;
 	}
 
 	public void setBath(Integer bath) {
@@ -305,6 +314,66 @@ public class HouseBean {
 
 	public void setBase64image3(String base64image3) {
 		this.base64image3 = base64image3;
+	}
+	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("HouseBean [id=");
+		builder.append(id);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", totalprice=");
+		builder.append(totalprice);
+		builder.append(", unitprice=");
+		builder.append(unitprice);
+		builder.append(", ping=");
+		builder.append(ping);
+		builder.append(", city=");
+		builder.append(city);
+		builder.append(", dist=");
+		builder.append(dist);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", phone=");
+		builder.append(phone);
+		builder.append(", apartment=");
+		builder.append(apartment);
+		builder.append(", accountid=");
+		builder.append(accountid);
+		builder.append(", mrtpk=");
+		builder.append(mrtpk);
+		builder.append(", room=");
+		builder.append(room);
+		builder.append(", hall=");
+		builder.append(hall);
+		builder.append(", bath=");
+		builder.append(bath);
+		builder.append(", addDate=");
+		builder.append(addDate);
+		builder.append(", lat=");
+		builder.append(lat);
+		builder.append(", lon=");
+		builder.append(lon);
+		builder.append(", memberBean=");
+		builder.append(memberBean);
+		builder.append(", mrtBean=");
+		builder.append(mrtBean);
+		builder.append(", image1=");
+		builder.append(Arrays.toString(image1));
+		builder.append(", image2=");
+		builder.append(Arrays.toString(image2));
+		builder.append(", image3=");
+		builder.append(Arrays.toString(image3));
+		builder.append(", base64image1=");
+		builder.append(base64image1);
+		builder.append(", base64image2=");
+		builder.append(base64image2);
+		builder.append(", base64image3=");
+		builder.append(base64image3);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	

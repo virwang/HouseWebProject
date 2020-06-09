@@ -31,113 +31,176 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
 body {
-	background-color: #D0D0D0;
+	background-color: #333333;
+	font-family:微軟正黑體;
+	font-size:18px;
 }
 
-h1.mem {
-	text-align: center;
-	margin: auto;
-	margin-top: 100px;
-	margin-bottom: 20px;
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
 }
 
-.st1 {
-	margin: 10px;
-	border: 1px solid gray;
-	background-color: honeydew;
-	padding: 10px;
+/* The popup form - hidden by default */
+.form-popup {
+/*   display: none; */
+/*   position: fixed; */
+  bottom: 0;
+  right: 15px;
+/*   border: 3px solid #f1f1f1; */
+  z-index: 9;
 }
 
-.submit {
-	text-align: center;
-	padding: 10px;
-	margin-bottom: 100px;
+/* Add styles to the form container */
+.form-container {
+/*   max-width: 300px; */
+  padding: 10px;
+  max-width: 800px;
+  margin: 150px auto;
+  background-color: white;
 }
 
-fieldset {
-	border-radius: 15px;
-	width: 50vw;
-	height: auto;
-	margin: auto
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
 }
 
-#reset {
-	margin-left: 100px;
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
 }
 </style>
 </head>
 
 <body>
-
 	<div class="site-loader"></div>
 	<div class="site-wrap">
 		<jsp:include page="/navibar.jsp" />
-	</div>
 	<div class="slide-one-item home-slider owl-carousel"></div>
-	<h1 class="mem">加入會員</h1>
+	</div>
+<!-- 	<h1 class="mem text-white h2 mb-0">加入會員</h1> -->
 	<font size='-1' color='red'>&nbsp;${errorMsg.DBError}</font>
-	<fieldset>
-		<form action="springRegisterMember.do" method="POST"
-			enctype="application/x-www-form-urlencoded">
-<!-- 			enctype="multipart/form-data" -->
-			<div class="st1">
-				<label class="account">帳號：</label> 
-				<input type="text" id="account"name="account"  onblur="checkAccount();" onclick="hide()"maxlength="16"> 
+<fieldset>
+	<div class="form-popup " id="myForm">
+		<form action="springRegisterMember.do" method="POST" class="form-container"
+			enctype="multipart/form-data">
+			  <h1 style="font-color:#333333" >加入會員</h1>
+<!-- 			<div class="st1"> -->
+				<label class="account">帳號：
 				<img id="img1" src="">
-				<span id="sp3"></span>
+				 <span id="sp3"></span>
+				<span id="sp4"></span>
+				</label>
 				<font id="fonterror1" color='red'size="-1">${errorMsg.account}</font>
-			</div>
-			<div class="st1">
-				<label class="psw">密碼：</label> 
+				<input type="text" id="account"name="account"  onblur="checkAccount();" onclick="hide()"maxlength="16"> 
+
+				<br>
+				<label class="psw">密碼：<img id="img2" src=""><span id="sp2"></span>
+				<font id="fonterror2"color='red'size="-1">${errorMsg.psw}</font></label> 
 				<input type="password" id="psw"name="psw" value="${param.psw }" onblur="checkPwd();"maxlength="16"onclick="hide()"> 
-				<img id="img2" src=""><span id="sp2"></span>
-				<font id="fonterror2"color='red'size="-1">${errorMsg.psw}</font>
-			</div>
-			<div class="st1">
-				<label class="name">真實姓名：</label> 
+
+				<br>
+				<label class="name">真實姓名：	<img id="img3" src=""><span id="sp1"></span>
+				<font id="fonterror3"color='red'size="-1">${errorMsg.name}</font></label> 
 				<input type="text" id="name" name="name" value="${param.name}" onblur="checkName();" onclick="hide()"> 
-				<img id="img3" src=""><span id="sp1"></span>
-				<font id="fonterror3"color='red'size="-1">${errorMsg.name}</font>
-			</div>
-			<div class="st1">
-				<label class="idCard">身分證字號：</label> 
+
+		<br>
+				<label class="idCard">身分證字號：
+				<img id="img4" src=""><span id="sp7"></span>
+				<font id="fonterror4"color='red'size="-1">${errorMsg.idCard}</font></label> 
 				<input type="text" id="idCard"name="idCard" value="${param.idCard}" maxlength="10" onblur="checkIdNumber();"onclick="hide()"> 
-				<img id="img4" src=""><span id="sp4"></span>
-				<font id="fonterror4"color='red'size="-1">${errorMsg.idCard}</font>
-			</div>
-			<div class="st1">
+
+				<br>
 				<label class="gender">性別：</label> 
 				<input type="radio" name="gender"value="${param.gender} male" checked required>男 
 				<input type="radio"	name="gender" value="${param.gender} female">女
-			</div>
-			<div class="st1">
-				<label class="Id">身分別：</label>
-				 <select name="usertype"value="${param.usertype}">
-					<option value="General">一般會員</option>
-					<option value="Senior">高級會員</option>
-				</select>
-			</div>
-			<div class="st1">
-				<label class="tel">手機：</label> 
+
+<!-- 				<label class="Id">身分別：</label> -->
+<%-- 				 <select name="usertype"value="${param.usertype}"> --%>
+<!-- 					<option value="General">一般會員</option> -->
+<!-- 					<option value="Senior">高級會員</option> -->
+<!-- 				</select> -->
+				<br>
+				<label class="tel">手機：		<img id="img5" src=""><span id="sp6"></span>
+				<font id="fonterror5"color='red'size="-1">${errorMsg.tel}</font></label> 
 				<input type="text" id="tel"name="tel" value="${param.tel }" onblur="checkPhone();"onclick="hide()" maxlength="10"> 
-				<img id="img5" src=""><span id="sp6"></span>
-				<font id="fonterror5"color='red'size="-1">${errorMsg.tel}</font>
-			</div>
-			<div class="st1">
-				<label class="email">E-mail：</label> 
+			<br>
+				<label class="email">E-mail：<img id="img6" src=""><span id="sp5"></span>
+				<font id="fonterror6"color='red'size="-1">${errorMsg.email}</font></label> 
 				<input type="text" id="email"name="email" value="${param.email }" onclick="hide()"onblur="checkEmail();">
-				<img id="img6" src=""><span id="sp5"></span>
-				<font id="fonterror6"color='red'size="-1">${errorMsg.email}</font>
-			</div>
-			<div class="submit">
-			<input id="submit" type="submit" value="送出"> 
-			<input id="reset" type="reset" value="清除">
-			</div>
+               <br>
+                  <label class="picture" for="picture1">上傳個人圖片:</label>
+                  <input type="file" id="picture1" name="picture1" accept=".jpg" class="form-control">
+              	<br>
+      <div class="g-recaptcha" data-sitekey="6LdiYQEVAAAAAOo5WzmBhqfR4YdV0BOQdifm_cTi" data-callback="enablebtn"></div>
+			<br>
+			<input  style="display:none" class="btn"id="submit" type="submit" value="送出"> 
+			<input  class="btn"id="reset" type="reset" value="清除">
 		</form>
+		</div>
 	</fieldset>
+<button id="allsub" onclick="allsubmit()" >一鍵輸入</button>
 
 	<jsp:include page="/footer.jsp" />
-
+		<script src="https://www.google.com/recaptcha/api.js"></script>
+	<script>
+	function allsubmit(){
+		let acct=document.getElementById("account");
+		acct.value="scott1234";
+		let psw=document.getElementById("psw");
+		psw.value="scott1234";
+		let name=document.getElementById("name");
+		name.value="李建輝";
+		let idCard=document.getElementById("idCard");
+		idCard.value="Z123456789";
+		let tel=document.getElementById("tel");
+		tel.value="0912345678";
+		let email=document.getElementById("email");
+		email.value="5413gary@gmail.com";
+		}
+	
+	function enablebtn(){
+			var rebtn=document.getElementById("submit");
+			rebtn.disabled=false;
+			rebtn.style.display="block"			
+		}
+</script>
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -158,10 +221,35 @@ fieldset {
 		crossorigin="anonymous"></script>
 	<script>
 	   function checkAccount() {
+		   
+		   var spana = document.querySelector("#sp3")
+		   var spanaa = document.querySelector("#sp4")
+		   spanaa.textContent="";	   
+	        let act = document.querySelector("#account").value
+	        let actLen = act.length
+	        let regx=/^(?=.*[a-zA-Z])(?=.*\d).{6,16}$/;
+	        if (act == "") {
+	            spana.innerHTML = "帳號不可空白";
+	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
+	        } else if (actLen < 6) {
+	            spana.innerHTML="至少6個字"
+	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
+	        }else if(!regx.test(act)){
+	            spana.innerHTML="格式錯誤必須是英文加數字組合"
+	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
+	        }else{
+	            spana.innerHTML="正確"
+	            document.querySelector("#img1").src="css/_08_css/images/img1.jpg"
+	        } 	   
+		   var accspan=document.getElementById("sp3")
+		   console.log("123"+accspan.textContent);
+		   accspan.textContent
+		   if(accspan.textContent=="正確"){
+			   accspan.innerHTML="";
 		   let acct=$("#account").prop("value");
 		   var content="";
 // 		   var span=$("#sp3");
-	       var span = document.querySelector("#sp3")
+	       var span = document.querySelector("#sp4")
 		   console.log("account:"+acct);
 		   var xhr=new XMLHttpRequest();
 		   xhr.open("POST","<c:url value='accountCheck'/>",true);
@@ -187,25 +275,11 @@ fieldset {
 							}
 					}
 			   }
+			   }
 		   
-	        let act = document.querySelector("#account").value
-	        let actLen = act.length
-	        let regx=/^(?=.*[a-zA-Z])(?=.*\d).{6,16}$/;
-	        if (act == "") {
-	            span.innerHTML = "帳號不可空白";
-	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
-	        } else if (actLen < 6) {
-	            span.innerHTML="至少6個字"
-	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
-	        }else if(!regx.test(act)){
-	            span.innerHTML="格式錯誤必須是英文加數字組合"
-	            document.querySelector("#img1").src = "css/_08_css/images/img2.jpg"
-	        }else{
-	            span.innerHTML="正確"
-	            document.querySelector("#img1").src="css/_08_css/images/img1.jpg"
-	        }        
+	       
 	    }
-
+		
 	
 		function hide(){
 			let f1 =document.getElementById("fonterror1");
@@ -266,7 +340,7 @@ fieldset {
     function checkIdNumber(){
     	let idN=document.querySelector("#idCard").value;
     	let idNLen=idN.length;
-    	let span = document.querySelector("#sp4")
+    	let span = document.querySelector("#sp7")
     	let rex=/^[A-Z]{1}\d{9}$/;
     	if(idN ==""){
     		span.innerHTML = "身分證字號不可空白";

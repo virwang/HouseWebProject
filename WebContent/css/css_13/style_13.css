@@ -1,4 +1,29 @@
 /* Base */
+#houseloanlist {
+	background-color: white;
+	border-radius: 10px;
+	float: left;
+	position: absolute;
+	top: 300px;
+	width: 200px;
+	margin-left: 15px;
+	padding-right: 15px;
+	font-family:微軟正黑體;
+	height: 350px;
+	overflow:auto;
+}
+
+#houseloanlist ul {
+	font-size: 14px;
+	font-weight: 700;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#houseloanlist li {
+	font-weight: 500;
+}
+
 #linebot {
 	left: 1400px;
 	position: fixed;
@@ -27,8 +52,16 @@
 	border-re
 }
 
-#select_years {
-	
+#td0 {
+	display: none;
+}
+
+#td7 {
+	display: none;
+}
+
+#table1 {
+	width: 900px;
 }
 
 .housecolumntable {
@@ -499,18 +532,6 @@ a:hover {
 .site-navbar .site-navigation .site-menu .has-children>a {
 	position: relative;
 	padding-right: 20px;
-}
-
-.site-navbar .site-navigation .site-menu .has-children>a:before {
-	position: absolute;
-	content: "\e313";
-	font-size: 16px;
-	top: 50%;
-	right: 0;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	font-family: 微軟正黑體;
 }
 
 .site-navbar .site-navigation .site-menu .has-children .dropdown {

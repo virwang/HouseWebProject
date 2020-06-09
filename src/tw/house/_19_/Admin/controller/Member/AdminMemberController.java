@@ -15,22 +15,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import tw.house._08_.bank.model.Lender;
+import tw.house._08_.bank.model.LenderDAO;
 import tw.house._08_.register.model.MemberBean;
 import tw.house._19_.Admin.model.Member.AdminMemberService;
 
 
 @Controller
 public class AdminMemberController {
-
+	@Autowired
+	private LenderDAO lenderDao;
+	
 	@Autowired
 	private AdminMemberService service;
 
-	@RequestMapping(path = "/getmemberlist", method = RequestMethod.GET)
-	public String memberList(Model model) {
-		List<MemberBean> list = service.getMembers();
-		model.addAttribute("memberList", list);
-		return "admin_memberList";
-	}
+//	@RequestMapping(path = "/getmemberlist", method = RequestMethod.GET)
+//	public String memberList(Model model) {
+//		List<MemberBean> list = service.getMembers();
+//		model.addAttribute("memberList", list);
+//		return "admin_memberList";
+//	}
 	@RequestMapping(path = "/ajaxgetmemberlist", method = RequestMethod.GET,produces = {"application/json"} )
 	public ResponseEntity<List<MemberBean>> ajaxMemberList(){
 		List<MemberBean> list = service.getMembers();
@@ -43,13 +48,12 @@ public class AdminMemberController {
 		MemberBean bean = service.getById(id);
 		model.addAttribute("member", bean);
 		System.out.println("show");
-		return "admin_memberU&D";
+		return "admin_memberU_D";
 	}
 	
 	@PostMapping("/updateMember")
 	public String updateMember(@RequestParam("id")Integer id,
 			@RequestParam("name")String name,
-			@RequestParam("psw")String psw,
 			@RequestParam("tel")String tel,
 			@RequestParam("usertype")String usertype,
 			@RequestParam("email")String email,
@@ -59,21 +63,7 @@ public class AdminMemberController {
 			
 			HashMap<String, String> errorMsg = new HashMap<>();
 			model.addAttribute("errors", errorMsg);
-			
-			String regxa="^(?=.*[a-zA-Z])(?=.*\\d).{6,16}$";		
-			Pattern p= Pattern.compile(regxa);
 						
-			Matcher rpsw = p.matcher(psw);
-			if(psw==null||psw.trim().length()==0) {
-				errorMsg.put("psw", "密碼必須輸入");
-			}else if(psw.length()<6){
-				errorMsg.put("psw","密碼至少6個字");
-			}else if(rpsw.find()) {
-				System.out.println("密碼正確");
-			}else {
-				errorMsg.put("psw", "格式錯誤必須是英文加數字");
-			}
-			
 			String regxn="^[\\u4E00-\\u9FA5]+$";
 			Pattern pn= Pattern.compile(regxn);
 			Matcher rn =pn.matcher(name);
@@ -118,7 +108,6 @@ public class AdminMemberController {
 		System.out.println(update);
 		if(update) {
 			bean.setName(name);
-			bean.setPsw(psw);
 			bean.setTel(tel);
 			bean.setEmail(email);
 			bean.setUsertype(usertype);
@@ -131,8 +120,10 @@ public class AdminMemberController {
 		public String delete(@RequestParam("mid") Integer id) {
 			System.out.println("mid="+id);
 			MemberBean bean = service.getById(id);
+			Lender lender=lenderDao.selectLender(id);
 			boolean delete = service.delete(bean);
 			if(delete==true) {
+				lenderDao.delete(lender);
 				System.out.println("delete Success");
 				return "redirect:/admin_index";
 			}else {

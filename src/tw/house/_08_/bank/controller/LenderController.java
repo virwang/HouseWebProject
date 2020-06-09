@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import tw.house._07_.model.HouseBean;
-//import tw.house._08_.bank.model.BankService;
-//import tw.house._08_.bank.model.BankBean;
+import tw.house._08_.bank.model.BankService;
+import tw.house._08_.bank.model.BankBean;
 import tw.house._08_.bank.model.Lender;
 import tw.house._08_.bank.model.LenderService;
 import tw.house._08_.register.model.MemberBean;
@@ -30,7 +29,7 @@ public class LenderController {
 	@Autowired
 	LenderService lenderService;
 	@Autowired
-//	BankService bankService;	
+	BankService bankService;	
 	@GetMapping(path = "/lend")
 	public String turntolend() {
 		return "lender";
@@ -47,6 +46,7 @@ public class LenderController {
 		Map<String,Object> map=new LinkedHashMap<String, Object>();
 		map.put("data", list);
 		ResponseEntity<Map<String, Object>> re =new ResponseEntity<>(map,HttpStatus.OK);
+		System.out.println("re:"+re);
 		return re;
 	}	
 	@RequestMapping(path = "/lendercity",method = RequestMethod.POST,produces = {"application/json"} )
@@ -69,10 +69,10 @@ public class LenderController {
 		Map<String, Object> map=new LinkedHashMap<>();
 		boolean lender1=lenderService.checkLender(mBean.getPk());
 		if(lender1) {
-//			BankTest bBean=bankService.searchBank(branchCode);
+			BankBean bBean=bankService.searchBank(branchCode);
 			Lender lBean = new Lender();
 			lBean.setMemberBean(mBean);
-//			lBean.setBankTest(bBean);
+			lBean.setBankTest(bBean);
 			Timestamp ts = new Timestamp(System.currentTimeMillis());
 			System.out.println(ts);
 			boolean insert = lenderService.insertLender(lBean);

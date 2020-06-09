@@ -9,12 +9,15 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Component
 @Entity
 @Table(name = "News")
 public class NewsBean {
 	private Integer newsnum;
 	private String newstitle;
+	@JsonIgnore
 	private String newscontent;
 	private Integer newscityid;
 	private String newscityname;
@@ -55,6 +58,7 @@ public class NewsBean {
 	public void setNewstitle(String newstitle) {
 		this.newstitle = newstitle;
 	}
+	
 	@Column(name = "news_content")
 	public String getNewscontent() {
 		return newscontent;

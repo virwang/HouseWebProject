@@ -23,7 +23,7 @@ public class AdminHouseDao {
 	}
 	
 	public List<HouseBean> getHouses() {
-		String hql  = "from HouseBean";
+		String hql  = "select new HouseBean(id,title,city,dist) from HouseBean";
 		List<HouseBean> list = new ArrayList<>();
 		try{
 			Query<HouseBean> query = getSession().createQuery(hql, HouseBean.class);			

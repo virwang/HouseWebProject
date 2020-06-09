@@ -44,7 +44,6 @@ public class MemberDataController {
 	@PostMapping("/updateMember.do")
 	public String updateData(@RequestParam("id")Integer id,
 			@RequestParam("name")String name,
-			@RequestParam("psw")String psw,
 			@RequestParam("tel")String tel,
 			@RequestParam("email")String email,
 			@SessionAttribute("memberBean") MemberBean memberBean,Model model) {	
@@ -54,19 +53,6 @@ public class MemberDataController {
 			HashMap<String, String> errorMsg = new HashMap<>();
 			model.addAttribute("errors", errorMsg);
 			
-			String regxa="^(?=.*[a-zA-Z])(?=.*\\d).{6,16}$";		
-			Pattern p= Pattern.compile(regxa);
-						
-			Matcher rpsw = p.matcher(psw);
-			if(psw==null||psw.trim().length()==0) {
-				errorMsg.put("psw", "密碼必須輸入");
-			}else if(psw.length()<6){
-				errorMsg.put("psw","密碼至少6個字");
-			}else if(rpsw.find()) {
-				System.out.println("密碼正確");
-			}else {
-				errorMsg.put("psw", "格式錯誤必須是英文加數字");
-			}
 			
 			String regxn="^[\\u4E00-\\u9FA5]+$";
 			Pattern pn= Pattern.compile(regxn);
@@ -111,7 +97,6 @@ public class MemberDataController {
 		boolean update = memberDataService.update(bean);
 		if(update) {
 			bean.setName(name);
-			bean.setPsw(psw);
 			bean.setTel(tel);
 			bean.setEmail(email);
 			model.addAttribute("memberBean", memberDataService.getByPk(id));

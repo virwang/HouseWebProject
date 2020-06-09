@@ -53,6 +53,7 @@
 					<table id="example" class="dataTable display" style="width: 100%">
 						<thead>
 							<tr>
+								<th>專員編號</th>
 								<th>專員姓名</th>
 								<th>專員銀行</th>
 								<th>連絡電話</th>
@@ -92,11 +93,16 @@
 				"datatype":"json"
         	},
 			"columns":[
+				{"data":"pkId"},
 				{"data":"memberBean.name"},
 				{"data":"bankTest.bankName"},
 				{"data":"memberBean.tel"},
 				{"data":"bankTest.bankAddr"}
-			]
+			],
+			"columnDefs": [
+			    { "visible": false, "targets": 0 }
+			  ]
+			
     	});
 	})
 	</script>

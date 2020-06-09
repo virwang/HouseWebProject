@@ -74,7 +74,7 @@ public class AjaxController {
 	}
 
 	@RequestMapping(path = "/ShowYear.do", method = RequestMethod.GET,produces = {"application/json"})
-	public ResponseEntity<List<TwoTaipei>> ShowSearchTwoTaipeiPageYear(Model m,@RequestParam("districtavg") String district, @RequestParam("select_year") String sdate) {
+	public ResponseEntity<Map<String, List<TwoTaipei>>> ShowSearchTwoTaipeiPageYear(Model m,@RequestParam("districtavg") String district, @RequestParam("select_year") String sdate) {
 
 		System.out.println("get data=" + sdate);
 
@@ -87,10 +87,9 @@ public class AjaxController {
 //
 //		Gson gson = new GsonBuilder().create();
 //		String json = gson.toJson(tlist);
-//		Map<String, Object> map = new LinkedHashMap<>();
-//		map.put("data",tlist);
-		ResponseEntity<List<TwoTaipei>> re = new ResponseEntity<>(tlist,HttpStatus.OK);
-		
+		Map<String, List<TwoTaipei>> map = new HashMap<>();
+		map.put("data",tlist);
+		ResponseEntity<Map<String, List<TwoTaipei>>> re = new ResponseEntity<>(map,HttpStatus.OK);
 		
 		return re;
 	}

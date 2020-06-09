@@ -11,8 +11,14 @@ import java.util.List;
 
 @Repository
 public class MemberDao {
-	@Autowired @Qualifier("sessionFactory")
-	private SessionFactory sessionFactory;
+	@Autowired
+	SessionFactory factory;
+	public Session getSession() {
+		return factory.getCurrentSession();
+	}
+	
+//	@Autowired @Qualifier("sessionFactory")
+//	private SessionFactory sessionFactory;
 	
 	public MemberDao() {
 
@@ -31,8 +37,8 @@ public class MemberDao {
 		boolean exist=false;
 		try 
 		{	
-			Session session = sessionFactory.getCurrentSession();
-			Query<MemberBean> query = session.createQuery("from MemberBean where account=:acc",MemberBean.class);
+//			Session session = sessionFactory.getCurrentSession();
+			Query<MemberBean> query = getSession().createQuery("from MemberBean where account=:acc",MemberBean.class);
 			MemberBean mb = query.setParameter("acc",account).uniqueResult();
 			if (mb!=null) {
 					MemberBean mybean = mb;
@@ -49,20 +55,36 @@ public class MemberDao {
 	public void insertMember(MemberBean bean) {				
 		try 	
 		{	
-			Session session = sessionFactory.getCurrentSession();
-			bean.setAccount(bean.getAccount());
-			bean.setPsw(bean.getPsw());
-			bean.setName(bean.getName());
-			bean.setIdCard(bean.getIdCard());
-			bean.setGender(bean.getGender());
-			bean.setUsertype(bean.getUsertype());
-			bean.setTel(bean.getTel());
-			bean.setEmail(bean.getEmail());
-			bean.setRegisterDate(bean.getRegisterDate());		
-			session.save(bean);					
+			getSession().save(bean);
+			System.out.println("success insert Member");
+//			Session session = sessionFactory.getCurrentSession();
+//			bean.setAccount(bean.getAccount());
+//			bean.setPsw(bean.getPsw());
+//			bean.setName(bean.getName());
+//			bean.setIdCard(bean.getIdCard());
+//			bean.setGender(bean.getGender());
+//			bean.setUsertype(bean.getUsertype());
+//			bean.setTel(bean.getTel());
+//			bean.setEmail(bean.getEmail());
+//			bean.setRegisterDate(bean.getRegisterDate());		
+//			session.save(bean);					
 		}catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("falied to insert Member");
 		}
+	}
+	public MemberBean checkGoogleId(MemberBean memberBean) {
+		MemberBean mybean=memberBean;
+		String googleId=memberBean.getGoogleId();
+		Query<MemberBean> query = getSession().createQuery("from MemberBean where googleId=:googleId",MemberBean.class);
+		MemberBean mb = query.setParameter("googleId",googleId).uniqueResult();
+		if (mb!=null) {
+				 mybean = mb;
+				System.out.println(mybean.getAccount());	
+				return mybean;
+		}
+		getSession().save(mybean);
+		return mybean;
 	}
 	
 

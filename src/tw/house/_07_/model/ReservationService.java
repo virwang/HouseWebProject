@@ -23,4 +23,8 @@ public class ReservationService {
 		return reservationDAO.insertapplication(rBean);
 	}
 	
+	public boolean deleteReservationByHouseId(Integer hid) {
+		return reservationDAO.deleteReservationByHouseId(hid);
+	}
+	
 }

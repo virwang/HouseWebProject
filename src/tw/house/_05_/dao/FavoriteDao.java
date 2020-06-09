@@ -52,6 +52,22 @@ public class FavoriteDao implements IFavoritedao {
 		mfhList = mfhouselist.list();
 		return mfhList;
 	}
+	
+	@Override
+	public boolean deleteFavoriteByHid(Integer hid) {
+		String queryByMid = "from FavoriteBean where houseBean.id = :id";
+		Query<FavoriteBean> mfhouselist = getSession().createQuery(queryByMid, FavoriteBean.class);
+		mfhouselist.setParameter("id", hid);
+		List<FavoriteBean> mfhList = new ArrayList<FavoriteBean>();
+		mfhList = mfhouselist.list();
+		if(mfhList.size()!=0) {
+			for (FavoriteBean favoriteBean : mfhList) {
+				getSession().delete(favoriteBean);
+			}
+			return true;
+		}
+		return true;
+	}
 
 	@Override
 	public List<FavoriteBean> favoriteHouse(String title, String totalprice) {
@@ -124,6 +140,20 @@ public class FavoriteDao implements IFavoritedao {
 			System.out.println("if favoriteBean = null, fid = ?" + fid);
 			return false;
 		}
+
+	}
+
+	// compare house with two taipei tpirce，by district using like
+	public List<FavoriteBean> compare(TwoTaipei taiepi, HouseBean houseBean, MemberBean memberBean) {
+		System.out.println("into compare twotaipei");
+		Query<FavoriteBean> list = getSession().createQuery("from houseBean where id=:id, and taipei.id =:id");
+		list.setParameter("id", taiepi.getId());
+		list.setParameter("id", houseBean.getId());
+		list.setParameter("pk", memberBean.getPk());
+		List<FavoriteBean> fBean = new ArrayList<>();
+		fBean = list.getResultList();
+		System.out.println("compare"+fBean);
+		return fBean;
 
 	}
 

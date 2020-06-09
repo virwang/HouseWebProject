@@ -40,9 +40,4 @@ public class HouseService {
 	public List<HouseBean> searchHouse(String city,String dist,String addr){
 		return houseDAO.searchHouse(city, dist, addr);
 	}
-
-//	public List<HouseBean> comparelist() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 }

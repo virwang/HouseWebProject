@@ -32,11 +32,16 @@ public class HouseDAO {
 
 	}
 	public List<HouseBean> searchHouse(String city,String dist,String addr){
+		String hquery0 = "from HouseBean where city=:city";
 		String hquery1 = "from HouseBean where city=:city and dist=:dist";
 		String hquery2 = "from HouseBean where city=:city and dist=:dist and addr like :addr";
 		Query<HouseBean> query = null;
-		System.out.println(addr);
-		if(addr==null) {
+		System.out.println("daoaddr="+addr);
+		System.out.println("daodist="+dist);
+		if(dist.equals("全區")&&addr=="") {
+			query = getSession().createQuery(hquery0,HouseBean.class);
+			query.setParameter("city", city);
+		}else if(addr=="") {
 			query = getSession().createQuery(hquery1,HouseBean.class);
 			query.setParameter("city", city);
 			query.setParameter("dist", dist);
@@ -46,7 +51,6 @@ public class HouseDAO {
 			query.setParameter("city", city);
 			query.setParameter("dist", dist);
 			query.setParameter("addr", "%"+addr+"%");
-			
 		}
 		List<HouseBean> list = new ArrayList<>();
 		list = query.list();

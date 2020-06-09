@@ -6,28 +6,102 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/19_css/admin_index.css">
+<style>
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+  body{font-family:微軟正黑體;}
+  .butn1{
+  font-family:微軟正黑體;
+  border:none;
+  background-color: #333;
+  color:white;
+  font-size: 17px;
+  outline: none;
+  }
+  .butn1:hover{
+  background-color: #ddd;
+  }
+			/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+
+</style>
 <title>後臺管理</title>
 </head>
 <body>
-<!--   <div class="site-loader"></div> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!--   <div class="site-wrap"> -->
-<%--      <jsp:include page="/navibar.jsp" /> --%>
-<!--   </div> -->
-<table class="t1">
-	<tr>
-		<th class="h1"><button class=bt1 id="memberbtn" onclick="ajaxmembers()">會員清單</button></th>
-		<th class="h1"><button class=bt1 id="housebtn" onclick="ajaxhouses()">房屋清單</button></th>
-		<th class="h1"><button class=bt1 id="newbtn" onclick="ajaxnews()">新聞清單</button></th>
-		<th class="h2"><a class="a1" href="<c:url value='createnew'/>">新增新聞</a></th>
-		<th class="h2"><a class="a1" href=index.jsp>返回首頁</a></th>
-	</tr>
-</table>
+<div class="topnav" id="myTopnav">
+  <a href="index.jsp" class="active">返回首頁</a>
+  <a href="<c:url value='createnew'/>">新增新聞</a>
+  <a onmouseover="ahover()" onmouseleave="aleave()"><button class="butn1" id="newbtn" onclick="ajaxnews()">新聞清單</button></a>
+  <a onmouseover="ahover1()" onmouseleave="aleave1()"><button class="butn1" id="housebtn" onclick="ajaxhouses()">房屋清單</button></a>
+  <a onmouseover="ahover2()" onmouseleave="aleave2()"><button class="butn1" id="memberbtn" onclick="ajaxmembers()">會員清單</button></a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 <div class=d1 id="ajax"></div>	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"
 		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
+	function ahover(){
+		$("#newbtn").css("background-color","#ddd");
+		$("#newbtn").css("color","black");
+		}
+	function aleave(){
+		$("#newbtn").css("background-color","#333");
+		$("#newbtn").css("color","white");
+		}
+	function ahover1(){
+		$("#housebtn").css("background-color","#ddd");
+		$("#housebtn").css("color","black");
+		}
+	function aleave1(){
+		$("#housebtn").css("background-color","#333");
+		$("#housebtn").css("color","white");
+		}
+	function ahover2(){
+		$("#memberbtn").css("background-color","#ddd");
+		$("#memberbtn").css("color","black");
+		}
+	function aleave2(){
+		$("#memberbtn").css("background-color","#333");
+		$("#memberbtn").css("color","white");
+		}
 	function ajaxmembers(){
 		let ajaxmember = document.getElementById('ajax');
 		let content = "";

@@ -1,4 +1,14 @@
 @charset "UTF-8";
-div.container {
-        width: 80%;
-    }
+.dt-basic-checkbox {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+}

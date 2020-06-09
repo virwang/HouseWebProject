@@ -14,7 +14,6 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
 <link rel="stylesheet" href="fonts/icomoon/style.css">
-
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/magnific-popup.css">
 <link rel="stylesheet" href="css/jquery-ui.css">
@@ -26,12 +25,73 @@
 <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
 <link rel="stylesheet" href="css/19_css/memberData.css">
-
-
 <link rel="stylesheet" href="css/aos.css">
-
 <link rel="stylesheet" href="css/style.css">
+<style>
+form{display: inline;}
+ .sp1 {
+ 	text-shadow: 2px 2px;
+      font-size: 35px;     
+      margin-top: 30px;
+      margin-left: 25vw;
+      width: 10vw;
+    }
+   .sp2{
+   font-size:5mm;
+   margin-left:35vw;
+   }
+   .sp2:hover{
+   font-size:8mm;
+   color:red;
+   }
 
+    .sp3 {
+	margin-bottom:10vh;
+	margin-left:45vw;
+	font-size: 5mm;
+    }
+
+    .t1 {
+      background-color:#FFFFFF;
+      border-collapse: collapse;
+      width: 50vw;
+      margin-top: 2vh;
+      margin-bottom: 100px;
+      margin-left: 25vw;
+      text-align: left;
+      box-shadow: 2px 2px;
+    }
+
+    .img1 {
+      padding-bottom: 20px;
+    }
+
+    .td1 {
+      border-right:4px double gray;
+      border-left: 1px solid gray;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+      padding-top: 2vh;
+      padding-bottom: 2vh;
+      width: 7vw;
+      background-color: #97CBFF;
+    }
+
+    .td2 {
+   	  border-top: 1px solid gray; 
+      border-right: 1px solid gray;
+      border-bottom: 1px solid gray;
+      background-color: #FFFFFF;
+      text-align: center;
+    }
+    .submit{
+    padding:10px;
+	font-size: 10mm;
+	margin-top:10px;
+	background-color: #FFFFFF;
+	border:none;
+	color:blue;}
+</style>
 </head>
 
 <body>

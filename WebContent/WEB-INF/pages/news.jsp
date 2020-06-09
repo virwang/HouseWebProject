@@ -29,7 +29,20 @@
 <link rel="stylesheet" href="css/07_css/aos.css">
 
 <link rel="stylesheet" href="css/07_css/style.css">
+<style>
+	.text1:hover{
+		color:#6A6AFF;
+		text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87;
+		font-size: 8mm; }
+	.r1{
+ 		font-size: 5mm; 
+		}
 
+  	body{
+  		font-family: 微軟正黑體;
+  	}
+
+</style>
 </head>
 
 <body>
@@ -56,51 +69,51 @@
 
 		<div class="row mb-5 justify-content-center" data-aos="fade-up"
 			data-aos-delay="100" class="text">
-			<form action="newsSearch" method="GET">
-				<br> <label class="form-check-label"> 臺北市 </label><br> 
-				<input type="radio" name="area" value="btd">北投區 
-				<input type="radio" name="area" value="sld">士林區 
-				<input type="radio" name="area" value="zsd">中山區 
-				<input type="radio" name="area" value="nhd">內湖區
-				<input type="radio" name="area" value="dtd">大同區
-				<input type="radio" name="area" value="ssd">松山區 
-				<input type="radio" name="area" value="whd">萬華區 
-				<input type="radio" name="area" value="zzd">中正區 
-				<input type="radio" name="area" value="dad">大安區 
-				<input type="radio" name="area" value="xyd">信義區 
-				<input type="radio" name="area" value="ngd">南港區 
-				<input type="radio" name="area" value="wsd">文山區
+			<form class="r1" action="newsSearch" method="GET">
+				<br> <label class="form-check-label "> 臺北市 </label><br> 
+				<input type="radio" name="area" value="北投區">北投區 
+				<input type="radio" name="area" value="士林區">士林區 
+				<input type="radio" name="area" value="中山區">中山區 
+				<input type="radio" name="area" value="內湖區">內湖區
+				<input type="radio" name="area" value="大同區">大同區
+				<input type="radio" name="area" value="松山區">松山區 
+				<input type="radio" name="area" value="萬華區">萬華區 
+				<input type="radio" name="area" value="中正區">中正區 
+				<input type="radio" name="area" value="大安區">大安區 
+				<input type="radio" name="area" value="信義區">信義區 
+				<input type="radio" name="area" value="南港區">南港區 
+				<input type="radio" name="area" value="文山區">文山區
 				<hr>
-				<label class="form-check-label"> 新北市 </label><br>
-				<input type="radio" name="area" value="banqiao">板橋區 
-				<input type="radio" name="area" value="zhonghe">中和區
-				<input type="radio" name="area" value="xinzhuang">新莊區 
-				<input type="radio" name="area" value="tucheng">土城區 
-				<input type="radio" name="area" value="xizhi">汐止區 
-				<input type="radio" name="area" value="yingge">鶯歌區
-				<input type="radio" name="area" value="tamsui">淡水區 
-				<input type="radio" name="area" value="wugu">五股區 
-				<input type="radio" name="area" value="linkou">林口區 
-				<input type="radio" name="area" value="shenkeng">深坑區
-				<input type="radio" name="area" value="pinglin">坪林區
-				<input type="radio" name="area" value="shimen">石門區 <br>
-				<input type="radio" name="area" value="wanli">萬里區
-				<input type="radio" name="area" value="shuangxi">雙溪區
-				<input type="radio" name="area" value="wulai">烏來區
-				<input type="radio" name="area" value="sanchong">三重區
-				<input type="radio" name="area" value="yonghe">永和區
-				<input type="radio" name="area" value="xindian">新店區
-				<input type="radio" name="area" value="luzhou">蘆洲區
-				<input type="radio" name="area" value="shulin">樹林區
-				<input type="radio" name="area" value="sanxia">三峽區
-				<input type="radio" name="area" value="ruifang">瑞芳區
-				<input type="radio" name="area" value="taishan">泰山區
-				<input type="radio" name="area" value="bali">八里區<br>
-				<input type="radio" name="area" value="shiding">石碇區
-				<input type="radio" name="area" value="sanzhi">三芝區
-				<input type="radio" name="area" value="jinshan">金山區
-				<input type="radio" name="area" value="pingxi">平溪區
-				<input type="radio" name="area" value="gongliao">貢寮區 <br><br>
+				<label class="form-check-label "> 新北市 </label><br>
+				<input type="radio" name="area" value="板橋區">板橋區 
+				<input type="radio" name="area" value="中和區">中和區
+				<input type="radio" name="area" value="新莊區">新莊區 
+				<input type="radio" name="area" value="土城區">土城區 
+				<input type="radio" name="area" value="汐止區">汐止區 
+				<input type="radio" name="area" value="鶯歌區">鶯歌區
+				<input type="radio" name="area" value="淡水區">淡水區 
+				<input type="radio" name="area" value="五股區">五股區 
+				<input type="radio" name="area" value="林口區">林口區 
+				<input type="radio" name="area" value="深坑區">深坑區
+				<input type="radio" name="area" value="坪林區">坪林區
+				<input type="radio" name="area" value="石門區">石門區 <br>
+				<input type="radio" name="area" value="萬里區">萬里區
+				<input type="radio" name="area" value="雙溪區">雙溪區
+				<input type="radio" name="area" value="烏來區">烏來區
+				<input type="radio" name="area" value="三重區">三重區
+				<input type="radio" name="area" value="永和區">永和區
+				<input type="radio" name="area" value="新店區">新店區
+				<input type="radio" name="area" value="蘆洲區">蘆洲區
+				<input type="radio" name="area" value="樹林區">樹林區
+				<input type="radio" name="area" value="三峽區">三峽區
+				<input type="radio" name="area" value="瑞芳區">瑞芳區
+				<input type="radio" name="area" value="泰山區">泰山區
+				<input type="radio" name="area" value="八里區">八里區<br>
+				<input type="radio" name="area" value="石碇區">石碇區
+				<input type="radio" name="area" value="三芝區">三芝區
+				<input type="radio" name="area" value="金山區">金山區
+				<input type="radio" name="area" value="平溪區">平溪區
+				<input type="radio" name="area" value="貢寮區">貢寮區 <br><br>
 				<input type="submit" value="搜尋" class="btn btn-outline-primary rounded-0 py-2 px-5">
 				<input type="reset" value="重選" class="btn btn-outline-primary rounded-0 py-2 px-5">
 				<hr>
@@ -112,20 +125,20 @@
 
 		<div class="site-section">
 			<div class="container">
-				<div class="row">
+				<div class="row dnew1">
 
 
 					<c:forEach var="nlist" items="${NewsList}">
-						<div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up"
+						<div class="col-md-6 col-lg-4 mb-4 " data-aos="fade-up"
 							data-aos-delay="100">
 							<!-- <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a> -->
-							<div class="p-4 bg-white">
+							<div class="p-4 dnew2">
 <!-- 								<span class="d-block text-secondary small text-uppercase">Jan -->
 <!-- 									20th, 2019</span> -->
-								<h2 class="h5 text-black mb-3">
-									<a href='<c:url value="newsShow?NEWSID=${nlist.newsnum}"/>'>${nlist.newstitle}</a>
+								<h2 class="h5  mb-3 ">
+									<a class="text1" href='<c:url value="newsShow?NEWSID=${nlist.newsnum}"/>'>${nlist.newstitle}</a>
 								</h2>
-								<p>${nlist.newscontent.substring(0, 31)}...</p>
+								<p class="text2">${nlist.newscontent.substring(0, 31)}...</p>
 							</div>
 						</div>
 					</c:forEach>

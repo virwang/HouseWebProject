@@ -29,13 +29,16 @@
 
   <link rel="stylesheet" href="css/style.css">
   <style>
-    body{
-        background-color: #D0D0D0;
-    }
+   body {
+	background-color: #333333;
+	font-family:微軟正黑體;
+	font-size:18px;
+	color:#ffffff;
+}
     .st1 {
       text-align: center;
         margin: auto;
-        margin-top: 100px;
+        margin-top: 150px;
         margin-bottom: 20px;
         font-size: 40px;
     }
@@ -49,8 +52,8 @@
     }
     .st3 {
         margin: auto;
-        width: 300px;
-        font-size: 20px;
+        width: 500px;
+        font-size: 30px;
     }
     
 </style>
@@ -65,34 +68,18 @@
   </div>
 
   <div class="slide-one-item home-slider owl-carousel">
-
-
-
-    <div class="site-blocks-cover overlay" style="background-image: url(images/house3.jpg);" data-aos="fade"
-      data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
-          <div class="col-md-10">
-            <!-- <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">出租</span> -->
-            <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">賣房</span>
-            <h1 class="mb-2">渡假村</h1>
-            <p class="mb-5"><strong class="h2 text-success font-weight-bold">$2,250,500</strong></p>
-            <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">詳細資訊</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-  <div class="st1">您已成功註冊，隨心居-想住哪就住哪，歡迎您的加入</div>
+<fieldset >
+  <div class="st1">您已成功註冊，好家在-想住哪就住哪，歡迎您的加入</div>
   <div class="st3">會員 ${ memberBean.name } 的資料新增成功<br></div>
-<div class="st3">編號: ${ memberBean.account }<br></div>
+<div class="st3">帳號: ${ memberBean.account }<br></div>
 <div class="st3">手機: ${ memberBean.tel }<br></div>
-<div class="st3">生日: ${ memberBean.email }<br></div>
+<div class="st3">E-Mail: ${ memberBean.email }<br></div>
 <div class="st3">註冊時間: ${ memberBean.registerDate }<br></div>
-  <div class="st2">
-      <a href="index.jsp">返回首頁</a>
-  </div>
+</fieldset>
+<!--   <div class="st2"> -->
+<!--       <a href="index.jsp">返回首頁</a> -->
+<!--   </div> -->
 
   <jsp:include page="/footer.jsp" />
 

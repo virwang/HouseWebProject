@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -11,11 +10,10 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
+ 
 <link rel="stylesheet" href="fonts/icomoon/style.css">
-
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/magnific-popup.css">
 <link rel="stylesheet" href="css/jquery-ui.css">
@@ -26,13 +24,73 @@
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
-<link rel="stylesheet" href="css/19_css/memberData.css">
-
-
 <link rel="stylesheet" href="css/aos.css">
-
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/19_css/memberData.css">
+<style>
+form{display: inline;}
+ .sp1 {
+ 	text-shadow: 2px 2px;
+      font-size: 35px;     
+      margin-top: 30px;
+      margin-left: 25vw;
+      width: 10vw;
+    }
+    .sp3 {
+	margin-bottom:10vh;
+	margin-left:33vw;
+	font-size: 5mm;
+    }
 
+    .t1 {
+      background-color:#FFFFFF;
+      border-collapse: collapse;
+      width: 50vw;
+      margin-top: 2vh;
+      margin-bottom: 10px;
+      margin-left: 25vw;
+      text-align: left;
+      box-shadow: 2px 2px;
+    }
+
+    .img1 {
+      padding-bottom: 20px;
+    }
+
+    .td1 {
+      border-right:4px double gray;
+      border-left: 1px solid gray;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+      padding-top: 2vh;
+      padding-bottom: 2vh;
+      width: 7vw;
+      background-color: #97CBFF;
+    }
+
+    .td2 {
+   	  border-top: 1px solid gray; 
+      border-right: 1px solid gray;
+      border-bottom: 1px solid gray;
+      background-color: #FFFFFF;
+      text-align: center;
+    }
+    .submit{
+   	 	padding:10px;
+		font-size: 10mm;
+		margin-top:10px;
+		background-color: #FFFFFF;
+		border:none;
+		color:blue;
+		outline: none;}
+	.index{
+		font-size:10mm;
+		margin-left:22vw;
+		}
+	.in1{
+		box-shadow: 0 0 1px 1px gray;
+		}
+</style>
 </head>
 
 <body>
@@ -67,26 +125,19 @@
 	</div>
 	<span class="sp1">個人資料</span>
 	<font size='-1' color='red'>&nbsp;${errors.DBError}</font>
-	<form method="Post" action="<c:url value='updateMember.do'/>">
-			<input type="hidden" name="id" value="${memberUpdate.pk}">
+	<form method="post" action=<c:url value='updateMember.do'/>>
 		<table class="t1">
 			<tr>
-				<td class="td1">姓名：</td>
-				<td class="td2">
-					<input type="text" name="name" id="name" value="${memberUpdate.name}" onblur="checkName();" onclick="hide()" />
-					<img id="img3" src="">
-					<span id="sp1"></span> 
-					<font id="fonterror1" color='red' size="-1">${errors.name}</font>
+				<td><input type="hidden" name="id"
+					value="${memberUpdate.pk}">
 				</td>
 			</tr>
 			<tr>
-				<td class="td1">密碼：</td>
-				<td class="td2">
-					<input type="password" value="${memberUpdate.psw}" name="psw" id="psw" onblur="checkPwd();" maxlength="16" onclick="hide()"/> 
-					<img id="img2" src="">
-					<span id="sp2"></span>
-					<font id="fonterror2" color='red' size="-1">${errors.psw}</font>
-				</td>
+				<td class="td1">姓名：</td>
+				<td class="td2"><input class="in1" type="text" id="name" name="name"
+					value="${memberUpdate.name}" onblur="checkName();" onclick="hide()">
+					<img id="img3" src=""><span id="sp1"></span> <font
+					id="fonterror1" color='red' size="-1">${errors.name}</font></td>
 			</tr>
 			<tr>
 				<td class="td1">性別：</td>
@@ -101,12 +152,10 @@
 
 			<tr>
 				<td class="td1">聯絡方式：</td>
-				<td class="td2">
-					<input value="${memberUpdate.tel}" name="tel" id="tel" onblur="checkPhone();" onclick="hide()" maxlength="10"/> 
-					<img id="img5" src="">
-					<span id="sp6"></span>
-					<font id="fonterror3" color='red' size="-1">${errors.tel}</font>
-				</td>
+				<td class="td2"><input class="in1" type="text" id="tel" name="tel"
+					value="${memberUpdate.tel}" onblur="checkPhone();" onclick="hide()"
+					maxlength="10"> <img id="img5" src=""><span id="sp6"></span>
+					<font id="fonterror3" color='red' size="-1">${errors.tel}</font></td>
 			</tr>
 			<tr>
 				<td class="td1">身份別：</td>
@@ -128,22 +177,17 @@
 			</tr>
 			<tr>
 				<td class="td1">E-mail：</td>
-				<td class="td2">
-					<input type="text" name="email" id="email" value="${memberUpdate.email}" onclick="hide()" onblur="checkEmail();"/>
-					<img id="img6" src="">
-					<span id="sp5"></span> 
-					<font id="fonterror4" color='red' size="-1">${errors.email}</font>
-				</td>
+				<td class="td2"><input class="in1" type="text" id="email" name="email"
+					value="${memberUpdate.email}" onclick="hide()" onblur="checkEmail();">
+					<img id="img6" src=""><span id="sp5"></span> <font
+					id="fonterror4" color='red' size="-1">${errors.email}</font></td>
 			</tr>
-			<tr>
-				<td>
-					<input type="submit" value="送出" onclick="return confirmUpdate()">
-				</td>
-			</tr>
-		</table>
+		</table>	
+		<span class="sp3"><input class="submit" type="submit" value="送出" onclick="return confirmUpdate()"></span>
+		<span class="index"><a href="<c:url value='showMemberData'/>">上一頁</a></span>
 	</form>
 	<div>
-	
+
 		<jsp:include page="/footer.jsp" />
 
 	</div>
@@ -168,7 +212,7 @@
 			if (confirm("確定修改此筆紀錄?")) {
 				return true
 			}
-				return false
+			return false
 		}
 	</script>
 	<script>

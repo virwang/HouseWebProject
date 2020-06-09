@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -25,11 +26,29 @@ public class MemberBean {
 	private String gender;
 	private String usertype;
 	private String tel;
-	private String email;
+	private String email;	
 	private Timestamp registerDate;
-	
+	@Transient
+	@JsonIgnore
+	private String base64image1;
+	@Transient
+	private String googleId;
+	@Column(name = "googleId")
+	public String getGoogleId() {
+		return googleId;
+	}
+	public void setGoogleId(String googleId) {
+		this.googleId = googleId;
+	}
+	@Column(name="base64image1")
+	public String getBase64image1() {
+		return base64image1;
+	}
+	public void setBase64image1(String base64image1) {
+		this.base64image1 = base64image1;
+	}
 	public MemberBean(Integer pk, String account, String psw, String name, String idCard, String gender,
-			String usertype, String tel, String email, Timestamp registerDate) {
+			String usertype, String tel, String email, Timestamp registerDate,String base64image1,String googleId) {
 		super();
 		this.pk = pk;
 		this.account = account;
@@ -41,6 +60,8 @@ public class MemberBean {
 		this.tel = tel;
 		this.email = email;
 		this.registerDate = registerDate;
+		this.base64image1=base64image1;
+		this.googleId=googleId;
 	}
 	public MemberBean() {
 		

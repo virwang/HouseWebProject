@@ -23,4 +23,8 @@ public class MemberService {
 		mDao.insertMember(bean);
 
 	}
+	public MemberBean checkGoogleId(MemberBean memberBean) {
+		return mDao.checkGoogleId(memberBean);
+	}
+	
 }

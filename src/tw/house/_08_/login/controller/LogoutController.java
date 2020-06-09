@@ -20,7 +20,7 @@ import tw.house._08_.register.model.MemberBean;
 @Controller
 @SessionAttributes
 public class LogoutController {
-	@RequestMapping(path = "/springlogout.do")
+	@RequestMapping(path = "/logout")
 	public String logoutAction(HttpServletRequest requset, Model m) {
 		HttpSession session = requset.getSession(false);
 		MemberBean bean = (MemberBean) session.getAttribute("memberBean");

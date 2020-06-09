@@ -34,6 +34,11 @@ public class FavoriteListService implements IFavorite  {
 		System.out.println("favorite service by mid, where mid =" + mid);
 		return favoriteDao.mfhouse(mid);
 	}
+	
+	@Override
+	public boolean deleteFavoriteByHid(Integer hid) {
+		return favoriteDao.deleteFavoriteByHid(hid);
+	}
 
 
 	@Override

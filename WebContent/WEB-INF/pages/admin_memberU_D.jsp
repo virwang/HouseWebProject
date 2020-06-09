@@ -23,15 +23,6 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="td1">密碼：</td>
-				<td class="td2">
-					<input class="ip1" type="password" value="${member.psw}" name="psw" id="psw" onblur="checkPwd();" maxlength="16" onclick="hide()"/> 
-					<img id="img2" src="">
-					<span id="sp2"></span>
-					<font id="fonterror2" color='red' size="-1">${errors.psw}</font>
-				</td>
-			</tr>
-			<tr>
 				<td class="td1">性別：</td>
 				<td class="td2">
 				<c:choose>

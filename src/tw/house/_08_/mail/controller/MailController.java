@@ -18,6 +18,10 @@ public class MailController {
 	public String mail() {
 		return "_08_emailFindPsw";
 	}
+	@GetMapping(path = "/reset")
+	public String reset() {
+		return "_08_resetPsw";
+	}
 	@RequestMapping(path = "/sendEmail",method = RequestMethod.GET)
 	 public void sendemail() {
 			

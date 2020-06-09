@@ -29,6 +29,8 @@
 <style>
 body {
 	background: #f5f6fb;
+	font-family:微軟正黑體;
+	font-size:18px;
 }
 
 .risk {
@@ -159,7 +161,7 @@ body {
 }
 
 .result-box {
-	width: 1200px;
+	width: 1500px;
 	margin: auto;
 	font-size: 1.2rem;
 	color: #666;
@@ -179,7 +181,7 @@ body {
 .result-box .result-txt {
 	padding: 0 4rem;
 	text-align: justify;
-	line-height: 1.8rem;
+	line-height: 1.2rem;
 }
 
 .result-box .result-txt .result-money {
@@ -329,19 +331,9 @@ body {
 									<button  style="margin: center" class="ok-btn"id="cityBtn" onClick="lenderShow()">確定</button>
 								</div>
 
-								<%-- 					<form action="<c:url value='lendercity'/>" method="POST"> --%>
-								<!-- 						<span>請選擇地區</span> <select class="form-control" name="city" -->
-								<!-- 							id="city"> -->
-								<!-- 							<option value="台北市">台北市</option> -->
-								<!-- 							<option value="新北市">新北市</option> -->
-								<!-- 						</select> -->
-								<!-- 						<div class="submit"> -->
-								<!-- 							<input type="submit" class="btn btn-info position-relative" -->
-								<!-- 								value="submit"> -->
-								<!-- 						</div> -->
-								<!-- 					</form> -->
 							</div>
 							<div id="lenderShow"></div>
+							
 
 						</div>
 					</div>
@@ -360,7 +352,8 @@ body {
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		var starLevel = "";
-
+	  
+        
 		$('#city').change(function() {
 			var val = $(this).val();
 			if (val == '台北市') {
@@ -374,6 +367,7 @@ body {
 		var lendShow = document.getElementById('lenderShow');
 
 		function lenderShow() {
+			
 			console.log('click')
 			var city = $('#city').prop("value")
 			var dist = "";
@@ -388,16 +382,18 @@ body {
 			console.log('dist:' + dist)
 			var content = "";
 			if (dist == '全地區') {
+				
+		    	
 				var xhr = new XMLHttpRequest();
 				xhr.open("POST", "<c:url value='lendercity'/>", true);
 				xhr.setRequestHeader("Content-type",
 						"application/x-www-form-urlencoded");
 				xhr.send("city=" + city + "&starLevel=" + starLevel); //+"&dist="+dist
 				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && xhr.status == 200) {
+					if (xhr.readyState == 4 && xhr.status == 200) {						
 						let lenderCity = JSON.parse(xhr.responseText);
 						console.log('lenderCity.length:' + lenderCity.length);
-						content = '<table id="example"  style="width: 100%">';
+						content = '<table id="example"  style="border:thick double black">';
 						content += '<thead><tr><th>業務姓名</th><th>銀行名稱</th><th>縣市</th><th>行政區</th>'
 								+ '<th>連絡電話</th><th>聯絡地址</th></tr></thead>';
 						for (let j = 0; j < lenderCity.length; j++) {
@@ -423,7 +419,7 @@ body {
 				}
 			}
 			//行政區
-
+				
 			var xhr2 = new XMLHttpRequest();
 			xhr2.open("POST", "<c:url value='lendercitydist'/>", true);
 			xhr2.setRequestHeader("Content-type",
@@ -481,6 +477,19 @@ body {
 
 				} ]
 			}, {
+				"title" : "您有無房屋仲介經紀人？",
+				"type" : "TYPE_RADIO",
+				"answers_items" : [ {
+					"result" : "A",
+					"point" : 3,
+					"content" : "是 "
+				}, {
+					"result" : "B",
+					"point" : 1,
+					"content" : "否"
+
+				} ]
+			},{
 				"title" : "是否為首次購屋?？",
 				"type" : "TYPE_RADIO",
 				"answers_items" : [ {
@@ -757,6 +766,8 @@ body {
 	<script src="js/aos.js"></script>
 
 	<script src="js/main.js"></script>
+	
+	<script src="<c:url value='/datatable/datatables.js' />"></script>
 </body>
 
 </html>

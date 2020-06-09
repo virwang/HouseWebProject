@@ -6,11 +6,11 @@ public class ActionMail {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Random random=new Random();
-		Integer reset=random.nextInt(9)+1;
-		System.out.println(reset);
-		int num = (int)(Math.random()* (0-9+1)+1);
-		System.out.println(num);
+		for(int i=0;i<5;i++) {
+			int num = (int)(Math.random()*10);
+			System.out.println(i+":"+num);
+			
+		}
 	}
 
 }

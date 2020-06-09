@@ -36,7 +36,7 @@ public class AdminNewController {
 	public String getNew(Model model,@RequestParam("id") Integer id) {
 		NewsBean bean = service.getById(id);
 		model.addAttribute("new1", bean);
-		return "admin_newsU&D";
+		return "admin_newsU_D";
 	}
 	@PostMapping("/updateNew")
 	public String updateNew(@RequestParam("id")Integer id,
@@ -55,7 +55,7 @@ public class AdminNewController {
 			bean.setNewscontent(newscontent);
 			bean.setNewscityname(newscityname);
 			bean.setNewsareaname(newsareaname);
-			return "redirect:/getnewlist";
+			return "redirect:/admin_index";
 		}else {
 			return "redirect:/showNew";
 		}
@@ -67,10 +67,10 @@ public class AdminNewController {
 		boolean delete = service.delete(bean);
 		if(delete==true) {
 			System.out.println("delete Success");
-			return "redirect:/getnewlist";
+			return "redirect:/admin_index";
 		}else {
 			System.out.println("delete failed");
-			return "redirect:/getnewlist";
+			return "redirect:/admin_index";
 		}
 	}
 	@GetMapping("/createnew")

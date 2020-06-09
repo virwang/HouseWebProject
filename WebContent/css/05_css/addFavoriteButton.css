@@ -6,7 +6,7 @@
     padding: 18px 50px;
     border: 0px solid #c72638;
     border-radius: 22px;
-    background: #7CBD1E;
+    background: #ff3d5b;
     background: -webkit-gradient(linear, left top, left bottom, from(#ff3d5b), to(#c72638));
     background: -moz-linear-gradient(top, #ff3d5b, #c72638);
     background: linear-gradient(to bottom, #ff3d5b, #c72638);
@@ -18,7 +18,7 @@
 .button:hover,
 .button:focus {
     border: 0px solid ##f92f46;
-    background: #006400;
+    background: #B22222;
     background: -webkit-gradient(linear, left top, left bottom, from(#ff496d), to(#ef2e43));
     background: -moz-linear-gradient(top, #ff496d, #ef2e43);
     background: linear-gradient(to bottom, #ff496d, #ef2e43);
@@ -26,7 +26,7 @@
     text-decoration: none;
 }
 .button:active {
-    background: #006400;
+    background: #c72638;
     background: -webkit-gradient(linear, left top, left bottom, from(#c72638), to(#c72638));
     background: -moz-linear-gradient(top, #c72638, #c72638);
     background: linear-gradient(to bottom, #c72638, #c72638);
@@ -46,17 +46,17 @@
 }
 
 .btn {
-  background-color:＃B22222; /* Blue background */
+  background-color:#4169E1; /* Blue background */
   border: none; /* Remove borders */
-  color: white; /* White text */
-  padding: 3px 3px; /* Some padding */
-  font-size: 25px; /* Set a font size */
+  color: black; /* White text */
+  padding: 18px 50px; /* Some padding */
+  font-size: 18px; /* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
-  /*text-shadow: #7d1823 px 1px 0px;*/
+  text-shadow: #7d1823 px 1px 0px;
 }
 
 /* Darker background on mouse-over */
 .btn:hover {
-  background-color: ＃FF7F50;
+  background-color: #191970;
 }
 

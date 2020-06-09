@@ -25,5 +25,7 @@ public class MemberLoginService {
 	public  MemberBean checkAccEmail(String account, String email) {
 		return mLDao.checkAccEmail(account, email);
 	}
-
+	public boolean  updatePsw(MemberBean mBean) {
+		return mLDao.updatePsw(mBean);
+	}
 }

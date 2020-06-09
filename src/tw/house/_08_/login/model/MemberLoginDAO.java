@@ -20,7 +20,8 @@ public class MemberLoginDAO {
 		return factory.getCurrentSession();
 	}
 
-	public  MemberBean checkAccPwd(String account, String psw) {		
+	public  MemberBean checkAccPwd(String account, String psw) {	
+		
 			Query<MemberBean> query = getSession().createQuery("from MemberBean where account=:acc and psw=:psw",
 					MemberBean.class);
 			MemberBean mb = query.setParameter("acc", account).setParameter("psw", psw).uniqueResult();
@@ -38,7 +39,15 @@ public class MemberLoginDAO {
 	}
 	return mb;
 }
-//	public MemberBean updatePsw(String psw) {
-//		
-//	}
+	public boolean  updatePsw(MemberBean mBean) {
+		try {
+			getSession().update(mBean);
+			System.out.println("update success");
+			return true;
+		} catch (Exception e) {
+			System.out.println("update fail");
+			// TODO: handle exception
+		}
+		return false;
+	}
 }

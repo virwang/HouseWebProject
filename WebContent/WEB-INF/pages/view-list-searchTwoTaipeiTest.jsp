@@ -13,7 +13,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <script src="<c:url value='/js/jquery-3.4.1.js' />"></script>
-<script src="<c:url value='/js/ajaxads.js' />"></script>
 <link rel="stylesheet"
 	href="<c:url value='/css/css_13/jquery-ui-1.12.1/jquery-ui.css' />">
 <link rel="stylesheet"
@@ -40,6 +39,8 @@
 	href="<c:url value='/css/css_13/bootstrap.min.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/datatable/datatables.css' />">
+<link rel="stylesheet"
+	href="<c:url value='/css/css_13/jquery.smartmarquee.css' />">
 
 </head>
 
@@ -53,7 +54,7 @@
 		<jsp:include page="/navibar.jsp" />
 	</div>
 
-
+<div id='houseloanlist'></div>
 
 	<div class="site-section site-section-sm pb-0"
 		style="background-color: #333333;">
@@ -125,8 +126,8 @@
 						</div>
 
 						<span style="display: none" id="searchword"></span>
-						<!-- 					<span style="display:none" id="searchword" onchange="year();"></span> -->
 					</div>
+
 					<div
 						class="view-options bg-white py-3 px-3 d-md-flex align-items-center">
 						<div class="ml-auto d-flex align-items-center">
@@ -165,16 +166,16 @@
 									<tbody>
 										<c:forEach var='tp' items='${TwoTaipeiList}' varStatus='vs'>
 											<tr>
-												<td style="display: none">${tp.id}</td>
-												<td id=selecteddis>${tp.district}</td>
-												<td>${tp.location}</td>
-												<td><fmt:formatNumber type="currency"
+												<td id="td0" style="display: none">${tp.id}</td>
+												<td id="selecteddis">${tp.district}</td>
+												<td id="td1">${tp.location}</td>
+												<td id="td2"><fmt:formatNumber type="currency"
 														value=" ${tp.tprice_s}" pattern="###,###.#" /></td>
-												<td><fmt:formatNumber type="currency"
+												<td id="td3"><fmt:formatNumber type="currency"
 														value="${tp.uprice_p}" pattern="###,###.#" /></td>
-												<td>${tp.farea_p}</td>
-												<td>${tp.landa_p}</td>
-												<td style="display: none">${tp.sdate}</td>
+												<td id="td4">${tp.farea_p}</td>
+												<td id="td5">${tp.landa_p}</td>
+												<td id="td6" style="display: none">${tp.sdate}</td>
 												<%--<td>${tp.sbuild}</td>
 												<td>${tp.tbuild}</td>--%>
 												<%--<td>${tp.buildtype}</td>--%>
@@ -195,6 +196,43 @@
 
 
 	<jsp:include page="/footer.jsp" />
+
+
+	<script>
+		function showhouseloanlist() {
+			$.ajax({
+				url : "<c:url value='/ShowHouseLoanList.do'/>",
+				type : "GET",
+				dataType : "json",
+				success : function(data) {
+					
+				    var jsonstr = JSON.stringify(data);
+				    var prtyjson = JSON.parse(jsonstr);
+				    
+					for (n = 0; n <= prtyjson.data.length; n++) {
+
+				    var str1 = prtyjson.data[n].bank_LINKS;
+				    var str = str1.substring(0, str1.length - 1);
+				    var str2 = "https://pip.moi.gov.tw";
+				    var src = str2+str
+
+					var details = '<ul>' + prtyjson.data[n].bank_NAME
+							+ '<li> <a href=' + src + '>' + prtyjson.data[n].project_NAME
+							+ '</a> </li> <li>首期利率：' + prtyjson.data[n].firstRate
+							+ '%</li><li>寬限期：' + prtyjson.data[n].grace_MONTH
+							+ '個月</li></ul>'
+
+					$("#houseloanlist").append(details);
+					
+					}
+
+				},
+				error : function() {
+					console.log('FAIL！！！！');
+				}
+			})
+		}
+	</script>
 
 
 	<script>
@@ -228,32 +266,51 @@
 
 	<script>
 		function showyear(select_year) {
-			var districtavg = $("#districtavg").text();
-			console.log("GET select_year=" + select_year)
-			$.ajax({
-				url : "<c:url value='/ShowYear.do'/>",
-				type : "GET",
-				data : {
-					select_year : select_year,
-					districtavg : districtavg,
-				},
-				dataType : "json",
-				success : 
-					function(data) {
-					$("#table1 tbody").empty();
-					for (n = 0; n < data.length; n++) {
-						var details = "<tr role='row'><td style='display: none'>"+data[n].id+"</td><td id='selecteddis'>"+data[n].district+"</td><td>"+data[n].location+"</td><td>"+data[n].tprice_s+"</td><td>"+data[n].uprice_p+"</td><td>"+data[n].farea_p+"</td><td>"+data[n].landa_p+"</td><td style='display: none'>"+data[n].sdate+"</td></tr>"
-						$("#table1 tbody").append(
-								details
-						);
-					}
-					$('#table1').DataTable();
-				},
-				
-				error : function() {
-					console.log("呼叫失敗！！");
-				}
-			})
+			if (select_year != '') {
+				$("#table1").dataTable().fnDestroy();
+				var districtavg = $("#districtavg").text();
+				var select_year = $("#select_year").val();
+				console.log("GET select_year=" + select_year);
+				console.log("GET districtavg=" + districtavg);
+				$('#table1').dataTable(
+						{
+							"iDisplayLength" : 10,
+							"aLengthMenu" : [ [ 10, 25, 50, 100, -1 ],
+									[ 10, 25, 50, 100, "全部" ] ],
+
+							"ajax" : {
+								"url" : "<c:url value='/ShowYear.do'/>",
+								"type" : "GET",
+								"dataType" : "json",
+								"data" : function(d) {
+									d.select_year = $("#select_year").val();
+									d.districtavg = $("#districtavg").text();
+								},
+							},
+							"columns" : [ {
+								"data" : "id"
+							}, {
+								"data" : "district"
+							}, {
+								"data" : "location"
+							}, {
+								"data" : "tprice_s"
+							}, {
+								"data" : "uprice_p"
+							}, {
+								"data" : "farea_p"
+							}, {
+								"data" : "landa_p"
+							}, {
+								"data" : "sdate"
+							} ],
+							"createdRow" : function(row, data, index) {
+								$('td', row).eq(0).attr('id', 'td0');
+								$('td', row).eq(1).attr('id', 'td1');
+								$('td', row).eq(7).attr('id', 'td7');
+							}
+						});
+			}
 		}
 	</script>
 
@@ -309,20 +366,22 @@
 	<script src="<c:url value='/js/aos.js' />"></script>
 	<script src="<c:url value='/js/circleaudioplayer.js' />"></script>
 	<script src="<c:url value='/js/datatableimport.js' />"></script>
-	<script src="<c:url value='/js/selection.js' />"></script>
-	<script src="<c:url value='/js/selectdis.js' />"></script>
 	<script src="<c:url value='/js/main.js' />"></script>
 	<script
 		src="<c:url value='/css/css_13/jquery-ui-1.12.1/jquery-ui.js' />"></script>
 	<script src="<c:url value='/js/mediaelement-and-player.min.js' />"></script>
 	<script src="<c:url value='/css/css_13/bootstrap.min.js' />"></script>
 	<script src="<c:url value='/datatable/datatables.js' />"></script>
-	<script src="<c:url value='/js/searchword.js' />"></script>
 	<script src="<c:url value='/js/owl.carousel.min.js' />"></script>
 	<script src="<c:url value='/js/jquery.stellar.min.js' />"></script>
 	<script src="<c:url value='/js/jquery.countdown.min.js' />"></script>
 	<script src="<c:url value='/js/jquery.magnific-popup.min.js' />"></script>
 	<script src="<c:url value='/js/popper.min.js' />"></script>
+	<script src="<c:url value='/js/searchword.js' />"></script>
+	<script src="<c:url value='/js/selectdis.js' />"></script>
+	<script src="<c:url value='/js/selection.js' />"></script>
+	<script src="<c:url value='/js/ajaxads.js' />"></script>
+	<script src="<c:url value='/css/css_13/jquery.smartmarquee.js' />"></script>
 
 </body>
 

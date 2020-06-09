@@ -27,7 +27,11 @@
 <link rel="stylesheet" href="css/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
 <link rel="stylesheet" href="css/aos.css">
-
+<style>
+body {
+	font-family: 微軟正黑體;
+}
+</style>
 </head>
 
 <body>

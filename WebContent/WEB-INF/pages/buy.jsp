@@ -23,14 +23,20 @@
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
-<link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/05_css/compare.css">
 
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body {
+	font-family: 微軟正黑體;
+}
+</style>
 </head>
 
 <body>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
 
 	<div class="site-loader"></div>
 
@@ -44,55 +50,73 @@
 		<div class="site-blocks-cover overlay"
 			style="background-image: url(images/hero_bg_1.jpg);" data-aos="fade"
 			data-stellar-background-ratio="0.5">
-			<div class="container"></div>
+			<div class="container">
+				<!-- <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-10">
+              <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">For Rent</span>
+              <h1 class="mb-2">871 Crenshaw Blvd</h1>
+              <p class="mb-5"><strong class="h2 text-success font-weight-bold">$2,250,500</strong></p>
+              <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">See Details</a></p>
+            </div>
+          </div> -->
+			</div>
 		</div>
+
+
+
 	</div>
 
 
 	<div class="site-section site-section-sm pb-0">
 		<div class="container">
 			<div class="row">
-				<div class="form-search col-md-12" style="margin-top: -100px;">
-					<form class="form-search col-md-12" style="margin-top: -100px;"
-						method="post" action="<c:url value='searchhouse'/>">
-						<div class="row  align-items-end">
-							<div class="col-md-3">
-								<label for="city">市</label>
-								<div class="select-wrap">
-									<span class="icon icon-arrow_drop_down"></span> <select
-										name="city" id="city" class="form-control d-block rounded-0"
-										onChange="clickcity(this)">
-										<option selected hidden>請選擇市</option>
-										<option value="台北市">台北市</option>
-										<option value="新北市">新北市</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<label for="dist">區</label>
-								<div class="select-wrap">
-									<span class="icon icon-arrow_drop_down"></span> <select
-										name="dist" id="dist" class="form-control d-block rounded-0">
-										<option selected hidden>請先選擇市</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<label for="select-city">地址</label>
-								<div class="select-wrap">
-									<input type="text" class="form-control d-block rounded-0"
-										placeholder="請輸入詳細地址">
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="select-wrap">
-									<input type="submit"
-										class="btn btn-success text-white btn-block rounded-0">
-								</div>
+				<form class="form-search col-md-12" style="margin-top: -100px;"
+					method="post" action="<c:url value='searchhouse'/>">
+					<div class="row  align-items-end">
+						<div class="col-md-3">
+							<label for="city">市</label>
+							<div class="select-wrap">
+								<span class="icon icon-arrow_drop_down"></span> <select
+									name="city" id="city" class="form-control d-block rounded-0"
+									onChange="clickcity(this)">
+									<option selected hidden>請選擇市</option>
+									<option value="台北市">台北市</option>
+									<option value="新北市">新北市</option>
+								</select>
 							</div>
 						</div>
-					</form>
-				</div>
+						<div class="col-md-3">
+							<label for="dist">區</label>
+							<div class="select-wrap">
+								<span class="icon icon-arrow_drop_down"></span> <select
+									name="dist" id="dist" class="form-control d-block rounded-0">
+									<option selected hidden>請先選擇市</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<label for="addr">地址</label>
+							<div class="select-wrap">
+								<input type="text" name="addr" id="addr"
+									class="form-control d-block rounded-0" placeholder="請輸入詳細地址">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="select-wrap">
+								<input type="submit"
+									class="btn btn-success text-white btn-block rounded-0 "
+									value="查詢">
+							</div>
+						</div>
+					</div>
+<!-- 					<div class="row  align-items-end"> -->
+<!-- 						<div class="col-md-3"> -->
+<!-- 							<label for="amount">價錢範圍:</label> -->
+<!-- 							<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold; background-color: transparent;"> -->
+<!-- 							<div id="slider-range"></div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+				</form>
 
 			</div>
 
@@ -105,6 +129,24 @@
 							<!-- <a href="view-list.html" class="icon-view view-list"><span class="icon-view_list"></span></a> -->
 
 						</div>
+						<!-- 						<div class="ml-auto d-flex align-items-center"> -->
+						<!-- 							<div> -->
+						<%--  								<a href="<c:url value='newhouse'/>" class="view-list px-3 border-right">新增物件</a> --%>
+						<!-- 								<a href="buy.jsp" class="view-list px-3 border-right active">All</a> -->
+						<!--                  			<a href="#" class="view-list px-3">Sale</a> -->
+						<!-- 							</div> -->
+
+
+						<!-- <div class="select-wrap">
+                  <span class="icon icon-arrow_drop_down"></span>
+                  <select class="form-control form-control-sm d-block rounded-0">
+                    <option value="">Sort by</option>
+                    <option value="">Price Ascending</option>
+                    <option value="">Price Descending</option>
+                  </select>
+                </div> -->
+
+						<!-- 						</div> -->
 					</div>
 				</div>
 			</div>
@@ -114,8 +156,11 @@
 
 	<div class="site-section site-section-sm bg-light">
 		<div class="container">
+
+
 			<div class="row mb-5">
 				<c:forEach var="hlist" items="${houselist}">
+
 					<div class="col-md-6 col-lg-4 mb-4">
 						<div class="property-entry h-100">
 							<a href="housedetail?HOUSEID=${hlist.id}"
@@ -125,11 +170,6 @@
 								</div> <img src="data:image/jpeg;base64,${hlist.base64image1}"
 								alt="Image" class="img-fluid">
 							</a>
-							<div style="text-align: center; font-family: Microsoft JhengHei;">
-								<button style='font-size: 24px; float: middle;'>
-									加入比價 <i class='fas fa-search-plus'></i>
-								</button>
-							</div>
 							<div class="p-4 property-body">
 								<c:if test="${!empty memberBean}">
 									<c:set var="activeStatus" value="" />
@@ -163,23 +203,43 @@
 
 				</c:forEach>
 			</div>
-			<div id="compare">
-				<span id="titile">比較</span> <a target="_blank" href="favorite"></a>
-			</div>
+
+
+
+			<!--         <div class="row"> -->
+			<!--           <div class="col-md-12 text-center"> -->
+			<!--             <div class="site-pagination"> -->
+			<!--               <a href="#" class="active">1</a> -->
+			<!--               <a href="#">2</a> -->
+			<!--               <a href="#">3</a> -->
+			<!--               <a href="#">4</a> -->
+			<!--               <a href="#">5</a> -->
+			<!--               <span>...</span> -->
+			<!--               <a href="#">10</a> -->
+			<!--             </div> -->
+			<!--           </div>   -->
+			<!--         </div> -->
+
 		</div>
 	</div>
 
+
 	<jsp:include page="/footer.jsp" />
+
+
+
+	</div>
+
 	<script>
 		function clickcity(clicked) {
 			let ctvl = clicked.value;
 			let dist = document.getElementById("dist");
-			let tpdt = [ "北投區", "士林區", "內湖區", "中山區", "松山區", "大同區", "萬華區",
+			let tpdt = [ "全區", "北投區", "士林區", "內湖區", "中山區", "松山區", "大同區", "萬華區",
 					"中正區", "大安區", "信義區", "南港區", "文山區" ];
-			let ntpdt = [ "板橋區", "中和區", "新莊區", "土城區", "汐止區", "鶯歌區", "淡水區",
-					"五股區", "林口區", "深坑區", "坪林區", "石門區", "萬里區", "雙溪區", "烏來區",
-					"三重區", "永和區", "新店區", "蘆洲區", "樹林區", "三峽區", "瑞芳區", "泰山區",
-					"八里區", "石碇區", "三芝區", "金山區", "平溪區", "貢寮區" ];
+			let ntpdt = [ "全區", "板橋區", "中和區", "新莊區", "土城區", "汐止區", "鶯歌區",
+					"淡水區", "五股區", "林口區", "深坑區", "坪林區", "石門區", "萬里區", "雙溪區",
+					"烏來區", "三重區", "永和區", "新店區", "蘆洲區", "樹林區", "三峽區", "瑞芳區",
+					"泰山區", "八里區", "石碇區", "三芝區", "金山區", "平溪區", "貢寮區" ];
 			if (ctvl == "台北市") {
 				dist.options.length = 0;
 				for (let x = 0; x < tpdt.length; x++) {
@@ -232,32 +292,52 @@
 	<script src="js/main.js"></script>
 
 	<script>
-		$(".fah").click(function() {
-			console.log(this.id);
-			var hid = this.id;
+	$(".fah").click(function() {
+		console.log(this.id);
+		var hid = this.id;
 
-			$.ajax({
-				method : "Get",
-				dataType : "json",
-				url : "<c:url value='/houselist.do' />",
-				data : {
-					"houseId" : hid
-				},
-				success : function(res) {
-					if (res.success != null) {
-						$('#' + hid).addClass("active");
-						alert("新增成功");
-					} else if (res.error != null) {
-						alert("已收藏不可重複");
-					}
-				},
-				error : function(ex) {
-					alert("錯誤")
+		$.ajax({
+			method : "Get",
+			dataType : "json",
+			url : "<c:url value='/houselist.do' />",
+			data : {
+				"houseId" : hid
+			},
+			success : function(res) {
+				if (res.success != null) {
+					$('#' + hid).addClass("active");
+					alert("新增成功");
+				} else if (res.error != null) {
+					alert("已收藏不可重複");
 				}
-			})
-
+			},
+			error : function(ex) {
+				alert("錯誤")
+			}
 		})
+
+	})
 	</script>
-	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	<script>
+		$(function() {
+			$("#slider-range")
+					.slider(
+							{
+								range : true,
+								min : 1000,
+								max : 15000,
+								values : [ 1000, 1000 ],
+								slide : function(event, ui) {
+									$("#amount").val(
+											ui.values[0] + "萬"+" - "
+										  + ui.values[1] + "萬");
+								}
+							});
+			$("#amount").val(
+					$("#slider-range").slider("values", 0) + "萬"+" - "
+							+ $("#slider-range").slider("values", 1) + "萬");
+		});
+	</script>
+
 </body>
 </html>

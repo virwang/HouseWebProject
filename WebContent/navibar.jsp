@@ -43,11 +43,11 @@
                         </li>
                         
                         <li><a href="<c:url value='SearchTaipeiAction.do'/>">實價登錄</a></li>
-                        <li><a href="<c:url value='relate'/>">比價</a></li>
+<%--                         <li><a href="<c:url value='relate'/>">比價</a></li> --%>
                         <li class="has-children">
-                        	<a href="<c:url value='allLender'/>">房貸專員</a>
+                        	<a href="<c:url value='lend'/>">房貸評測</a>
                         	<ul class="dropdown arrow">
-                        		<li><a href="<c:url value='lend'/>">房貸評測</a></li>
+                        		<li><a href="<c:url value='allLender'/>">房貸專員</a></li>
                         	</ul>
                         </li>
                         <li><a href="<c:url value='newsList'/>">地方新聞</a></li>
@@ -56,25 +56,35 @@
                             <li><a href="<c:url value='login'/>">會員登入</a></li>
                         </c:if>
                         <c:if test="${!empty memberBean}">
-                            <li class="has-children">
-                            	<a>${memberBean.name}</a>
-                            	<ul class="dropdown arrow">
-                            		<li><a href="<c:url value='showMemberData'/>">個人資料</a>
-                        			<c:if test="${memberBean.usertype=='Senior' || memberBean.usertype=='admin'}">
-                        				<li><a href="<c:url value='memberhouse'/>">我的物件</a></li>
-                        				<li><a href="<c:url value='showbank'/>">新增專員</a></li>
-                        			</c:if>
-                        			<li><a href="<c:url value='reservation'/>">預約狀況</a></li>
-                                    <li><a href="<c:url value='favorite'/>">我的收藏</a></li>
-                            		<li><a href="<c:url value='springlogout.do'/>">會員登出</a></li>
-                            		<c:if test="${memberBean.usertype=='admin'}">
-                            			<li><a href="<c:url value='admin_index'/>">後台管理</a></li>
-                            		</c:if>
-                            	
-                            	</ul>
-                            
-                            </li>
-                        </c:if>
+							<li class="has-children"><a>${memberBean.name}</a> 
+							<c:if test="${!empty memberBean.base64image1}">
+								<c:if test="${empty memberBean.googleId}">
+									<img style="height: 50px; width: 50px; border-radius: 50%;"
+										src="data:image/jpeg;base64,${memberBean.base64image1}"
+										alt="Image" class="img-fluid">
+								</c:if>
+								<c:if test="${!empty memberBean.googleId}">
+									<img style="height: 50px; width: 50px; border-radius: 50%;"
+										src="${memberBean.base64image1}"
+										alt="Image" class="img-fluid">
+								</c:if>
+							</c:if>
+								
+								<ul class="dropdown arrow">
+									<li><a href="<c:url value='showMemberData'/>">個人資料</a> <c:if
+											test="${memberBean.usertype=='Senior' || memberBean.usertype=='admin'}">
+											<li><a href="<c:url value='memberhouse'/>">我的物件</a></li>
+											<li><a href="<c:url value='showbank'/>">新增專員</a></li>
+										</c:if>
+									<li><a href="<c:url value='reservation'/>">預約狀況</a></li>
+									<li><a href="<c:url value='favorite'/>">我的收藏</a></li>
+									<%--                             		<li><a id="logout" href="<c:url value='springlogout.do'/>">會員登出</a></li> --%>
+									<li><a id="logout" class="g-signout2" href="#">會員登出</a></li>
+									<c:if test="${memberBean.usertype=='admin'}">
+										<li><a href="<c:url value='admin_index'/>">後台管理</a></li>
+									</c:if>
+								</ul></li>
+						</c:if>
                         <!-- <li><a href="contact.html">聯絡我們</a></li> -->
                     </ul>
                 </nav>

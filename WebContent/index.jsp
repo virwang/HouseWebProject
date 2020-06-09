@@ -29,6 +29,11 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <style>
+  	body{
+  			font-family: 微軟正黑體;
+  	}
+  </style>
 </head>
 
 <body>
@@ -191,7 +196,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+<!--               <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a> -->
               <h2 class="property-title"><a href="#"> 231　新北市　新店區</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>  231　新北市　新店區　北新路一段　79號</span>
               <strong class="property-price text-primary mb-3 d-block text-success">$65.2萬/坪</strong>
@@ -232,7 +237,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite active"><span class="icon-heart-o"></span></a>
+<!--               <a href="#" class="property-favorite active"><span class="icon-heart-o"></span></a> -->
               <h2 class="property-title"><a href="#">116 台北市 文山區</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 116 台北市 文山區 木柵路 三段 85巷</span>
               <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
@@ -273,7 +278,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+<!--               <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a> -->
               <h2 class="property-title"><a href="#">231 新北市 新店區</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne
                 新店路263號-3 六樓 6號</span>
@@ -315,7 +320,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+<!--               <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a> -->
               <h2 class="property-title"><a href="#">231 新北市 新店區</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 
               231 新北市 新店區 央北二路</span>
@@ -357,7 +362,7 @@
             </a>
 
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+<!--               <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a> -->
               <h2 class="property-title"><a href="#">853 S Lucerne Blvd</a></h2>
               <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne
                 Blvd Unit 101 Los Angeles, CA 90005</span>

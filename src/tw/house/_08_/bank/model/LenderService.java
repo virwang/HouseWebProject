@@ -29,5 +29,8 @@ public class LenderService {
 	public boolean checkLender(Integer pkNo) {
 		return lenderDao.checkLender(pkNo);
 	}
+	public void delete(Lender lender) {
+		lenderDao.delete(lender);
+	}
 	
 }

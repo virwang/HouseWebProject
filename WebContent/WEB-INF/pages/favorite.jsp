@@ -184,10 +184,10 @@
 											</c:forEach>
 										</tbody>
 									</table>
-												<p id="count" style="text-align:center;font-size:30px;"></p>
 									<div class="col-md-12 text-center" style="text-align: right;">
 										<div class="row mt-5">
 											<div class="col-md-12 text-center">
+												<p id="count" style="text-align: left;"></p>
 <!-- 												<div class='pagination-container' id="table-id"> -->
 <!-- 													<nav> -->
 <!-- 														<ul class="pagination"> -->
@@ -216,8 +216,8 @@
 
 
 	<jsp:include page="/footer.jsp" />
-	<script src="js/jquery-3.4.1.js"></script>
 	<script src="js/mediaelement-and-player.min.js"></script>
+	<script src="js/jquery-3.4.1.js"></script>
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
@@ -246,6 +246,15 @@
 						console.log($('#ftr' + id));
 						$('#ftr' + id).remove();
 						alert("刪除資料");
+						var rows = document.getElementById("ctable").rows.length;
+						var row = rows - 1;
+						console.log("row="+row);
+						if(row==0){
+							location.href="<c:url value='favorite'/>";
+						}
+						var str = "<p>共" + row + "筆收藏</p>"
+						console.log(rows - 1);
+						document.getElementById("count").innerHTML = str;
 					}
 					if (res == 'deNO') {
 						//         	$('#tr1').remove;

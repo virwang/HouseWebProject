@@ -742,9 +742,10 @@ a {
   box-shadow: 0 0px 30px 0px rbga(0, 0, 0, 1); }
   .form-search label {
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight:bold;
     letter-spacing: .1em;
-    color: rgba(255, 255, 255, 0.3); }
+    color: rgba(255, 255, 255, 1); }
   .form-search .form-control {
     border: none; }
   .form-search .btn[type="submit"] {

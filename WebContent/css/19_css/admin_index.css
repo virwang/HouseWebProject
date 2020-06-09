@@ -20,6 +20,11 @@
 	background-color: #FFF8D7;
 	}
 .bt1:hover{color:red;}
+.br1:
+.bt1:focus{color:red;
+			font-size: 8mm;			
+			text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87; 
+			outline: none;}
 .a1:link{color:blue;text-decoration:none;}
 .a1:visited {color:blue;text-decoration:none;}
 .a1:hover{color:red;}
