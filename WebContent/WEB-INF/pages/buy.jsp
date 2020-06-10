@@ -158,6 +158,7 @@ body {
 								</div>
 								<img src="data:image/jpeg;base64,${hlist.base64image1}" alt="Image" class="img-fluid">
 							</a>
+
 							<div class="p-4 property-body">
 								<c:if test="${!empty memberBean}">
 									<c:set var="activeStatus" value="" />
@@ -172,17 +173,19 @@ body {
 
 								</c:if>
 								<a href="housedetail?HOUSEID=${hlist.id}">
-									<h2 class="property-title">${hlist.title}</h2>
+									<h2 class="property-title">${hlist.title}
+										<c:forEach var="path" items="${path}">
+											<%-- 								<P>${path[0]}</P> --%>
+											<c:if test="${hlist.id == path[0]}">
+												<i style='font-size: 35px; color: goldenrod;' class='fas'>&#xf521;</i>
+											</c:if>
+										</c:forEach>
+									</h2>
 								</a>
 								<span class="property-location d-block mb-3">
 									<span class="property-icon icon-room"></span>${hlist.city}${hlist.dist}${hlist.address}</span>
-								<strong class="property-price text-primary mb-3 d-block text-success">${hlist.totalprice}萬</strong>
-								<c:forEach var="path" items="${path}">
-									<%-- 								<P>${path[0]}</P> --%>
-									<c:if test="${hlist.id == path[0]}">
-										<i style='font-size: 24px' class='fas'>&#xf521;123</i>
-									</c:if>
-								</c:forEach>
+								<strong class="property-price text-primary mb-3 d-block text-success">${hlist.totalprice}萬 </strong>
+						
 								<ul class="property-specs-wrap mb-3 mb-lg-0">
 									<li>
 										<span class="property-specs">坪數</span>
