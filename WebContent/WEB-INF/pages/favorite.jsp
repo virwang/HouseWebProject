@@ -99,6 +99,7 @@
 									<a type="button" class="button"
 										onclick="javascript:location.href='houselist'"
 										style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
+										
 									<!--		Show Numbers Of Rows 		-->
 <!-- 									<select class="form-control" name="state" id="maxRows" -->
 <!-- 										style="width: 25%; float: right; margin-top: 2px;"> -->
@@ -109,14 +110,11 @@
 <!-- 									</select> -->
 <!-- 								</div> -->
 							</div>
-
-
 							<div id="fhouse">
 								<div id="table">
 									<span class="table-add float-right mb-3 mr-2"> <a
 										href="#!" class="text-success"> </a>
 									</span>
-
 									<table style="text-align: center"
 										class="table table-striped table-bordered" id="ctable">
 										<thead id="fth">
@@ -159,14 +157,15 @@
 															alt="Image" class="img-fluid">
 													</a></td>
 													<c:set var="string1" value="${favorite.houseBean.title}" />
-													<c:set var="string2" value="${fn:substring(string1,0,9)}" />
+													<c:set var="string2" value="${fn:substring(string1,0,10)}" />
 													<td class="pt-3-half"><a
 														href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
 													<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
 													<td class="pt-3-half">${favorite.houseBean.address}</td>
 													<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
 													<td class="pt-3-half">${favorite.houseBean.ping}</td>
-													<td class="pt-3-half"><a
+													<td class="pt-3-half">
+													<a
 														href="<c:url value='searchhousemap?mrtpk=${favorite.houseBean.mrtBean.pk}'/>">${favorite.houseBean.mrtBean.stationname}</a></td>
 													<td class="pt-3-half"><fmt:formatDate
 															value="${favorite.houseBean.addDate}"
@@ -187,7 +186,7 @@
 									<div class="col-md-12 text-center" style="text-align: right;">
 										<div class="row mt-5">
 											<div class="col-md-12 text-center">
-												<p id="count" style="text-align: left;"></p>
+												<p id="count" style="text-align: center;font-size:30px;"></p>
 <!-- 												<div class='pagination-container' id="table-id"> -->
 <!-- 													<nav> -->
 <!-- 														<ul class="pagination"> -->

@@ -53,7 +53,8 @@
 						<div class="card">
 							<h3
 								class="card-header text-center font-weight-bold text-uppercase py-4">
-								<a style="color: #A52A2A;">${memberBean.name}</a>的收藏
+								<a style="color: #A52A2A;"
+									href="<c:url value='showMemberData?=${favorite.memberBean.pk}'/>">${memberBean.name}</a>的收藏
 							</h3>
 							<div class="card-body" style="text-align: center">
 							<p style="color: #A52A2A;font-family: Microsoft JhengHei;font-size:40px">${memberBean.name}你還沒有收藏<i class='fas fa-heart-broken' style="font-size:48px;color:red;" >
