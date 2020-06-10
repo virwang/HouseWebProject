@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+
+import tw.house._05_.dao.PathDao;
 import tw.house._05_.model.FavoriteBean;
 import tw.house._05_.service.IFavorite;
+import tw.house._05_.service.PathService;
 import tw.house._07_.model.HouseBean;
 import tw.house._07_.model.HouseService;
 import tw.house._07_.model.MrtService;
@@ -36,6 +39,8 @@ public class FavoriteController {
 	private IFavorite ifs;
 	@Autowired
 	private HouseService houseSerice;
+	@Autowired
+	private PathService pservice;
 	
 
 	@GetMapping(path = "/favorite")
@@ -43,8 +48,10 @@ public class FavoriteController {
 		System.out.println("controller select Favorite by member id =" + memberBean.getName());
 		Integer memberfavorite = memberBean.getPk();
 		List<FavoriteBean> fBeans = ifs.mfhosue(memberfavorite);
+		List<Object> topFavoriteBeans = pservice.top3FaHouse();
 		model.addAttribute("fh", fBeans);
-		System.out.println("controller memberfavorite =" + memberfavorite + "fBeans toString = " + fBeans.toString());
+//		System.out.println("controller memberfavorite =" + memberfavorite + "fBeans toString = " + fBeans.toString());
+		model.addAttribute("path", topFavoriteBeans);
 		if (fBeans.size() == 0) {
 			return "addFavorite";
 		} else {
@@ -91,6 +98,8 @@ public class FavoriteController {
 		}
 	}
 
+	
+	
 //	@PostMapping("/favorite")
 //	public String showFavorite(Model model,HttpServletRequest res, @RequestParam("favorite")Integer mid,String title) {
 //		System.out.println("show favorite list");

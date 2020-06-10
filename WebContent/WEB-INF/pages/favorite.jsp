@@ -95,114 +95,153 @@
 									href="<c:url value='showMemberData?=${favorite.memberBean.pk}'/>">${memberBean.name}</a>的收藏
 							</h3>
 							<div class="card-body">
-<!-- 								<div class="form-group"> -->
+								<div class="form-group">
 									<a type="button" class="button"
 										onclick="javascript:location.href='houselist'"
 										style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
-										
-									<!--		Show Numbers Of Rows 		-->
-<!-- 									<select class="form-control" name="state" id="maxRows" -->
-<!-- 										style="width: 25%; float: right; margin-top: 2px;"> -->
-<!-- 										<option value="100">顯示全部</option> -->
-<!-- 										<option value="5">5</option> -->
-<!-- 										<option value="10">10</option> -->
-<!-- 										<option value="15">15</option> -->
-<!-- 									</select> -->
-<!-- 								</div> -->
-							</div>
-							<div id="fhouse">
-								<div id="table">
-									<span class="table-add float-right mb-3 mr-2"> <a
-										href="#!" class="text-success"> </a>
-									</span>
+										<button style='font-size:24px;font-family: Microsoft JhengHei;'id="show">顯示熱門收藏 <i class='fas fa-caret-square-down'></i></button>
+										<button style='font-size:24px;font-family: Microsoft JhengHei;'>隱藏熱門收藏<i class='fas fa-caret-square-up'></i></button>
+									<p style="text-align: center; font-size: 30px;"id="thide" >熱門收藏排名</p>
 									<table style="text-align: center"
-										class="table table-striped table-bordered" id="ctable">
-										<thead id="fth">
+										class="table table-striped table-bordered" id="tshow">
+										<thead>
 											<tr>
-												<th
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">照片</th>
-												<th class="text-center"
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">標題<i
-													class='fas fa-arrows-alt-v' id="compare"></i></th>
-												<th class="text-center"
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">市/區<i
-													class='fas fa-arrows-alt-v' id="compare"></i></th>
-												<th class="text-center"
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">位置<i
-													class='fas fa-arrows-alt-v' id="compare"></i></th>
-												<th class="text-center"
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"
-													data-type="num">總價<i class='fas fa-arrows-alt-v'
-													id="compare"></i></th>
-												<th class="text-center"
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">坪數<i
-													class='fas fa-arrows-alt-v' id="compare"></i></th>
-												<th class="text-center"
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">捷運<i
-													class='fas fa-arrows-alt-v' id="compare"></i></th>
-												<th class="text-center" id="onmktdate"
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">上架日期<i
-													class='fas fa-arrows-alt-v' id="compare"></i></th>
-												<th class="text-center"
-													style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"></th>
+												<th>排名</th>
+												<th>標題</th>
+												<th>行政區</th>
+												<th>位置</th>
+												<th>總價</th>
 											</tr>
 										</thead>
-										<tbody id="tr1">
-											<c:forEach var='favorite' items='${fh}' varStatus='vs'>
-												<tr id="ftr${favorite.fid}">
-													<td class="pt-3-half"><a
-														href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">
-															<img
-															src="data:image/jpeg;base64,${favorite.houseBean.base64image1}"
-															alt="Image" class="img-fluid">
-													</a></td>
-													<c:set var="string1" value="${favorite.houseBean.title}" />
-													<c:set var="string2" value="${fn:substring(string1,0,10)}" />
-													<td class="pt-3-half"><a
-														href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
-													<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
-													<td class="pt-3-half">${favorite.houseBean.address}</td>
-													<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
-													<td class="pt-3-half">${favorite.houseBean.ping}</td>
-													<td class="pt-3-half">
-													<a
-														href="<c:url value='searchhousemap?mrtpk=${favorite.houseBean.mrtBean.pk}'/>">${favorite.houseBean.mrtBean.stationname}</a></td>
-													<td class="pt-3-half"><fmt:formatDate
-															value="${favorite.houseBean.addDate}"
-															pattern="yyyy/MM/dd" /></td>
-													<td class="pt-3-half">
-														<button class="btn de"
-															style="font-family: Microsoft JhengHei; padding: 10px 10px white; background-color: transparent;"
-															id="fv${favorite.fid}" value="${favorite.fid}">
-															<i class="fa fa-trash"
-																style="color: #DC143C; border: 20px color:white; padding: 20px color:white; margin: 20px 20px color:white; background-color: transparent;font-size:35px"></i>
-														</button>
-													</td>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>${path[0][2]}</td>
+												<td>${path[0][4]}</td>
+												<td>${path[0][5]}</td>
+												<td>${path[0][3]}</td>
+											</tr>
 
-												</tr>
-											</c:forEach>
+											<tr>
+												<td>2</td>
+												<td>${path[1][2]}</td>
+												<td>${path[1][4]}</td>
+												<td>${path[1][5]}</td>
+												<td>${path[1][3]}</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>${path[2][2]}</td>
+												<td>${path[2][4]}</td>
+												<td>${path[2][5]}</td>
+												<td>${path[2][3]}</td>
+											</tr>
 										</tbody>
 									</table>
-									<div class="col-md-12 text-center" style="text-align: right;">
-										<div class="row mt-5">
-											<div class="col-md-12 text-center">
-												<p id="count" style="text-align: center;font-size:30px;"></p>
-<!-- 												<div class='pagination-container' id="table-id"> -->
-<!-- 													<nav> -->
-<!-- 														<ul class="pagination"> -->
-<!-- 															<li data-page="prev"><span> < <span -->
-<!-- 																	class="sr-only">(current)</span></span></li> -->
 
-<!-- 															<li data-page="next" id="prev"><span> > <span -->
-<!-- 																	class="sr-only">(current)</span></span></li> -->
-<!-- 														</ul> -->
-<!-- 													</nav> -->
-<!-- 												</div> -->
 
+									<!--		Show Numbers Of Rows 		-->
+									<!-- 									<select class="form-control" name="state" id="maxRows" -->
+									<!-- 										style="width: 25%; float: right; margin-top: 2px;"> -->
+									<!-- 										<option value="100">顯示全部</option> -->
+									<!-- 										<option value="5">5</option> -->
+									<!-- 										<option value="10">10</option> -->
+									<!-- 										<option value="15">15</option> -->
+									<!-- 									</select> -->
+									<!-- 								</div> -->
+								</div>
+								<div id="fhouse">
+									<div id="table">
+										<span class="table-add float-right mb-3 mr-2"> <a
+											href="#!" class="text-success"> </a>
+										</span>
+										<table style="text-align: center"
+											class="table table-striped table-bordered" id="ctable">
+											<thead id="fth">
+												<tr>
+													<th
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">照片</th>
+													<th class="text-center"
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">標題<i
+														class='fas fa-arrows-alt-v' id="compare"></i></th>
+													<th class="text-center"
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">市/區<i
+														class='fas fa-arrows-alt-v' id="compare"></i></th>
+													<th class="text-center"
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">位置<i
+														class='fas fa-arrows-alt-v' id="compare"></i></th>
+													<th class="text-center"
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"
+														data-type="num">總價<i class='fas fa-arrows-alt-v'
+														id="compare"></i></th>
+													<th class="text-center"
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">坪數<i
+														class='fas fa-arrows-alt-v' id="compare"></i></th>
+													<th class="text-center"
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">捷運<i
+														class='fas fa-arrows-alt-v' id="compare"></i></th>
+													<th class="text-center" id="onmktdate"
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">上架日期<i
+														class='fas fa-arrows-alt-v' id="compare"></i></th>
+													<th class="text-center"
+														style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"></th>
+												</tr>
+											</thead>
+											<tbody id="tr1">
+												<c:forEach var='favorite' items='${fh}' varStatus='vs'>
+													<tr id="ftr${favorite.fid}">
+														<td class="pt-3-half"><a
+															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">
+																<img
+																src="data:image/jpeg;base64,${favorite.houseBean.base64image1}"
+																alt="Image" class="img-fluid" width="200px, 100px;">
+														</a></td>
+														<c:set var="string1" value="${favorite.houseBean.title}" />
+														<c:set var="string2" value="${fn:substring(string1,0,10)}" />
+														<td class="pt-3-half"><a
+															href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
+														<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
+														<td class="pt-3-half">${favorite.houseBean.address}</td>
+														<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
+														<td class="pt-3-half">${favorite.houseBean.ping}</td>
+														<td class="pt-3-half"><a
+															href="<c:url value='searchhousemap?mrtpk=${favorite.houseBean.mrtBean.pk}'/>">${favorite.houseBean.mrtBean.stationname}</a></td>
+														<td class="pt-3-half"><fmt:formatDate
+																value="${favorite.houseBean.addDate}"
+																pattern="yyyy/MM/dd" /></td>
+														<td class="pt-3-half">
+															<button class="btn de"
+																style="font-family: Microsoft JhengHei; padding: 10px 10px white; background-color: transparent;"
+																id="fv${favorite.fid}" value="${favorite.fid}">
+																<i class="fa fa-trash"
+																	style="color: #DC143C; border: 3px color:white; padding: 3px color:white; margin: 3px 3px color:white; background-color: transparent; font-size: 25px"></i>
+															</button>
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<div class="col-md-12 text-center" style="text-align: right;">
+											<div class="row mt-5">
+												<div class="col-md-12 text-center">
+													<p id="count" style="text-align: center; font-size: 30px;"></p>
+													<!-- 												<div class='pagination-container' id="table-id"> -->
+													<!-- 													<nav> -->
+													<!-- 														<ul class="pagination"> -->
+													<!-- 															<li data-page="prev"><span> < <span -->
+													<!-- 																	class="sr-only">(current)</span></span></li> -->
+
+													<!-- 															<li data-page="next" id="prev"><span> > <span -->
+													<!-- 																	class="sr-only">(current)</span></span></li> -->
+													<!-- 														</ul> -->
+													<!-- 													</nav> -->
+													<!-- 												</div> -->
+
+												</div>
 											</div>
 										</div>
-									</div>
 
+									</div>
 								</div>
 							</div>
 						</div>
@@ -210,21 +249,19 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
+		<jsp:include page="/footer.jsp" />
 
-
-	<jsp:include page="/footer.jsp" />
-	<script src="js/mediaelement-and-player.min.js"></script>
-	<script src="js/jquery-3.4.1.js"></script>
-	<script src="js/bootstrap-datepicker.min.js"></script>
-	<script src="js/aos.js"></script>
-	<script src="js/main.js"></script>
-	<script 
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
-	<script src="js/pagination.js"></script>
-	<script src="js/pagination.min.js"></script>
-	<script>
+		<script src="js/mediaelement-and-player.min.js"></script>
+		<script src="js/jquery-3.4.1.js"></script>
+		<script src="js/bootstrap-datepicker.min.js"></script>
+		<script src="js/aos.js"></script>
+		<script src="js/main.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+		<script src="js/pagination.js"></script>
+		<script src="js/pagination.min.js"></script>
+		<script>
 		$(".de").click(function() {
 			var id = this.value;
 			var test = this;
@@ -269,14 +306,15 @@
 			})
 		})
 	</script>
-	<script>
+		<script>
 		var rows = document.getElementById("ctable").rows.length;
 		var row = rows - 1;
 		var str = "<p>共" + row + "筆收藏</p>"
 		console.log(rows - 1);
 		document.getElementById("count").innerHTML = str;
 	</script>
-	<script>
+		<script>
+		
 		$("#ctable").tablesorter({
 			// 		console.log("hi, here")
 			theme : 'blue',
@@ -284,7 +322,7 @@
 
 		})
 	</script>
-	<script>
+		<script>
 		//分頁
 		$(document).ready(function() {
 			$('#pagination').DataTable({
@@ -292,15 +330,23 @@
 			});
 		});
 	</script>
-	<script type="text/javascript">
+		<script>
+		//顯示熱搜
+        $(document).ready(function () {
+            $("#show").click(function () {
+                $("#tshow").hide();
+            });
+            $("#SHOW").click(function () {
+                $("#tshow").show();
+            });
+        });
+    </script>
+		<script type="text/javascript">
 					getPagination('#table-id');
 					//getPagination('.table-class');
 					//getPagination('table');
-
-
-
-				</script>
-	<script type="text/javascript">
+	</script>
+		<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push([ '_setAccount', 'UA-36251023-1' ]);
 		_gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
@@ -317,7 +363,7 @@
 			s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
-	<script>
+		<script>
 	function getPagination(table) {
   var lastPage = 1;
 
