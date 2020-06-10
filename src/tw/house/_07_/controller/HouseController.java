@@ -35,6 +35,7 @@ import com.google.maps.model.GeocodingResult;
 
 import tw.house._05_.model.FavoriteBean;
 import tw.house._05_.service.IFavorite;
+import tw.house._05_.service.PathService;
 import tw.house._07_.model.HouseBean;
 import tw.house._07_.model.HouseHitBean;
 import tw.house._07_.model.HouseHitService;
@@ -63,6 +64,9 @@ public class HouseController {
 	private IFavorite ifs;
 	
 	@Autowired
+	private PathService ps;
+	
+	@Autowired
 	ServletContext context;
 	
 	@RequestMapping(path = "/houselist",method = RequestMethod.GET)
@@ -72,10 +76,12 @@ public class HouseController {
 		if(mBean!=null) {
 			Integer pk = mBean.getPk();
 			List<FavoriteBean> list2 = ifs.mfhosue(pk);
-			for (FavoriteBean favoriteBean : list2) {
-				System.out.println("favorite hosue "+favoriteBean);
-			}
+			List<Object> obj= ps.top3FaHouse();
+//			for (FavoriteBean favoriteBean : list2) {
+//				System.out.println("favorite hosue "+favoriteBean);
+//			}
 			m.addAttribute("fh", list2);
+			m.addAttribute("path", obj);
 		}
 		m.addAttribute("houselist", list);
 		
@@ -265,7 +271,7 @@ public class HouseController {
 		
 //		System.out.println(mBean.getAccount()+"!!!");
 //		System.out.println("memberpk: "+mBean.getPk());
-		System.out.println("picture1="+picture1);
+//		System.out.println("picture1="+picture1);
 		//取小數以下兩位
 		NumberFormat numberFormat = new DecimalFormat("#.00");
 		numberFormat.setRoundingMode(RoundingMode.HALF_UP);

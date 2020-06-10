@@ -84,7 +84,7 @@
 							</h3>
 							<div class="card-body">
 								<div class="form-group">
-									<a type="button" class="button" onclick="javascript:location.href='houselist'" style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
+									<a class="button" href='houselist' style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
 									<button style='font-size: 24px; font-family: Microsoft JhengHei; float: right;background-color:#99BFE6;' id="showsexy">顯示熱門收藏</button>
 									<!-- 									<button style='font-size: 24px; font-family: Microsoft JhengHei; float: rigth;' id="hide"> -->
 									<!-- 										<i class='fas fa-caret-square-up'></i> -->
@@ -248,6 +248,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
 		<script src="js/pagination.js"></script>
 		<script src="js/pagination.min.js"></script>
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 		<script>
 		$(".de").click(function() {
 			var id = this.value;
