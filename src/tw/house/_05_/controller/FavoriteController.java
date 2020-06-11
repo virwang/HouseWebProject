@@ -48,10 +48,10 @@ public class FavoriteController {
 		System.out.println("controller select Favorite by member id =" + memberBean.getName());
 		Integer memberfavorite = memberBean.getPk();
 		List<FavoriteBean> fBeans = ifs.mfhosue(memberfavorite);
-		List<Object> topFavoriteBeans = pservice.top3FaHouse();
+		List<Object> topFavorite = pservice.top3FaHouse();
 		model.addAttribute("fh", fBeans);
-//		System.out.println("controller memberfavorite =" + memberfavorite + "fBeans toString = " + fBeans.toString());
-		model.addAttribute("path", topFavoriteBeans);
+		System.out.println("controller memberfavorite =" + memberfavorite + "fBeans toString = " + fBeans.getClass());
+		model.addAttribute("path", topFavorite);
 		if (fBeans.size() == 0) {
 			return "addFavorite";
 		} else {

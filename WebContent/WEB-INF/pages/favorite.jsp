@@ -79,13 +79,12 @@
 					<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 						<div class="card">
 							<h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-								<a style="color: #A52A2A;" href="<c:url value='showMemberData?=${favorite.memberBean.pk}'/>">${memberBean.name}</a>
-								的收藏
+								<a style="color: #A52A2A;" href="<c:url value='showMemberData?=${favorite.memberBean.pk}'/>">${memberBean.name}</a> 的收藏
 							</h3>
 							<div class="card-body">
 								<div class="form-group">
 									<a class="button" href='houselist' style="font-family: Microsoft JhengHei; color: #FFFAF0;">新增收藏</a>
-									<button style='font-size: 24px; font-family: Microsoft JhengHei; float: right;background-color:#99BFE6;' id="showsexy">顯示熱門收藏</button>
+									<button style='font-size: 24px; font-family: Microsoft JhengHei; float: right; background-color: orange; border: 2px none;' id="showsexy">顯示熱門收藏</button>
 									<!-- 									<button style='font-size: 24px; font-family: Microsoft JhengHei; float: rigth;' id="hide"> -->
 									<!-- 										<i class='fas fa-caret-square-up'></i> -->
 									<!-- 										隱藏熱門收藏 -->
@@ -105,21 +104,21 @@
 											<tbody>
 												<tr>
 													<td>1</td>
-													<td>${path[0][2]}</td>
+													<td><a href="<c:url value='housedetail?HOUSEID=${path[0][1]}'/>">${path[0][2]}</a></td>
 													<td>${path[0][4]}</td>
 													<td>${path[0][5]}</td>
 													<td>${path[0][3]}</td>
 												</tr>
 												<tr>
 													<td>2</td>
-													<td>${path[1][2]}</td>
+													<td><a href="<c:url value='housedetail?HOUSEID=${path[1][1]}'/>">${path[1][2]}</a></td>
 													<td>${path[1][4]}</td>
 													<td>${path[1][5]}</td>
 													<td>${path[1][3]}</td>
 												</tr>
 												<tr>
 													<td>3</td>
-													<td>${path[2][2]}</td>
+													<td><a href="<c:url value='housedetail?HOUSEID=${path[2][1]}'/>">${path[2][2]}</a></td>
 													<td>${path[2][4]}</td>
 													<td>${path[2][5]}</td>
 													<td>${path[2][3]}</td>
@@ -139,40 +138,25 @@
 								</div>
 								<div id="fhouse">
 									<div id="table">
-										<span class="table-add float-right mb-3 mr-2">
-											<a href="#!" class="text-success"> </a>
+										<span class="table-add float-right mb-3 mr-2"> <a href="#!" class="text-success"> </a>
 										</span>
 										<table style="text-align: center" class="table table-striped table-bordered" id="ctable">
 											<thead id="fth">
 												<tr>
 													<th style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">照片</th>
-													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">
-														標題
-														<i class='fas fa-arrows-alt-v' id="compare"></i>
+													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">標題 <i class='fas fa-arrows-alt-v' id="compare"></i>
 													</th>
-													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">
-														市/區
-														<i class='fas fa-arrows-alt-v' id="compare"></i>
+													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">市/區 <i class='fas fa-arrows-alt-v' id="compare"></i>
 													</th>
-													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">
-														位置
-														<i class='fas fa-arrows-alt-v' id="compare"></i>
+													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">位置 <i class='fas fa-arrows-alt-v' id="compare"></i>
 													</th>
-													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;" data-type="num">
-														總價
-														<i class='fas fa-arrows-alt-v' id="compare"></i>
+													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;" data-type="num">總價 <i class='fas fa-arrows-alt-v' id="compare"></i>
 													</th>
-													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">
-														坪數
-														<i class='fas fa-arrows-alt-v' id="compare"></i>
+													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">坪數 <i class='fas fa-arrows-alt-v' id="compare"></i>
 													</th>
-													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">
-														捷運
-														<i class='fas fa-arrows-alt-v' id="compare"></i>
+													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">捷運 <i class='fas fa-arrows-alt-v' id="compare"></i>
 													</th>
-													<th class="text-center" id="onmktdate" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">
-														上架日期
-														<i class='fas fa-arrows-alt-v' id="compare"></i>
+													<th class="text-center" id="onmktdate" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;">上架日期 <i class='fas fa-arrows-alt-v' id="compare"></i>
 													</th>
 													<th class="text-center" style="font-size: 20px; float: center; font-family: Microsoft JhengHei;"></th>
 												</tr>
@@ -180,29 +164,21 @@
 											<tbody id="tr1">
 												<c:forEach var='favorite' items='${fh}' varStatus='vs'>
 													<tr id="ftr${favorite.fid}">
-														<td class="pt-3-half">
-															<a href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">
-																<img src="data:image/jpeg;base64,${favorite.houseBean.base64image1}" alt="Image" class="img-fluid" width="200px, 100px;">
-															</a>
-														</td>
+														<td class="pt-3-half"><a href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>"> <img src="data:image/jpeg;base64,${favorite.houseBean.base64image1}" alt="Image"
+																class="img-fluid" width="200px, 100px;">
+														</a></td>
 														<c:set var="string1" value="${favorite.houseBean.title}" />
 														<c:set var="string2" value="${fn:substring(string1,0,10)}" />
-														<td class="pt-3-half">
-															<a href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a>
-														</td>
+														<td class="pt-3-half"><a href="<c:url value='housedetail?HOUSEID=${favorite.houseBean.id}'/>">${string2}</a></td>
 														<td class="pt-3-half">${favorite.houseBean.city}/${favorite.houseBean.dist}</td>
 														<td class="pt-3-half">${favorite.houseBean.address}</td>
 														<td class="pt-3-half">${favorite.houseBean.totalprice}</td>
 														<td class="pt-3-half">${favorite.houseBean.ping}</td>
-														<td class="pt-3-half">
-															<a href="<c:url value='searchhousemap?mrtpk=${favorite.houseBean.mrtBean.pk}'/>">${favorite.houseBean.mrtBean.stationname}</a>
-														</td>
-														<td class="pt-3-half">
-															<fmt:formatDate value="${favorite.houseBean.addDate}" pattern="yyyy/MM/dd" />
-														</td>
+														<td class="pt-3-half"><a href="<c:url value='searchhousemap?mrtpk=${favorite.houseBean.mrtBean.pk}'/>">${favorite.houseBean.mrtBean.stationname}</a></td>
+														<td class="pt-3-half"><fmt:formatDate value="${favorite.houseBean.addDate}" pattern="yyyy/MM/dd" /></td>
 														<td class="pt-3-half">
 															<button class="btn de" style="font-family: Microsoft JhengHei; padding: 10px 10px white; background-color: transparent;" id="fv${favorite.fid}" value="${favorite.fid}">
-																<i class="fa fa-trash" style="color: #DC143C; border: 3px color:white; padding: 3px color:white; margin: 3px 3px color:white; background-color: transparent; font-size: 25px"></i>
+																<i class="fa fa-trash" style="color: #DC143C; border: 1px color:white; padding: 1px color:white; margin: 1px 1px color:white; background-color: transparent; font-size: 25px"></i>
 															</button>
 														</td>
 													</tr>
@@ -237,19 +213,19 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<jsp:include page="/footer.jsp" />
 
-		<jsp:include page="/footer.jsp" />
-
-		<script src="js/mediaelement-and-player.min.js"></script>
-		<script src="js/jquery-3.4.1.js"></script>
-		<script src="js/bootstrap-datepicker.min.js"></script>
-		<script src="js/aos.js"></script>
-		<script src="js/main.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
-		<script src="js/pagination.js"></script>
-		<script src="js/pagination.min.js"></script>
-		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-		<script>
+	<script src="js/mediaelement-and-player.min.js"></script>
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/bootstrap-datepicker.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+	<script src="js/pagination.js"></script>
+	<script src="js/pagination.min.js"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	<script>
 		$(".de").click(function() {
 			var id = this.value;
 			var test = this;
@@ -294,14 +270,14 @@
 			})
 		})
 	</script>
-		<script>
+	<script>
 		var rows = document.getElementById("ctable").rows.length;
 		var row = rows - 1;
 		var str = "<p>共" + row + "筆收藏</p>"
 		console.log(rows - 1);
 		document.getElementById("count").innerHTML = str;
 	</script>
-		<script>
+	<script>
 		
 		$("#ctable").tablesorter({
 			// 		console.log("hi, here")
@@ -310,7 +286,7 @@
 
 		})
 	</script>
-		<script>
+	<script>
 		//分頁
 		$(document).ready(function() {
 			$('#pagination').DataTable({
@@ -318,7 +294,7 @@
 			});
 		});
 	</script>
-		<script>
+	<script>
 		//顯示隱藏熱搜
         $(document).ready(function () {
             $("#showsexy").click(function () {
@@ -334,12 +310,12 @@
 
         });
     </script>
-		<script type="text/javascript">
+	<script>
 					getPagination('#table-id');
 					//getPagination('.table-class');
 					//getPagination('table');
 	</script>
-		<script type="text/javascript">
+	<script>
 		var _gaq = _gaq || [];
 		_gaq.push([ '_setAccount', 'UA-36251023-1' ]);
 		_gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
@@ -356,7 +332,7 @@
 			s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
-		<script>
+	<script>
 	function getPagination(table) {
   var lastPage = 1;
 

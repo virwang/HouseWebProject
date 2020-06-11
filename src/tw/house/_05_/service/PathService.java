@@ -17,7 +17,9 @@ public class PathService {
 	private PathDao pDao;
 	
 	public List<Object> top3FaHouse() {
+//		System.out.println("into path service");
 		List<Object> list = pDao.top3FaHouse();
+//		System.out.println("return path service list");
 		return list;
 	}
 }
