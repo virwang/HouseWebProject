@@ -104,21 +104,21 @@
 											<tbody>
 												<tr>
 													<td>1</td>
-													<td><a href="<c:url value='housedetail?HOUSEID=${path[0][1]}'/>">${path[0][2]}</a></td>
+													<td><a href="<c:url value='housedetail?HOUSEID=${path[0][0]}'/>">${path[0][2]}</a></td>
 													<td>${path[0][4]}</td>
 													<td>${path[0][5]}</td>
 													<td>${path[0][3]}</td>
 												</tr>
 												<tr>
 													<td>2</td>
-													<td><a href="<c:url value='housedetail?HOUSEID=${path[1][1]}'/>">${path[1][2]}</a></td>
+													<td><a href="<c:url value='housedetail?HOUSEID=${path[1][0]}'/>">${path[1][2]}</a></td>
 													<td>${path[1][4]}</td>
 													<td>${path[1][5]}</td>
 													<td>${path[1][3]}</td>
 												</tr>
 												<tr>
 													<td>3</td>
-													<td><a href="<c:url value='housedetail?HOUSEID=${path[2][1]}'/>">${path[2][2]}</a></td>
+													<td><a href="<c:url value='housedetail?HOUSEID=${path[2][0]}'/>">${path[2][2]}</a></td>
 													<td>${path[2][4]}</td>
 													<td>${path[2][5]}</td>
 													<td>${path[2][3]}</td>
