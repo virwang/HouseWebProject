@@ -80,7 +80,8 @@ public class LoginController {
 					||rurl.equals("http://localhost:8080/house/login")
 					||rurl.equals("http://localhost:8080/house/logout")
 					||rurl.equals("http://localhost:8080/house/resetPsw")
-					||rurl.equals("http://localhost:8080/house/mail")) {
+					||rurl.equals("http://localhost:8080/house/mail")
+					||rurl.equals("http://localhost:8080/house/ShowSearchTwoTaipeiPage.do")) {
 				return "redirect:/index";
 			}
 			else {

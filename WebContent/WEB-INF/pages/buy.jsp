@@ -174,9 +174,9 @@ body {
 								</c:if>
 								<a href="housedetail?HOUSEID=${hlist.id}">
 									<h2 class="property-title">${hlist.title}
-										<c:forEach var="path" items="${path}">
+										<c:forEach var="ppath" items="${path}">
 											<%-- 								<P>${path[0]}</P> --%>
-											<c:if test="${hlist.id == path[0]}">
+											<c:if test="${hlist.id == ppath[0]}">
 												<i style='font-size: 35px; color: goldenrod;' class='fas'>&#xf521;</i>
 											</c:if>
 										</c:forEach>

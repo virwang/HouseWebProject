@@ -52,7 +52,7 @@
         <div class="row align-items-center justify-content-center text-center">
           <div class="col-md-10" style="font-family: 微軟正黑體;">
             <!-- <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">出租</span> -->
-            <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">賣房</span>
+            <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">SALE</span>
             <h1 class="mb-2">大湖公園前華廈.面中庭.三房+大車位</h1>
             <p class="mb-5"><strong class="h2 text-success font-weight-bold">2720萬</strong></p>
             <p><a href="<c:url value='housedetail?HOUSEID=2'/>" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">詳細資訊</a></p>
@@ -132,7 +132,7 @@
 
             <a href="#" class="property-thumbnail h-100">
               <div class="offer-type-wrap">
-                <span class="offer-type bg-danger">賣</span>
+                <span class="offer-type bg-danger">SALE</span>
                 <!-- <span class="offer-type bg-success">租</span> -->
               </div>
               <img src="images/house1.jpg" alt="Image" class="img-fluid">
@@ -173,7 +173,7 @@
 
             <a href="#" class="property-thumbnail h-100">
               <div class="offer-type-wrap">
-                <span class="offer-type bg-danger">賣</span>
+                <span class="offer-type bg-danger">SALE</span>
                 <!-- <span class="offer-type bg-success">Rent</span> -->
               </div>
               <img src="images/house6.jpg" alt="Image" class="img-fluid">
@@ -214,7 +214,7 @@
 
             <a href="#" class="property-thumbnail h-100">
               <div class="offer-type-wrap">
-                <span class="offer-type bg-danger">賣</span>
+                <span class="offer-type bg-danger">SALE</span>
                 <!-- <span class="offer-type bg-success">Rent</span> -->
               </div>
               <img src="images/house4.jpg" alt="Image" class="img-fluid">
@@ -256,7 +256,7 @@
 
             <a href="#" class="property-thumbnail h-100">
               <div class="offer-type-wrap">
-                <span class="offer-type bg-danger">賣</span>
+                <span class="offer-type bg-danger">SALE</span>
                 <!-- <span class="offer-type bg-success">Rent</span> -->
               </div>
               <img src="images/house5.jpg" alt="Image" class="img-fluid">
@@ -299,7 +299,7 @@
             <a href="#" class="property-thumbnail h-100">
               <div class="offer-type-wrap">
                 <!-- <span class="offer-type bg-info">Lease</span> -->
-                <span class="offer-type bg-danger">賣</span>
+                <span class="offer-type bg-danger">SALE</span>
               </div>
               <img src="images/house2.jpg" alt="Image" class="img-fluid">
             </a>

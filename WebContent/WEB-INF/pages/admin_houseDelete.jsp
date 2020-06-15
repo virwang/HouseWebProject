@@ -28,7 +28,7 @@ body{background-color: #FCFCFC;}
 	border-left:none;
 	border-right:none;
 	border-collapse: collapse;
-	width: 100%;
+	width: 70%;
 	}
 .index{
 	font-size:10mm;
@@ -40,7 +40,7 @@ body{background-color: #FCFCFC;}
 <h1 align="center">刪除房屋資料</h1>
 <form method="Get" action="<c:url value='showHouse'/>">
 			<input type="hidden" name="id" value="${house.id}">
-		<table class="t1" border='1' align="center">
+		<table class="t1" border='1' >
 			<tr>
 				<td class="td1">標題：</td>
 				<td class="td2">

@@ -24,7 +24,7 @@ body{background-color: #FCFCFC;}
 	border-left:none;
 	border-right:none;
 	border-collapse: collapse;
-	width: 100%;
+	width: 70%;
 	}
 .td2{
 	font-size:6mm;

@@ -1,8 +1,8 @@
 //        var selectcity=document.getElementById("selectcity");
 //        ;
 //        console.log(selectcity);
-$('#selecteddis').val();
-document.getElementById("districtavg").innerHTML = $('#selecteddis').text();
+$('#td1').val();
+document.getElementById("districtavg").innerHTML = $('#td1').text();
 
 var rowCount = $('#table1 tr').length-1;
 console.log("rowCount="+rowCount);

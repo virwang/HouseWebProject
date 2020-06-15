@@ -76,12 +76,14 @@ public class HouseController {
 		if(mBean!=null) {
 			Integer pk = mBean.getPk();
 			List<FavoriteBean> list2 = ifs.mfhosue(pk);
-			List<Object> obj = ps.top3FaHouse();
+			List<Object> obj= ps.top3FaHouse();
+//			for (Object object : obj) {
+//				System.out.println("123");
+//			}
 			m.addAttribute("fh", list2);
 			m.addAttribute("path", obj);
 		}
 		m.addAttribute("houselist", list);
-		
 		return "buy";
 	}
 	
@@ -89,6 +91,7 @@ public class HouseController {
 	public String showHouseDetail(@RequestParam("HOUSEID") Integer hid, Model m) {
 		Integer hcount = 0;
 		HouseBean hBean = hService.selectedHouse(hid);
+		List<Object> obj= ps.top3FaHouse();
 		m.addAttribute("housedt", hBean);
 		HouseHitBean hhBean = hitService.getHtBean(hid);
 		if(hhBean!=null) {
@@ -96,6 +99,7 @@ public class HouseController {
 		}
 		
 		m.addAttribute("hcount", hcount);
+		m.addAttribute("path", obj);
 		return "property-details";
 	}
 	

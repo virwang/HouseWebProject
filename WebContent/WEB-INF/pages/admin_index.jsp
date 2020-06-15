@@ -94,14 +94,8 @@ a:hover {
   text-decoration:underline;
   color: white;
 }
-a {
-  float: left;
-  display: block;
-  color: #FFFFFF;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+
+
 }
 </style>
 <title>後臺管理</title>
@@ -171,10 +165,12 @@ a {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				let memberlist = JSON.parse(xhr.responseText);
 				content = '<table class="table table-striped table-hover table-bordered" id="member" align="center" style="width:70%;text-align:center;">';
-				content += '<thead><tr><th>姓名</th><th>身份</th><th> </th></tr></thead><tbody>';
+				content += '<thead><tr><th>帳號</th><th>姓名</th><th>身份</th><th> </th></tr></thead><tbody>';
 				for (let j = 0; j < memberlist.length;j++) {
-					let tb = '<tr><td>' + memberlist[j].name
+					let tb = '<tr><td>' + memberlist[j].account
 					+ '</td><td>'
+					+ memberlist[j].name
+					+'</td><td>'
 					+ memberlist[j].usertype
 					+ "</td><td><a class='a1' href='<c:url value='showmember?id="
 					+ memberlist[j].pk

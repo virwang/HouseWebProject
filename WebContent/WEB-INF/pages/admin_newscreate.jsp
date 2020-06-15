@@ -20,7 +20,6 @@ a:hover{color:red;}
 form{display: inline;}
 h1{margin-top:10vh;}
 .t1{
-	margin-left:18vw;
 	height:400px;
 	width:60%;
 	margin-top:5vh;
@@ -29,6 +28,7 @@ h1{margin-top:10vh;}
 	width: 80%;
 	}
 .submit{
+	margin-left:50px;
 	padding:10px;
 	font-size: 10mm;
 	margin-top:10px;

@@ -1,16 +1,12 @@
 $(function() {
 	// 抓字的function
-	$('.dataTables_filter input').keyup(function() {
-		let value1 = $(this).val();
-		$("#searchword").text(value1);
-		console.log("value1=" + value1);
-	})
+	enterword()
 
 	// 選年的function
-	$('#select_year').change(function() {
-		let value2 = $(this).val();
-		console.log("value2=" + value2);
-	})
+//	$('#select_year').change(function() {
+//		let value2 = $(this).val();
+//		console.log("value2=" + value2);
+//	})
 	
 	$('#linebot img').hover(function() {
 					this.src = "css/css_13/pics_13_/line-meG.png";
@@ -28,3 +24,11 @@ $(function() {
 	
 })
 
+function enterword(){
+	$('.dataTables_filter input').keyup(function() {
+		let value1 = $(this).val();
+		$("#searchword").text(value1);
+		console.log("value1=" + value1);
+		year()
+	})
+}

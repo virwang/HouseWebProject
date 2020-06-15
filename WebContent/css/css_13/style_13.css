@@ -1,28 +1,37 @@
 /* Base */
-#houseloanlist {
-	background-color: white;
-	border-radius: 10px;
-	float: left;
-	position: absolute;
-	top: 300px;
-	width: 200px;
-	margin-left: 15px;
-	padding-right: 15px;
-	font-family:微軟正黑體;
-	height: 350px;
-	overflow:auto;
-}
+        #houseloanlist {
+            background-color: rgb(218, 237, 252);
+            border-radius: 10px;
+            float: left;
+            position: absolute;
+            top: 300px;
+            width: 200px;
+            margin-left: 15px;
+            padding-right: 15px;
+            font-family: 微軟正黑體;
+            height: 350px;
+            overflow: auto;
+        }
 
-#houseloanlist ul {
-	font-size: 14px;
-	font-weight: 700;
-	margin-top: 15px;
-	margin-bottom: 15px;
-}
+        #houseloanlist ul {
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-left: 15px;
+            padding-left: 25px;
+            padding-right: 10px;
+            border: 1px solid gray;
+            margin-bottom: 15px;
+            margin-left: 15px;
+            padding-left: 25px;
+            padding-right: 10px;
+        }
 
-#houseloanlist li {
-	font-weight: 500;
-}
+
+        #houseloanlist li {
+            font-weight: 500;
+        }
 
 #linebot {
 	left: 1400px;

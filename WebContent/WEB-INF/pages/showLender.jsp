@@ -28,6 +28,12 @@
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
 <link rel="stylesheet" href="css/aos.css">
 <link rel="stylesheet" href="css/style.css">
+<style>
+body {
+	font-family:微軟正黑體;
+
+}
+</style>
 </head>
 <body>
 	<div class="site-loader"></div>

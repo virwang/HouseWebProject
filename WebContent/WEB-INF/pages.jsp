@@ -7,45 +7,6 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/19_css/admin_new.css">
 <title>修改新聞</title>
-<style>
-body{background-color:#FCFCFC;}
-.submit{background-color:#FCFCFC;}
-.td1{
-	text-align:center;
-	font-size: 6mm;
-	}
-a:link{color:blue;text-decoration:none;}
-a:visited {color:blue;text-decoration:none;}
-a:hover{color:red;}
-form{display: inline;}
-h1{margin-top:10vh;}
-.t1{
-	height:400px;
-	width:60%;
-	margin-top:5vh;
-	}
-.ip1{
-	width: 80%;
-	}
-.submit{
-	padding:10px;
-	font-size: 10mm;
-	margin-top:10px;
-	background-color:#FCFCFC;
-	border:none;
-	color:blue;
-		}
-.submit:hover{color:red;}
-.update{
-	margin-left:25vw;
-		}
-.index{
-	font-size:10mm;
-	margin-left:13vw;
-		}
-.delete{margin-left:15vw;}
-.s1{font-size: 6mm;}
-</style>
 </head>
 <body>
 <h1 align="center">新聞修改</h1>
@@ -62,8 +23,8 @@ h1{margin-top:10vh;}
 				<td class="td1">城市：</td>
 				<td class="td2">
 					<select class="s1" name="newscityname" id="city" onchange="changecity(this)">
-					<option value="臺北">臺北</option>
-					<option value="新北">新北</option>
+					<option value="taipei">台北</option>
+					<option value="newtaipei">新北</option>
 					</select>
 				</td>
 			</tr>
@@ -110,9 +71,9 @@ h1{margin-top:10vh;}
 		let dctl = document.getElementById("city");
 		let dctv = dctl.value;
 		let ddt = ["北投區", "士林區", "內湖區", "中山區", "松山區", "大同區", "萬華區", "中正區", "大安區",
-			"信義區", "南港區", "文山區", "臺北市"];
+			"信義區", "南港區", "文山區", "台北市"];
 		let ddist = document.getElementById("dist");
-		if(dctv == "臺北"){
+		if(dctv == "taipei"){
 			ddist.options.length=0;
 			for(let k=0;k<ddt.length;k++){
 				ddist.add(new Option(ddt[k],ddt[k]));
@@ -123,17 +84,17 @@ h1{margin-top:10vh;}
 			let ctvl = clicked.value;
 	  		let dist = document.getElementById("dist");
 			let tpdt = ["北投區", "士林區", "內湖區", "中山區", "松山區", "大同區", "萬華區", "中正區", "大安區",
-	  			"信義區", "南港區", "文山區", "臺北市"];
+	  			"信義區", "南港區", "文山區", "台北市"];
 			let ntpdt = [ "板橋區", "中和區", "新莊區", "土城區", "汐止區", "鶯歌區", "淡水區", "五股區", "林口區",
 				"深坑區", "坪林區", "石門區", "萬里區", "雙溪區", "烏來區", "三重區", "永和區", "新店區", "蘆洲區",
 				"樹林區", "三峽區", "瑞芳區", "泰山區", "八里區", "石碇區", "三芝區", "金山區", "平溪區", "貢寮區", "新北市" ];
-			if(ctvl=="臺北"){
+			if(ctvl=="taipei"){
 	  	  		dist.options.length=0;
 	  			for(let x=0;x<tpdt.length;x++){
 					dist.add(new Option(tpdt[x],tpdt[x]));
 	  	  		}
 			}
-			if(ctvl=="新北"){
+			if(ctvl=="newtaipei"){
 	  	  		dist.options.length=0;
 		  		for(let y=0;y<ntpdt.length;y++){
 					dist.add(new Option(ntpdt[y],ntpdt[y]));

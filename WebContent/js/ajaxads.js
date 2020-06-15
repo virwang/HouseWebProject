@@ -13,13 +13,13 @@ $(function() {
 		let select_year = $(this).val();
 		console.log("value2=" + select_year);
 		showyear(select_year);
+		year()
 	});
 
 	showdetail();
 
 	close();
 
-	$("#houseloanlist").smartmarquee();
 
 });
 
