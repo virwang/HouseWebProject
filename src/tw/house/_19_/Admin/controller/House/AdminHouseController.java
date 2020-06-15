@@ -11,13 +11,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import tw.house._05_.service.IFavorite;
 import tw.house._07_.model.HouseBean;
+import tw.house._07_.model.HouseHitService;
+import tw.house._07_.model.HouseService;
+import tw.house._07_.model.MrtService;
+import tw.house._07_.model.ReservationService;
 import tw.house._19_.Admin.model.House.AdminHouseService;
 
 @Controller
 public class AdminHouseController {
 	@Autowired
 	private AdminHouseService service;
+	
+	@Autowired
+	private ReservationService rService;
+	
+	@Autowired
+	private HouseHitService hitService;
+	
+	@Autowired
+	private IFavorite ifs;
 	
 	@RequestMapping(path = "/gethouselist", method = RequestMethod.GET)
 	public String HouseList(Model model) {
@@ -41,6 +56,18 @@ public class AdminHouseController {
 	
 	@DeleteMapping("/deleteHouse")
 	public String delete(@RequestParam("hid") Integer id) {
+		boolean dltresv = rService.deleteReservationByHouseId(id);
+		if (dltresv) {
+			System.out.println("DELETE reservation");
+		}
+		boolean dlfh = ifs.deleteFavoriteByHid(id);
+		if (dlfh) {
+			System.out.println("DELETE favorite");
+		}
+		boolean dlhit = hitService.deleteHit(id);
+		if (dlhit) {
+			System.out.println("DELETE Hit");
+		}
 		HouseBean bean = service.getById(id);
 		boolean delete = service.deleteHouse(bean);
 		if(delete==true) {

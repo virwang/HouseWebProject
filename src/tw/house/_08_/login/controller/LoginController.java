@@ -76,7 +76,11 @@ public class LoginController {
 			errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 		}
 		if(errorMsg.isEmpty()) {
-			if (rurl.equals("")||rurl==null||rurl.equals("http://localhost:8080/house/logout")) {
+			if (rurl.equals("")||rurl==null
+					||rurl.equals("http://localhost:8080/house/login")
+					||rurl.equals("http://localhost:8080/house/logout")
+					||rurl.equals("http://localhost:8080/house/resetPsw")
+					||rurl.equals("http://localhost:8080/house/mail")) {
 				return "redirect:/index";
 			}
 			else {

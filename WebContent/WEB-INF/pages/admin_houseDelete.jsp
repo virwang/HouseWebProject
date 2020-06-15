@@ -7,6 +7,34 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/19_css/admin_house.css">
 <title>刪除房屋資料</title>
+<style>
+body{background-color: #FCFCFC;}
+.submit{background-color:#FCFCFC;}
+.td1{
+	font-family:微軟正黑體;
+	font-weight:bold;
+	font-size:6mm;
+	color:white;
+	background-color:#4F4F4F;
+}
+.td2{
+	font-size:6mm;
+	font-family:微軟正黑體;
+	text-align: center;
+	}
+.t1{
+	background-color:#FFFFFF;
+	border-color:#D0D0D0;
+	border-left:none;
+	border-right:none;
+	border-collapse: collapse;
+	width: 100%;
+	}
+.index{
+	font-size:10mm;
+	margin-left:30vw;
+		}
+</style>
 </head>
 <body>
 <h1 align="center">刪除房屋資料</h1>

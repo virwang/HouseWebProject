@@ -178,6 +178,15 @@
                   <label class="font-weight-bold" for="picture1">上傳圖片1:</label>
                   <input type="file" id="picture1" name="picture1" accept=".jpg" class="form-control">
                 </div>
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="p1">預覽圖片1:</label>
+                  <c:if test="${empty hBean.base64image1}">
+                  	<img id="p1"/>
+                  </c:if>
+                  <c:if test="${!empty hBean.base64image1}">
+                  	<img id="p1" src="data:image/jpeg;base64,${hBean.base64image1}"/>
+                  </c:if>
+                </div>
               </div>
               
               <div class="row form-group">
@@ -185,12 +194,30 @@
                   <label class="font-weight-bold" for="picture2">上傳圖片2:</label>
                   <input type="file" id="picture2" name="picture2" accept=".jpg" class="form-control">
                 </div>
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="p2">預覽圖片2:</label>
+                  <c:if test="${empty hBean.base64image2}">
+                  	<img id="p2"/>
+                  </c:if>
+                  <c:if test="${!empty hBean.base64image2}">
+                  	<img id="p2" src="data:image/jpeg;base64,${hBean.base64image2}"/>
+                  </c:if>
+                </div>
               </div>
               
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="picture3">上傳圖片3:</label>
                   <input type="file" id="picture3" name="picture3" accept=".jpg" class="form-control">
+                </div>
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="p3">預覽圖片3:</label>
+                  <c:if test="${empty hBean.base64image3}">
+                  	<img id="p1"/>
+                  </c:if>
+                  <c:if test="${!empty hBean.base64image3}">
+                  	<img id="p3" src="data:image/jpeg;base64,${hBean.base64image3}"/>
+                  </c:if>
                 </div>
               </div>
 				
@@ -224,7 +251,7 @@
     <jsp:include page="/footer.jsp" />
 
   </div>
-  
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script>
 	 let dctl = document.getElementById("city");
 	 let dctv = dctl.value;
@@ -271,10 +298,42 @@
   			}
   	  	}
   	}
+
+  	$('#picture1').change(function() {
+  		  $('#p1').attr('src', '');
+    	  var file = $('#picture1')[0].files[0];
+    	  var reader = new FileReader;
+    	  
+    	  reader.onload = function(e) {
+    	    	$('#p1').attr('src', e.target.result);
+    	  };
+    	  reader.readAsDataURL(file);
+    	 
+    	});
+
+    	$('#picture2').change(function() {
+    		$('#p2').attr('src', '');
+      	  var file = $('#picture2')[0].files[0];
+      	  var reader = new FileReader;
+      	  reader.onload = function(e) {
+      	    $('#p2').attr('src', e.target.result);
+      	  };
+      	  reader.readAsDataURL(file);
+      	});
+
+    	$('#picture3').change(function() {
+    		$('#p3').attr('src', '');
+      	  var file = $('#picture3')[0].files[0];
+      	  var reader = new FileReader;
+      	  reader.onload = function(e) {
+      	    $('#p3').attr('src', e.target.result);
+      	  };
+      	  reader.readAsDataURL(file);
+      	});
 	
   </script>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
+  
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>

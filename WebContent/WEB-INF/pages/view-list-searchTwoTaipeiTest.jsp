@@ -39,8 +39,8 @@
 	href="<c:url value='/css/css_13/bootstrap.min.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/datatable/datatables.css' />">
-<link rel="stylesheet"
-	href="<c:url value='/css/css_13/jquery.smartmarquee.css' />">
+	<script type='text/javascript'
+	src='//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js'></script>
 
 </head>
 
@@ -54,7 +54,7 @@
 		<jsp:include page="/navibar.jsp" />
 	</div>
 
-<div id='houseloanlist'></div>
+	<div id='houseloanlist'></div>
 
 	<div class="site-section site-section-sm pb-0"
 		style="background-color: #333333;">
@@ -167,15 +167,15 @@
 										<c:forEach var='tp' items='${TwoTaipeiList}' varStatus='vs'>
 											<tr>
 												<td id="td0" style="display: none">${tp.id}</td>
-												<td id="selecteddis">${tp.district}</td>
-												<td id="td1">${tp.location}</td>
+												<td id="td1">${tp.district}</td>
+												<td id="td8">${tp.location}</td>
 												<td id="td2"><fmt:formatNumber type="currency"
 														value=" ${tp.tprice_s}" pattern="###,###.#" /></td>
 												<td id="td3"><fmt:formatNumber type="currency"
 														value="${tp.uprice_p}" pattern="###,###.#" /></td>
 												<td id="td4">${tp.farea_p}</td>
 												<td id="td5">${tp.landa_p}</td>
-												<td id="td6" style="display: none">${tp.sdate}</td>
+												<td id="td7" style="display: none">${tp.sdate}</td>
 												<%--<td>${tp.sbuild}</td>
 												<td>${tp.tbuild}</td>--%>
 												<%--<td>${tp.buildtype}</td>--%>
@@ -198,6 +198,8 @@
 	<jsp:include page="/footer.jsp" />
 
 
+
+
 	<script>
 		function showhouseloanlist() {
 			$.ajax({
@@ -205,25 +207,26 @@
 				type : "GET",
 				dataType : "json",
 				success : function(data) {
-					
-				    var jsonstr = JSON.stringify(data);
-				    var prtyjson = JSON.parse(jsonstr);
-				    
+
+					var jsonstr = JSON.stringify(data);
+					var prtyjson = JSON.parse(jsonstr);
+
 					for (n = 0; n <= prtyjson.data.length; n++) {
 
-				    var str1 = prtyjson.data[n].bank_LINKS;
-				    var str = str1.substring(0, str1.length - 1);
-				    var str2 = "https://pip.moi.gov.tw";
-				    var src = str2+str
+						var str1 = prtyjson.data[n].bank_LINKS;
+						var str = str1.substring(0, str1.length - 1);
+						var str2 = "https://pip.moi.gov.tw";
+						var src = str2 + str
 
-					var details = '<ul>' + prtyjson.data[n].bank_NAME
-							+ '<li> <a href=' + src + '>' + prtyjson.data[n].project_NAME
-							+ '</a> </li> <li>首期利率：' + prtyjson.data[n].firstRate
-							+ '%</li><li>寬限期：' + prtyjson.data[n].grace_MONTH
-							+ '個月</li></ul>'
+						var details = '<ul id="marquee3">' + prtyjson.data[n].bank_NAME
+								+ '<li> <a href=' + src + '>'
+								+ prtyjson.data[n].project_NAME
+								+ '</a> </li> <li>首期利率：'
+								+ prtyjson.data[n].firstRate + '%</li><li>寬限期：'
+								+ prtyjson.data[n].grace_MONTH + '個月</li></ul>'
 
-					$("#houseloanlist").append(details);
-					
+						$("#houseloanlist").append(details);
+
 					}
 
 				},
@@ -234,6 +237,12 @@
 		}
 	</script>
 
+<!-- 	<script> -->
+// 		$('#houseloanlist').marquee({
+// 			direction : 'up',
+// 			speed : 15
+// 		});
+<!-- 	</script> -->
 
 	<script>
 		function year() {
@@ -261,6 +270,7 @@
 							$("<span></span>").html("無交易紀錄"));
 				}
 			})
+
 		}
 	</script>
 
@@ -311,6 +321,8 @@
 							}
 						});
 			}
+			enterword();
+			console.log("ENTERWORD")
 		}
 	</script>
 
@@ -381,7 +393,7 @@
 	<script src="<c:url value='/js/selectdis.js' />"></script>
 	<script src="<c:url value='/js/selection.js' />"></script>
 	<script src="<c:url value='/js/ajaxads.js' />"></script>
-	<script src="<c:url value='/css/css_13/jquery.smartmarquee.js' />"></script>
+
 
 </body>
 

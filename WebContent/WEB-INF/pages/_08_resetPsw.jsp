@@ -135,11 +135,11 @@
 		<input type="password" id="psw2"name="psw2" placeholder="請輸入新密碼" required  onblur="checkPwd1();"maxlength="16"onclick="hide()"> 
 		<br>
 	
-      <div class="g-recaptcha" data-sitekey="6LdiYQEVAAAAAOo5WzmBhqfR4YdV0BOQdifm_cTi" data-callback="enablebtn"></div>
-	<br>
+<!--    style="display:none"   <div class="g-recaptcha" data-sitekey="6LdiYQEVAAAAAOo5WzmBhqfR4YdV0BOQdifm_cTi" data-callback="enablebtn"></div> -->
+<!-- 	<br> -->
 	<input type="hidden" name="x" value="${param.x}">
 	
-    <button style="display:none" id="myBtn" type="submit" class="btn">送出</button>        
+    <button  id="myBtn" type="submit" class="btn">送出</button>        
  </Form>
   </div>
  </fieldset> 

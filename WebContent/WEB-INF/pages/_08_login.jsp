@@ -125,11 +125,11 @@ body {
     <Font color='red' size="-1">&nbsp;${ErrorMsgKey.LoginError}</Font>
     <br>
     <label for="account"><b>帳號</b></label>
-    <input type="text" placeholder="請輸入帳號" name="account" required size="16">
+    <input id="account" type="text" placeholder="請輸入帳號" name="account" required size="16">
 	<small><Font color='red' size="-1">${ErrorMsgKey.AccountError}</Font></small>
 	
     <label for="psw"><b>密碼</b></label>
-    <input type="password" placeholder="請輸入密碼" name="psw" required size="16">
+    <input id="psw" type="password" placeholder="請輸入密碼" name="psw" required size="16">
 	<small><Font color='red'  size="-1">${ErrorMsgKey.PswError}</Font></small>
 			<a href="<c:url value='mail'/>">忘記密碼</a>	
       <br>
@@ -141,6 +141,8 @@ body {
 	</div>
 	<br>
 	<input type="hidden" name="reurl" value="${reurl}">
+	<button id="allsub"  onclick="eeit07submit()" >一鍵登入(eeit07)</button>
+	<button id="allsub"  onclick="adminsubmit()" >一鍵登入(admin)</button>
     <button style="display:none" disabled="disabled" id="rebtn" type="submit" class="btn">登入</button>
 <!--     <button type="submit" class="btn cancel" onclick="closeForm()">Close</button> -->
   </form>
@@ -181,6 +183,21 @@ body {
 <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 
 <script>
+function eeit07submit(){
+	let acct=document.getElementById("account");
+	acct.value="eeit07";
+	let psw=document.getElementById("psw");
+	psw.value="eeit123";
+	}
+function adminsubmit(){
+	let acct=document.getElementById("account");
+	acct.value="admin";
+	let psw=document.getElementById("psw");
+	psw.value="admin1234";
+	
+	}
+
+
 	function enablebtn(){
 			var rebtn=document.getElementById("rebtn");
 			rebtn.disabled=false;

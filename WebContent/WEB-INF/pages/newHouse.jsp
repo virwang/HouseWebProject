@@ -56,7 +56,7 @@
             
           
             <form action="<c:url value='inserthouse' />" method="POST" class="p-5 bg-white border" enctype="multipart/form-data">
-
+			  <button type="button" class="btn btn-primary  py-2 px-4 rounded-0" onclick="demo()">DEMO</button>
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="title">物件標題:</label>
@@ -103,7 +103,7 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="room">房:</label>
-                  <select name="room" class="form-control">
+                  <select id="room" name="room" class="form-control">
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -121,7 +121,7 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="hall">廳:</label>
-                  <select name="hall" class="form-control">
+                  <select id="hall" name="hall" class="form-control">
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -139,7 +139,7 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="bath">衛:</label>
-                  <select name="bath" class="form-control">
+                  <select id="bath" name="bath" class="form-control">
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -157,7 +157,7 @@
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="font-weight-bold" for="mrt">鄰近捷運站:</label>
-                  <select name="mrt" class="form-control">
+                  <select id="mrt" name="mrt" class="form-control">
                   	<c:forEach var="mrtst" items="${mrtlist}">
 						<option value="${mrtst.pk}">${mrtst.linename}-${mrtst.stationname}</option>
                   	</c:forEach>
@@ -268,6 +268,7 @@
   	}
   	
   	$('#picture1').change(function() {
+  		$('#p1').attr('src', '');
   	  var file = $('#picture1')[0].files[0];
   	  var reader = new FileReader;
   	  reader.onload = function(e) {
@@ -277,6 +278,7 @@
   	});
 
   	$('#picture2').change(function() {
+  		$('#p2').attr('src', '');
     	  var file = $('#picture2')[0].files[0];
     	  var reader = new FileReader;
     	  reader.onload = function(e) {
@@ -286,6 +288,7 @@
     	});
 
   	$('#picture3').change(function() {
+  		$('#p3').attr('src', '');
     	  var file = $('#picture3')[0].files[0];
     	  var reader = new FileReader;
     	  reader.onload = function(e) {
@@ -293,6 +296,19 @@
     	  };
     	  reader.readAsDataURL(file);
     	});
+  	function demo(){
+  		document.getElementById("title").value="士林區劍潭公園美廈";
+  		document.getElementById("tprice").value="3100";
+  		document.getElementById("ping").value="49.07";
+  		document.getElementById("apart").value="新都里";
+  		document.getElementById("city").value="台北市";
+  		document.getElementById("dist").value="士林區";
+  		document.getElementById("addr").value="劍潭路";
+  		document.getElementById("room").value="2";
+  		document.getElementById("hall").value="2";
+  		document.getElementById("bath").value="2";
+  		document.getElementById("mrt").value="38";
+  	}
 	
   </script>
 

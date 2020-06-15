@@ -177,10 +177,10 @@
 					<div class="bg-white widget border rounded">
 
 						<h3 class="h4 text-black widget-title mb-3">預約看房</h3>
-						<form method="POST" action='<c:url value="newapplication"/>' class="form-contact-agent">
+						<form method="POST" class="form-contact-agent">
 							<div class="form-group">
 								<label for="datepicker">日期</label>
-								<input type="text" name="date" id="datepicker" class="form-control" autocomplete="off" data-date-format="yyyy-mm-dd">
+								<input type="text" name="date" id="datepicker" class="form-control" autocomplete="off" required>
 							</div>
 							
 							<div class="form-group">
@@ -193,8 +193,7 @@
 							
 							<div class="form-group">
 								<input type="hidden" id="hid" name="hid" value="${housedt.id}">
-								<input type="submit" id="send" class="btn btn-primary"
-									value="提出申請">
+								<button type="button" id="send" class="btn btn-primary" onclick="reserv()">提出申請</button>
 							</div>
 						</form>
 					</div>
@@ -334,6 +333,8 @@
 	<script src="js/main.js"></script>
 	
 	<script>
+	var date = new Date();
+	var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 	$(document).ready(function(){
 		let count = ${hcount};
 		$.ajax({
@@ -344,6 +345,40 @@
 		    	"count" : count
 		    } })
 	})
+	
+	function reserv() {
+		<c:if test="${!empty memberBean}">
+		let time = document.querySelector('input[name="time"]:checked').value;
+		let date = document.getElementById("datepicker");
+		let datev = date.value;
+		let hid = document.getElementById("hid").value;
+		let xhr2 = new XMLHttpRequest();
+		xhr2.open("POST","<c:url value='newapplication'/>",true);
+		xhr2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr2.send("hid="+hid+"&date="+datev+"&time="+time);
+		xhr2.onreadystatechange=function(){
+			if(xhr2.readyState==4&&xhr2.status==200){
+				let resv =JSON.parse(xhr2.responseText);
+				if(resv.status=="success"){
+					alert("預約申請成功");
+				}else{
+					alert("預約申請失敗");
+				}
+				datev="";
+			}
+		
+		};
+		</c:if>
+		<c:if test="${empty memberBean}">
+			location.href = "<c:url value='login'/>";
+		</c:if>
+	}
+
+	$('#datepicker').datepicker({
+	    "format" : 'yyyy-mm-dd',
+	    "startDate" : today,
+	    "autoclose" : true
+	});
 
 	
 	//讀取捷運站點
@@ -378,6 +413,8 @@
 		}
 	
 	};
+
+	
 	//捷運文湖線
 	let BRLines = [{
 	    "type": "LineString",

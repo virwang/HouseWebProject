@@ -7,6 +7,46 @@
 <link rel="stylesheet" href="css/19_css/admin_createnew.css">
 <meta charset="UTF-8">
 <title>新增新聞</title>
+<style>
+body{background-color:#FCFCFC;}
+.submit{background-color:#FCFCFC;}
+.td1{
+	text-align:center;
+	font-size: 6mm;
+	}
+a:link{color:blue;text-decoration:none;}
+a:visited {color:blue;text-decoration:none;}
+a:hover{color:red;}
+form{display: inline;}
+h1{margin-top:10vh;}
+.t1{
+	margin-left:18vw;
+	height:400px;
+	width:60%;
+	margin-top:5vh;
+	}
+.ip1{
+	width: 80%;
+	}
+.submit{
+	padding:10px;
+	font-size: 10mm;
+	margin-top:10px;
+	background-color:#FCFCFC;
+	border:none;
+	color:blue;
+		}
+.submit:hover{color:red;}
+.update{
+	margin-left:25vw;
+		}
+.index{
+	font-size:10mm;
+	margin-left:30vw;
+		}
+.delete{margin-left:15vw;}
+.s1{font-size: 6mm;}
+</style>
 </head>
 <body>
 <h1 align="center">新增新聞</h1>

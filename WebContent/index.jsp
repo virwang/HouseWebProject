@@ -44,47 +44,18 @@
      <jsp:include page="/navibar.jsp" />
   </div>
 
-  <div class="slide-one-item home-slider owl-carousel" style="font-family:DFKai-sb;">
+  <div class="slide-one-item owl-carousel">
 
     <div class="site-blocks-cover overlay" style="background-image: url(images/house1.jpg);" data-aos="fade"
       data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
-          <div class="col-md-10">
+          <div class="col-md-10" style="font-family: 微軟正黑體;">
             <!-- <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">出租</span> -->
             <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">賣房</span>
-            <h1 class="mb-2">碧波白</h1>
-            <p class="mb-5"><strong class="h2 text-success font-weight-bold">$2,250,500</strong></p>
-            <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">詳細資訊</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-blocks-cover overlay" style="background-image: url(images/house2.jpg);" data-aos="fade"
-      data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
-          <div class="col-md-10">
-            <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">賣房</span>
-            <h1 class="mb-2">美河市</h1>
-            <p class="mb-5"><strong class="h2 text-success font-weight-bold">$1,000,500</strong></p>
-            <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">詳細資訊</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-blocks-cover overlay" style="background-image: url(images/house3.jpg);" data-aos="fade"
-      data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
-          <div class="col-md-10">
-            <!-- <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">出租</span> -->
-            <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">賣房</span>
-            <h1 class="mb-2">渡假村</h1>
-            <p class="mb-5"><strong class="h2 text-success font-weight-bold">$2,250,500</strong></p>
-            <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">詳細資訊</a></p>
+            <h1 class="mb-2">大湖公園前華廈.面中庭.三房+大車位</h1>
+            <p class="mb-5"><strong class="h2 text-success font-weight-bold">2720萬</strong></p>
+            <p><a href="<c:url value='housedetail?HOUSEID=2'/>" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">詳細資訊</a></p>
           </div>
         </div>
       </div>
@@ -95,89 +66,61 @@
 
   <div class="site-section site-section-sm pb-0">
     <div class="container">
-      <div class="row">
-        <form class="form-search col-md-12" style="margin-top: -100px;">
-          
-          <div class="row  align-items-end">
-            <div class="col-md-3">
-              <label for="list-types">選擇捷運路線</label>
-              <div class="select-wrap">
-                <span class="icon icon-arrow_drop_down"></span>
-                <select name="list-types" id="list-types" class="form-control d-block rounded-0">
-                  <option value="">淡水象山線(紅線)</option>
-                  <option value="">中和新蘆線(橘線)</option>
-                  <option value="">環狀線(黃線)</option>
-                  <option value="">松山新店(綠線)</option>
-                  <option value="">板南線(藍線)</option>
-                  <option value="">文湖線(棕線)</option>
-                  <option value="">桃園機場線(紫線)</option>
-                  <option value="">淡水輕軌</option>
-                  <!-- <optioon value=""></optioon> -->
-                </select>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <label for="offer-types">選擇地區</label>
-              <div class="select-wrap">
-                <span class="icon icon-arrow_drop_down"></span>
-                <select name="offer-types" id="offer-types" class="form-control d-block rounded-0">
-                  <option value="">中正區</option>
-                  <option value="">信義區</option>
-                  <option value="">大安區</option>
-                  <option value="">文山區</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <label for="select-city">選擇學校</label>
-              <div class="select-wrap">
-                <span class="icon icon-arrow_drop_down"></span>
-                <select name="select-city" id="select-city" class="form-control d-block rounded-0">
-                  <option value="">國小</option>
-                  <option value="">國中</option>
-                  <option value="">高中</option>
-                  <option value="">大學</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
-            </div>
-          </div>
-        </form>
-      </div>
+			<div class="row">
+				<form class="form-search col-md-12" style="margin-top: -100px;"
+					method="post" action="<c:url value='searchhouse'/>">
+					<div class="row  align-items-end">
+						<div class="col-md-3">
+							<label for="city">市</label>
+							<div class="select-wrap">
+								<span class="icon icon-arrow_drop_down"></span> <select
+									name="city" id="city" class="form-control d-block rounded-0"
+									onChange="clickcity(this)">
+									<option selected hidden>請選擇市</option>
+									<option value="台北市">台北市</option>
+									<option value="新北市">新北市</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<label for="dist">區</label>
+							<div class="select-wrap">
+								<span class="icon icon-arrow_drop_down"></span> <select
+									name="dist" id="dist" class="form-control d-block rounded-0">
+									<option selected hidden>請先選擇市</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<label for="addr">地址</label>
+							<div class="select-wrap">
+								<input type="text" name="addr" id="addr"
+									class="form-control d-block rounded-0" placeholder="請輸入詳細地址">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="select-wrap">
+								<input type="submit"
+									class="btn btn-success text-white btn-block rounded-0 "
+									value="查詢">
+							</div>
+						</div>
+					</div>
+<!-- 					<div class="row  align-items-end"> -->
+<!-- 						<div class="col-md-3"> -->
+<!-- 							<label for="amount">價錢範圍:</label> -->
+<!-- 							<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold; background-color: transparent;"> -->
+<!-- 							<div id="slider-range"></div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+				</form>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="view-options bg-white py-3 px-3 d-md-flex align-items-center">
-            <div class="mr-auto">
-              <a href="index.html" class="icon-view view-module"><span class="icon-view_module"></span></a>
-              <a href="view-list.html" class="icon-view view-list active"><span class="icon-view_list"></span></a>
-
-            </div>
-            <div class="ml-auto d-flex align-items-center">
-              <div>
-                <a href="#" class="view-list px-3 border-right active">全部</a>
-                <!-- <a href="#" class="view-list px-3 border-right">出租</a> -->
-                <a href="#" class="view-list px-3">賣房</a>
-              </div>
+			</div>
 
 
-              <div class="select-wrap">
-                <span class="icon icon-arrow_drop_down"></span>
-                <select class="form-control form-control-sm d-block rounded-0">
-                  <option value="">排序依據</option>
-                  <option value="">價格低至高</option>
-                  <option value="">價格高至低</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-    </div>
-  </div>
+		</div>
+	</div>
 
   <div class="site-section site-section-sm bg-light">
     <div class="container">
@@ -622,6 +565,50 @@
   <jsp:include page="/footer.jsp" />
 
   </div>
+  
+  <script>
+		function clickcity(clicked) {
+			let ctvl = clicked.value;
+			let dist = document.getElementById("dist");
+			let tpdt = [ "全區", "北投區", "士林區", "內湖區", "中山區", "松山區", "大同區", "萬華區",
+					"中正區", "大安區", "信義區", "南港區", "文山區" ];
+			let ntpdt = [ "全區", "板橋區", "中和區", "新莊區", "土城區", "汐止區", "鶯歌區",
+					"淡水區", "五股區", "林口區", "深坑區", "坪林區", "石門區", "萬里區", "雙溪區",
+					"烏來區", "三重區", "永和區", "新店區", "蘆洲區", "樹林區", "三峽區", "瑞芳區",
+					"泰山區", "八里區", "石碇區", "三芝區", "金山區", "平溪區", "貢寮區" ];
+			if (ctvl == "台北市") {
+				dist.options.length = 0;
+				for (let x = 0; x < tpdt.length; x++) {
+					dist.add(new Option(tpdt[x], tpdt[x]));
+				}
+			}
+			if (ctvl == "新北市") {
+				dist.options.length = 0;
+				for (let y = 0; y < ntpdt.length; y++) {
+					dist.add(new Option(ntpdt[y], ntpdt[y]));
+				}
+			}
+		}
+	</script>
+	<script>
+		function search() {
+			let city = document.getElementById("city").value;
+			let dist = document.getElementById("dist").value;
+			console.log(city);
+			console.log(dist);
+
+			let xhr = new XMLHttpRequest();
+			xhr.open("GET", "<c:url value='searchhouse'/>" + "?city=" + city
+					+ "&dist=" + dist, true);
+			xhr.send();
+			xhr.onreadystatechange = function() {
+
+				if (xhr.readyState == 4 && xhr.status == 200) {
+
+				}
+			}
+		}
+	</script>
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>

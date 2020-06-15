@@ -150,7 +150,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 						label.setAttribute("for", "yes-button" + j);
 						
 						bankArea.appendChild(input);
-						label.innerHTML += bankData[j].bankName;
+						label.innerHTML += bankData[j].bankCode+bankData[j].bankName;
 						bankArea.appendChild(label);
 						
 					}

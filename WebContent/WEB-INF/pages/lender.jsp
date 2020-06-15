@@ -477,7 +477,7 @@ body {
 
 				} ]
 			}, {
-				"title" : "您有無房屋仲介經紀人？",
+				"title" : "您購屋時有無雇用不動產經紀人(房仲)服務？",
 				"type" : "TYPE_RADIO",
 				"answers_items" : [ {
 					"result" : "A",
@@ -516,7 +516,7 @@ body {
 
 				} ]
 			}, {
-				"title" : "所得來源為薪資轉帳還是現金收入？",
+				"title" : "您所得來源為薪資轉帳還是現金收入？",
 				"type" : "TYPE_RADIO",
 				"answers_items" : [ {
 					"result" : "A",

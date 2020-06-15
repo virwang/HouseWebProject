@@ -25,16 +25,17 @@ public class HouseHitController {
 		HouseHitBean htBean = hitService.getHtBean(id);
 		if (htBean==null) {
 			boolean isht = hitService.insertHit(id);
+			System.out.println(isht);
 			if (isht) {
 				HouseHitBean httBean = hitService.getHtBean(id);
-				httBean.setHit(httBean.getHit()+1);
+				httBean.setHit(0+1);
 				status="success";
 				return re= new ResponseEntity<String>(status,HttpStatus.OK);
 			}
 			status="success";
 			return re= new ResponseEntity<String>(status,HttpStatus.OK);
 		}
-		System.out.println(htBean.toString());
+//		System.out.println(htBean.toString());
 		System.out.println("before set="+htBean.getHit());
 		hit = hit+1;
 		htBean.setHit(hit);

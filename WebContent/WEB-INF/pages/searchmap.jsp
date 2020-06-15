@@ -241,7 +241,7 @@
           }).addTo(layergroup);
           slmrtpt.bindPopup("<b>" + stpt.stationname + "站</b>").openPopup();
           //地圖中心點飛至該捷運站點
-          map.flyTo([stpt.lat, stpt.lon], 16);
+          map.flyTo([stpt.lat, stpt.lon], 15);
           let hpt = housepoint.hlist;
           for (let k = 0; k < hpt.length; k++) {
             console.log(hpt[k].title);

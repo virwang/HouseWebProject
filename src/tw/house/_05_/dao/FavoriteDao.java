@@ -34,11 +34,11 @@ public class FavoriteDao implements IFavoritedao {
 		Query<FavoriteBean> query = getSession().createQuery(queryAll, FavoriteBean.class);
 		List<FavoriteBean> falist = new ArrayList<>();
 		falist = query.list();
-		for (FavoriteBean fb : falist) {
-			System.out.println(fb.toString());
-			System.out.println(fb.getHouseBean().getId());
-			System.out.println(fb.getMemberBean().getPk());
-		}
+//		for (FavoriteBean fb : falist) {
+////			System.out.println(fb.toString());
+//			System.out.println(fb.getHouseBean().getId());
+//			System.out.println(fb.getMemberBean().getPk());
+//		}
 		return falist;
 
 	}
@@ -78,9 +78,9 @@ public class FavoriteDao implements IFavoritedao {
 		query.setParameter("title", title).setParameter("totalprice", totalprice);
 		List<FavoriteBean> fList = new ArrayList<>();
 		fList = query.getResultList();
-		for (FavoriteBean fBean : fList) {
-			System.out.println(fBean.toString());
-		}
+//		for (FavoriteBean fBean : fList) {
+////			System.out.println(fBean.toString());
+//		}
 //		System.out.println("fdao getHouseBean data" + fList.size());
 		return fList;
 	}

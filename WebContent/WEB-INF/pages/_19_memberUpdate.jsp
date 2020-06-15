@@ -26,69 +26,87 @@
 <link rel="stylesheet" href="css/fl-bigmug-line.css">
 <link rel="stylesheet" href="css/aos.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/19_css/memberData.css">
+<!-- <link rel="stylesheet" href="css/19_css/memberData.css">	 -->
 <style>
+   body {
+	background-color: #333333;
+	font-family:微軟正黑體;
+	font-size:18px;
+	color:#ffffff;
+}
 form{display: inline;}
- .sp1 {
- 	text-shadow: 2px 2px;
-      font-size: 35px;     
-      margin-top: 30px;
-      margin-left: 25vw;
-      width: 10vw;
+  .sp1 {
+       text-align: center;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 20px;
+        font-size: 40px;
     }
+    
     .sp3 {
 	margin-bottom:10vh;
 	margin-left:33vw;
 	font-size: 5mm;
     }
 
-    .t1 {
-      background-color:#FFFFFF;
-      border-collapse: collapse;
-      width: 50vw;
-      margin-top: 2vh;
-      margin-bottom: 10px;
-      margin-left: 25vw;
-      text-align: left;
-      box-shadow: 2px 2px;
-    }
+     .t1 { 
+       background-color:#FCFCFC; 
+       border-collapse: collapse; 
+       width: 60%; 
+       margin-top: 2vh; 
+       margin-left:20vw;
+       margin-bottom:20px;  
+       text-align: left; 
+       color:black;
+     } 
 
     .img1 {
       padding-bottom: 20px;
     }
 
-    .td1 {
-      border-right:4px double gray;
-      border-left: 1px solid gray;
-      border-top: 1px solid gray;
-      border-bottom: 1px solid gray;
-      padding-top: 2vh;
-      padding-bottom: 2vh;
-      width: 7vw;
-      background-color: #97CBFF;
-    }
+	.td1
+	{
+	background-color:#BEBEBE;
+	width:10vw;
+	font-size: 8mm;
+	}
+	tr td{
+		border-bottom:1px solid gray;
+	}
 
-    .td2 {
-   	  border-top: 1px solid gray; 
-      border-right: 1px solid gray;
-      border-bottom: 1px solid gray;
-      background-color: #FFFFFF;
-      text-align: center;
-    }
+	.td2
+	{
+	font-size:6mm;
+	font-family:微軟正黑體;
+	text-align: center;
+	}
     .submit{
    	 	padding:10px;
 		font-size: 10mm;
 		margin-top:10px;
-		background-color: #FFFFFF;
+		background-color: #333333;
 		border:none;
-		color:blue;
+		color:white;
 		outline: none;}
+	.submit:hover{color: red;}
 	.index{
 		font-size:10mm;
 		margin-left:22vw;
+		outline: none;
 		}
+	.a1{color:white;}
+
+	.a1:hover{ color:red; }
 	.in1{
-		box-shadow: 0 0 1px 1px gray;
+		border-color:#F0F0F0;
+		height:30px;
+		text-align:center;
+		font-size:6mm;
+		font-family:微軟正黑體;
+		width:50%;
+		}
+	.in1:focus{
+		background-color: #E0E0E0;
 		}
 </style>
 </head>
@@ -101,37 +119,14 @@ form{display: inline;}
 		<jsp:include page="/navibar.jsp" />
 	</div>
 
-	<div class="slide-one-item home-slider owl-carousel">
-
-
-
-		<div class="site-blocks-cover overlay"
-			style="background-image: url(images/house3.jpg);" data-aos="fade"
-			data-stellar-background-ratio="0.5">
-			<div class="container">
-				<div
-					class="row align-items-center justify-content-center text-center">
-					<div class="col-md-10">
-						<!--             <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">出租</span> -->
-						<!--             <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">賣房</span> -->
-						<!--             <h1 class="mb-2">渡假村</h1> -->
-						<!--             <p class="mb-5"><strong class="h2 text-success font-weight-bold">$2,250,500</strong></p> -->
-						<!--             <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">詳細資訊</a></p> -->
-					</div>
-				</div>
-			</div>
-		</div>
-
+	<div class="slide-one-item home-slider owl-carousel">		
 	</div>
-	<span class="sp1">個人資料</span>
+	<fieldset >
+	<div class="sp1">個人資料</div>
 	<font size='-1' color='red'>&nbsp;${errors.DBError}</font>
 	<form method="post" action=<c:url value='updateMember.do'/>>
-		<table class="t1">
-			<tr>
-				<td><input type="hidden" name="id"
-					value="${memberUpdate.pk}">
-				</td>
-			</tr>
+	<input type="hidden" name="id"value="${memberUpdate.pk}">
+		<table class="t1">				
 			<tr>
 				<td class="td1">姓名：</td>
 				<td class="td2"><input class="in1" type="text" id="name" name="name"
@@ -184,8 +179,9 @@ form{display: inline;}
 			</tr>
 		</table>	
 		<span class="sp3"><input class="submit" type="submit" value="送出" onclick="return confirmUpdate()"></span>
-		<span class="index"><a href="<c:url value='showMemberData'/>">上一頁</a></span>
+		<span class="index"><a class="a1" href="<c:url value='showMemberData'/>">上一頁</a></span>
 	</form>
+	</fieldset>
 	<div>
 
 		<jsp:include page="/footer.jsp" />

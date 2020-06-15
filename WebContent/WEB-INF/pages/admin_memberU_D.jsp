@@ -7,6 +7,47 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/19_css/admin_member.css">
 <title>修改會員資料</title>
+<style>
+body{background-color: #FCFCFC;}
+.submit{background-color:#FCFCFC;}
+.td1{
+	font-family:微軟正黑體;
+	font-weight:bold;
+	font-size:6mm;
+	color:white;
+	background-color:#4F4F4F;
+	width:300px;
+}
+.t1{
+	background-color:#FFFFFF;
+	border-color:#D0D0D0;
+	border-left:none;
+	border-right:none;
+	border-collapse: collapse;
+	width: 100%;
+	}
+.td2{
+	font-size:6mm;
+	font-family:微軟正黑體;
+	text-align: center;
+	}
+.ip1{
+	font-size:6mm;
+	font-family:微軟正黑體;
+	padding:5px;
+	width:auto;
+	border-color:#F0F0F0;
+	text-align: center;
+	}
+.ip1:focus{
+		background-color: #E0E0E0;
+		}
+.s1{
+	border-width:medium;
+	font-size:6mm;
+	padding:5px;
+	}
+</style>
 </head>
 <body>
 <h1 align="center">會員修改</h1>
@@ -45,7 +86,7 @@
 			<tr>
 				<td class="td1">身份別：</td>
 				<td class="td2">
-				<select name="usertype">
+				<select class="s1" name="usertype">
 				<option value="General">一般會員</option>
 				<option value="Senior">高級會員</option>
 				<option value="admin">管理者</option>

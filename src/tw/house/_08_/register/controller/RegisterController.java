@@ -171,7 +171,7 @@ public class RegisterController {
 			return "_08_registerMember";
 		}else {
 			mService.insertMember(mb);
-			m.addAttribute("memberBean", mb);
+			m.addAttribute("mBean", mb);
 			return "_08_registerSucess";
 		}
 		

@@ -76,10 +76,7 @@ public class HouseController {
 		if(mBean!=null) {
 			Integer pk = mBean.getPk();
 			List<FavoriteBean> list2 = ifs.mfhosue(pk);
-			List<Object> obj= ps.top3FaHouse();
-//			for (FavoriteBean favoriteBean : list2) {
-//				System.out.println("favorite hosue "+favoriteBean);
-//			}
+			List<Object> obj = ps.top3FaHouse();
 			m.addAttribute("fh", list2);
 			m.addAttribute("path", obj);
 		}
@@ -271,7 +268,7 @@ public class HouseController {
 		
 //		System.out.println(mBean.getAccount()+"!!!");
 //		System.out.println("memberpk: "+mBean.getPk());
-//		System.out.println("picture1="+picture1);
+		System.out.println("picture1="+picture1);
 		//取小數以下兩位
 		NumberFormat numberFormat = new DecimalFormat("#.00");
 		numberFormat.setRoundingMode(RoundingMode.HALF_UP);

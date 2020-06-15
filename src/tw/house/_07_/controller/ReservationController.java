@@ -3,7 +3,9 @@ package tw.house._07_.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,12 +33,19 @@ public class ReservationController {
 	private HouseService hService;
 	
 	@PostMapping(path = "/newapplication")
-	public String insertApplication(@RequestParam("hid") Integer hid,@RequestParam("date") String date,
+	public ResponseEntity<Map<String, String>> insertApplication(@RequestParam(value = "hid") Integer hid,@RequestParam(value = "date",required = false) String date,
 			@RequestParam("time") String reservtime,@SessionAttribute("memberBean") MemberBean mb,
 			Model m) throws Exception{
 		System.out.println(hid);
 		System.out.println(date);
-		
+		String status = "";
+		Map<String, String> map = new LinkedHashMap<>();
+		ResponseEntity<Map<String, String>> re = null;
+		if (date=="") {
+			map.put("status", "false");
+			re = new ResponseEntity<Map<String, String>>(map,HttpStatus.OK);
+			return re;
+		}
 		LocalDate localDate = LocalDate.parse(date);
 		
 		ReservationBean rBean = new ReservationBean();
@@ -47,11 +56,14 @@ public class ReservationController {
 		rBean.setStatus("申請中");
 		rBean.setReservatedate(localDate);
 		rBean.setReservatetime(reservtime);
-		rService.insertapplication(rBean);
-		
-		
-		m.addAttribute("HOUSEID", hid);
-		return "redirect:/housedetail";
+		boolean isap = rService.insertapplication(rBean);
+		if (isap) {
+			map.put("status", "success");
+		}else {
+			map.put("status", "false");
+		}
+		re = new ResponseEntity<Map<String, String>>(map,HttpStatus.OK);
+		return re;
 		
 	}
 	
@@ -77,6 +89,23 @@ public class ReservationController {
 		List<ReservationBean> list = rService.recipientlist(mb.getPk());
 		
 		ResponseEntity<List<ReservationBean>> re = new ResponseEntity<>(list,HttpStatus.OK);
+		return re;
+		
+	}
+	
+	@PostMapping(path = "/updatereserv", produces = "application/json")
+	public ResponseEntity <Map<String, String>> updatereservation(Integer rid,String status){
+		Map<String, String> map = new LinkedHashMap<>();
+		ResponseEntity <Map<String, String>> re = null;
+		String upstatus = "";
+		boolean udtr = rService.updateresv(rid, status);
+		if (udtr) {
+			upstatus = "success";
+		}else {
+			upstatus = "false";
+		}
+		map.put("status", upstatus);
+		re = new ResponseEntity<>(map,HttpStatus.OK);
 		return re;
 		
 	}

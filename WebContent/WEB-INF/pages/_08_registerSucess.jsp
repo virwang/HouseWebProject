@@ -71,11 +71,11 @@
   </div>
 <fieldset >
   <div class="st1">您已成功註冊，好家在-想住哪就住哪，歡迎您的加入</div>
-  <div class="st3">會員 ${ memberBean.name } 的資料新增成功<br></div>
-<div class="st3">帳號: ${ memberBean.account }<br></div>
-<div class="st3">手機: ${ memberBean.tel }<br></div>
-<div class="st3">E-Mail: ${ memberBean.email }<br></div>
-<div class="st3">註冊時間: ${ memberBean.registerDate }<br></div>
+  <div class="st3">會員 ${ mBean.name } 的資料新增成功<br></div>
+<div class="st3">帳號: ${ mBean.account }<br></div>
+<div class="st3">手機: ${ mBean.tel }<br></div>
+<div class="st3">E-Mail: ${ mBean.email }<br></div>
+<div class="st3">註冊時間: ${ mBean.registerDate }<br></div>
 </fieldset>
 <!--   <div class="st2"> -->
 <!--       <a href="index.jsp">返回首頁</a> -->

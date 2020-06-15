@@ -5,12 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/19_css/admin_index.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <style>
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-  body{font-family:微軟正黑體;}
+/* tr:nth-child(even) { */
+/*   background-color: #f2f2f2; */
+/* } */
+/* table tbody tr:hover{ */
+/* 		background-color:#9D9D9D; */
+/* 		} */
+  body{
+  font-family:微軟正黑體;
+  background-color: #333333;
+  }
   .butn1{
   font-family:微軟正黑體;
   border:none;
@@ -20,10 +29,13 @@ tr:nth-child(even) {
   outline: none;
   }
   .butn1:hover{
-  background-color: #ddd;
+   background-color: #333; 
+  text-decoration: underline;
   }
 			/* Add a black background color to the top navigation */
 .topnav {
+	margin-top:50px;
+	margin-left:180px;
   background-color: #333;
   overflow: hidden;
 }
@@ -41,8 +53,8 @@ tr:nth-child(even) {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
+  text-decoration:underline;
+  color: white;
 }
 
 /* Add an active class to highlight the current page */
@@ -56,28 +68,73 @@ tr:nth-child(even) {
   display: none;
 }
 
-
+/* table{ */
+/* 	border-collapse:collapse; */
+/* 	} */
+.d1{
+	margin-top:30px;
+	background-color: #333;
+}
+ tr td{ 
+	background-color:#FFFFFF; 
+	padding:2px; 
+ 	font-size:6mm; 
+ 	font-family: 微軟正黑體; 
+ 	border-left:none; 
+	border-right:none; 	} 
+ tr th{ 
+ 	background-color:#D0D0D0; 
+ 	padding:2px; 
+ 	font-size:6mm; 
+ 	font-family: 微軟正黑體; 
+ 	border-left:none; 
+ 	border-right:none; 
+ 	} 
+a:hover {
+  text-decoration:underline;
+  color: white;
+}
+a {
+  float: left;
+  display: block;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
 </style>
 <title>後臺管理</title>
 </head>
 <body>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <div class="topnav" id="myTopnav">
-  <a href="index.jsp" class="active">返回首頁</a>
+  <a href="index.jsp" class="active">好家在</a>
   <a href="<c:url value='createnew'/>">新增新聞</a>
-  <a onmouseover="ahover()" onmouseleave="aleave()"><button class="butn1" id="newbtn" onclick="ajaxnews()">新聞清單</button></a>
-  <a onmouseover="ahover1()" onmouseleave="aleave1()"><button class="butn1" id="housebtn" onclick="ajaxhouses()">房屋清單</button></a>
-  <a onmouseover="ahover2()" onmouseleave="aleave2()"><button class="butn1" id="memberbtn" onclick="ajaxmembers()">會員清單</button></a>
+  <a  id="newbtn" href="#" onclick="ajaxnews()">新聞清單</a>
+  <a  id="housebtn" href="#" onclick="ajaxhouses()">房屋清單</a>
+  <a  id="memberbtn" href="#" onclick="ajaxmembers()">會員清單</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
 <div class=d1 id="ajax"></div>	
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.js"
 		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
+	$(document).ready( function () {
+	    $('#member').DataTable({
+	    } );
+	} );
+	$(document).ready( function () {
+	    $('#house').DataTable({
+	    } );
+	} );
+	$(document).ready( function () {
+	    $('#new').DataTable({
+	    } );
+	} );
 	function ahover(){
 		$("#newbtn").css("background-color","#ddd");
 		$("#newbtn").css("color","black");
@@ -113,19 +170,19 @@ tr:nth-child(even) {
 			console.log(xhr.readyState);
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				let memberlist = JSON.parse(xhr.responseText);
-				content = '<table class=t2 id="member" style="width:100%;text-align:center;">';
-				content += '<tr><th>姓名</th><th>身份</th><th> </th></tr>';
+				content = '<table class="table table-striped table-hover table-bordered" id="member" align="center" style="width:70%;text-align:center;">';
+				content += '<thead><tr><th>姓名</th><th>身份</th><th> </th></tr></thead><tbody>';
 				for (let j = 0; j < memberlist.length;j++) {
 					let tb = '<tr><td>' + memberlist[j].name
 					+ '</td><td>'
 					+ memberlist[j].usertype
 					+ "</td><td><a class='a1' href='<c:url value='showmember?id="
 					+ memberlist[j].pk
-					+"'/>'>修改資料</a>";
+					+"'/>'>修改資料</a></td></tr>";
 					content += tb;
 				}		
 		}
-		content += '</table>';
+		content += '</tbody></table>';
 		ajaxmember.innerHTML = content;
 		}	
 	}
@@ -142,8 +199,8 @@ tr:nth-child(even) {
 			console.log(xhr1.readyState);
 			if (xhr1.readyState == 4 && xhr1.status == 200) {
 				let houselist = JSON.parse(xhr1.responseText);
-				content1 = '<table class=t2 id="house"  style="width:100%;text-align:center;">';
-				content1 += '<tr><th>標題</th><th>城市</th><th>行政區</th><th> </th></tr>';
+				content1 = '<table class="table table-striped table-hover table-bordered" id="member" align="center" style="width:70%;text-align:center;" id="house" align="center"  style="width:70%;text-align:center;">';
+				content1 += '<thead><tr><th>標題</th><th>城市</th><th>行政區</th><th> </th></tr></thead><tbody>';
 				for (let j = 0; j < houselist.length;j++) {
 					let tb1 = '<tr><td>' + houselist[j].title
 					+ '</td><td>'
@@ -152,11 +209,11 @@ tr:nth-child(even) {
 					+houselist[j].dist
 					+"</td><td><a class='a1' href='<c:url value='showHouse?id="
 					+ houselist[j].id
-					+"'/>'>刪除資料</a>";
+					+"'/>'>刪除資料</a></td></tr>";
 					content1 += tb1;
 				}		
 		}
-		content1 += '</table>';
+		content1 += '</tbody></table>';
 		ajaxhouse.innerHTML = content1;
 		}	
 	}
@@ -175,8 +232,8 @@ tr:nth-child(even) {
 				let newlist = JSON.parse(xhr2.responseText);
 				console.log(newlist);
 				
-				content2 = '<table class=t2 id="new"  style="width:100%;text-align:center;">';
-				content2 += '<tr><th>標題</th><th>城市</th><th>行政區</th><th> </th></tr>';
+				content2 = '<table class="table table-striped table-hover table-bordered" id="member" align="center" style="width:70%;text-align:center;" id="new" align="center"  style="width:70%;text-align:center;">';
+				content2 += '<thead><tr><th>標題</th><th>城市</th><th>行政區</th><th> </th></tr></thead><tbody>';
 				for (let j = 0; j < newlist.length;j++) {
 					let tb2 = '<tr><td>' + newlist[j].newstitle
 					+ '</td><td>'
@@ -185,15 +242,16 @@ tr:nth-child(even) {
 					+newlist[j].newsareaname
 					+"</td><td><a class='a1' href='<c:url value='showNew?id="
 					+ newlist[j].newsnum
-					+"'/>'>修改資料</a>";
+					+"'/>'>修改資料</a></td></tr>";
 					content2 += tb2;
 				}		
 		}
-		content2 += '</table>';
+		content2 += '</tbody></table>';
 		ajaxnew.innerHTML = content2;
 		}	
 	}
 	</script>
-	
+<script src="js/bootstrap.min.js"></script>	
+
 </body>
 </html>

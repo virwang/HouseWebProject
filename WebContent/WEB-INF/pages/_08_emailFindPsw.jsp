@@ -168,13 +168,13 @@
     <label for="psw"><b>信箱</b></label>
     <input id="email" placeholder="請輸入E-mail" type="text" name="email"  size=""required >
 	<small><Font color='red'  size="-1">${ErrorMsgKey.PswError}</Font></small>
-	<br>
-      <div class="g-recaptcha" data-sitekey="6LdiYQEVAAAAAOo5WzmBhqfR4YdV0BOQdifm_cTi" data-callback="enablebtn"></div>
-      <br>
+<!-- 	<br> -->
+<!--   style="display:none"    <div class="g-recaptcha" data-sitekey="6LdiYQEVAAAAAOo5WzmBhqfR4YdV0BOQdifm_cTi" data-callback="enablebtn"></div> -->
+<!--       <br> -->
 	
 	
 	<br>
-    <button style="display:none" id="myBtn" type="button" class="btn">送出</button>
+    <button  id="myBtn" type="button" class="btn">送出</button>
 <!--     <button type="submit" class="btn cancel" onclick="closeForm()">Close</button> -->
   </form>
   

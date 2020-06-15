@@ -94,6 +94,7 @@ public class AdminNewController {
 			bean.setNewscityname(newscityname);
 			bean.setNewsareaname(newsareaname);
 			bean.setNewscontent(newscontent);	
+			bean.setNewsareaid(1);
 			if(newscityname.equals("taipei")) {		
 				bean.setNewscityid(1);
 			}else {

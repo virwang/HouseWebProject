@@ -148,8 +148,8 @@ body {
 
 				<br>
 				<label class="gender">性別：</label> 
-				<input type="radio" name="gender"value="${param.gender} male" checked required>男 
-				<input type="radio"	name="gender" value="${param.gender} female">女
+				<input type="radio" name="gender"value="${param.gender}male" checked required>男 
+				<input type="radio"	name="gender" value="${param.gender}female">女
 
 <!-- 				<label class="Id">身分別：</label> -->
 <%-- 				 <select name="usertype"value="${param.usertype}"> --%>
@@ -170,21 +170,21 @@ body {
               	<br>
       <div class="g-recaptcha" data-sitekey="6LdiYQEVAAAAAOo5WzmBhqfR4YdV0BOQdifm_cTi" data-callback="enablebtn"></div>
 			<br>
+<button id="allsub" type="button" onclick="allsubmit()" >一鍵輸入</button>
 			<input  style="display:none" class="btn"id="submit" type="submit" value="送出"> 
 			<input  class="btn"id="reset" type="reset" value="清除">
 		</form>
 		</div>
 	</fieldset>
-<button id="allsub" onclick="allsubmit()" >一鍵輸入</button>
 
 	<jsp:include page="/footer.jsp" />
 		<script src="https://www.google.com/recaptcha/api.js"></script>
 	<script>
 	function allsubmit(){
 		let acct=document.getElementById("account");
-		acct.value="scott1234";
+		acct.value="tiger1234";
 		let psw=document.getElementById("psw");
-		psw.value="scott1234";
+		psw.value="tiger1234";
 		let name=document.getElementById("name");
 		name.value="李建輝";
 		let idCard=document.getElementById("idCard");
@@ -192,7 +192,7 @@ body {
 		let tel=document.getElementById("tel");
 		tel.value="0912345678";
 		let email=document.getElementById("email");
-		email.value="5413gary@gmail.com";
+		email.value="eeit113blue@gmail.com";
 		}
 	
 	function enablebtn(){

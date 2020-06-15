@@ -25,7 +25,7 @@ public class HouseHitDAO {
 	}
 	
 	public boolean updateHit(HouseHitBean htBean) {
-		System.out.println(htBean.toString());
+//		System.out.println(htBean.toString());
 
 		System.out.println(getSession().getTransaction().getStatus());
 		try{
@@ -41,6 +41,7 @@ public class HouseHitDAO {
 	public boolean insertHit(Integer hid) {
 		HouseHitBean htBean = new HouseHitBean();
 		htBean.setHid(hid);
+		htBean.setHit(1);
 		try{
 			getSession().persist(htBean);
 			System.out.println("success insert househit");

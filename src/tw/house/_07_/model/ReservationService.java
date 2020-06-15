@@ -26,5 +26,8 @@ public class ReservationService {
 	public boolean deleteReservationByHouseId(Integer hid) {
 		return reservationDAO.deleteReservationByHouseId(hid);
 	}
+	public boolean updateresv(Integer rid,String status) {
+		return reservationDAO.updateresv(rid, status);
+	}
 	
 }

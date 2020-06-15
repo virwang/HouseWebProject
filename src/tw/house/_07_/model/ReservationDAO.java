@@ -50,16 +50,6 @@ public class ReservationDAO {
 		return false;
 	}
 	
-	public boolean updateReservation(ReservationBean rBean) {
-		try{
-			getSession().update(rBean);
-			System.out.println("success update reservation");
-			return true;
-		}catch (Exception e) {
-			System.out.println("falied to update reservate");
-		}
-		return false;
-	}
 	
 	public boolean deleteReservationByHouseId(Integer hid) {
 		String hql = "from ReservationBean where houseid= :hid";
@@ -75,6 +65,18 @@ public class ReservationDAO {
 		}else {
 			return true;
 		}
+	}
+	public boolean updateresv(Integer rid,String status) {
+		ReservationBean rBean = getSession().get(ReservationBean.class, rid);
+		rBean.setStatus(status);
+		try{
+			getSession().persist(rBean);
+			System.out.println("success update reservation");
+			return true;
+		}catch (Exception e) {
+			System.out.println("falied to update reservate");
+		}
+		return false;
 	}
 	
 	

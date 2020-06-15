@@ -66,7 +66,7 @@
 	  
 	  <div id="applicanttable" class="row"></div>
 	  
-	  <c:if test="${memberBean.usertype=='Senior'}">
+	  <c:if test="${memberBean.usertype=='Senior'||memberBean.usertype=='admin'}">
 	    <div class="row">
       	   <h1 class="mb-2">受理</h1>
         </div>
@@ -97,7 +97,9 @@
 				let applicantlist = JSON.parse(xhr.responseText);
 
 				let at = document.getElementById("applicanttable");
-				let tbth = ["#", "房屋物件", "屋主", "申請狀態", "預約日期", "預約時段","更改","取消"];
+				let tbth = ["#", "房屋物件", "屋主", "申請狀態", "預約日期", "預約時段",
+// 					"更改",
+					"取消"];
 				let aptable = document.createElement("table");
 				aptable.setAttribute("class","table table-striped");
 				let apthead = document.createElement("thead");
@@ -139,6 +141,7 @@
 					aptr1.appendChild(aptd2);
 					
 					let aptd3 = document.createElement("td");
+					aptd3.setAttribute("id","ap"+applicantlist[i].no);
 					let t3 = document.createTextNode(applicantlist[i].status);
 					aptd3.appendChild(t3);
 					aptr1.appendChild(aptd3);
@@ -155,27 +158,34 @@
 					aptd5.appendChild(t5);
 					aptr1.appendChild(aptd5);
 
-					let aptd6 = document.createElement("td");
-					let bt1 = document.createElement("button");
-					bt1.setAttribute("id","updaterv");
-					bt1.setAttribute("class","btn btn-info");
-					bt1.setAttribute("name","updaterv");
-					bt1.setAttribute("value",applicantlist[i].no);
-					let btt1 = document.createTextNode("更改");
-					bt1.appendChild(btt1);
-					aptd6.appendChild(bt1);
-					aptr1.appendChild(aptd6);
-
-					let aptd7 = document.createElement("td");
-					let bt2 = document.createElement("button");
-					bt2.setAttribute("id","cancelrv");
-					bt2.setAttribute("class","btn btn-info");
-					bt2.setAttribute("name","cancelrv");
-					bt2.setAttribute("value",applicantlist[i].no);
-					let btt2 = document.createTextNode("取消");
-					bt2.appendChild(btt2);
-					aptd7.appendChild(bt2);
-					aptr1.appendChild(aptd7);
+// 					let aptd6 = document.createElement("td");
+// 					let bt1 = document.createElement("button");
+// 					bt1.setAttribute("id","updaterv");
+// 					bt1.setAttribute("class","btn btn-info");
+// 					bt1.setAttribute("name","updaterv");
+// 					bt1.setAttribute("value",applicantlist[i].no);
+// 					let btt1 = document.createTextNode("更改");
+// 					bt1.appendChild(btt1);
+// 					aptd6.appendChild(bt1);
+// 					aptr1.appendChild(aptd6);
+					if(applicantlist[i].status!="預約已取消"){
+						let aptd7 = document.createElement("td");
+						aptd7.setAttribute("id","btnap"+applicantlist[i].no);
+						let bt2 = document.createElement("button");
+						bt2.setAttribute("id","cancelrv");
+						bt2.setAttribute("class","btn btn-info");
+						bt2.setAttribute("name","cancelrv");
+						bt2.setAttribute("value",applicantlist[i].no);
+						bt2.setAttribute("onclick","cancel(this)");
+						let btt2 = document.createTextNode("取消");
+						bt2.appendChild(btt2);
+						aptd7.appendChild(bt2);
+						aptr1.appendChild(aptd7);
+					}else{
+						let aptd7 = document.createElement("td");
+						aptd7.setAttribute("id","btnap"+applicantlist[i].no);
+						aptr1.appendChild(aptd7);
+					}
 
 					
 					aptbody.appendChild(aptr1);
@@ -244,6 +254,7 @@
 						rptr1.appendChild(rptd2);
 						
 						let rptd3 = document.createElement("td");
+						rptd3.setAttribute("id","rp"+recipientlist[i].no);
 						let t3 = document.createTextNode(recipientlist[i].status);
 						rptd3.appendChild(t3);
 						rptr1.appendChild(rptd3);
@@ -260,27 +271,42 @@
 						rptd5.appendChild(t5);
 						rptr1.appendChild(rptd5);
 
-						let rptd6 = document.createElement("td");
-						let bt1 = document.createElement("button");
-						bt1.setAttribute("id","confirmrv");
-						bt1.setAttribute("class","btn btn-info");
-						bt1.setAttribute("name","confirmrv");
-						bt1.setAttribute("value",recipientlist[i].no);
-						let btt1 = document.createTextNode("確認");
-						bt1.appendChild(btt1);
-						rptd6.appendChild(bt1);
-						rptr1.appendChild(rptd6);
+						if(!(recipientlist[i].status=="預約已取消"||recipientlist[i].status=="預約生效")){
+							let rptd6 = document.createElement("td");
+							rptd6.setAttribute("id","btnrpc"+recipientlist[i].no);
+							let bt1 = document.createElement("button");
+							bt1.setAttribute("id","confirmrv");
+							bt1.setAttribute("class","btn btn-info");
+							bt1.setAttribute("name","confirmrv");
+							bt1.setAttribute("value",recipientlist[i].no);
+							bt1.setAttribute("onclick","confirm(this)");
+							let btt1 = document.createTextNode("確認");
+							bt1.appendChild(btt1);
+							rptd6.appendChild(bt1);
+							rptr1.appendChild(rptd6);
 
-						let rptd7 = document.createElement("td");
-						let bt2 = document.createElement("button");
-						bt2.setAttribute("id","declinerv");
-						bt2.setAttribute("class","btn btn-info");
-						bt2.setAttribute("name","declinerv");
-						bt2.setAttribute("value",recipientlist[i].no);
-						let btt2 = document.createTextNode("否決");
-						bt2.appendChild(btt2);
-						rptd7.appendChild(bt2);
-						rptr1.appendChild(rptd7);
+							let rptd7 = document.createElement("td");
+							rptd7.setAttribute("id","btnrpd"+recipientlist[i].no);
+							let bt2 = document.createElement("button");
+							bt2.setAttribute("id","declinerv");
+							bt2.setAttribute("class","btn btn-info");
+							bt2.setAttribute("name","declinerv");
+							bt2.setAttribute("value",recipientlist[i].no);
+							bt2.setAttribute("onclick","decline(this)");
+							let btt2 = document.createTextNode("否決");
+							bt2.appendChild(btt2);
+							rptd7.appendChild(bt2);
+							rptr1.appendChild(rptd7);
+						}else{
+							let rptd6 = document.createElement("td");
+							rptd6.setAttribute("id","btnrpc"+recipientlist[i].no);
+							rptr1.appendChild(rptd6);
+
+							let rptd7 = document.createElement("td");
+							rptd7.setAttribute("id","btnrpd"+recipientlist[i].no);
+							rptr1.appendChild(rptd7);
+						}
+						
 
 
 						
@@ -293,6 +319,86 @@
 				}
 			}
 
+	}
+
+	function confirm(clicked){
+		let rid = clicked.value;
+		let status = "預約生效";
+		let rpstat = document.getElementById("rp"+rid);
+		let btrpcstat = document.getElementById("btnrpc"+rid);
+		let btrpdstat = document.getElementById("btnrpd"+rid);
+
+		let xhr3 = new XMLHttpRequest();
+		xhr3.open("POST","<c:url value='updatereserv'/>",true);
+		xhr3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr3.send("rid="+rid+"&status="+status);
+		xhr3.onreadystatechange=function(){
+			if(xhr3.readyState==4&&xhr3.status==200){
+				let resv =JSON.parse(xhr3.responseText);
+				if(resv.status=="success"){
+					alert("預約更新成功");
+					rpstat.innerHTML = status;
+					btrpcstat.innerHTML = "";
+					btrpdstat.innerHTML = "";
+					
+				}else{
+					alert("預約更新失敗");
+				}
+			}
+		
+		};
+	}
+	function cancel(clicked){
+		let rid = clicked.value;
+		let status = "預約已取消";
+		let apstat = document.getElementById("ap"+rid);
+		let btapstat = document.getElementById("btnap"+rid);
+
+		let xhr4 = new XMLHttpRequest();
+		xhr4.open("POST","<c:url value='updatereserv'/>",true);
+		xhr4.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr4.send("rid="+rid+"&status="+status);
+		xhr4.onreadystatechange=function(){
+			if(xhr4.readyState==4&&xhr4.status==200){
+				let resv =JSON.parse(xhr4.responseText);
+				if(resv.status=="success"){
+					alert("預約更新成功");
+					apstat.innerHTML = status;
+					btapstat.innerHTML = "";
+					
+				}else{
+					alert("預約更新失敗");
+				}
+			}
+		
+		};
+	}
+	function decline(clicked){
+		let rid = clicked.value;
+		let status = "預約已取消";
+		let rpstat = document.getElementById("rp"+rid);
+		let btrpcstat = document.getElementById("btnrpc"+rid);
+		let btrpdstat = document.getElementById("btnrpd"+rid);
+
+		let xhr3 = new XMLHttpRequest();
+		xhr3.open("POST","<c:url value='updatereserv'/>",true);
+		xhr3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr3.send("rid="+rid+"&status="+status);
+		xhr3.onreadystatechange=function(){
+			if(xhr3.readyState==4&&xhr3.status==200){
+				let resv =JSON.parse(xhr3.responseText);
+				if(resv.status=="success"){
+					alert("預約更新成功");
+					rpstat.innerHTML = status;
+					btrpcstat.innerHTML = "";
+					btrpdstat.innerHTML = "";
+					
+				}else{
+					alert("預約更新失敗");
+				}
+			}
+		
+		};
 	}
   </script>
 
